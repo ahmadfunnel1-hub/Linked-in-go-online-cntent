@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LinkedIn Carousel – Go Online</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --green: #b5e320;
+  --dark: #252525;
+  --mid: #3a3a3a;
+  --light: #f5f5f0;
+}
+
+body {
+  background: #111;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-family: 'Cairo', sans-serif;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* Stage */
+.stage {
+  position: relative;
+  width: min(480px, 90vw);
+  aspect-ratio: 4/5;
+  overflow: hidden;
+  border-radius: 16px;
+  box-shadow: 0 40px 120px rgba(0,0,0,0.8);
+  cursor: grab;
+  user-select: none;
+}
+.stage:active { cursor: grabbing; }
+
+/* Track */
+.track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.45s cubic-bezier(0.77,0,0.175,1);
+  will-change: transform;
+}
+
+/* Slide base */
+.slide {
+  min-width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 10%;
+}
+
+/* Backgrounds */
+.slide-1 { background: var(--dark); }
+.slide-2 { background: #1a1a1a; }
+.slide-3 { background: var(--dark); }
+.slide-4 { background: #1c1c1c; }
+.slide-5 { background: var(--dark); }
+.slide-6 { background: #1c1c1c; }
+.slide-7 { background: var(--dark); }
+.slide-8 { background: var(--mid); }
+
+/* Geometric accent shapes */
+.geo {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.08;
+  background: var(--green);
+  pointer-events: none;
+}
+.geo-big { width: 70%; aspect-ratio: 1; top: -20%; left: -25%; }
+.geo-sm  { width: 35%; aspect-ratio: 1; bottom: -10%; right: -10%; }
+
+.stripe {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 6px;
+  background: var(--green);
+}
+
+/* Number badge */
+.tip-num {
+  position: absolute;
+  top: 8%;
+  right: 8%;
+  font-weight: 900;
+  color: var(--green);
+  opacity: 0.15;
+  line-height: 1;
+  font-size: clamp(60px, 14vw, 130px);
+  letter-spacing: -4px;
+}
+
+/* Text styles */
+.tag {
+  display: inline-block;
+  background: var(--green);
+  color: var(--dark);
+  font-weight: 700;
+  font-size: clamp(11px, 2vw, 14px);
+  padding: 4px 14px;
+  border-radius: 100px;
+  margin-bottom: 16px;
+  letter-spacing: 0.5px;
+}
+
+.headline {
+  font-size: clamp(26px, 6.5vw, 58px);
+  font-weight: 900;
+  color: var(--light);
+  line-height: 1.2;
+  text-align: right;
+  text-wrap: pretty;
+  margin-bottom: 18px;
+}
+.headline em {
+  color: var(--green);
+  font-style: normal;
+}
+
+.body-text {
+  font-size: clamp(14px, 3vw, 22px);
+  font-weight: 400;
+  color: rgba(245,245,240,0.72);
+  line-height: 1.7;
+  text-align: right;
+  max-width: 90%;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(181,227,32,0.12);
+  border: 1.5px solid rgba(181,227,32,0.35);
+  border-radius: 100px;
+  padding: 8px 20px;
+  color: var(--green);
+  font-size: clamp(13px, 2.5vw, 18px);
+  font-weight: 600;
+  margin-top: 20px;
+}
+
+/* Logo watermark */
+.logo-wm {
+  position: absolute;
+  bottom: 6%;
+  left: 6%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  opacity: 0.9;
+}
+.logo-wm img {
+  height: clamp(22px, 5vw, 36px);
+  border-radius: 4px;
+}
+
+/* Swipe hint */
+.swipe-hint {
+  position: absolute;
+  top: 5%;
+  left: 5%;
+  color: rgba(255,255,255,0.5);
+  font-size: clamp(10px, 1.8vw, 13px);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 400;
+}
+.swipe-hint::after {
+  content: '›';
+  font-size: 1.4em;
+  color: var(--green);
+}
+
+/* Divider line */
+.divider {
+  width: 50px;
+  height: 3px;
+  background: var(--green);
+  border-radius: 2px;
+  margin-bottom: 16px;
+  align-self: flex-end;
+}
+
+/* Problem highlight box */
+.highlight-box {
+  background: rgba(181,227,32,0.08);
+  border-right: 4px solid var(--green);
+  border-radius: 4px;
+  padding: 16px 20px;
+  margin-top: 20px;
+  width: 100%;
+}
+.highlight-box p {
+  color: var(--light);
+  font-size: clamp(13px, 2.5vw, 18px);
+  line-height: 1.7;
+  font-weight: 600;
+}
+
+/* CTA button */
+.cta-btn {
+  margin-top: 28px;
+  background: var(--green);
+  color: var(--dark);
+  font-family: 'Cairo', sans-serif;
+  font-weight: 900;
+  font-size: clamp(14px, 3vw, 22px);
+  padding: 14px 36px;
+  border-radius: 100px;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.cta-btn:hover { transform: scale(1.04); box-shadow: 0 0 40px rgba(181,227,32,0.35); }
+
+/* Nav dots */
+.dots {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.dot {
+  width: 8px; height: 8px;
+  border-radius: 100px;
+  background: rgba(255,255,255,0.2);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.dot.active {
+  background: var(--green);
+  width: 24px;
+}
+
+/* Arrow nav */
+.nav-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.nav-btn {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(181,227,32,0.4);
+  background: rgba(181,227,32,0.06);
+  color: var(--green);
+  font-size: 20px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s;
+}
+.nav-btn:hover { background: rgba(181,227,32,0.15); }
+.nav-btn:disabled { opacity: 0.25; cursor: not-allowed; }
+
+/* Slide counter */
+.counter {
+  color: rgba(255,255,255,0.4);
+  font-size: 13px;
+  font-family: 'Cairo', sans-serif;
+  min-width: 50px;
+  text-align: center;
+}
+.counter span { color: var(--green); }
+</style>
+</head>
+<body>
+
+<!-- Carousel stage -->
+<div class="stage" id="stage">
+  <div class="track" id="track">
+
+    <!-- SLIDE 1: HOOK -->
+    <div class="slide slide-1" data-screen-label="01 Hook">
+      <div class="geo geo-big"></div>
+      <div class="geo geo-sm"></div>
+      <div class="stripe"></div>
+      <div class="swipe-hint">مرر</div>
+      <div class="tag">لينكد إن</div>
+      <div class="headline">
+        ليش ما<br><em>بينمو</em><br>حسابك؟
+      </div>
+      <div class="divider"></div>
+      <p class="body-text">معظم المحترفين يستخدمون لينكد إن بشكل خاطئ ولا يحصلون على نتائج</p>
+      <div class="pill">← اكتشف الحل في 5 خطوات</div>
+      <div class="logo-wm"><img src="uploads/logo-1776676040754.png" alt="Go Online"></div>
+    </div>
+
+    <!-- SLIDE 2: PROBLEM -->
+    <div class="slide slide-2" data-screen-label="02 Problem">
+      <div class="geo geo-big"></div>
+      <div class="geo geo-sm"></div>
+      <div class="stripe"></div>
+      <div class="swipe-hint">مرر</div>
+      <div class="tag">المشكلة</div>
+      <div class="headline">
+        ٩٠٪ من<br>المستخدمين<br><em>يهدرون</em><br>وقتهم
+      </div>
+      <div class="highlight-box">
+        <p>ينشرون بلا استراتيجية، بلا هدف، وبلا تفاعل حقيقي مع جمهورهم</p>
+      </div>
+      <div class="logo-wm"><img src="uploads/logo-1776676040754.png" alt="Go Online"></div>
+    </div>
+
+    <!-- SLIDE 3: TIP 1 -->
+    <div class="slide slide-3" data-screen-label="03 Tip 1">
+      <div class="geo geo-big"></div>
+      <div class="geo geo-sm"></div>
+      <div class="tip-num">١</div>
+      <div class="stripe"></div>
+      <div class="swipe-hint">مرر</div>
+      <div class="tag">النصيحة الأولى</div>
+      <div class="headline">
+        حسّن<br><em>ملفك</em><br>الشخصي
+      </div>
+      <div class="divider"></div>
+      <p class="body-text">صورة احترافية، عنوان واضح يعبّر عن تخصصك، وملخص شخصي يشرح قيمتك للآخرين</p>
+      <div class="logo-wm"><img src="uploads/logo-1776676040754.png" alt="Go Online"></div>
+    </div>
+
+    <!-- SLIDE 4: TIP 2 -->
+    <div class="slide slide-4" data-screen-label="04 Tip 2">
+      <div class="geo geo-big"></div>
+      <div class="geo geo-sm"></div>
+      <div class="tip-num">٢</div>
+      <div class="stripe"></div>
+      <div class="swipe-hint">مرر</div>
+      <div class="tag">النصيحة الثانية</div>
+      <div class="headline">
+        انشر<br><em>محتوى</em><br>بانتظام
+      </div>
+      <div class="divider"></div>
+      <p class="body-text">٣ منشورات أسبوعياً كافية. شارك تجاربك، آراءك، ودروسك المستفادة — الناس تتابع الإنسان لا الشركة</p>
+      <div class="logo-wm"><img src="uploads/logo-1776676040754.png" alt="Go Online"></div>
+    </div>
+
+    <!-- SLIDE 5: TIP 3 -->
+    <div class="slide slide-5" data-screen-label="05 Tip 3">
+      <div class="geo geo-big"></div>
+      <div class="geo geo-sm"></div>
+      <div class="tip-num">٣</div>
+      <div class="stripe"></div>
+      <div class="swipe-hint">مرر</div>
+      <div class="tag">النصيحة الثالثة</div>
+      <div class="headline">
+        تفاعل<br><em>يومياً</em><br>مع شبكتك
+      </div>
+      <div class="divider"></div>
+      <p class="body-text">علّق على منشورات الآخرين بشكل حقيقي. ١٠ دقائق يومياً من التفاعل تساوي أكثر من ١٠ منشورات</p>
+      <div class="logo-wm"><img src="uploads/logo-1776676040754.png" alt="Go Online"></div>
+    </div>
+
+    <!-- SLIDE 6: TIP 4 -->
+    <div class="slide slide-6" data-screen-label="06 Tip 4">
+      <div class="geo geo-big"></div>
+      <div class="geo geo-sm"></div>
+      <div class="tip-num">٤</div>
+      <div class="stripe"></div>
+      <div class="swipe-hint">مرر</div>
+      <div class="tag">النصيحة الرابعة</div>
+      <div class="headline">
+        استخدم<br><em>الهاشتاقات</em><br>بذكاء
+      </div>
+      <div class="divider"></div>
+      <p class="body-text">٣ إلى ٥ هاشتاقات متخصصة أفضل من ٢٠ هاشتاق عشوائي. اختر الهاشتاقات التي يتابعها جمهورك المستهدف</p>
+      <div class="logo-wm"><img src="uploads/logo-1776676040754.png" alt="Go Online"></div>
+    </div>
+
+    <!-- SLIDE 7: TIP 5 -->
+    <div class="slide slide-7" data-screen-label="07 Tip 5">
+      <div class="geo geo-big"></div>
+      <div class="geo geo-sm"></div>
+      <div class="tip-num">٥</div>
+      <div class="stripe"></div>
+      <div class="swipe-hint">مرر</div>
+      <div class="tag">النصيحة الخامسة</div>
+      <div class="headline">
+        حلّل<br><em>نتائجك</em><br>وطوّر
+      </div>
+      <div class="divider"></div>
+      <p class="body-text">راجع إحصائيات منشوراتك كل أسبوع. افهم ما يتفاعل معه جمهورك وكرّر نجاحاتك</p>
+      <div class="logo-wm"><img src="uploads/logo-1776676040754.png" alt="Go Online"></div>
+    </div>
+
+    <!-- SLIDE 8: CTA -->
+    <div class="slide slide-8" data-screen-label="08 CTA">
+      <div class="geo geo-big" style="opacity:0.12"></div>
+      <div class="geo geo-sm" style="opacity:0.12"></div>
+      <div class="stripe" style="width:8px"></div>
+      <div class="tag">Go Online</div>
+      <div class="headline">
+        جاهز تنمو<br>على<br><em>لينكد إن؟</em>
+      </div>
+      <div class="divider"></div>
+      <p class="body-text">نحن في Go Online نساعدك تبني حضور رقمي قوي يجلب لك عملاء حقيقيين</p>
+      <button class="cta-btn">تواصل معنا الآن ←</button>
+      <div class="logo-wm"><img src="uploads/logo-1776676040754.png" alt="Go Online"></div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Controls -->
+<div class="nav-row">
+  <button class="nav-btn" id="prevBtn" onclick="go(-1)">‹</button>
+  <div class="dots" id="dots"></div>
+  <button class="nav-btn" id="nextBtn" onclick="go(1)">›</button>
+</div>
+<div class="counter" id="counter"><span>1</span> / 8</div>
+
+<script>
+const TOTAL = 8;
+let cur = +(localStorage.getItem('go_carousel_slide') || 0);
+const track = document.getElementById('track');
+const dotsEl = document.getElementById('dots');
+const counter = document.getElementById('counter');
+const prevBtn = document.getElementById('prevBtn');
+const nextBtn = document.getElementById('nextBtn');
+
+// Build dots
+for (let i = 0; i < TOTAL; i++) {
+  const d = document.createElement('div');
+  d.className = 'dot' + (i === cur ? ' active' : '');
+  d.onclick = () => goTo(i);
+  dotsEl.appendChild(d);
+}
+
+function update() {
+  track.style.transform = `translateX(${cur * 100}%)`;
+  [...dotsEl.children].forEach((d,i) => d.className = 'dot' + (i===cur?' active':''));
+  counter.innerHTML = `<span>${cur+1}</span> / ${TOTAL}`;
+  prevBtn.disabled = cur === 0;
+  nextBtn.disabled = cur === TOTAL - 1;
+  localStorage.setItem('go_carousel_slide', cur);
+}
+
+function go(dir) { goTo(cur + dir); }
+function goTo(n) {
+  cur = Math.max(0, Math.min(TOTAL-1, n));
+  update();
+}
+
+// Touch/drag
+const stage = document.getElementById('stage');
+let startX = 0, isDragging = false;
+stage.addEventListener('pointerdown', e => { startX = e.clientX; isDragging = true; });
+stage.addEventListener('pointermove', e => {
+  if (!isDragging) return;
+  const dx = e.clientX - startX;
+  track.style.transform = `translateX(calc(${cur * 100}% + ${dx}px))`;
+});
+stage.addEventListener('pointerup', e => {
+  if (!isDragging) return;
+  isDragging = false;
+  const dx = e.clientX - startX;
+  if (dx < -50) go(1);
+  else if (dx > 50) go(-1);
+  else update();
+  track.style.transition = 'transform 0.45s cubic-bezier(0.77,0,0.175,1)';
+});
+
+// Keyboard
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowLeft') go(1);
+  if (e.key === 'ArrowRight') go(-1);
+});
+
+update();
+</script>
+</body>
+</html>
