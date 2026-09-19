@@ -1,0 +1,25 @@
+{
+  "_fallback": "https://www.example.com",
+  "_note": "Slug -> destination. Edit and redeploy to repoint a printed QR code. The printed URL never changes.",
+
+  "menu": {
+    "to": "https://app.example.com/widget/menu/abc123",
+    "campaign": "table_tent",
+    "owner": "Client A",
+    "printedOn": "table tents, 2026 spring run"
+  },
+
+  "book": {
+    "to": "https://api.leadconnectorhq.com/widget/booking/abc123",
+    "campaign": "window_decal",
+    "owner": "Client A",
+    "printedOn": "window decal"
+  },
+
+  "wifi": {
+    "to": "https://app.example.com/wifi-offer",
+    "campaign": "receipt_footer",
+    "owner": "Client A",
+    "printedOn": "receipt footer"
+  }
+}
