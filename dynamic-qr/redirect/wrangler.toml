@@ -1,0 +1,20 @@
+# Cloudflare Worker serving the dynamic QR redirects.
+#
+#   npx wrangler deploy
+#
+# The route must be a hostname on a domain you own. That ownership is the
+# thing that makes the printed code permanent.
+
+name = "qr-redirect"
+main = "worker.js"
+compatibility_date = "2026-01-01"
+
+# Replace with your own short host, e.g. go.godigital.jo
+routes = [
+  { pattern = "go.example.com/*", zone_name = "example.com" }
+]
+
+# Optional: a GHL inbound-webhook URL to notify on each scan.
+# Set it as a secret, not here:  npx wrangler secret put GHL_WEBHOOK_URL
+# [vars]
+# GHL_WEBHOOK_URL = ""

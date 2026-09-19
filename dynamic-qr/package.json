@@ -1,0 +1,12 @@
+{
+  "name": "dynamic-qr",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Dynamic QR codes on a domain you own, redirecting into GHL",
+  "scripts": {
+    "test": "node test/verify.js && node test/worker.test.mjs",
+    "test:cross-check": "python3 test/make-reference.py && node test/cross-check-segno.js",
+    "deploy": "cd redirect && npx wrangler deploy"
+  },
+  "license": "UNLICENSED"
+}
