@@ -4,14 +4,14 @@
 
      سلوك الفقاعة:
        - مخفية أول ما تفتح الصفحة (عشان ما تغطي على الهيدلاين)
-       - بتطلع لما الزائر ينزل نص الصفحة — وقتها بكون وصل لمنطقة الدفع
+       - بتطلع لما الزائر ينزل 40% من الصفحة، أو بعد ١٢ ثانية (أيهما أول)
        - بتختفي لحالها بعد ٩ ثواني، والدائرة بتضل
        - أو الزائر بسكّرها بالـ × وبتضل مسكّرة لباقي الجلسة
 
      تعديل سريع:
        1) الرقم       → href تبع #sticky-whatsapp-btn (الفقاعة بتاخده تلقائياً)
        2) نص الفقاعة  → النص داخل <a class="wa-bubble-text">
-       3) التوقيت     → WA_SHOW_AT و WA_AUTO_HIDE_MS بأول السكربت
+       3) التوقيت     → WA_SHOW_AT و WA_FALLBACK_MS و WA_AUTO_HIDE_MS
        4) الألوان     → --wa-green و --wa-bubble-bg و --wa-bubble-fg
 
      مكان اللزق في GHL:
@@ -78,7 +78,7 @@
        بدك فقاعة بيضا؟ بدّل السطرين لـ:
        --wa-bubble-bg: rgba(255, 255, 255, 0.96);
        --wa-bubble-fg: #0b3d24;                    */
-    --wa-bubble-bg: rgba(12, 22, 17, 0.90);
+    --wa-bubble-bg: rgba(12, 22, 17, 0.95);
     --wa-bubble-fg: #eafff3;
 
     --wa-size: 68px;          /* قياس الدائرة */
@@ -200,7 +200,6 @@
     border-radius: 14px !important;
 
     background: var(--wa-bubble-bg) !important;
-    color: var(--wa-bubble-fg) !important;
     border: 1px solid rgba(var(--wa-glow), 0.55) !important;
 
     -webkit-backdrop-filter: blur(10px);
@@ -220,6 +219,18 @@
 
     animation: wa-bubble-glow 2.8s ease-in-out infinite;
     transition: transform 0.2s ease;
+  }
+
+  /* اللون بقاعدة لحاله وعلى كل الأبناء — بعض ثيمات GHL بتفرض لون
+     على كل الروابط، وهاي بتضمن إنه النص يضل باين */
+  #sticky-whatsapp-wrap .wa-bubble-text,
+  #sticky-whatsapp-wrap .wa-bubble-text * {
+    color: var(--wa-bubble-fg) !important;
+    -webkit-text-fill-color: var(--wa-bubble-fg) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    text-indent: 0 !important;
+    font-size: inherit !important;
   }
 
   #sticky-whatsapp-wrap .wa-bubble-text:hover {
@@ -394,17 +405,26 @@
     /* ------- إعدادات التوقيت ------- */
 
     /* الفقاعة بتطلع لما الزائر ينزل هالنسبة من الصفحة (0.5 = نص الصفحة) */
-    var WA_SHOW_AT = 0.5;
+    var WA_SHOW_AT = 0.4;
+
+    /* شبكة أمان: بتطلع بعد هالمدة حتى لو ما سكرل أبداً
+       (صفحة قصيرة، أو صفحة بتسكرل بطريقة غريبة). 0 = بدون شبكة أمان */
+    var WA_FALLBACK_MS = 12000;
 
     /* بعد كم ميلي ثانية تختفي لحالها (0 = تضل ظاهرة) */
     var WA_AUTO_HIDE_MS = 9000;
 
-    /* صفحة قصيرة ما فيها سكرول؟ منظهرها بعد هالمدة */
-    var WA_SHORT_PAGE_MS = 4000;
+    /* خلّيه true بتطبع بالـ Console شو صاير — للتشخيص */
+    var WA_DEBUG = false;
 
     /* --------------------------------- */
 
-    var CLOSED_KEY = "goOnline_waBubbleClosed";
+    var CLOSED_KEY = "goOnline_waBubble_v2";
+
+    function log() {
+      if (!WA_DEBUG || !window.console) return;
+      console.log.apply(console, ["[wa]"].concat([].slice.call(arguments)));
+    }
 
     function isBubbleClosed() {
       try {
@@ -421,21 +441,27 @@
       } catch (e) {}
     }
 
+    /* كم نزل الزائر — منجيب القيمة من كل المصادر الممكنة، لأن بعض
+       القوالب بتسكرل على <html> وبعضها على <body> */
     function scrolledRatio() {
       var doc = document.documentElement;
-      var body = document.body;
+      var body = document.body || {};
 
       var pageHeight = Math.max(
-        doc.scrollHeight, body ? body.scrollHeight : 0,
-        doc.offsetHeight, body ? body.offsetHeight : 0
+        doc.scrollHeight || 0, body.scrollHeight || 0,
+        doc.offsetHeight || 0, body.offsetHeight || 0
       );
 
       var scrollable = pageHeight - window.innerHeight;
+      if (scrollable <= 40) return -1;   /* صفحة ما فيها سكرول */
 
-      /* الصفحة ما فيها سكرول */
-      if (scrollable <= 40) return -1;
+      var y = Math.max(
+        window.pageYOffset || 0,
+        doc.scrollTop || 0,
+        body.scrollTop || 0
+      );
 
-      return (window.pageYOffset || doc.scrollTop || 0) / scrollable;
+      return y / scrollable;
     }
 
     function setupWhatsApp() {
@@ -471,9 +497,18 @@
       }
 
       var hideTimer = null;
-      var shortPageTimer = null;
+      var fallbackTimer = null;
+      var pollTimer = null;
       var lastCheck = 0;
+      var shown = false;
       var done = false;   /* خلصت قصة الفقاعة — ما بترجع تطلع */
+
+      function stopWatching() {
+        window.removeEventListener("scroll", onScroll, true);
+        document.removeEventListener("scroll", onScroll, true);
+        clearInterval(pollTimer);
+        clearTimeout(fallbackTimer);
+      }
 
       function hideBubble() {
         wrap.classList.add("wa-bubble-off");
@@ -481,18 +516,17 @@
 
       function finish() {
         done = true;
-        window.removeEventListener("scroll", onScroll);
+        stopWatching();
         clearTimeout(hideTimer);
-        clearTimeout(shortPageTimer);
       }
 
-      function showBubble() {
-        if (done) return;
+      function showBubble(why) {
+        if (done || shown) return;
+        shown = true;
 
+        log("طلعت الفقاعة —", why);
         wrap.classList.remove("wa-bubble-off");
-
-        window.removeEventListener("scroll", onScroll);
-        clearTimeout(shortPageTimer);
+        stopWatching();
 
         if (WA_AUTO_HIDE_MS > 0) {
           hideTimer = setTimeout(function () {
@@ -504,16 +538,14 @@
 
       function checkScroll() {
         var ratio = scrolledRatio();
-
-        /* -1 يعني صفحة ما فيها سكرول — بنستنى المؤقت */
-        if (ratio >= WA_SHOW_AT) showBubble();
+        if (ratio >= WA_SHOW_AT) showBubble("سكرول " + ratio.toFixed(2));
       }
 
       /* throttle زمني بسيط — بدون requestAnimationFrame.
          الـ rAF ممكن ينخنق (تبويب بالخلفية مثلاً) وتعلق الفقاعة
          بدون ما تطلع أبداً. */
       function onScroll() {
-        if (done) return;
+        if (done || shown) return;
 
         var now = new Date().getTime();
         if (now - lastCheck < 150) return;
@@ -524,15 +556,24 @@
 
       /* لو سكّرها قبل بنفس الجلسة — ما بنعرضها أبداً */
       if (isBubbleClosed()) {
+        log("الزائر سكّرها قبل — ما رح تطلع");
         finish();
       } else {
 
-        window.addEventListener("scroll", onScroll, { passive: true });
+        /* منسمع على window و document بالـ capture، لأن بعض قوالب GHL
+           بتخلي السكرول على عنصر داخلي والحدث ما بوصل للـ window */
+        window.addEventListener("scroll", onScroll, true);
+        document.addEventListener("scroll", onScroll, true);
 
-        /* صفحة قصيرة ما فيها سكرول؟ منظهرها بعد شوي */
-        shortPageTimer = setTimeout(function () {
-          if (scrolledRatio() === -1) showBubble();
-        }, WA_SHORT_PAGE_MS);
+        /* وكمان منفحص كل ٤٠٠ ميلي — بتشتغل حتى لو ما وصلنا ولا حدث سكرول */
+        pollTimer = setInterval(checkScroll, 400);
+
+        /* شبكة أمان: تطلع بعد المدة حتى لو ما سكرل أبداً */
+        if (WA_FALLBACK_MS > 0) {
+          fallbackTimer = setTimeout(function () {
+            showBubble("انتهى وقت شبكة الأمان");
+          }, WA_FALLBACK_MS);
+        }
 
         /* لو فتح الصفحة وهو نازل أصلاً (رجوع للخلف مثلاً) */
         checkScroll();
