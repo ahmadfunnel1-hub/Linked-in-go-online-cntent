@@ -1,0 +1,328 @@
+<!-- ==========================================================================
+     GO ONLINE — Floating Sticky WhatsApp Button + Glowing Label
+     زر واتساب عائم مع فقاعة نص فوقه + تأثير Glow
+
+     تعديل سريع (٣ أشياء بس):
+       1) الرقم       → عدّل الرقم في href="https://wa.me/..."
+       2) نص الفقاعة  → عدّل النص داخل <span class="wa-bubble-text">
+       3) الألوان     → عدّل --wa-green و --wa-glow في أول الـ CSS
+
+     مكان اللزق في GHL:
+       Funnel/Website → Settings → Custom Code → Footer Tracking Code
+       (أو Sites → Custom Code لو بدك الزر على كل الصفحات)
+     ========================================================================== -->
+
+<a
+  id="sticky-whatsapp-btn"
+  href="https://wa.me/971527223889"
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="عندك مشكلة بالدفع؟ تواصل معنا على الواتساب"
+>
+  <!-- الفقاعة: النص اللي فوق الزر -->
+  <span class="wa-bubble" aria-hidden="true">
+    <span class="wa-bubble-text">عندك مشكلة بالدفع؟ تواصل معنا واتساب</span>
+  </span>
+
+  <!-- الدائرة الخضراء + أيقونة واتساب -->
+  <span class="wa-circle">
+    <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path
+        fill="currentColor"
+        d="M16.04 2.003c-7.73 0-14.01 6.28-14.01 14.01 0 2.47.64 4.88 1.86 7L1.91 30.2l7.35-1.93a13.96 13.96 0 0 0 6.77 1.72h.01c7.73 0 14.01-6.28 14.01-14.01 0-3.74-1.46-7.26-4.1-9.91a13.91 13.91 0 0 0-9.91-4.07zm0 25.62h-.01a11.6 11.6 0 0 1-5.91-1.62l-.42-.25-4.36 1.14 1.16-4.25-.27-.44a11.6 11.6 0 1 1 9.81 5.42zm6.36-8.69c-.35-.17-2.06-1.02-2.38-1.13-.32-.12-.55-.17-.78.17-.23.35-.9 1.13-1.1 1.36-.2.23-.41.26-.75.09-.35-.17-1.47-.54-2.8-1.73a10.48 10.48 0 0 1-1.94-2.41c-.2-.35-.02-.54.15-.71.16-.16.35-.41.52-.61.17-.2.23-.35.35-.58.12-.23.06-.44-.03-.61-.09-.17-.78-1.88-1.07-2.58-.28-.68-.57-.59-.78-.6h-.67c-.23 0-.61.09-.93.44-.32.35-1.22 1.19-1.22 2.9 0 1.71 1.25 3.36 1.42 3.59.17.23 2.45 3.74 5.94 5.25.83.36 1.48.57 1.98.73.83.26 1.59.23 2.19.14.67-.1 2.06-.84 2.35-1.65.29-.81.29-1.51.2-1.65-.08-.15-.31-.23-.66-.4z"
+      />
+    </svg>
+  </span>
+</a>
+
+
+<style>
+
+  /* =========================================================
+     1) المتغيرات — كل التعديلات من هنا
+     ========================================================= */
+
+  #sticky-whatsapp-btn {
+    --wa-green: #25D366;      /* لون الزر */
+    --wa-glow: 37, 211, 102;  /* نفس اللون بصيغة RGB — للـ glow */
+    --wa-size: 75px;          /* قياس الدائرة */
+    --wa-icon: 43px;          /* قياس الأيقونة */
+    --wa-right: 45px;         /* البعد عن يمين الشاشة */
+    --wa-bottom: 30px;        /* البعد عن أسفل الشاشة */
+    --wa-tail: 26px;          /* مكان "ذيل" الفقاعة (يصير فوق مركز الزر) */
+
+    position: fixed !important;
+    right: var(--wa-right) !important;
+    bottom: var(--wa-bottom) !important;
+
+    /* حجم الزر = مساحة الضغط الأساسية */
+    width: var(--wa-size) !important;
+    height: var(--wa-size) !important;
+
+    display: block !important;
+    z-index: 2147483647 !important;   /* فوق كل عناصر GHL */
+
+    text-decoration: none !important;
+    border: none !important;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+
+  /* =========================================================
+     2) الدائرة الخضراء + الـ GLOW
+     ========================================================= */
+
+  #sticky-whatsapp-btn .wa-circle {
+    position: relative !important;
+
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    border-radius: 50% !important;
+    background-color: var(--wa-green) !important;
+    color: #ffffff !important;
+
+    box-shadow:
+      0 6px 22px rgba(0, 0, 0, 0.30),
+      0 0 18px 4px rgba(var(--wa-glow), 0.45) !important;
+
+    animation: wa-glow 2.4s ease-in-out infinite;
+    transition: transform 0.2s ease;
+  }
+
+  /* حلقة نابضة حوالين الزر — تزيد إحساس الـ glow */
+  #sticky-whatsapp-btn .wa-circle::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    border-radius: 50%;
+    border: 2px solid rgba(var(--wa-glow), 0.6);
+
+    animation: wa-ripple 2.4s ease-out infinite;
+    pointer-events: none;
+  }
+
+  #sticky-whatsapp-btn .wa-circle svg {
+    position: relative;
+    z-index: 1;
+
+    width: var(--wa-icon) !important;
+    height: var(--wa-icon) !important;
+    display: block !important;
+  }
+
+
+  /* =========================================================
+     3) الفقاعة (النص فوق الزر)
+     ========================================================= */
+
+  /* الغلاف: مسؤول عن المكان + حركة الظهور */
+  #sticky-whatsapp-btn .wa-bubble {
+    position: absolute !important;
+    right: 0 !important;
+    bottom: calc(100% + 14px) !important;
+
+    animation: wa-bubble-in 0.55s cubic-bezier(0.2, 0.8, 0.25, 1) 0.9s both;
+  }
+
+  /* الفقاعة نفسها: الشكل + الـ glow */
+  #sticky-whatsapp-btn .wa-bubble-text {
+    position: relative;
+    display: block !important;
+
+    /* سطر واحد إذا بيكفي، وإلا ينزل لسطرين لحاله */
+    width: max-content;
+    max-width: min(320px, calc(100vw - 60px));
+
+    padding: 10px 14px !important;
+    border-radius: 14px !important;
+
+    background: #ffffff !important;
+    color: #0b3d24 !important;
+    border: 1px solid rgba(var(--wa-glow), 0.45) !important;
+
+    direction: rtl;
+    text-align: center;
+    font-family: inherit !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    line-height: 1.55 !important;
+
+    box-shadow:
+      0 8px 20px rgba(0, 0, 0, 0.18),
+      0 0 12px 2px rgba(var(--wa-glow), 0.30) !important;
+
+    animation: wa-bubble-glow 2.6s ease-in-out 1.5s infinite;
+    transition: transform 0.2s ease;
+  }
+
+  /* ذيل الفقاعة — مثلث صغير يأشّر على الزر */
+  #sticky-whatsapp-btn .wa-bubble-text::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    right: var(--wa-tail);
+
+    width: 12px;
+    height: 12px;
+
+    background: #ffffff;
+    border-right: 1px solid rgba(var(--wa-glow), 0.45);
+    border-bottom: 1px solid rgba(var(--wa-glow), 0.45);
+    border-bottom-right-radius: 3px;
+
+    transform: translateY(-6px) rotate(45deg);
+  }
+
+
+  /* =========================================================
+     4) HOVER
+     ========================================================= */
+
+  #sticky-whatsapp-btn:hover .wa-circle {
+    transform: scale(1.08);
+  }
+
+  #sticky-whatsapp-btn:hover .wa-bubble-text {
+    transform: translateY(-3px);
+  }
+
+
+  /* =========================================================
+     5) الحركات (Keyframes)
+     ========================================================= */
+
+  @keyframes wa-glow {
+    0%, 100% {
+      box-shadow:
+        0 6px 22px rgba(0, 0, 0, 0.30),
+        0 0 16px 3px rgba(var(--wa-glow), 0.40);
+    }
+    50% {
+      box-shadow:
+        0 6px 22px rgba(0, 0, 0, 0.30),
+        0 0 34px 10px rgba(var(--wa-glow), 0.75);
+    }
+  }
+
+  @keyframes wa-ripple {
+    0%   { transform: scale(1);    opacity: 0.7; }
+    70%  { transform: scale(1.55); opacity: 0; }
+    100% { transform: scale(1.55); opacity: 0; }
+  }
+
+  @keyframes wa-bubble-in {
+    from { opacity: 0; transform: translateY(10px) scale(0.96); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  @keyframes wa-bubble-glow {
+    0%, 100% {
+      box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.18),
+        0 0 12px 2px rgba(var(--wa-glow), 0.30);
+    }
+    50% {
+      box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.18),
+        0 0 24px 6px rgba(var(--wa-glow), 0.60);
+    }
+  }
+
+
+  /* =========================================================
+     6) الموبايل
+     ========================================================= */
+
+  @media (max-width: 767px) {
+
+    #sticky-whatsapp-btn {
+      --wa-size: 65px;
+      --wa-icon: 38px;
+      --wa-right: 25px;
+      --wa-bottom: 25px;
+      --wa-tail: 22px;
+    }
+
+    #sticky-whatsapp-btn .wa-bubble-text {
+      font-size: 13px !important;
+      padding: 9px 12px !important;
+      max-width: min(240px, calc(100vw - 45px));
+    }
+
+  }
+
+
+  /* =========================================================
+     7) احترام إعداد "تقليل الحركة" عند المستخدم
+     ========================================================= */
+
+  @media (prefers-reduced-motion: reduce) {
+
+    #sticky-whatsapp-btn .wa-circle,
+    #sticky-whatsapp-btn .wa-circle::after,
+    #sticky-whatsapp-btn .wa-bubble,
+    #sticky-whatsapp-btn .wa-bubble-text {
+      animation: none !important;
+    }
+
+    #sticky-whatsapp-btn .wa-bubble {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+
+    #sticky-whatsapp-btn .wa-circle::after {
+      opacity: 0 !important;
+    }
+
+  }
+
+</style>
+
+
+<script>
+
+  (function () {
+
+    /* ننقل الزر تحت <body> مباشرة، لأن sections/rows في GHL
+       بتكسر الـ fixed positioning (transform على الأب). */
+
+    function mountWhatsApp() {
+
+      var buttons = document.querySelectorAll("#sticky-whatsapp-btn");
+
+      if (!buttons.length) return;
+
+      /* لو الكود مركّب مرتين بالغلط — نخلي نسخة واحدة */
+      for (var i = 1; i < buttons.length; i++) {
+        buttons[i].parentNode && buttons[i].parentNode.removeChild(buttons[i]);
+      }
+
+      var button = buttons[0];
+
+      if (button.parentNode !== document.body) {
+        document.body.appendChild(button);
+      }
+
+    }
+
+    /* GHL يحقن الكود بعد ما يخلص DOMContentLoaded بأحيان كثيرة،
+       فمنشيّك على الحالة بدل ما نعتمد على الـ event لحاله. */
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", mountWhatsApp);
+    } else {
+      mountWhatsApp();
+    }
+
+    /* شيكة أخيرة بعد ما تخلص الصفحة تتحمّل (لو GHL أعاد بناء السكشن) */
+    window.addEventListener("load", mountWhatsApp);
+
+  })();
+
+</script>
