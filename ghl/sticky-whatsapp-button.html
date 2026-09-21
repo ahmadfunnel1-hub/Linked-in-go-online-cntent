@@ -1,19 +1,24 @@
 <!-- ==========================================================================
      GO ONLINE — Floating Sticky WhatsApp Button + Glowing Label
-     زر واتساب عائم مع فقاعة نص فوقه + تأثير Glow + زر إغلاق للفقاعة
+     زر واتساب عائم مع فقاعة نص + تأثير Glow
 
-     تعديل سريع (٣ أشياء بس):
-       1) الرقم       → عدّل الرقم في href تبع #sticky-whatsapp-btn
-                        (الفقاعة بتاخد نفس الرقم تلقائياً — ما بدها تعديل)
-       2) نص الفقاعة  → عدّل النص داخل <a class="wa-bubble-text">
-       3) الألوان     → عدّل --wa-green و --wa-glow في أول الـ CSS
+     سلوك الفقاعة:
+       - مخفية أول ما تفتح الصفحة (عشان ما تغطي على الهيدلاين)
+       - بتطلع لما الزائر ينزل نص الصفحة — وقتها بكون وصل لمنطقة الدفع
+       - بتختفي لحالها بعد ٩ ثواني، والدائرة بتضل
+       - أو الزائر بسكّرها بالـ × وبتضل مسكّرة لباقي الجلسة
+
+     تعديل سريع:
+       1) الرقم       → href تبع #sticky-whatsapp-btn (الفقاعة بتاخده تلقائياً)
+       2) نص الفقاعة  → النص داخل <a class="wa-bubble-text">
+       3) التوقيت     → WA_SHOW_AT و WA_AUTO_HIDE_MS بأول السكربت
+       4) الألوان     → --wa-green و --wa-bubble-bg و --wa-bubble-fg
 
      مكان اللزق في GHL:
-       Funnel/Website → Settings → Custom Code → Footer Tracking Code
-       (أو Sites → Custom Code لو بدك الزر على كل الصفحات)
+       Funnel → Settings → Custom Code → Footer Tracking Code
      ========================================================================== -->
 
-<div id="sticky-whatsapp-wrap">
+<div id="sticky-whatsapp-wrap" class="wa-bubble-off">
 
   <!-- الفقاعة: النص اللي فوق الزر -->
   <div class="wa-bubble">
@@ -23,7 +28,7 @@
       href="https://wa.me/971527223889"
       target="_blank"
       rel="noopener noreferrer"
-    >عندك مشكلة بالدفع؟ تواصل معنا واتساب</a>
+    >عندك مشكلة بالدفع؟ احكي معنا</a>
 
     <!-- زر الإغلاق — بيخفي الفقاعة وبتضل الدائرة -->
     <button type="button" class="wa-bubble-close" aria-label="إخفاء الرسالة">
@@ -68,11 +73,19 @@
   #sticky-whatsapp-wrap {
     --wa-green: #25D366;      /* لون الزر */
     --wa-glow: 37, 211, 102;  /* نفس اللون بصيغة RGB — للـ glow */
-    --wa-size: 75px;          /* قياس الدائرة */
-    --wa-icon: 43px;          /* قياس الأيقونة */
-    --wa-right: 45px;         /* البعد عن يمين الشاشة */
-    --wa-bottom: 30px;        /* البعد عن أسفل الشاشة */
-    --wa-tail: 26px;          /* مكان "ذيل" الفقاعة (يصير فوق مركز الزر) */
+
+    /* الفقاعة غامقة شفافة — بتندمج مع الصفحات الغامقة.
+       بدك فقاعة بيضا؟ بدّل السطرين لـ:
+       --wa-bubble-bg: rgba(255, 255, 255, 0.96);
+       --wa-bubble-fg: #0b3d24;                    */
+    --wa-bubble-bg: rgba(12, 22, 17, 0.90);
+    --wa-bubble-fg: #eafff3;
+
+    --wa-size: 68px;          /* قياس الدائرة */
+    --wa-icon: 38px;          /* قياس الأيقونة */
+    --wa-right: 28px;         /* البعد عن يمين الشاشة */
+    --wa-bottom: 28px;        /* البعد عن أسفل الشاشة */
+    --wa-tail: 24px;          /* مكان "ذيل" الفقاعة (يصير فوق مركز الزر) */
 
     position: fixed !important;
     right: var(--wa-right) !important;
@@ -109,10 +122,10 @@
     -webkit-tap-highlight-color: transparent;
 
     box-shadow:
-      0 6px 22px rgba(0, 0, 0, 0.30),
-      0 0 18px 4px rgba(var(--wa-glow), 0.45) !important;
+      0 6px 20px rgba(0, 0, 0, 0.30),
+      0 0 16px 3px rgba(var(--wa-glow), 0.40) !important;
 
-    animation: wa-glow 2.4s ease-in-out infinite;
+    animation: wa-glow 2.6s ease-in-out infinite;
     transition: transform 0.2s ease;
   }
 
@@ -123,9 +136,9 @@
     inset: 0;
 
     border-radius: 50%;
-    border: 2px solid rgba(var(--wa-glow), 0.6);
+    border: 2px solid rgba(var(--wa-glow), 0.55);
 
-    animation: wa-ripple 2.4s ease-out infinite;
+    animation: wa-ripple 2.6s ease-out infinite;
     pointer-events: none;
   }
 
@@ -147,17 +160,35 @@
      3) الفقاعة (النص فوق الزر)
      ========================================================= */
 
-  /* الغلاف: مسؤول عن المكان + القياس + حركة الظهور */
+  /* الغلاف: المكان + القياس + حركة الدخول والخروج */
   #sticky-whatsapp-wrap .wa-bubble {
     position: absolute !important;
     right: 0 !important;
-    bottom: calc(100% + 14px) !important;
+    bottom: calc(100% + 13px) !important;
 
     /* سطر واحد إذا بيكفي، وإلا ينزل لسطرين لحاله */
     width: max-content;
-    max-width: min(320px, calc(100vw - 60px));
+    max-width: min(300px, calc(100vw - 56px));
 
-    animation: wa-bubble-in 0.55s cubic-bezier(0.2, 0.8, 0.25, 1) 0.9s both;
+    opacity: 1;
+    transform: translateY(0) scale(1);
+
+    transition:
+      opacity 0.40s ease,
+      transform 0.45s cubic-bezier(0.2, 0.8, 0.25, 1);
+  }
+
+  /* الحالة المخفية — قبل ما ينزل، أو بعد ما تختفي/تنسكر */
+  #sticky-whatsapp-wrap.wa-bubble-off .wa-bubble {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px) scale(0.96);
+    pointer-events: none;
+
+    transition:
+      opacity 0.28s ease,
+      transform 0.28s ease,
+      visibility 0s linear 0.28s;
   }
 
   /* الفقاعة نفسها: الشكل + الـ glow (وهي رابط كمان) */
@@ -168,9 +199,12 @@
     padding: 10px 14px !important;
     border-radius: 14px !important;
 
-    background: #ffffff !important;
-    color: #0b3d24 !important;
-    border: 1px solid rgba(var(--wa-glow), 0.45) !important;
+    background: var(--wa-bubble-bg) !important;
+    color: var(--wa-bubble-fg) !important;
+    border: 1px solid rgba(var(--wa-glow), 0.55) !important;
+
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
 
     direction: rtl;
     text-align: center;
@@ -181,10 +215,10 @@
     line-height: 1.55 !important;
 
     box-shadow:
-      0 8px 20px rgba(0, 0, 0, 0.18),
-      0 0 12px 2px rgba(var(--wa-glow), 0.30) !important;
+      0 10px 24px rgba(0, 0, 0, 0.28),
+      0 0 12px 2px rgba(var(--wa-glow), 0.25) !important;
 
-    animation: wa-bubble-glow 2.6s ease-in-out 1.5s infinite;
+    animation: wa-bubble-glow 2.8s ease-in-out infinite;
     transition: transform 0.2s ease;
   }
 
@@ -202,9 +236,9 @@
     width: 12px;
     height: 12px;
 
-    background: #ffffff;
-    border-right: 1px solid rgba(var(--wa-glow), 0.45);
-    border-bottom: 1px solid rgba(var(--wa-glow), 0.45);
+    background: var(--wa-bubble-bg);
+    border-right: 1px solid rgba(var(--wa-glow), 0.55);
+    border-bottom: 1px solid rgba(var(--wa-glow), 0.55);
     border-bottom-right-radius: 3px;
 
     transform: translateY(-6px) rotate(45deg);
@@ -232,11 +266,11 @@
     margin: 0 !important;
 
     border-radius: 50% !important;
-    border: 1px solid #dfe4ea !important;
-    background: #ffffff !important;
-    color: #6b7280 !important;
+    border: 1px solid rgba(255, 255, 255, 0.22) !important;
+    background: #16231c !important;
+    color: #b9c7c0 !important;
 
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.14) !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35) !important;
     cursor: pointer !important;
     -webkit-appearance: none !important;
     appearance: none !important;
@@ -252,24 +286,9 @@
   }
 
   #sticky-whatsapp-wrap .wa-bubble-close:hover {
-    background: #f3f4f6 !important;
-    color: #111827 !important;
+    background: #223229 !important;
+    color: #ffffff !important;
     transform: scale(1.12);
-  }
-
-  /* الحالة بعد ما الزائر يسكّر الفقاعة */
-  #sticky-whatsapp-wrap.wa-bubble-off .wa-bubble {
-    animation: none !important;
-
-    opacity: 0 !important;
-    visibility: hidden !important;
-    transform: translateY(6px) scale(0.94) !important;
-    pointer-events: none !important;
-
-    transition:
-      opacity 0.22s ease,
-      transform 0.22s ease,
-      visibility 0s linear 0.22s !important;
   }
 
 
@@ -280,37 +299,32 @@
   @keyframes wa-glow {
     0%, 100% {
       box-shadow:
-        0 6px 22px rgba(0, 0, 0, 0.30),
-        0 0 16px 3px rgba(var(--wa-glow), 0.40);
+        0 6px 20px rgba(0, 0, 0, 0.30),
+        0 0 14px 3px rgba(var(--wa-glow), 0.38);
     }
     50% {
       box-shadow:
-        0 6px 22px rgba(0, 0, 0, 0.30),
-        0 0 34px 10px rgba(var(--wa-glow), 0.75);
+        0 6px 20px rgba(0, 0, 0, 0.30),
+        0 0 30px 8px rgba(var(--wa-glow), 0.70);
     }
   }
 
   @keyframes wa-ripple {
-    0%   { transform: scale(1);    opacity: 0.7; }
-    70%  { transform: scale(1.55); opacity: 0; }
-    100% { transform: scale(1.55); opacity: 0; }
-  }
-
-  @keyframes wa-bubble-in {
-    from { opacity: 0; transform: translateY(10px) scale(0.96); }
-    to   { opacity: 1; transform: translateY(0) scale(1); }
+    0%   { transform: scale(1);    opacity: 0.65; }
+    70%  { transform: scale(1.45); opacity: 0; }
+    100% { transform: scale(1.45); opacity: 0; }
   }
 
   @keyframes wa-bubble-glow {
     0%, 100% {
       box-shadow:
-        0 8px 20px rgba(0, 0, 0, 0.18),
-        0 0 12px 2px rgba(var(--wa-glow), 0.30);
+        0 10px 24px rgba(0, 0, 0, 0.28),
+        0 0 12px 2px rgba(var(--wa-glow), 0.25);
     }
     50% {
       box-shadow:
-        0 8px 20px rgba(0, 0, 0, 0.18),
-        0 0 24px 6px rgba(var(--wa-glow), 0.60);
+        0 10px 24px rgba(0, 0, 0, 0.28),
+        0 0 22px 5px rgba(var(--wa-glow), 0.50);
     }
   }
 
@@ -322,15 +336,15 @@
   @media (max-width: 767px) {
 
     #sticky-whatsapp-wrap {
-      --wa-size: 65px;
-      --wa-icon: 38px;
-      --wa-right: 25px;
-      --wa-bottom: 25px;
-      --wa-tail: 22px;
+      --wa-size: 58px;
+      --wa-icon: 33px;
+      --wa-right: 18px;
+      --wa-bottom: 20px;
+      --wa-tail: 20px;
     }
 
     #sticky-whatsapp-wrap .wa-bubble {
-      max-width: min(240px, calc(100vw - 45px));
+      max-width: min(230px, calc(100vw - 40px));
     }
 
     #sticky-whatsapp-wrap .wa-bubble-text {
@@ -355,20 +369,15 @@
 
     #sticky-whatsapp-btn,
     #sticky-whatsapp-btn::after,
-    #sticky-whatsapp-wrap .wa-bubble,
     #sticky-whatsapp-wrap .wa-bubble-text {
       animation: none !important;
-    }
-
-    #sticky-whatsapp-wrap .wa-bubble {
-      opacity: 1 !important;
-      transform: none !important;
     }
 
     #sticky-whatsapp-btn::after {
       opacity: 0 !important;
     }
 
+    #sticky-whatsapp-wrap .wa-bubble,
     #sticky-whatsapp-wrap.wa-bubble-off .wa-bubble {
       transition: none !important;
     }
@@ -382,9 +391,19 @@
 
   (function () {
 
-    /* المفتاح اللي منخزن فيه إنه الزائر سكّر الفقاعة.
-       sessionStorage يعني: بتضل مخفية وهو يتنقل بين صفحات الموقع،
-       وبترجع تظهر بزيارة جديدة. */
+    /* ------- إعدادات التوقيت ------- */
+
+    /* الفقاعة بتطلع لما الزائر ينزل هالنسبة من الصفحة (0.5 = نص الصفحة) */
+    var WA_SHOW_AT = 0.5;
+
+    /* بعد كم ميلي ثانية تختفي لحالها (0 = تضل ظاهرة) */
+    var WA_AUTO_HIDE_MS = 9000;
+
+    /* صفحة قصيرة ما فيها سكرول؟ منظهرها بعد هالمدة */
+    var WA_SHORT_PAGE_MS = 4000;
+
+    /* --------------------------------- */
+
     var CLOSED_KEY = "goOnline_waBubbleClosed";
 
     function isBubbleClosed() {
@@ -400,6 +419,23 @@
       try {
         sessionStorage.setItem(CLOSED_KEY, "1");
       } catch (e) {}
+    }
+
+    function scrolledRatio() {
+      var doc = document.documentElement;
+      var body = document.body;
+
+      var pageHeight = Math.max(
+        doc.scrollHeight, body ? body.scrollHeight : 0,
+        doc.offsetHeight, body ? body.offsetHeight : 0
+      );
+
+      var scrollable = pageHeight - window.innerHeight;
+
+      /* الصفحة ما فيها سكرول */
+      if (scrollable <= 40) return -1;
+
+      return (window.pageYOffset || doc.scrollTop || 0) / scrollable;
     }
 
     function setupWhatsApp() {
@@ -434,16 +470,80 @@
         bubbleLink.setAttribute("href", button.getAttribute("href"));
       }
 
-      /* لو سكّرها قبل بنفس الجلسة، منخفيها قبل ما تظهر */
-      if (isBubbleClosed()) {
+      var hideTimer = null;
+      var shortPageTimer = null;
+      var lastCheck = 0;
+      var done = false;   /* خلصت قصة الفقاعة — ما بترجع تطلع */
+
+      function hideBubble() {
         wrap.classList.add("wa-bubble-off");
+      }
+
+      function finish() {
+        done = true;
+        window.removeEventListener("scroll", onScroll);
+        clearTimeout(hideTimer);
+        clearTimeout(shortPageTimer);
+      }
+
+      function showBubble() {
+        if (done) return;
+
+        wrap.classList.remove("wa-bubble-off");
+
+        window.removeEventListener("scroll", onScroll);
+        clearTimeout(shortPageTimer);
+
+        if (WA_AUTO_HIDE_MS > 0) {
+          hideTimer = setTimeout(function () {
+            hideBubble();
+            finish();
+          }, WA_AUTO_HIDE_MS);
+        }
+      }
+
+      function checkScroll() {
+        var ratio = scrolledRatio();
+
+        /* -1 يعني صفحة ما فيها سكرول — بنستنى المؤقت */
+        if (ratio >= WA_SHOW_AT) showBubble();
+      }
+
+      /* throttle زمني بسيط — بدون requestAnimationFrame.
+         الـ rAF ممكن ينخنق (تبويب بالخلفية مثلاً) وتعلق الفقاعة
+         بدون ما تطلع أبداً. */
+      function onScroll() {
+        if (done) return;
+
+        var now = new Date().getTime();
+        if (now - lastCheck < 150) return;
+        lastCheck = now;
+
+        checkScroll();
+      }
+
+      /* لو سكّرها قبل بنفس الجلسة — ما بنعرضها أبداً */
+      if (isBubbleClosed()) {
+        finish();
+      } else {
+
+        window.addEventListener("scroll", onScroll, { passive: true });
+
+        /* صفحة قصيرة ما فيها سكرول؟ منظهرها بعد شوي */
+        shortPageTimer = setTimeout(function () {
+          if (scrolledRatio() === -1) showBubble();
+        }, WA_SHORT_PAGE_MS);
+
+        /* لو فتح الصفحة وهو نازل أصلاً (رجوع للخلف مثلاً) */
+        checkScroll();
       }
 
       if (closeButton) {
         closeButton.addEventListener("click", function (event) {
           event.preventDefault();
-          wrap.classList.add("wa-bubble-off");
+          hideBubble();
           rememberBubbleClosed();
+          finish();
         });
       }
 
