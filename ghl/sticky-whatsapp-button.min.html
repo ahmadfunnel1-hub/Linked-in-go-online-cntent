@@ -1,0 +1,91 @@
+<div id="sticky-whatsapp-wrap" class="wa-bubble-off">
+<div class="wa-bubble">
+<a class="wa-bubble-text" href="https://wa.me/971527223889" target="_blank" rel="noopener noreferrer">عندك مشكلة بالدفع؟ احكي معنا</a>
+<button type="button" class="wa-bubble-close" aria-label="إخفاء الرسالة"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" d="M6.5 6.5l11 11M17.5 6.5l-11 11"/></svg></button>
+</div>
+<a id="sticky-whatsapp-btn" href="https://wa.me/971527223889" target="_blank" rel="noopener noreferrer" aria-label="تواصل معنا على الواتساب"><svg viewBox="0 0 32 32" aria-hidden="true"><path fill="currentColor" d="M16.04 2.003c-7.73 0-14.01 6.28-14.01 14.01 0 2.47.64 4.88 1.86 7L1.91 30.2l7.35-1.93a13.96 13.96 0 0 0 6.77 1.72h.01c7.73 0 14.01-6.28 14.01-14.01 0-3.74-1.46-7.26-4.1-9.91a13.91 13.91 0 0 0-9.91-4.07zm0 25.62h-.01a11.6 11.6 0 0 1-5.91-1.62l-.42-.25-4.36 1.14 1.16-4.25-.27-.44a11.6 11.6 0 1 1 9.81 5.42zm6.36-8.69c-.35-.17-2.06-1.02-2.38-1.13-.32-.12-.55-.17-.78.17-.23.35-.9 1.13-1.1 1.36-.2.23-.41.26-.75.09-.35-.17-1.47-.54-2.8-1.73a10.48 10.48 0 0 1-1.94-2.41c-.2-.35-.02-.54.15-.71.16-.16.35-.41.52-.61.17-.2.23-.35.35-.58.12-.23.06-.44-.03-.61-.09-.17-.78-1.88-1.07-2.58-.28-.68-.57-.59-.78-.6h-.67c-.23 0-.61.09-.93.44-.32.35-1.22 1.19-1.22 2.9 0 1.71 1.25 3.36 1.42 3.59.17.23 2.45 3.74 5.94 5.25.83.36 1.48.57 1.98.73.83.26 1.59.23 2.19.14.67-.1 2.06-.84 2.35-1.65.29-.81.29-1.51.2-1.65-.08-.15-.31-.23-.66-.4z"/></svg></a>
+</div>
+<style>
+#sticky-whatsapp-wrap{--wa-green:#25D366;--wa-glow:37,211,102;--wa-bubble-bg:rgba(12,22,17,.95);--wa-bubble-fg:#eafff3;--wa-size:68px;--wa-icon:38px;--wa-right:28px;--wa-bottom:28px;--wa-tail:24px;position:fixed!important;right:var(--wa-right)!important;bottom:var(--wa-bottom)!important;width:var(--wa-size)!important;height:var(--wa-size)!important;z-index:2147483647!important}
+#sticky-whatsapp-btn{position:relative!important;display:flex!important;align-items:center!important;justify-content:center!important;width:100%!important;height:100%!important;border-radius:50%!important;background-color:var(--wa-green)!important;color:#fff!important;text-decoration:none!important;border:none!important;-webkit-tap-highlight-color:transparent;box-shadow:0 6px 20px rgba(0,0,0,.3),0 0 16px 3px rgba(var(--wa-glow),.4)!important;animation:wa-glow 2.6s ease-in-out infinite;transition:transform .2s ease}
+#sticky-whatsapp-btn::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid rgba(var(--wa-glow),.55);animation:wa-ripple 2.6s ease-out infinite;pointer-events:none}
+#sticky-whatsapp-btn svg{position:relative;z-index:1;width:var(--wa-icon)!important;height:var(--wa-icon)!important;display:block!important}
+#sticky-whatsapp-btn:hover{transform:scale(1.08)}
+#sticky-whatsapp-wrap .wa-bubble{position:absolute!important;right:0!important;bottom:calc(100% + 13px)!important;width:max-content;max-width:min(300px,calc(100vw - 56px));opacity:1;transform:translateY(0) scale(1);transition:opacity .4s ease,transform .45s cubic-bezier(.2,.8,.25,1)}
+#sticky-whatsapp-wrap.wa-bubble-off .wa-bubble{opacity:0;visibility:hidden;transform:translateY(10px) scale(.96);pointer-events:none;transition:opacity .28s ease,transform .28s ease,visibility 0s linear .28s}
+#sticky-whatsapp-wrap .wa-bubble-text{position:relative;display:block!important;padding:10px 14px!important;border-radius:14px!important;background:var(--wa-bubble-bg)!important;border:1px solid rgba(var(--wa-glow),.55)!important;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);direction:rtl;text-align:center;text-decoration:none!important;font-family:inherit!important;font-size:14px!important;font-weight:700!important;line-height:1.55!important;box-shadow:0 10px 24px rgba(0,0,0,.28),0 0 12px 2px rgba(var(--wa-glow),.25)!important;animation:wa-bubble-glow 2.8s ease-in-out infinite;transition:transform .2s ease}
+#sticky-whatsapp-wrap .wa-bubble-text,#sticky-whatsapp-wrap .wa-bubble-text *{color:var(--wa-bubble-fg)!important;-webkit-text-fill-color:var(--wa-bubble-fg)!important;opacity:1!important;visibility:visible!important;text-indent:0!important}
+#sticky-whatsapp-wrap .wa-bubble-text:hover{transform:translateY(-3px)}
+#sticky-whatsapp-wrap .wa-bubble-text::after{content:"";position:absolute;top:100%;right:var(--wa-tail);width:12px;height:12px;background:var(--wa-bubble-bg);border-right:1px solid rgba(var(--wa-glow),.55);border-bottom:1px solid rgba(var(--wa-glow),.55);border-bottom-right-radius:3px;transform:translateY(-6px) rotate(45deg)}
+#sticky-whatsapp-wrap .wa-bubble-close{position:absolute!important;top:-9px!important;left:-9px!important;display:flex!important;align-items:center!important;justify-content:center!important;width:22px!important;height:22px!important;min-width:0!important;min-height:0!important;padding:0!important;margin:0!important;border-radius:50%!important;border:1px solid rgba(255,255,255,.22)!important;background:#16231c!important;color:#b9c7c0!important;box-shadow:0 2px 8px rgba(0,0,0,.35)!important;cursor:pointer!important;-webkit-appearance:none!important;appearance:none!important;-webkit-tap-highlight-color:transparent;transition:transform .15s ease,color .15s ease,background .15s ease}
+#sticky-whatsapp-wrap .wa-bubble-close svg{width:12px!important;height:12px!important;display:block!important}
+#sticky-whatsapp-wrap .wa-bubble-close:hover{background:#223229!important;color:#fff!important;transform:scale(1.12)}
+@keyframes wa-glow{0%,100%{box-shadow:0 6px 20px rgba(0,0,0,.3),0 0 14px 3px rgba(var(--wa-glow),.38)}50%{box-shadow:0 6px 20px rgba(0,0,0,.3),0 0 30px 8px rgba(var(--wa-glow),.7)}}
+@keyframes wa-ripple{0%{transform:scale(1);opacity:.65}70%{transform:scale(1.45);opacity:0}100%{transform:scale(1.45);opacity:0}}
+@keyframes wa-bubble-glow{0%,100%{box-shadow:0 10px 24px rgba(0,0,0,.28),0 0 12px 2px rgba(var(--wa-glow),.25)}50%{box-shadow:0 10px 24px rgba(0,0,0,.28),0 0 22px 5px rgba(var(--wa-glow),.5)}}
+@media (max-width:767px){#sticky-whatsapp-wrap{--wa-size:58px;--wa-icon:33px;--wa-right:18px;--wa-bottom:20px;--wa-tail:20px}#sticky-whatsapp-wrap .wa-bubble{max-width:min(230px,calc(100vw - 40px))}#sticky-whatsapp-wrap .wa-bubble-text{font-size:13px!important;padding:9px 12px!important}#sticky-whatsapp-wrap .wa-bubble-close{width:24px!important;height:24px!important}}
+@media (prefers-reduced-motion:reduce){#sticky-whatsapp-btn,#sticky-whatsapp-btn::after,#sticky-whatsapp-wrap .wa-bubble-text{animation:none!important}#sticky-whatsapp-btn::after{opacity:0!important}#sticky-whatsapp-wrap .wa-bubble,#sticky-whatsapp-wrap.wa-bubble-off .wa-bubble{transition:none!important}}
+</style>
+<script>
+(function(){
+var WA_SHOW_AT=0.12,WA_FALLBACK_MS=5000,WA_AUTO_HIDE_MS=9000,WA_DEBUG=false;
+var KEY="goOnline_waBubble_v2";
+function log(){if(WA_DEBUG&&window.console)console.log.apply(console,["[wa]"].concat([].slice.call(arguments)));}
+function closed(){try{return sessionStorage.getItem(KEY)==="1";}catch(e){return false;}}
+function remember(){try{sessionStorage.setItem(KEY,"1");}catch(e){}}
+function ratio(){
+var d=document.documentElement,b=document.body||{};
+var h=Math.max(d.scrollHeight||0,b.scrollHeight||0,d.offsetHeight||0,b.offsetHeight||0);
+var s=h-window.innerHeight;
+if(s<=40)return -1;
+return Math.max(window.pageYOffset||0,d.scrollTop||0,b.scrollTop||0)/s;
+}
+function setup(){
+var all=document.querySelectorAll("#sticky-whatsapp-wrap");
+if(!all.length)return;
+for(var i=1;i<all.length;i++){if(all[i].parentNode)all[i].parentNode.removeChild(all[i]);}
+var wrap=all[0];
+if(wrap.parentNode!==document.body)document.body.appendChild(wrap);
+if(wrap.getAttribute("data-wa-ready")==="1")return;
+wrap.setAttribute("data-wa-ready","1");
+log("ركّبت الزر");
+var btn=wrap.querySelector("#sticky-whatsapp-btn");
+var link=wrap.querySelector(".wa-bubble-text");
+var x=wrap.querySelector(".wa-bubble-close");
+if(btn&&link)link.setAttribute("href",btn.getAttribute("href"));
+var hideT=null,fallT=null,poll=null,last=0,shown=false,done=false;
+function stop(){
+window.removeEventListener("scroll",onScroll,true);
+document.removeEventListener("scroll",onScroll,true);
+clearInterval(poll);clearTimeout(fallT);
+}
+function hide(){wrap.className="wa-bubble-off";}
+function finish(){done=true;stop();clearTimeout(hideT);}
+function show(why){
+if(done||shown)return;
+shown=true;log("طلعت الفقاعة",why);
+wrap.className="";stop();
+if(WA_AUTO_HIDE_MS>0)hideT=setTimeout(function(){hide();finish();},WA_AUTO_HIDE_MS);
+}
+function check(){var r=ratio();if(r>=WA_SHOW_AT)show("scroll "+r.toFixed(2));}
+function onScroll(){
+if(done||shown)return;
+var n=new Date().getTime();
+if(n-last<150)return;
+last=n;check();
+}
+if(closed()){log("مسكّرة من قبل");finish();}
+else{
+window.addEventListener("scroll",onScroll,true);
+document.addEventListener("scroll",onScroll,true);
+poll=setInterval(check,400);
+if(WA_FALLBACK_MS>0)fallT=setTimeout(function(){show("fallback");},WA_FALLBACK_MS);
+check();
+}
+if(x)x.addEventListener("click",function(e){e.preventDefault();hide();remember();finish();});
+}
+if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",setup);
+else setup();
+window.addEventListener("load",setup);
+})();
+</script>
