@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>تغير وارتُق | احجز مقعدك</title>
+<!--
+  نموذج حجز "تغير وارتُق"
+  - يعمل كصفحة مستقلة، أو انسخ الملف كامل والصقه داخل عنصر Custom JS/HTML في GoHighLevel.
+  - كل الأسماء تبدأ بـ tw- حتى لا تتعارض مع ستايلات أو سكربتات الصفحة المستضيفة.
+  - كل شي بصفحة وحدة: البيانات + التذكرة + العرض الإضافي، ثم دفع واحد على Stripe.
+  - روابط Stripe في CONFIG أسفل الملف.
+-->
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+  .tw-order {
+    --tw-ink: #111111;
+    --tw-muted: #6b6b6b;
+    --tw-line: #e6e6e6;
+    --tw-gold: #e0a93a;
+    --tw-gold-2: #f2c25c;
+    --tw-gold-ink: #a8741a;
+    --tw-gold-soft: #fff8ea;
+    --tw-gold-line: #f0d9a8;
+    --tw-blue-soft: #f1f7fc;
+    --tw-blue-line: #dbe8f3;
+    --tw-red: #c0392b;
+    --tw-radius: 14px;
+    display: flex; justify-content: center; padding: 24px 16px;
+    direction: rtl; text-align: right;
+  }
+  .tw-order, .tw-order * {
+    box-sizing: border-box; margin: 0; padding: 0;
+    font-family: "Tajawal", system-ui, sans-serif; letter-spacing: normal; text-transform: none;
+  }
+  .tw-order .tw-app {
+    width: 100%; max-width: 440px; background: #fff; color: var(--tw-ink);
+    border-radius: 24px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,.08);
+  }
+  @media (max-width: 480px) {
+    .tw-order { padding: 0; }
+    .tw-order .tw-app { border-radius: 0; box-shadow: none; }
+  }
+
+  /* Header */
+  .tw-order .tw-top { display: flex; align-items: center; justify-content: space-between; padding: 18px 20px 6px; }
+  .tw-order .tw-brand-name { display: block; font-size: 26px; font-weight: 800; line-height: 1; color: var(--tw-ink); }
+  .tw-order .tw-brand-by { display: block; font-size: 11px; margin-top: 4px; color: var(--tw-ink); }
+
+  .tw-order .tw-content { padding: 22px 20px 24px; }
+  .tw-order .tw-title { text-align: center; font-size: 32px; font-weight: 800; line-height: 1.3; margin-bottom: 10px; color: var(--tw-ink); }
+  .tw-order .tw-sub { text-align: center; color: #333; font-size: 16px; line-height: 1.7; margin-bottom: 22px; }
+
+  /* Fields */
+  .tw-order .tw-field {
+    border: 1px solid var(--tw-line); border-radius: var(--tw-radius); padding: 14px 16px;
+    display: flex; align-items: center; gap: 12px; margin-bottom: 14px; background: #fff; cursor: text;
+    transition: border-color .15s, box-shadow .15s;
+  }
+  .tw-order .tw-field:focus-within { border-color: var(--tw-gold); box-shadow: 0 0 0 3px #fbecc8; }
+  .tw-order .tw-field.tw-error { border-color: var(--tw-red); }
+  .tw-order .tw-field-body { flex: 1; min-width: 0; }
+  .tw-order .tw-lbl { display: block; font-size: 15px; color: #333; margin-bottom: 4px; }
+  .tw-order .tw-field input, .tw-order .tw-field select {
+    width: 100%; height: auto; border: 0; outline: 0; box-shadow: none; font-size: 15px; line-height: 1.5;
+    color: var(--tw-ink); background: transparent; border-radius: 0; min-height: 0;
+  }
+  .tw-order .tw-field input::placeholder { color: #9a9a9a; opacity: 1; }
+  .tw-order .tw-ico { width: 22px; height: 22px; color: #333; flex: none; }
+  .tw-order .tw-err { display: none; font-size: 12px; color: var(--tw-red); margin-top: 4px; }
+  .tw-order .tw-field.tw-error .tw-err { display: block; }
+  .tw-order .tw-phone-row { display: flex; align-items: center; gap: 8px; direction: ltr; }
+  .tw-order .tw-phone-row select { width: auto; flex: none; font-weight: 700; cursor: pointer; }
+  .tw-order .tw-ltr { direction: ltr; text-align: left; }
+
+  /* Buttons */
+  .tw-order .tw-cta {
+    display: block; width: 100%; border: 0; cursor: pointer; border-radius: var(--tw-radius); padding: 16px;
+    font-size: 20px; font-weight: 800; line-height: 1.3; color: #1a1a1a;
+    background: linear-gradient(180deg, var(--tw-gold-2), var(--tw-gold));
+    box-shadow: 0 6px 16px rgba(224,169,58,.35), inset 0 1px 0 rgba(255,255,255,.4);
+    transition: transform .1s, filter .15s;
+  }
+  .tw-order .tw-cta:hover { filter: brightness(1.03); }
+  .tw-order .tw-cta:active { transform: translateY(1px); }
+  .tw-order .tw-cta[disabled] { opacity: .7; cursor: wait; }
+  .tw-order .tw-note { display: flex; align-items: center; justify-content: center; gap: 6px; color: #444; font-size: 14px; margin-top: 12px; }
+  .tw-order .tw-note svg { width: 14px; height: 14px; }
+
+  .tw-order .tw-trust { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--tw-line); margin-top: 22px; padding-top: 18px; }
+  .tw-order .tw-trust > div { text-align: center; font-size: 12px; color: #333; padding: 0 6px; }
+  .tw-order .tw-trust > div + div { border-right: 1px solid var(--tw-line); }
+  .tw-order .tw-trust svg { width: 24px; height: 24px; display: block; margin: 0 auto 6px; }
+
+  /* Hero quote */
+  .tw-order .tw-hero {
+    position: relative; min-height: 320px; color: #fff; overflow: hidden;
+    background:
+      radial-gradient(circle at 70% 70%, rgba(240,170,60,.35), transparent 40%),
+      linear-gradient(180deg, #2a2a2a 10%, #0d0d0d 100%);
+  }
+  .tw-order .tw-hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .tw-order .tw-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, #fff 0%, rgba(255,255,255,0) 18%, rgba(0,0,0,.25) 100%); }
+  .tw-order .tw-quote { position: absolute; z-index: 1; top: 70px; left: 24px; width: 55%; text-align: right; font-size: 18px; line-height: 1.7; color: #fff; border: 0; }
+  .tw-order .tw-quote cite { display: block; font-style: normal; font-size: 13px; margin-top: 10px; text-align: center; opacity: .9; }
+
+  /* Tickets */
+  .tw-order .tw-guarantee {
+    display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: var(--tw-radius);
+    background: var(--tw-gold-soft); border: 1px solid var(--tw-gold-line); font-size: 14px; font-weight: 700; line-height: 1.6; margin-bottom: 16px;
+  }
+  .tw-order .tw-guarantee svg { width: 32px; height: 32px; flex: none; }
+  .tw-order .tw-ticket {
+    position: relative; display: block; border: 1px solid var(--tw-line); border-radius: var(--tw-radius);
+    padding: 16px; margin-bottom: 18px; cursor: pointer; background: #fafafa; font-weight: 400;
+    transition: border-color .15s, box-shadow .15s;
+  }
+  .tw-order .tw-ticket input { position: absolute; opacity: 0; pointer-events: none; width: 1px; height: 1px; }
+  .tw-order .tw-radio { position: absolute; left: 16px; top: 18px; width: 22px; height: 22px; border-radius: 50%; border: 2px solid #b5b5b5; background: #fff; }
+  .tw-order .tw-ticket input:checked ~ .tw-radio { border-color: var(--tw-gold-ink); }
+  .tw-order .tw-ticket input:checked ~ .tw-radio::after { content: ""; position: absolute; inset: 4px; border-radius: 50%; background: var(--tw-gold); }
+  .tw-order .tw-ticket input:focus-visible ~ .tw-radio { box-shadow: 0 0 0 3px #fbecc8; }
+  .tw-order .tw-ticket.tw-gold { background: var(--tw-gold-soft); border-color: var(--tw-gold-line); }
+  .tw-order .tw-ticket.tw-diamond { background: var(--tw-blue-soft); border-color: var(--tw-blue-line); }
+  .tw-order .tw-ticket.tw-selected { border-color: var(--tw-gold); box-shadow: 0 0 0 1px var(--tw-gold), 0 6px 18px rgba(224,169,58,.18); }
+  .tw-order .tw-badge {
+    position: absolute; top: -13px; left: 50%; transform: translateX(-50%); background: #fbe7b8; color: #5a3d00;
+    border: 1px solid var(--tw-gold-line); border-radius: 8px; padding: 2px 14px; font-size: 13px; font-weight: 800; white-space: nowrap;
+  }
+  .tw-order .tw-t-head { display: flex; align-items: flex-start; gap: 12px; padding-left: 34px; }
+  .tw-order .tw-t-text { flex: 1; }
+  .tw-order .tw-emb { width: 40px; height: 40px; flex: none; }
+  .tw-order .tw-t-name { display: block; font-size: 20px; font-weight: 800; line-height: 1.4; color: var(--tw-ink); }
+  .tw-order .tw-gold .tw-t-name { color: var(--tw-gold-ink); }
+  .tw-order .tw-t-desc { display: block; font-size: 14px; color: #333; margin-top: 2px; line-height: 1.5; }
+  .tw-order .tw-t-body { display: flex; align-items: center; gap: 12px; margin-top: 12px; }
+  .tw-order .tw-t-body ul { flex: 1; list-style: none; font-size: 14px; color: #222; }
+  .tw-order .tw-t-body li { padding: 3px 0; display: flex; gap: 6px; list-style: none; line-height: 1.5; }
+  .tw-order .tw-t-body li::before { content: "✓"; font-weight: 700; }
+  .tw-order .tw-price { flex: none; width: 118px; text-align: center; border-right: 1px solid var(--tw-line); padding-right: 12px; }
+  .tw-order .tw-price s { color: var(--tw-red); font-size: 13px; }
+  .tw-order .tw-price strong { display: block; white-space: nowrap; font-size: 24px; font-weight: 800; line-height: 1.3; color: var(--tw-ink); }
+  .tw-order .tw-price small { display: block; font-size: 11px; color: #333; line-height: 1.5; }
+
+
+  /* Single page sections */
+  .tw-order .tw-top { justify-content: center; }
+  .tw-order .tw-top > div { text-align: center; }
+  .tw-order .tw-sec-title { display: flex; align-items: center; gap: 10px; font-size: 20px; font-weight: 800; margin: 26px 0 12px; color: var(--tw-ink); }
+  .tw-order .tw-num { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; flex: none; background: var(--tw-gold-2); color: #fff; font-size: 15px; }
+
+  /* Order bump */
+  .tw-order .tw-bump {
+    display: flex; align-items: flex-start; gap: 12px; cursor: pointer; padding: 14px 16px; margin-bottom: 18px;
+    border: 2px dashed var(--tw-gold); border-radius: var(--tw-radius); background: var(--tw-gold-soft);
+  }
+  .tw-order .tw-bump input { width: 22px; height: 22px; flex: none; margin-top: 2px; accent-color: var(--tw-gold-ink); cursor: pointer; }
+  .tw-order .tw-bump-title { display: block; font-size: 16px; font-weight: 800; color: var(--tw-gold-ink); line-height: 1.5; }
+  .tw-order .tw-bump-desc { display: block; font-size: 14px; color: #333; line-height: 1.6; margin-top: 2px; }
+
+  .tw-order .tw-total { display: flex; justify-content: space-between; align-items: center; font-size: 16px; font-weight: 700; padding: 12px 4px 14px; border-top: 1px solid var(--tw-line); }
+  .tw-order .tw-total strong { font-size: 22px; font-weight: 800; }
+</style>
+
+<div class="tw-order" dir="rtl" lang="ar">
+  <div class="tw-app">
+    <div class="tw-top">
+      <div><span class="tw-brand-name">تغير وارتُق</span><span class="tw-brand-by">مع معتز مشعل</span></div>
+    </div>
+
+    <form class="tw-content" data-tw-form="order" action="#" onsubmit="return false" novalidate>
+      <div class="tw-title">احجز مقعدك الآن</div>
+      <p class="tw-sub">3 فئات مختلفة .. نفس الهدف<br>نسخة أقوى منك.</p>
+
+        <div class="tw-guarantee">
+          <span>جميع التذاكر تشمل حضور يوم الدورة وضمان استرداد كامل المبلغ.</span>
+          <svg viewBox="0 0 24 24"><path fill="#f2c25c" d="M12 2l8 3v6c0 5.5-3.6 9.3-8 11-4.4-1.7-8-5.5-8-11V5l8-3z"/><path d="M8.5 12l2.5 2.5 4.5-4.5" fill="none" stroke="#fff" stroke-width="2"/></svg>
+        </div>
+
+      <div class="tw-sec-title"><span class="tw-num">1</span>بياناتك</div>
+        <label class="tw-field" data-tw-field="name">
+          <span class="tw-field-body">
+            <span class="tw-lbl">الاسم الكامل</span>
+            <input name="tw_name" type="text" autocomplete="name" placeholder="مثال: أحمد محمد">
+            <span class="tw-err">الرجاء إدخال الاسم الكامل</span>
+          </span>
+          <svg class="tw-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
+        </label>
+
+        <div class="tw-field" data-tw-field="phone">
+          <div class="tw-field-body">
+            <span class="tw-lbl">رقم الهاتف</span>
+            <div class="tw-phone-row">
+              <select name="tw_cc" aria-label="رمز الدولة">
+                <option value="+962" selected>🇯🇴 +962</option>
+                <option value="+966">🇸🇦 +966</option>
+                <option value="+971">🇦🇪 +971</option>
+                <option value="+965">🇰🇼 +965</option>
+                <option value="+974">🇶🇦 +974</option>
+                <option value="+973">🇧🇭 +973</option>
+                <option value="+968">🇴🇲 +968</option>
+                <option value="+20">🇪🇬 +20</option>
+                <option value="+970">🇵🇸 +970</option>
+                <option value="+961">🇱🇧 +961</option>
+                <option value="+964">🇮🇶 +964</option>
+              </select>
+              <input name="tw_phone" class="tw-ltr" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="7 9123 4567" aria-label="رقم الهاتف">
+            </div>
+            <span class="tw-err">الرجاء إدخال رقم هاتف صحيح</span>
+          </div>
+          <svg class="tw-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 005 5L15 12l5 2v4a2 2 0 01-2 2A16 16 0 013 5a2 2 0 012-2z"/></svg>
+        </div>
+
+        <label class="tw-field" data-tw-field="email">
+          <span class="tw-field-body">
+            <span class="tw-lbl">البريد الإلكتروني</span>
+            <input name="tw_email" class="tw-ltr" type="email" autocomplete="email" placeholder="ahmed@example.com">
+            <span class="tw-err">الرجاء إدخال بريد إلكتروني صحيح</span>
+          </span>
+          <svg class="tw-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+        </label>
+
+      <div class="tw-sec-title"><span class="tw-num">2</span>اختر تجربتك</div>
+        <!-- Silver -->
+        <label class="tw-ticket">
+          <input type="radio" name="tw_ticket" value="silver" data-price="113">
+          <span class="tw-radio"></span>
+          <span class="tw-t-head">
+            <span class="tw-t-text">
+              <span class="tw-t-name">التذكرة الفضية</span>
+              <span class="tw-t-desc">التجربة الأساسية<br>لحضور الدورة كاملة</span>
+            </span>
+            <svg class="tw-emb" viewBox="0 0 24 24" fill="#8a8a8a"><circle cx="12" cy="8" r="4.5"/><path d="M3 22c0-5 4-8 9-8s9 3 9 8z"/></svg>
+          </span>
+          <span class="tw-t-body">
+            <ul>
+              <li>حضور الدورة</li>
+              <li>استراحة قهوة خفيفة</li>
+              <li>مقاعد في النصف الخلفي</li>
+            </ul>
+            <span class="tw-price">
+              <s>150 دينار</s>
+              <strong>113 دينار</strong>
+              <small>سيصبح السعر<br>128 دينار يوم 26/9</small>
+            </span>
+          </span>
+        </label>
+
+        <!-- Gold -->
+        <label class="tw-ticket tw-gold tw-selected">
+          <span class="tw-badge">الأكثر طلباً</span>
+          <input type="radio" name="tw_ticket" value="gold" data-price="188" checked>
+          <span class="tw-radio"></span>
+          <span class="tw-t-head">
+            <span class="tw-t-text">
+              <span class="tw-t-name">التذكرة الذهبية</span>
+              <span class="tw-t-desc">تجربة أقرب ومزايا إضافية</span>
+            </span>
+            <svg class="tw-emb" viewBox="0 0 24 24" fill="#e8b43f"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.6 1.5 6.8L12 17l-6.1 3.4 1.5-6.8L2.2 9l6.9-.7z"/></svg>
+          </span>
+          <span class="tw-t-body">
+            <ul>
+              <li>مقاعد أقرب إلى المسرح</li>
+              <li>تسجيل خاص ومنطقة ضيافة</li>
+              <li>بوفيه غداء مميز</li>
+              <li>جلسة متابعة أونلاين بعد شهر</li>
+              <li>حقيبة خاصة بالدورة</li>
+            </ul>
+            <span class="tw-price">
+              <s>250 دينار</s>
+              <strong>188 دينار</strong>
+              <small>سيصبح السعر<br>213 دينار يوم 26/9</small>
+            </span>
+          </span>
+        </label>
+
+        <!-- Diamond -->
+        <label class="tw-ticket tw-diamond">
+          <input type="radio" name="tw_ticket" value="diamond" data-price="450">
+          <span class="tw-radio"></span>
+          <span class="tw-t-head">
+            <span class="tw-t-text">
+              <span class="tw-t-name">التذكرة الماسية</span>
+              <span class="tw-t-desc">أعلى مستوى من التجربة<br>والوصول لمعتز</span>
+            </span>
+            <svg class="tw-emb" viewBox="0 0 24 24"><path fill="#4aa3c7" d="M6 3h12l4 6-10 12L2 9z"/><path fill="none" stroke="#fff" stroke-width="1.2" d="M2 9h20M8 3l4 18M16 3l-4 18M8 3L6 9M16 3l2 6"/></svg>
+          </span>
+          <span class="tw-t-body">
+            <ul>
+              <li>مقاعد الصف الأول</li>
+              <li>غداء مع معتز</li>
+              <li>جلسة Meet &amp; Greet</li>
+              <li>نسخة من كتاب معتز وتوقيعه</li>
+              <li>جلسة أسئلة وأجوبة خاصة</li>
+              <li>حقيبة خاصة بالدورة</li>
+            </ul>
+            <span class="tw-price">
+              <strong>450 دينار</strong>
+            </span>
+          </span>
+        </label>
+
+      <!-- ============ العرض الإضافي (Order Bump) — عدّل النص والسعر هنا وفي CONFIG ============ -->
+      <label class="tw-bump">
+        <input type="checkbox" name="tw_bump">
+        <span>
+          <span class="tw-bump-title">نعم! أضف تسجيل الدورة كاملة بـ <span data-tw-bump-price>49</span> دينار فقط</span>
+          <span class="tw-bump-desc">شاهد الدورة مرة ثانية من البيت متى ما بدك. هذا العرض متاح فقط هنا.</span>
+        </span>
+      </label>
+
+      <div class="tw-total"><span>المجموع</span><strong data-tw-total>188 دينار</strong></div>
+
+      <button class="tw-cta" type="submit" data-tw-pay>متابعة إلى الدفع</button>
+        <p class="tw-note">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a5 5 0 00-5 5v3H6a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2v-8a2 2 0 00-2-2h-1V7a5 5 0 00-5-5zm-3 8V7a3 3 0 016 0v3H9z"/></svg>
+          دفع آمن ومضمون
+        </p>
+
+        <div class="tw-trust">
+          <div>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M9 15l2 2 4-4"/></svg>
+            مقاعد محدودة
+          </div>
+          <div>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg>
+            بياناتك آمنة 100%
+          </div>
+          <div>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 14v-2a8 8 0 0116 0v2"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/><path d="M19 20a3 3 0 01-3 2h-2"/></svg>
+            دعم سريع عبر الواتساب
+          </div>
+        </div>
+    </form>
+
+      <div class="tw-hero">
+        <!-- صورة المتحدث: ضع رابط الصورة في src (مثلاً رابط من Media Library في GHL) -->
+        <img src="speaker.jpg" alt="" onerror="this.remove()">
+        <blockquote class="tw-quote">
+          "رحلة تَبدأ بقرار<br>وتنتهي بنسخة أقوى منك"
+          <cite>معتز مشعل</cite>
+        </blockquote>
+      </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  /* =====================================================================
+   * الإعدادات — عدّل هذه القيم فقط
+   * paymentLinks: رابطين Stripe Payment Link لكل تذكرة:
+   *   base = التذكرة لوحدها، withBump = التذكرة + العرض الإضافي (Order Bump)
+   *   (Stripe Dashboard → Payment Links → Create → أضف المنتجين للرابط الثاني)
+   * bumpPrice: سعر العرض الإضافي (للمجموع المعروض فقط — السعر الفعلي من Stripe)
+   * webhookUrl: (اختياري) رابط Webhook من GHL أو Make لحفظ بيانات العميل
+   *   قبل التحويل للدفع — يفيد لمتابعة من لم يُكمل الدفع.
+   * ===================================================================== */
+  var CONFIG = {
+    paymentLinks: {
+      silver:  { base: "https://buy.stripe.com/REPLACE_SILVER",  withBump: "https://buy.stripe.com/REPLACE_SILVER_BUMP" },
+      gold:    { base: "https://buy.stripe.com/REPLACE_GOLD",    withBump: "https://buy.stripe.com/REPLACE_GOLD_BUMP" },
+      diamond: { base: "https://buy.stripe.com/REPLACE_DIAMOND", withBump: "https://buy.stripe.com/REPLACE_DIAMOND_BUMP" }
+    },
+    bumpPrice: 49,
+    webhookUrl: ""
+  };
+
+  // Page builders (GHL) may run this block more than once; listeners are
+  // delegated on document, so binding once covers every re-render.
+  if (window.__twOrderBound) return;
+  window.__twOrderBound = true;
+
+  var PAY_LABEL = "متابعة إلى الدفع";
+
+  function rootOf(el) { return el && el.closest ? el.closest(".tw-order") : null; }
+  function field(root, name) { return root.querySelector('[name="tw_' + name + '"]'); }
+
+  function setError(root, name, bad) {
+    var f = root.querySelector('[data-tw-field="' + name + '"]');
+    if (f) f.classList.toggle("tw-error", bad);
+    return !bad;
+  }
+
+  function refresh(root) {
+    var checked = root.querySelector('[name="tw_ticket"]:checked');
+    root.querySelectorAll(".tw-ticket").forEach(function (card) {
+      card.classList.toggle("tw-selected", !!checked && card.contains(checked));
+    });
+    root.querySelectorAll("[data-tw-bump-price]").forEach(function (el) { el.textContent = CONFIG.bumpPrice; });
+    var total = (checked ? Number(checked.getAttribute("data-price")) : 0) + (field(root, "bump").checked ? CONFIG.bumpPrice : 0);
+    root.querySelector("[data-tw-total]").textContent = total + " دينار";
+  }
+
+  function submitOrder(root) {
+    var name = field(root, "name").value.trim();
+    var phone = field(root, "phone").value.replace(/\D/g, "").replace(/^0+/, "");
+    var email = field(root, "email").value.trim();
+
+    var ok = [
+      setError(root, "name", name.split(/\s+/).length < 2),
+      setError(root, "phone", phone.length < 7 || phone.length > 12),
+      setError(root, "email", !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
+    ].every(Boolean);
+    if (!ok) {
+      root.querySelector(".tw-field.tw-error").scrollIntoView({ behavior: "smooth", block: "center" });
+      return;
+    }
+    phone = field(root, "cc").value + phone;
+
+    var checked = root.querySelector('[name="tw_ticket"]:checked');
+    var ticket = checked ? checked.value : "gold";
+    var bump = field(root, "bump").checked;
+    var link = CONFIG.paymentLinks[ticket][bump ? "withBump" : "base"];
+    if (!link || link.indexOf("REPLACE_") !== -1) {
+      alert("رابط الدفع لهذا الاختيار غير مُعدّ بعد — أضفه في CONFIG.paymentLinks.");
+      return;
+    }
+
+    var url = new URL(link);
+    url.searchParams.set("prefilled_email", email);
+    url.searchParams.set("client_reference_id", ticket + (bump ? "_bump_" : "_") + phone.replace("+", ""));
+
+    var btn = root.querySelector("[data-tw-pay]");
+    btn.disabled = true;
+    btn.textContent = "جاري التحويل...";
+
+    var gone = false;
+    function go() {
+      if (gone) return;
+      gone = true;
+      // Stripe Checkout refuses to load inside an iframe, so break out if embedded.
+      try { window.top.location.href = url.toString(); }
+      catch (_) { window.location.href = url.toString(); }
+    }
+
+    if (CONFIG.webhookUrl) {
+      fetch(CONFIG.webhookUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: name, email: email, phone: phone, ticket: ticket, bump: bump, source: "order-form" }),
+        keepalive: true
+      }).catch(function () {}).then(go);
+      setTimeout(go, 2500); // never let a slow webhook block payment
+    } else {
+      go();
+    }
+  }
+
+  document.addEventListener("submit", function (e) {
+    var root = rootOf(e.target);
+    if (!root) return;
+    e.preventDefault();
+    submitOrder(root);
+  }, true);
+
+  document.addEventListener("input", function (e) {
+    var f = e.target.closest && e.target.closest("[data-tw-field]");
+    if (f && rootOf(f)) f.classList.remove("tw-error");
+  });
+
+  document.addEventListener("change", function (e) {
+    var root = rootOf(e.target);
+    if (root && (e.target.name === "tw_ticket" || e.target.name === "tw_bump")) refresh(root);
+  });
+
+  function refreshAll() { document.querySelectorAll(".tw-order").forEach(refresh); }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", refreshAll);
+  else refreshAll();
+
+  // Coming back from Stripe with the browser's back button restores the page
+  // from cache with the button still disabled.
+  window.addEventListener("pageshow", function () {
+    document.querySelectorAll(".tw-order [data-tw-pay]").forEach(function (btn) {
+      btn.disabled = false;
+      btn.textContent = PAY_LABEL;
+    });
+    refreshAll();
+  });
+})();
+</script>
