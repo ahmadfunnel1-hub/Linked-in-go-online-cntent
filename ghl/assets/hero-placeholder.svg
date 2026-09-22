@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 408" width="480" height="408" role="img" aria-label="مكان صورة معتز مشعل">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#E7DCC8"/>
+      <stop offset="1" stop-color="#CDBEA3"/>
+    </linearGradient>
+  </defs>
+  <g fill="url(#g)">
+    <circle cx="240" cy="150" r="66"/>
+    <path d="M240 232c-72 0-130 44-130 98v78h260v-78c0-54-58-98-130-98z"/>
+  </g>
+  <text x="240" y="392" text-anchor="middle" font-family="sans-serif" font-size="15" fill="#A8A29E">صورة معتز — استبدلها برابط GHL Media</text>
+</svg>
