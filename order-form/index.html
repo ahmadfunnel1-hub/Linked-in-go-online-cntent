@@ -1,368 +1,379 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>تغير وارتُق | احجز مقعدك</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!--
+  نموذج حجز "تغير وارتُق"
+  - يعمل كصفحة مستقلة، أو انسخ الملف كامل والصقه داخل عنصر Custom JS/HTML في GoHighLevel.
+  - كل الأسماء تبدأ بـ tw- حتى لا تتعارض مع ستايلات أو سكربتات الصفحة المستضيفة.
+  - روابط Stripe في CONFIG أسفل الملف.
+-->
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #f4f4f5;
-    --card: #ffffff;
-    --ink: #111111;
-    --muted: #6b6b6b;
-    --line: #e6e6e6;
-    --gold: #e0a93a;
-    --gold-2: #f2c25c;
-    --gold-ink: #a8741a;
-    --gold-soft: #fff8ea;
-    --gold-line: #f0d9a8;
-    --blue-soft: #f1f7fc;
-    --blue-line: #dbe8f3;
-    --diamond: #4aa3c7;
-    --red: #c0392b;
-    --radius: 14px;
+  .tw-order {
+    --tw-ink: #111111;
+    --tw-muted: #6b6b6b;
+    --tw-line: #e6e6e6;
+    --tw-gold: #e0a93a;
+    --tw-gold-2: #f2c25c;
+    --tw-gold-ink: #a8741a;
+    --tw-gold-soft: #fff8ea;
+    --tw-gold-line: #f0d9a8;
+    --tw-blue-soft: #f1f7fc;
+    --tw-blue-line: #dbe8f3;
+    --tw-red: #c0392b;
+    --tw-radius: 14px;
+    display: flex; justify-content: center; padding: 24px 16px;
+    direction: rtl; text-align: right;
   }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html, body { background: var(--bg); color: var(--ink); font-family: "Tajawal", system-ui, sans-serif; }
-  body { min-height: 100vh; display: flex; justify-content: center; padding: 24px 0; }
-  .app {
-    width: 100%; max-width: 440px; background: var(--card);
+  .tw-order, .tw-order * {
+    box-sizing: border-box; margin: 0; padding: 0;
+    font-family: "Tajawal", system-ui, sans-serif; letter-spacing: normal; text-transform: none;
+  }
+  .tw-order .tw-app {
+    width: 100%; max-width: 440px; background: #fff; color: var(--tw-ink);
     border-radius: 24px; overflow: hidden; box-shadow: 0 10px 40px rgba(0,0,0,.08);
-    display: flex; flex-direction: column;
   }
-  @media (max-width: 480px) { body { padding: 0; } .app { border-radius: 0; box-shadow: none; } }
+  @media (max-width: 480px) {
+    .tw-order { padding: 0; }
+    .tw-order .tw-app { border-radius: 0; box-shadow: none; }
+  }
 
   /* Header */
-  .top { display: flex; align-items: center; justify-content: space-between; padding: 18px 20px 6px; }
-  .brand { text-align: right; }
-  .brand h1 { font-size: 26px; font-weight: 800; line-height: 1; }
-  .brand small { display: block; font-size: 11px; color: var(--ink); margin-top: 4px; }
-  .icon-btn { background: none; border: 0; cursor: pointer; color: var(--ink); display: flex; align-items: center; gap: 6px; font: inherit; font-size: 14px; }
-  .icon-btn svg { width: 22px; height: 22px; }
+  .tw-order .tw-top { display: flex; align-items: center; justify-content: space-between; padding: 18px 20px 6px; }
+  .tw-order .tw-brand-name { display: block; font-size: 26px; font-weight: 800; line-height: 1; color: var(--tw-ink); }
+  .tw-order .tw-brand-by { display: block; font-size: 11px; margin-top: 4px; color: var(--tw-ink); }
+  .tw-order .tw-icon-btn {
+    background: none; border: 0; cursor: pointer; color: var(--tw-ink); display: flex; align-items: center; gap: 6px;
+    font-size: 14px; box-shadow: none; padding: 4px;
+  }
+  .tw-order .tw-icon-btn svg { width: 22px; height: 22px; }
 
   /* Stepper */
-  .stepper { display: flex; align-items: flex-start; justify-content: center; gap: 0; margin: 10px auto 0; width: 220px; }
-  .step { display: flex; flex-direction: column; align-items: center; gap: 8px; width: 90px; font-size: 13px; color: var(--muted); }
-  .step .dot {
+  .tw-order .tw-stepper { display: flex; align-items: flex-start; justify-content: center; margin: 10px auto 0; width: 220px; }
+  .tw-order .tw-step { display: flex; flex-direction: column; align-items: center; gap: 8px; width: 90px; font-size: 13px; color: var(--tw-muted); }
+  .tw-order .tw-dot {
     width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center;
     background: #eee; color: #555; font-weight: 700; border: 2px solid #ddd;
   }
-  .step.active { color: var(--ink); font-weight: 700; }
-  .step.active .dot { background: var(--gold-2); color: #fff; border-color: #f6dca0; box-shadow: 0 0 0 4px #fdf1d6; }
-  .step.done .dot { background: #2b2b2b; color: #fff; border-color: #2b2b2b; }
-  .step.done { color: var(--ink); font-weight: 700; }
-  .step-line { flex: 1; height: 2px; background: #ddd; margin-top: 16px; }
-  .step-line.on { background: var(--gold-2); }
+  .tw-order .tw-step.tw-active, .tw-order .tw-step.tw-done { color: var(--tw-ink); font-weight: 700; }
+  .tw-order .tw-step.tw-active .tw-dot { background: var(--tw-gold-2); color: #fff; border-color: #f6dca0; box-shadow: 0 0 0 4px #fdf1d6; }
+  .tw-order .tw-step.tw-done .tw-dot { background: #2b2b2b; color: #fff; border-color: #2b2b2b; }
+  .tw-order .tw-step-line { flex: 1; height: 2px; background: #ddd; margin-top: 16px; }
+  .tw-order .tw-step-line.tw-on { background: var(--tw-gold-2); }
 
-  .content { padding: 22px 20px 24px; }
-  .title { text-align: center; font-size: 32px; font-weight: 800; margin-bottom: 10px; }
-  .sub { text-align: center; color: #333; font-size: 16px; line-height: 1.7; margin-bottom: 22px; }
+  .tw-order .tw-content { padding: 22px 20px 24px; }
+  .tw-order .tw-title { text-align: center; font-size: 32px; font-weight: 800; line-height: 1.3; margin-bottom: 10px; color: var(--tw-ink); }
+  .tw-order .tw-sub { text-align: center; color: #333; font-size: 16px; line-height: 1.7; margin-bottom: 22px; }
 
   /* Fields */
-  .field {
-    border: 1px solid var(--line); border-radius: var(--radius); padding: 14px 16px;
-    display: flex; align-items: center; gap: 12px; margin-bottom: 14px; background: #fff;
+  .tw-order .tw-field {
+    border: 1px solid var(--tw-line); border-radius: var(--tw-radius); padding: 14px 16px;
+    display: flex; align-items: center; gap: 12px; margin-bottom: 14px; background: #fff; cursor: text;
     transition: border-color .15s, box-shadow .15s;
   }
-  .field:focus-within { border-color: var(--gold); box-shadow: 0 0 0 3px #fbecc8; }
-  .field.error { border-color: var(--red); }
-  .field .body { flex: 1; min-width: 0; }
-  .field label { display: block; font-size: 15px; color: #333; margin-bottom: 4px; }
-  .field input { width: 100%; border: 0; outline: 0; font: inherit; font-size: 15px; color: var(--ink); background: transparent; }
-  .field input::placeholder { color: #9a9a9a; }
-  .field .ico { width: 22px; height: 22px; color: #333; flex: none; }
-  .field .err { display: none; font-size: 12px; color: var(--red); margin-top: 4px; }
-  .field.error .err { display: block; }
-  .phone-row { display: flex; align-items: center; gap: 8px; direction: ltr; }
-  .phone-row select { border: 0; background: transparent; font: inherit; font-size: 15px; font-weight: 700; outline: 0; cursor: pointer; }
-  .phone-row input { direction: ltr; text-align: left; }
+  .tw-order .tw-field:focus-within { border-color: var(--tw-gold); box-shadow: 0 0 0 3px #fbecc8; }
+  .tw-order .tw-field.tw-error { border-color: var(--tw-red); }
+  .tw-order .tw-field-body { flex: 1; min-width: 0; }
+  .tw-order .tw-lbl { display: block; font-size: 15px; color: #333; margin-bottom: 4px; }
+  .tw-order .tw-field input, .tw-order .tw-field select {
+    width: 100%; height: auto; border: 0; outline: 0; box-shadow: none; font-size: 15px; line-height: 1.5;
+    color: var(--tw-ink); background: transparent; border-radius: 0; min-height: 0;
+  }
+  .tw-order .tw-field input::placeholder { color: #9a9a9a; opacity: 1; }
+  .tw-order .tw-ico { width: 22px; height: 22px; color: #333; flex: none; }
+  .tw-order .tw-err { display: none; font-size: 12px; color: var(--tw-red); margin-top: 4px; }
+  .tw-order .tw-field.tw-error .tw-err { display: block; }
+  .tw-order .tw-phone-row { display: flex; align-items: center; gap: 8px; direction: ltr; }
+  .tw-order .tw-phone-row select { width: auto; flex: none; font-weight: 700; cursor: pointer; }
+  .tw-order .tw-ltr { direction: ltr; text-align: left; }
 
   /* Buttons */
-  .cta {
-    width: 100%; border: 0; cursor: pointer; border-radius: var(--radius); padding: 16px;
-    font: inherit; font-size: 20px; font-weight: 800; color: #1a1a1a;
-    background: linear-gradient(180deg, var(--gold-2), var(--gold));
+  .tw-order .tw-cta {
+    display: block; width: 100%; border: 0; cursor: pointer; border-radius: var(--tw-radius); padding: 16px;
+    font-size: 20px; font-weight: 800; line-height: 1.3; color: #1a1a1a;
+    background: linear-gradient(180deg, var(--tw-gold-2), var(--tw-gold));
     box-shadow: 0 6px 16px rgba(224,169,58,.35), inset 0 1px 0 rgba(255,255,255,.4);
     transition: transform .1s, filter .15s;
   }
-  .cta:hover { filter: brightness(1.03); }
-  .cta:active { transform: translateY(1px); }
-  .cta[disabled] { opacity: .7; cursor: wait; }
-  .note { display: flex; align-items: center; justify-content: center; gap: 6px; color: #444; font-size: 14px; margin-top: 12px; }
-  .note svg { width: 14px; height: 14px; }
+  .tw-order .tw-cta:hover { filter: brightness(1.03); }
+  .tw-order .tw-cta:active { transform: translateY(1px); }
+  .tw-order .tw-cta[disabled] { opacity: .7; cursor: wait; }
+  .tw-order .tw-note { display: flex; align-items: center; justify-content: center; gap: 6px; color: #444; font-size: 14px; margin-top: 12px; }
+  .tw-order .tw-note svg { width: 14px; height: 14px; }
 
-  .trust { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); margin-top: 22px; padding-top: 18px; }
-  .trust div { text-align: center; font-size: 12px; color: #333; padding: 0 6px; }
-  .trust div + div { border-right: 1px solid var(--line); }
-  .trust svg { width: 24px; height: 24px; display: block; margin: 0 auto 6px; }
+  .tw-order .tw-trust { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--tw-line); margin-top: 22px; padding-top: 18px; }
+  .tw-order .tw-trust > div { text-align: center; font-size: 12px; color: #333; padding: 0 6px; }
+  .tw-order .tw-trust > div + div { border-right: 1px solid var(--tw-line); }
+  .tw-order .tw-trust svg { width: 24px; height: 24px; display: block; margin: 0 auto 6px; }
 
   /* Hero quote */
-  .hero {
+  .tw-order .tw-hero {
     position: relative; min-height: 320px; color: #fff; overflow: hidden;
     background:
-      linear-gradient(180deg, #fff 0%, rgba(255,255,255,0) 12%),
       radial-gradient(circle at 70% 70%, rgba(240,170,60,.35), transparent 40%),
       linear-gradient(180deg, #2a2a2a 10%, #0d0d0d 100%);
   }
-  .hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-  .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, #fff 0%, rgba(0,0,0,0) 18%, rgba(0,0,0,.25) 100%); }
-  .hero blockquote { position: absolute; z-index: 1; top: 70px; left: 24px; width: 55%; text-align: right; font-size: 18px; line-height: 1.7; }
-  .hero cite { display: block; font-style: normal; font-size: 13px; margin-top: 10px; text-align: center; opacity: .9; }
+  .tw-order .tw-hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .tw-order .tw-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, #fff 0%, rgba(255,255,255,0) 18%, rgba(0,0,0,.25) 100%); }
+  .tw-order .tw-quote { position: absolute; z-index: 1; top: 70px; left: 24px; width: 55%; text-align: right; font-size: 18px; line-height: 1.7; color: #fff; border: 0; }
+  .tw-order .tw-quote cite { display: block; font-style: normal; font-size: 13px; margin-top: 10px; text-align: center; opacity: .9; }
 
   /* Tickets */
-  .guarantee {
-    display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: var(--radius);
-    background: var(--gold-soft); border: 1px solid var(--gold-line); font-size: 14px; font-weight: 700; line-height: 1.6; margin-bottom: 16px;
+  .tw-order .tw-guarantee {
+    display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-radius: var(--tw-radius);
+    background: var(--tw-gold-soft); border: 1px solid var(--tw-gold-line); font-size: 14px; font-weight: 700; line-height: 1.6; margin-bottom: 16px;
   }
-  .guarantee svg { width: 32px; height: 32px; flex: none; }
-  .ticket {
-    position: relative; display: block; border: 1px solid var(--line); border-radius: var(--radius);
-    padding: 16px; margin-bottom: 18px; cursor: pointer; background: #fafafa; transition: border-color .15s, box-shadow .15s;
+  .tw-order .tw-guarantee svg { width: 32px; height: 32px; flex: none; }
+  .tw-order .tw-ticket {
+    position: relative; display: block; border: 1px solid var(--tw-line); border-radius: var(--tw-radius);
+    padding: 16px; margin-bottom: 18px; cursor: pointer; background: #fafafa; font-weight: 400;
+    transition: border-color .15s, box-shadow .15s;
   }
-  .ticket input { position: absolute; opacity: 0; pointer-events: none; }
-  .ticket .radio { position: absolute; left: 16px; top: 18px; width: 22px; height: 22px; border-radius: 50%; border: 2px solid #b5b5b5; background: #fff; }
-  .ticket input:checked ~ .radio { border-color: var(--gold-ink); }
-  .ticket input:checked ~ .radio::after { content: ""; position: absolute; inset: 4px; border-radius: 50%; background: var(--gold); }
-  .ticket input:focus-visible ~ .radio { box-shadow: 0 0 0 3px #fbecc8; }
-  .ticket:has(input:checked) { border-color: var(--gold); box-shadow: 0 0 0 1px var(--gold), 0 6px 18px rgba(224,169,58,.18); }
-  .ticket.gold { background: var(--gold-soft); border-color: var(--gold-line); }
-  .ticket.diamond { background: var(--blue-soft); border-color: var(--blue-line); }
-  .badge {
+  .tw-order .tw-ticket input { position: absolute; opacity: 0; pointer-events: none; width: 1px; height: 1px; }
+  .tw-order .tw-radio { position: absolute; left: 16px; top: 18px; width: 22px; height: 22px; border-radius: 50%; border: 2px solid #b5b5b5; background: #fff; }
+  .tw-order .tw-ticket input:checked ~ .tw-radio { border-color: var(--tw-gold-ink); }
+  .tw-order .tw-ticket input:checked ~ .tw-radio::after { content: ""; position: absolute; inset: 4px; border-radius: 50%; background: var(--tw-gold); }
+  .tw-order .tw-ticket input:focus-visible ~ .tw-radio { box-shadow: 0 0 0 3px #fbecc8; }
+  .tw-order .tw-ticket.tw-gold { background: var(--tw-gold-soft); border-color: var(--tw-gold-line); }
+  .tw-order .tw-ticket.tw-diamond { background: var(--tw-blue-soft); border-color: var(--tw-blue-line); }
+  .tw-order .tw-ticket.tw-selected { border-color: var(--tw-gold); box-shadow: 0 0 0 1px var(--tw-gold), 0 6px 18px rgba(224,169,58,.18); }
+  .tw-order .tw-badge {
     position: absolute; top: -13px; left: 50%; transform: translateX(-50%); background: #fbe7b8; color: #5a3d00;
-    border: 1px solid var(--gold-line); border-radius: 8px; padding: 2px 14px; font-size: 13px; font-weight: 800; white-space: nowrap;
+    border: 1px solid var(--tw-gold-line); border-radius: 8px; padding: 2px 14px; font-size: 13px; font-weight: 800; white-space: nowrap;
   }
-  .t-head { display: flex; align-items: flex-start; gap: 12px; padding-left: 34px; }
-  .t-head .emb { width: 40px; height: 40px; flex: none; }
-  .t-head h3 { font-size: 20px; font-weight: 800; }
-  .ticket.gold h3 { color: var(--gold-ink); }
-  .t-head p { font-size: 14px; color: #333; margin-top: 2px; }
-  .t-body { display: flex; align-items: center; gap: 12px; margin-top: 12px; }
-  .t-body ul { flex: 1; list-style: none; font-size: 14px; color: #222; }
-  .t-body li { padding: 3px 0; display: flex; gap: 6px; }
-  .t-body li::before { content: "✓"; font-weight: 700; }
-  .price { flex: none; width: 118px; text-align: center; border-right: 1px solid var(--line); padding-right: 12px; }
-  .price s { color: var(--red); font-size: 13px; }
-  .price strong { display: block; white-space: nowrap; font-size: 24px; font-weight: 800; line-height: 1.3; }
-  .price small { display: block; font-size: 11px; color: #333; line-height: 1.5; }
+  .tw-order .tw-t-head { display: flex; align-items: flex-start; gap: 12px; padding-left: 34px; }
+  .tw-order .tw-t-text { flex: 1; }
+  .tw-order .tw-emb { width: 40px; height: 40px; flex: none; }
+  .tw-order .tw-t-name { display: block; font-size: 20px; font-weight: 800; line-height: 1.4; color: var(--tw-ink); }
+  .tw-order .tw-gold .tw-t-name { color: var(--tw-gold-ink); }
+  .tw-order .tw-t-desc { display: block; font-size: 14px; color: #333; margin-top: 2px; line-height: 1.5; }
+  .tw-order .tw-t-body { display: flex; align-items: center; gap: 12px; margin-top: 12px; }
+  .tw-order .tw-t-body ul { flex: 1; list-style: none; font-size: 14px; color: #222; }
+  .tw-order .tw-t-body li { padding: 3px 0; display: flex; gap: 6px; list-style: none; line-height: 1.5; }
+  .tw-order .tw-t-body li::before { content: "✓"; font-weight: 700; }
+  .tw-order .tw-price { flex: none; width: 118px; text-align: center; border-right: 1px solid var(--tw-line); padding-right: 12px; }
+  .tw-order .tw-price s { color: var(--tw-red); font-size: 13px; }
+  .tw-order .tw-price strong { display: block; white-space: nowrap; font-size: 24px; font-weight: 800; line-height: 1.3; color: var(--tw-ink); }
+  .tw-order .tw-price small { display: block; font-size: 11px; color: #333; line-height: 1.5; }
 
-  .hidden { display: none !important; }
-  .fade { animation: fade .25s ease; }
-  @keyframes fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  .tw-order .tw-hidden { display: none !important; }
+  .tw-order .tw-fade { animation: tw-fade .25s ease; }
+  @keyframes tw-fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 </style>
-</head>
-<body>
-<main class="app">
 
-  <!-- ================= STEP 1: بياناتك ================= -->
-  <section id="step1" class="fade">
-    <header class="top">
-      <div class="brand"><h1>تغير وارتُق</h1><small>مع معتز مشعل</small></div>
-      <button class="icon-btn" type="button" aria-label="إغلاق" onclick="history.back()">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
-      </button>
-    </header>
+<div class="tw-order" dir="rtl" lang="ar">
+  <div class="tw-app">
 
-    <div class="stepper">
-      <div class="step active"><span class="dot">1</span>بياناتك</div>
-      <div class="step-line"></div>
-      <div class="step"><span class="dot">2</span>اختيار التذكرة</div>
-    </div>
-
-    <form id="leadForm" class="content" novalidate>
-      <h2 class="title">احجز مقعدك الآن</h2>
-      <p class="sub">أدخل بياناتك لنبدأ حجزك، ثم تختار التذكرة المناسبة لك في الخطوة التالية.</p>
-
-      <div class="field" data-field="name">
-        <div class="body">
-          <label for="name">الاسم الكامل</label>
-          <input id="name" name="name" type="text" autocomplete="name" placeholder="مثال: أحمد محمد" required>
-          <span class="err">الرجاء إدخال الاسم الكامل</span>
-        </div>
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
+    <!-- ================= STEP 1: بياناتك ================= -->
+    <section data-tw-step="1">
+      <div class="tw-top">
+        <div><span class="tw-brand-name">تغير وارتُق</span><span class="tw-brand-by">مع معتز مشعل</span></div>
+        <button class="tw-icon-btn" type="button" aria-label="إغلاق" data-tw-close>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        </button>
       </div>
 
-      <div class="field" data-field="phone">
-        <div class="body">
-          <label for="phone">رقم الهاتف</label>
-          <div class="phone-row">
-            <select id="cc" name="cc" aria-label="رمز الدولة">
-              <option value="+962" selected>🇯🇴 +962</option>
-              <option value="+966">🇸🇦 +966</option>
-              <option value="+971">🇦🇪 +971</option>
-              <option value="+965">🇰🇼 +965</option>
-              <option value="+974">🇶🇦 +974</option>
-              <option value="+973">🇧🇭 +973</option>
-              <option value="+968">🇴🇲 +968</option>
-              <option value="+20">🇪🇬 +20</option>
-              <option value="+970">🇵🇸 +970</option>
-              <option value="+961">🇱🇧 +961</option>
-              <option value="+964">🇮🇶 +964</option>
-            </select>
-            <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="7 9123 4567" required>
-          </div>
-          <span class="err">الرجاء إدخال رقم هاتف صحيح</span>
-        </div>
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 005 5L15 12l5 2v4a2 2 0 01-2 2A16 16 0 013 5a2 2 0 012-2z"/></svg>
+      <div class="tw-stepper">
+        <div class="tw-step tw-active"><span class="tw-dot">1</span>بياناتك</div>
+        <div class="tw-step-line"></div>
+        <div class="tw-step"><span class="tw-dot">2</span>اختيار التذكرة</div>
       </div>
 
-      <div class="field" data-field="email">
-        <div class="body">
-          <label for="email">البريد الإلكتروني</label>
-          <input id="email" name="email" type="email" dir="ltr" style="text-align:left" autocomplete="email" placeholder="ahmed@example.com" required>
-          <span class="err">الرجاء إدخال بريد إلكتروني صحيح</span>
+      <form class="tw-content" data-tw-form="lead" action="#" onsubmit="return false" novalidate>
+        <div class="tw-title">احجز مقعدك الآن</div>
+        <p class="tw-sub">أدخل بياناتك لنبدأ حجزك، ثم تختار التذكرة المناسبة لك في الخطوة التالية.</p>
+
+        <label class="tw-field" data-tw-field="name">
+          <span class="tw-field-body">
+            <span class="tw-lbl">الاسم الكامل</span>
+            <input name="tw_name" type="text" autocomplete="name" placeholder="مثال: أحمد محمد">
+            <span class="tw-err">الرجاء إدخال الاسم الكامل</span>
+          </span>
+          <svg class="tw-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
+        </label>
+
+        <div class="tw-field" data-tw-field="phone">
+          <div class="tw-field-body">
+            <span class="tw-lbl">رقم الهاتف</span>
+            <div class="tw-phone-row">
+              <select name="tw_cc" aria-label="رمز الدولة">
+                <option value="+962" selected>🇯🇴 +962</option>
+                <option value="+966">🇸🇦 +966</option>
+                <option value="+971">🇦🇪 +971</option>
+                <option value="+965">🇰🇼 +965</option>
+                <option value="+974">🇶🇦 +974</option>
+                <option value="+973">🇧🇭 +973</option>
+                <option value="+968">🇴🇲 +968</option>
+                <option value="+20">🇪🇬 +20</option>
+                <option value="+970">🇵🇸 +970</option>
+                <option value="+961">🇱🇧 +961</option>
+                <option value="+964">🇮🇶 +964</option>
+              </select>
+              <input name="tw_phone" class="tw-ltr" type="tel" inputmode="tel" autocomplete="tel-national" placeholder="7 9123 4567" aria-label="رقم الهاتف">
+            </div>
+            <span class="tw-err">الرجاء إدخال رقم هاتف صحيح</span>
+          </div>
+          <svg class="tw-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 005 5L15 12l5 2v4a2 2 0 01-2 2A16 16 0 013 5a2 2 0 012-2z"/></svg>
         </div>
-        <svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+
+        <label class="tw-field" data-tw-field="email">
+          <span class="tw-field-body">
+            <span class="tw-lbl">البريد الإلكتروني</span>
+            <input name="tw_email" class="tw-ltr" type="email" autocomplete="email" placeholder="ahmed@example.com">
+            <span class="tw-err">الرجاء إدخال بريد إلكتروني صحيح</span>
+          </span>
+          <svg class="tw-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+        </label>
+
+        <button class="tw-cta" type="submit">متابعة واختيار التذكرة</button>
+        <p class="tw-note">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a5 5 0 00-5 5v3H6a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2v-8a2 2 0 00-2-2h-1V7a5 5 0 00-5-5zm-3 8V7a3 3 0 016 0v3H9z"/></svg>
+          لن يتم خصم أي مبلغ في هذه الخطوة
+        </p>
+
+        <div class="tw-trust">
+          <div>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M9 15l2 2 4-4"/></svg>
+            مقاعد محدودة
+          </div>
+          <div>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg>
+            بياناتك آمنة 100%
+          </div>
+          <div>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 14v-2a8 8 0 0116 0v2"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/><path d="M19 20a3 3 0 01-3 2h-2"/></svg>
+            دعم سريع عبر الواتساب
+          </div>
+        </div>
+      </form>
+
+      <div class="tw-hero">
+        <!-- صورة المتحدث: ضع رابط الصورة في src (مثلاً رابط من Media Library في GHL) -->
+        <img src="speaker.jpg" alt="" onerror="this.remove()">
+        <blockquote class="tw-quote">
+          "رحلة تَبدأ بقرار<br>وتنتهي بنسخة أقوى منك"
+          <cite>معتز مشعل</cite>
+        </blockquote>
+      </div>
+    </section>
+
+    <!-- ================= STEP 2: اختيار التذكرة ================= -->
+    <section data-tw-step="2" class="tw-hidden">
+      <div class="tw-top">
+        <div><span class="tw-brand-name">تغير وارتُق</span><span class="tw-brand-by">مع معتز مشعل</span></div>
+        <button class="tw-icon-btn" type="button" data-tw-back>
+          رجوع
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
+        </button>
       </div>
 
-      <button class="cta" type="submit">متابعة واختيار التذكرة</button>
-      <p class="note">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a5 5 0 00-5 5v3H6a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2v-8a2 2 0 00-2-2h-1V7a5 5 0 00-5-5zm-3 8V7a3 3 0 016 0v3H9z"/></svg>
-        لن يتم خصم أي مبلغ في هذه الخطوة
-      </p>
-
-      <div class="trust">
-        <div>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M9 15l2 2 4-4"/></svg>
-          مقاعد محدودة
-        </div>
-        <div>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg>
-          بياناتك آمنة 100%
-        </div>
-        <div>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 14v-2a8 8 0 0116 0v2"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/><path d="M19 20a3 3 0 01-3 2h-2"/></svg>
-          دعم سريع عبر الواتساب
-        </div>
-      </div>
-    </form>
-
-    <div class="hero">
-      <!-- ضع صورة المتحدث هنا: order-form/speaker.jpg -->
-      <img src="speaker.jpg" alt="" onerror="this.remove()">
-      <blockquote>
-        "رحلة تَبدأ بقرار<br>وتنتهي بنسخة أقوى منك"
-        <cite>معتز مشعل</cite>
-      </blockquote>
-    </div>
-  </section>
-
-  <!-- ================= STEP 2: اختيار التذكرة ================= -->
-  <section id="step2" class="hidden">
-    <header class="top">
-      <div class="brand"><h1>تغير وارتُق</h1><small>مع معتز مشعل</small></div>
-      <button class="icon-btn" type="button" id="backBtn">
-        رجوع
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>
-      </button>
-    </header>
-
-    <div class="stepper">
-      <div class="step done"><span class="dot">✓</span>بياناتك</div>
-      <div class="step-line on"></div>
-      <div class="step active"><span class="dot">2</span>اختيار التذكرة</div>
-    </div>
-
-    <form id="ticketForm" class="content">
-      <h2 class="title">اختر تجربتك</h2>
-      <p class="sub">3 فئات مختلفة .. نفس الهدف<br>نسخة أقوى منك.</p>
-
-      <div class="guarantee">
-        <span>جميع التذاكر تشمل حضور يوم الدورة وضمان استرداد كامل المبلغ.</span>
-        <svg viewBox="0 0 24 24"><path fill="#f2c25c" d="M12 2l8 3v6c0 5.5-3.6 9.3-8 11-4.4-1.7-8-5.5-8-11V5l8-3z"/><path d="M8.5 12l2.5 2.5 4.5-4.5" fill="none" stroke="#fff" stroke-width="2"/></svg>
+      <div class="tw-stepper">
+        <div class="tw-step tw-done"><span class="tw-dot">✓</span>بياناتك</div>
+        <div class="tw-step-line tw-on"></div>
+        <div class="tw-step tw-active"><span class="tw-dot">2</span>اختيار التذكرة</div>
       </div>
 
-      <!-- Silver -->
-      <label class="ticket">
-        <input type="radio" name="ticket" value="silver">
-        <span class="radio"></span>
-        <div class="t-head">
-          <div style="flex:1">
-            <h3>التذكرة الفضية</h3>
-            <p>التجربة الأساسية<br>لحضور الدورة كاملة</p>
-          </div>
-          <svg class="emb" viewBox="0 0 24 24" fill="#8a8a8a"><circle cx="12" cy="8" r="4.5"/><path d="M3 22c0-5 4-8 9-8s9 3 9 8z"/></svg>
-        </div>
-        <div class="t-body">
-          <ul>
-            <li>حضور الدورة</li>
-            <li>استراحة قهوة خفيفة</li>
-            <li>مقاعد في النصف الخلفي</li>
-          </ul>
-          <div class="price">
-            <s>150 دينار</s>
-            <strong>113 دينار</strong>
-            <small>سيصبح السعر<br>128 دينار يوم 26/9</small>
-          </div>
-        </div>
-      </label>
+      <form class="tw-content" data-tw-form="ticket" action="#" onsubmit="return false">
+        <div class="tw-title">اختر تجربتك</div>
+        <p class="tw-sub">3 فئات مختلفة .. نفس الهدف<br>نسخة أقوى منك.</p>
 
-      <!-- Gold -->
-      <label class="ticket gold">
-        <span class="badge">الأكثر طلباً</span>
-        <input type="radio" name="ticket" value="gold" checked>
-        <span class="radio"></span>
-        <div class="t-head">
-          <div style="flex:1">
-            <h3>التذكرة الذهبية</h3>
-            <p>تجربة أقرب ومزايا إضافية</p>
-          </div>
-          <svg class="emb" viewBox="0 0 24 24" fill="#e8b43f"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.6 1.5 6.8L12 17l-6.1 3.4 1.5-6.8L2.2 9l6.9-.7z"/></svg>
+        <div class="tw-guarantee">
+          <span>جميع التذاكر تشمل حضور يوم الدورة وضمان استرداد كامل المبلغ.</span>
+          <svg viewBox="0 0 24 24"><path fill="#f2c25c" d="M12 2l8 3v6c0 5.5-3.6 9.3-8 11-4.4-1.7-8-5.5-8-11V5l8-3z"/><path d="M8.5 12l2.5 2.5 4.5-4.5" fill="none" stroke="#fff" stroke-width="2"/></svg>
         </div>
-        <div class="t-body">
-          <ul>
-            <li>مقاعد أقرب إلى المسرح</li>
-            <li>تسجيل خاص ومنطقة ضيافة</li>
-            <li>بوفيه غداء مميز</li>
-            <li>جلسة متابعة أونلاين بعد شهر</li>
-            <li>حقيبة خاصة بالدورة</li>
-          </ul>
-          <div class="price">
-            <s>250 دينار</s>
-            <strong>188 دينار</strong>
-            <small>سيصبح السعر<br>213 دينار يوم 26/9</small>
-          </div>
-        </div>
-      </label>
 
-      <!-- Diamond -->
-      <label class="ticket diamond">
-        <input type="radio" name="ticket" value="diamond">
-        <span class="radio"></span>
-        <div class="t-head">
-          <div style="flex:1">
-            <h3>التذكرة الماسية</h3>
-            <p>أعلى مستوى من التجربة<br>والوصول لمعتز</p>
-          </div>
-          <svg class="emb" viewBox="0 0 24 24"><path fill="#4aa3c7" d="M6 3h12l4 6-10 12L2 9z"/><path fill="none" stroke="#fff" stroke-width="1.2" d="M2 9h20M8 3l4 18M16 3l-4 18M8 3L6 9M16 3l2 6"/></svg>
-        </div>
-        <div class="t-body">
-          <ul>
-            <li>مقاعد الصف الأول</li>
-            <li>غداء مع معتز</li>
-            <li>جلسة Meet &amp; Greet</li>
-            <li>نسخة من كتاب معتز وتوقيعه</li>
-            <li>جلسة أسئلة وأجوبة خاصة</li>
-            <li>حقيبة خاصة بالدورة</li>
-          </ul>
-          <div class="price">
-            <strong>450 دينار</strong>
-          </div>
-        </div>
-      </label>
+        <!-- Silver -->
+        <label class="tw-ticket">
+          <input type="radio" name="tw_ticket" value="silver">
+          <span class="tw-radio"></span>
+          <span class="tw-t-head">
+            <span class="tw-t-text">
+              <span class="tw-t-name">التذكرة الفضية</span>
+              <span class="tw-t-desc">التجربة الأساسية<br>لحضور الدورة كاملة</span>
+            </span>
+            <svg class="tw-emb" viewBox="0 0 24 24" fill="#8a8a8a"><circle cx="12" cy="8" r="4.5"/><path d="M3 22c0-5 4-8 9-8s9 3 9 8z"/></svg>
+          </span>
+          <span class="tw-t-body">
+            <ul>
+              <li>حضور الدورة</li>
+              <li>استراحة قهوة خفيفة</li>
+              <li>مقاعد في النصف الخلفي</li>
+            </ul>
+            <span class="tw-price">
+              <s>150 دينار</s>
+              <strong>113 دينار</strong>
+              <small>سيصبح السعر<br>128 دينار يوم 26/9</small>
+            </span>
+          </span>
+        </label>
 
-      <button class="cta" type="submit" id="payBtn">متابعة إلى الدفع</button>
-      <p class="note">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a5 5 0 00-5 5v3H6a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2v-8a2 2 0 00-2-2h-1V7a5 5 0 00-5-5zm-3 8V7a3 3 0 016 0v3H9z"/></svg>
-        دفع آمن ومضمون
-      </p>
-    </form>
-  </section>
-</main>
+        <!-- Gold -->
+        <label class="tw-ticket tw-gold tw-selected">
+          <span class="tw-badge">الأكثر طلباً</span>
+          <input type="radio" name="tw_ticket" value="gold" checked>
+          <span class="tw-radio"></span>
+          <span class="tw-t-head">
+            <span class="tw-t-text">
+              <span class="tw-t-name">التذكرة الذهبية</span>
+              <span class="tw-t-desc">تجربة أقرب ومزايا إضافية</span>
+            </span>
+            <svg class="tw-emb" viewBox="0 0 24 24" fill="#e8b43f"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.6 1.5 6.8L12 17l-6.1 3.4 1.5-6.8L2.2 9l6.9-.7z"/></svg>
+          </span>
+          <span class="tw-t-body">
+            <ul>
+              <li>مقاعد أقرب إلى المسرح</li>
+              <li>تسجيل خاص ومنطقة ضيافة</li>
+              <li>بوفيه غداء مميز</li>
+              <li>جلسة متابعة أونلاين بعد شهر</li>
+              <li>حقيبة خاصة بالدورة</li>
+            </ul>
+            <span class="tw-price">
+              <s>250 دينار</s>
+              <strong>188 دينار</strong>
+              <small>سيصبح السعر<br>213 دينار يوم 26/9</small>
+            </span>
+          </span>
+        </label>
+
+        <!-- Diamond -->
+        <label class="tw-ticket tw-diamond">
+          <input type="radio" name="tw_ticket" value="diamond">
+          <span class="tw-radio"></span>
+          <span class="tw-t-head">
+            <span class="tw-t-text">
+              <span class="tw-t-name">التذكرة الماسية</span>
+              <span class="tw-t-desc">أعلى مستوى من التجربة<br>والوصول لمعتز</span>
+            </span>
+            <svg class="tw-emb" viewBox="0 0 24 24"><path fill="#4aa3c7" d="M6 3h12l4 6-10 12L2 9z"/><path fill="none" stroke="#fff" stroke-width="1.2" d="M2 9h20M8 3l4 18M16 3l-4 18M8 3L6 9M16 3l2 6"/></svg>
+          </span>
+          <span class="tw-t-body">
+            <ul>
+              <li>مقاعد الصف الأول</li>
+              <li>غداء مع معتز</li>
+              <li>جلسة Meet &amp; Greet</li>
+              <li>نسخة من كتاب معتز وتوقيعه</li>
+              <li>جلسة أسئلة وأجوبة خاصة</li>
+              <li>حقيبة خاصة بالدورة</li>
+            </ul>
+            <span class="tw-price">
+              <strong>450 دينار</strong>
+            </span>
+          </span>
+        </label>
+
+        <button class="tw-cta" type="submit" data-tw-pay>متابعة إلى الدفع</button>
+        <p class="tw-note">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a5 5 0 00-5 5v3H6a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2v-8a2 2 0 00-2-2h-1V7a5 5 0 00-5-5zm-3 8V7a3 3 0 016 0v3H9z"/></svg>
+          دفع آمن ومضمون
+        </p>
+      </form>
+    </section>
+  </div>
+</div>
 
 <script>
+(function () {
   /* =====================================================================
    * الإعدادات — عدّل هذه القيم فقط
    * paymentLinks: روابط Stripe Payment Links لكل تذكرة
@@ -370,77 +381,136 @@
    * webhookUrl: (اختياري) رابط Webhook من GHL أو Make لحفظ بيانات العميل
    *   قبل التحويل للدفع — يفيد لمتابعة من لم يُكمل الدفع.
    * ===================================================================== */
-  const CONFIG = {
+  var CONFIG = {
     paymentLinks: {
       silver:  "https://buy.stripe.com/REPLACE_SILVER",
       gold:    "https://buy.stripe.com/REPLACE_GOLD",
-      diamond: "https://buy.stripe.com/REPLACE_DIAMOND",
+      diamond: "https://buy.stripe.com/REPLACE_DIAMOND"
     },
-    webhookUrl: "",
+    webhookUrl: ""
   };
 
-  const $ = (s) => document.querySelector(s);
-  const step1 = $("#step1"), step2 = $("#step2");
-  let lead = null;
+  // Page builders (GHL) may run this block more than once; listeners are
+  // delegated on document, so binding once covers every re-render.
+  if (window.__twOrderBound) return;
+  window.__twOrderBound = true;
 
-  function show(el, hide) {
-    hide.classList.add("hidden");
-    el.classList.remove("hidden");
-    el.classList.remove("fade"); void el.offsetWidth; el.classList.add("fade");
-    window.scrollTo({ top: 0, behavior: "smooth" });
+  var PAY_LABEL = "متابعة إلى الدفع";
+
+  function rootOf(el) { return el && el.closest ? el.closest(".tw-order") : null; }
+  function field(root, name) { return root.querySelector('[name="tw_' + name + '"]'); }
+
+  function showStep(root, n) {
+    root.querySelectorAll("[data-tw-step]").forEach(function (s) {
+      var on = s.getAttribute("data-tw-step") === String(n);
+      s.classList.toggle("tw-hidden", !on);
+      if (on) { s.classList.remove("tw-fade"); void s.offsetWidth; s.classList.add("tw-fade"); }
+    });
+    var top = root.getBoundingClientRect().top + window.pageYOffset;
+    window.scrollTo({ top: Math.max(top, 0), behavior: "smooth" });
   }
 
-  function setError(name, bad) {
-    document.querySelector(`[data-field="${name}"]`).classList.toggle("error", bad);
+  function setError(root, name, bad) {
+    var f = root.querySelector('[data-tw-field="' + name + '"]');
+    if (f) f.classList.toggle("tw-error", bad);
     return !bad;
   }
 
-  $("#leadForm").addEventListener("submit", (e) => {
-    e.preventDefault();
-    const name = $("#name").value.trim();
-    const phoneDigits = $("#phone").value.replace(/\D/g, "").replace(/^0+/, "");
-    const email = $("#email").value.trim();
+  function submitLead(root) {
+    var name = field(root, "name").value.trim();
+    var phone = field(root, "phone").value.replace(/\D/g, "").replace(/^0+/, "");
+    var email = field(root, "email").value.trim();
 
-    const ok = [
-      setError("name", name.split(/\s+/).length < 2),
-      setError("phone", phoneDigits.length < 7 || phoneDigits.length > 12),
-      setError("email", !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)),
+    var ok = [
+      setError(root, "name", name.split(/\s+/).length < 2),
+      setError(root, "phone", phone.length < 7 || phone.length > 12),
+      setError(root, "email", !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
     ].every(Boolean);
     if (!ok) return;
 
-    lead = { name, email, phone: $("#cc").value + phoneDigits };
-    show(step2, step1);
-  });
+    root.twLead = { name: name, email: email, phone: field(root, "cc").value + phone };
+    showStep(root, 2);
+  }
 
-  ["name", "phone", "email"].forEach((id) =>
-    $("#" + id).addEventListener("input", () => setError(id, false))
-  );
+  function submitTicket(root) {
+    var lead = root.twLead;
+    if (!lead) { showStep(root, 1); return; }
 
-  $("#backBtn").addEventListener("click", () => show(step1, step2));
+    var checked = root.querySelector('[name="tw_ticket"]:checked');
+    var ticket = checked ? checked.value : "gold";
+    var link = CONFIG.paymentLinks[ticket];
+    if (!link || link.indexOf("REPLACE_") !== -1) {
+      alert("رابط الدفع لهذه التذكرة غير مُعدّ بعد — أضفه في CONFIG.paymentLinks.");
+      return;
+    }
 
-  $("#ticketForm").addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const ticket = document.querySelector('input[name="ticket"]:checked').value;
-    const btn = $("#payBtn");
+    var url = new URL(link);
+    url.searchParams.set("prefilled_email", lead.email);
+    url.searchParams.set("client_reference_id", ticket + "_" + lead.phone.replace("+", ""));
+
+    var btn = root.querySelector("[data-tw-pay]");
     btn.disabled = true;
     btn.textContent = "جاري التحويل...";
 
-    if (CONFIG.webhookUrl) {
-      try {
-        await fetch(CONFIG.webhookUrl, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ ...lead, ticket, source: "order-form" }),
-          keepalive: true,
-        });
-      } catch (_) { /* لا نوقف الدفع إذا فشل الـ webhook */ }
+    var gone = false;
+    function go() {
+      if (gone) return;
+      gone = true;
+      // Stripe Checkout refuses to load inside an iframe, so break out if embedded.
+      try { window.top.location.href = url.toString(); }
+      catch (_) { window.location.href = url.toString(); }
     }
 
-    const url = new URL(CONFIG.paymentLinks[ticket]);
-    url.searchParams.set("prefilled_email", lead.email);
-    url.searchParams.set("client_reference_id", ticket + "_" + lead.phone.replace("+", ""));
-    window.location.href = url.toString();
+    if (CONFIG.webhookUrl) {
+      fetch(CONFIG.webhookUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: lead.name, email: lead.email, phone: lead.phone, ticket: ticket, source: "order-form" }),
+        keepalive: true
+      }).catch(function () {}).then(go);
+      setTimeout(go, 2500); // never let a slow webhook block payment
+    } else {
+      go();
+    }
+  }
+
+  document.addEventListener("submit", function (e) {
+    var root = rootOf(e.target);
+    if (!root) return;
+    e.preventDefault();
+    if (e.target.getAttribute("data-tw-form") === "lead") submitLead(root);
+    else submitTicket(root);
+  }, true);
+
+  document.addEventListener("click", function (e) {
+    var t = e.target;
+    var root = rootOf(t);
+    if (!root) return;
+    if (t.closest("[data-tw-back]")) { e.preventDefault(); showStep(root, 1); }
+    else if (t.closest("[data-tw-close]")) { e.preventDefault(); history.back(); }
   });
+
+  document.addEventListener("input", function (e) {
+    var f = e.target.closest && e.target.closest("[data-tw-field]");
+    if (f && rootOf(f)) f.classList.remove("tw-error");
+  });
+
+  document.addEventListener("change", function (e) {
+    if (e.target.name !== "tw_ticket") return;
+    var root = rootOf(e.target);
+    if (!root) return;
+    root.querySelectorAll(".tw-ticket").forEach(function (card) {
+      card.classList.toggle("tw-selected", card.contains(e.target));
+    });
+  });
+
+  // Coming back from Stripe with the browser's back button restores the page
+  // from cache with the button still disabled.
+  window.addEventListener("pageshow", function () {
+    document.querySelectorAll(".tw-order [data-tw-pay]").forEach(function (btn) {
+      btn.disabled = false;
+      btn.textContent = PAY_LABEL;
+    });
+  });
+})();
 </script>
-</body>
-</html>
