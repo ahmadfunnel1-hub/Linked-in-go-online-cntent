@@ -1,0 +1,78 @@
+/* ══════════════════════════════════════════════════════════════════════
+   معتز مشعل — خطة الـ 90 يوم  |  PAGE CUSTOM CSS
+   مكان اللصق:
+   GHL → افتح الصفحة بالـ Builder → Settings (الترس) → Custom CSS
+   ══════════════════════════════════════════════════════════════════════
+   وظيفة هذا الملف: تصفير الحشوات (padding) اللي GHL بيحطها حوالين
+   الـ Custom HTML، وتنسيق نموذج الحجز الأصلي تبع GHL بنفس هوية التصميم.
+   التصميم نفسه كله جوّا ملف 03 — هون بس الغلاف.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* ── 1) خلفية الصفحة ──────────────────────────────────────────────── */
+body,
+.hl_page-preview--content,
+#page-container {
+  background: #FCF9F4;
+  direction: rtl;
+}
+
+/* ── 2) السكشن اللي فيه الهيرو ─────────────────────────────────────
+   بالـ Builder: اضغط على الـ Section → Advanced → Custom CSS Class
+   واكتب:  mmlp-section
+   هذا بيخلي الهيرو full-bleed بدون هوامش بيضا من الجوانب.        */
+.mmlp-section > .inner,
+.mmlp-section > .c-wrapper,
+.mmlp-section .c-wrapper,
+.mmlp-section .c-row,
+.mmlp-section .c-column {
+  padding: 0 !important;
+  margin: 0 !important;
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+.mmlp-section .c-row {
+  flex-wrap: nowrap !important;
+}
+
+/* GHL أحياناً بيحط min-height على الأعمدة — بنلغيها */
+.mmlp-section .c-column > .vertical {
+  padding: 0 !important;
+}
+
+/* ── 3) نموذج الحجز الأصلي تبع GHL ────────────────────────────────
+   بالـ Builder: اضغط على عنصر الـ Form/Survey/Calendar → Advanced →
+   Custom CSS Class واكتب:  mmlp-formhost
+   بينحط جوّا كرت أبيض بنفس ستايل الكروت بالتصميم.                */
+.mmlp-formhost {
+  background: #FFFFFF;
+  border: 1px solid #EFE7DA;
+  border-radius: 18px;
+  padding: clamp(16px, 4vw, 28px) !important;
+  box-shadow: 0 10px 30px -18px rgba(28, 25, 23, 0.25);
+  max-width: 560px;
+  margin-inline: auto !important;
+}
+
+.mmlp-formhost iframe {
+  width: 100% !important;
+  border: 0 !important;
+  display: block;
+}
+
+/* ── 4) إخفاء الهيدر/الفوتر الافتراضي إذا بدك صفحة نظيفة ───────────
+   فُك التعليق عن السطور الجاي إذا بدك تشيلهم.                     */
+/*
+.hl_page-preview--header,
+.hl_page-preview--footer { display: none !important; }
+*/
+
+/* ── 5) تصفير الـ scroll-anchor حتى الزر ما يخبّي العنوان ──────── */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 16px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}

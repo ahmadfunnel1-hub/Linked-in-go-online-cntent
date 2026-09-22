@@ -1,0 +1,85 @@
+<!-- ══════════════════════════════════════════════════════════════════════
+     معتز مشعل — خطة الـ 90 يوم  |  BOOKING BLOCK (Custom HTML)
+     مكان اللصق:
+     سكشن جديد تحت الهيرو → Add Element → Custom JS/HTML
+     ──────────────────────────────────────────────────────────────────────
+     مهم: النموذج نفسه ما بينحط هون.
+     حط عنصر GHL الأصلي (Form / Survey / Calendar) مباشرة تحت هذا البلوك
+     بنفس الـ Row، وحط عليه Custom CSS Class = mmlp-formhost
+     هيك الليدز بتوصل للـ CRM وبتشتغل الـ Workflows عادي.
+     ══════════════════════════════════════════════════════════════════════ -->
+
+<div class="mmlp mmlp-booking" id="booking" dir="rtl" lang="ar">
+  <div class="mmlp-wrap mmlp-wrap--narrow">
+
+    <p class="mmlp-kicker">المقاعد محدودة</p>
+
+    <h2 class="mmlp-h2">احجز مقعدك في الدورة</h2>
+
+    <p class="mmlp-sub">
+      عبّي بياناتك وفريقنا رح يتواصل معك خلال 24 ساعة لتثبيت المقعد
+      وإرسال تفاصيل الحضور.
+    </p>
+
+    <ul class="mmlp-reassure">
+      <li>
+        <span class="mmlp-reassure-ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>
+        </span>
+        استرداد كامل حتى استراحة غداء اليوم الأول
+      </li>
+      <li>
+        <span class="mmlp-reassure-ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>
+        </span>
+        16 - 17 أكتوبر — سيغنيا هيلتون عمّان
+      </li>
+    </ul>
+
+  </div>
+</div>
+
+<style>
+.mmlp-booking {
+  padding: clamp(32px, 7vw, 64px) 0 clamp(16px, 3vw, 24px);
+  scroll-margin-top: 16px;
+}
+
+.mmlp-wrap--narrow { max-width: 620px; }
+
+.mmlp-booking .mmlp-h2 {
+  font-size: clamp(24px, 6.4vw, 34px);
+  font-weight: 800;
+  line-height: 1.45;
+  margin: 0 0 clamp(10px, 2.5vw, 14px);
+  color: var(--mm-ink);
+}
+
+.mmlp-reassure {
+  display: grid;
+  gap: 10px;
+  justify-content: center;
+  margin-top: clamp(16px, 4vw, 24px);
+}
+
+.mmlp-reassure li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--mm-body);
+  font-size: clamp(13px, 3.4vw, 15px);
+  font-weight: 500;
+  line-height: 1.8;
+  text-align: start;
+}
+
+.mmlp-reassure-ic {
+  width: 20px;
+  height: 20px;
+  padding: 3px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--mm-tint);
+  color: var(--mm-gold);
+}
+</style>
