@@ -448,6 +448,9 @@
     url.searchParams.set("prefilled_email", lead.email);
     url.searchParams.set("client_reference_id", ticket + "_" + lead.phone.replace("+", ""));
 
+    // Read by upsell.html so the upsell checkout opens with the email prefilled.
+    try { localStorage.setItem("tw_lead", JSON.stringify({ name: lead.name, email: lead.email, phone: lead.phone, ticket: ticket })); } catch (_) {}
+
     var btn = root.querySelector("[data-tw-pay]");
     btn.disabled = true;
     btn.textContent = "جاري التحويل...";
