@@ -90,6 +90,20 @@
   .tw-order .tw-trust > div + div { border-right: 1px solid var(--tw-line); }
   .tw-order .tw-trust svg { width: 24px; height: 24px; display: block; margin: 0 auto 6px; }
 
+  /* FAQ */
+  .tw-order .tw-faq { padding: 4px 20px 28px; }
+  .tw-order .tw-faq-title { font-size: 22px; font-weight: 800; text-align: center; margin-bottom: 14px; color: var(--tw-ink); }
+  .tw-order .tw-faq details { border: 1px solid var(--tw-line); border-radius: 12px; margin-bottom: 10px; background: #fff; }
+  .tw-order .tw-faq summary {
+    list-style: none; cursor: pointer; padding: 14px 16px; font-size: 15px; font-weight: 700; color: var(--tw-ink);
+    display: flex; justify-content: space-between; align-items: center; gap: 10px;
+  }
+  .tw-order .tw-faq summary::-webkit-details-marker { display: none; }
+  .tw-order .tw-faq summary::after { content: "+"; font-size: 20px; color: var(--tw-gold-ink); flex: none; }
+  .tw-order .tw-faq details[open] summary::after { content: "−"; }
+  .tw-order .tw-faq details[open] { border-color: var(--tw-gold-line); background: var(--tw-gold-soft); }
+  .tw-order .tw-faq-a { padding: 0 16px 14px; font-size: 14px; line-height: 1.8; color: #333; }
+
   /* Hero quote */
   .tw-order .tw-hero {
     position: relative; min-height: 320px; color: #fff; overflow: hidden;
@@ -288,7 +302,7 @@
               <li>مقاعد الصف الأول</li>
               <li>غداء مع معتز</li>
               <li>جلسة Meet &amp; Greet</li>
-              <li>نسخة من كتاب معتز وتوقيعه</li>
+              <li>كتاب «صغّر عقلك» بتوقيع معتز</li>
               <li>جلسة أسئلة وأجوبة خاصة</li>
               <li>حقيبة خاصة بالدورة</li>
             </ul>
@@ -330,6 +344,43 @@
           </div>
         </div>
     </form>
+
+    <!-- ============ الأسئلة الشائعة — إجابات مؤكدة من فريق السيلز ============ -->
+    <div class="tw-faq">
+      <div class="tw-faq-title">أسئلة شائعة</div>
+      <details>
+        <summary>وين ومتى الدورة؟</summary>
+        <div class="tw-faq-a">في فندق سيغنيا هيلتون عمّان (Signia Hilton Amman)، يومي 16 و17 أكتوبر 2026. الدورة 14 ساعة على يومين، وفيها أوقات للصلاة والراحة والأكل والقهوة، وأوقات لشغل فردي تطبيقي.</div>
+      </details>
+      <details>
+        <summary>شو بصير إذا ما استفدت أو ما قدرت أحضر؟</summary>
+        <div class="tw-faq-a">عندك ضمان رضا كامل: احضر اليوم الأول، وإذا ما استفدت لحد استراحة الغداء بترجعلك قيمة تذكرتك. الاسترداد بياخذ من 7 لـ 15 يوم عمل. وإذا ما قدرت تحضر، بتقدر تنقل تذكرتك لشخص ثاني.</div>
+      </details>
+      <details>
+        <summary>شو الفرق بين التذاكر بالأكل؟</summary>
+        <div class="tw-faq-a">الفضية فيها استراحات قهوة. الذهبية فيها استراحات قهوة وبوفيه غداء. الماسية فيها كل مزايا الذهبية، وغداء مع معتز شخصياً.</div>
+      </details>
+      <details>
+        <summary>إذا جينا مجموعة، في خصم؟</summary>
+        <div class="tw-faq-a">نعم، في خصم خاص للمجموعات من 5 أشخاص وأكثر. تواصل معنا على الواتساب ومنبعتلك رابط المجموعة.</div>
+      </details>
+      <details>
+        <summary>كيف بدفع؟</summary>
+        <div class="tw-faq-a">الدفع أونلاين بالبطاقة عبر Stripe، وتقدر تدفع كمان بتحويل بنكي من خلال فريقنا على الواتساب. ما في دفع كاش.</div>
+      </details>
+      <details>
+        <summary>شو بصير بعد ما أدفع؟</summary>
+        <div class="tw-faq-a">بتوصلك رسالة تأكيد على الواتساب، وإيميل فيه تذكرتك بـ QR Code. ما في داعي تطبعها، بس ورجيها من تلفونك يوم الدورة.</div>
+      </details>
+      <details>
+        <summary>أنا من خارج الأردن، بتساعدوني بالإقامة؟</summary>
+        <div class="tw-faq-a">أكيد. تواصل معنا على الواتساب بعد ما تحجز، ومنعطيك رقم مسؤول الفندق عشان تاخذ سعر خاص للمبيت كمشترك بالدورة.</div>
+      </details>
+      <details>
+        <summary>الدورة بأي لغة؟</summary>
+        <div class="tw-faq-a">الدورة باللغة العربية بالكامل.</div>
+      </details>
+    </div>
 
       <div class="tw-hero">
         <!-- صورة المتحدث: ضع رابط الصورة في src (مثلاً رابط من Media Library في GHL) -->
