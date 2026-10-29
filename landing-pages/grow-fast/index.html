@@ -70,6 +70,7 @@
   /* E-book cover placeholder */
   .cover { position: relative; aspect-ratio: 3/4; max-width: 360px; margin: 0 auto; border-radius: 10px; background: linear-gradient(150deg, #fff 0%, #e9f1fb 100%); box-shadow: 0 30px 60px rgba(0,0,0,.4); padding: 34px 28px; display: flex; flex-direction: column; justify-content: space-between; transform: rotate(-2deg); }
   .cover::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 10px; background: var(--accent); border-radius: 10px 0 0 10px; }
+  .cover-img { max-width: 360px; margin: 0 auto; border-radius: 6px; box-shadow: 0 30px 60px rgba(0,0,0,.4); }
   .cover small { font-size: .72rem; font-weight: 700; letter-spacing: .14em; color: var(--accent); text-transform: uppercase; }
   .cover strong { display: block; font-size: 1.7rem; line-height: 1.15; color: var(--ink); margin-top: 10px; }
   .cover span { color: var(--muted); font-size: .9rem; }
@@ -137,12 +138,6 @@
   .success { display: none; text-align: center; padding: 20px 0; }
   .success .big { width: 64px; height: 64px; border-radius: 50%; background: #e7f6ee; color: var(--ok); display: inline-flex; align-items: center; justify-content: center; font-size: 1.8rem; margin-bottom: 14px; }
 
-  /* Proof placeholders: dashed until real, approved evidence replaces them */
-  .proof-slot { border-style: dashed; }
-  .quote { margin: 22px 0 0; background: #fff; border: 1px dashed var(--line); border-radius: var(--radius); padding: 28px 32px; }
-  .quote p { font-size: 1.15rem; font-style: italic; color: var(--ink); margin: 0 0 10px; }
-  .quote footer { color: var(--muted); font-size: .92rem; }
-
   /* FAQ */
   .faq { max-width: 820px; margin: 0 auto; }
   details { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 18px 22px; margin-bottom: 12px; }
@@ -180,6 +175,8 @@
     formEndpoint: "",
     // Hosted URL of the approved "SAP GROW Fast Myth Busting E-Book" PDF (SAP_GROW_Fast_Myth_Busting_E-Book.pdf).
     ebookUrl: "#",
+    // URL or relative path of the official SAP e-book cover image (e.g. "assets/ebook-cover.png"). Leave empty to show the text mock-up.
+    ebookCoverUrl: "",
     privacyUrl: "#"
   };
   window.dataLayer = window.dataLayer || [];
@@ -329,10 +326,8 @@
       <strong>Target: about 4 months to go-live</strong>
       <span>The timeline depends on scope, data readiness and agreed project conditions.</span>
     </div>
-    <div class="grid-3" style="margin-top:22px">
+    <div style="margin-top:22px">
       <div class="card"><h3>Upfront, transparent implementation pricing</h3><p>A fixed fee for Intrasoft's agreed, predefined implementation scope, quoted before you start and separate from the SAP subscription. Extra scope, integrations or change requests are quoted separately.</p></div>
-      <div class="card"><h3>Manufacturing and regional experience</h3><p>Delivery experience with manufacturers in Saudi Arabia, Oman and Iraq.</p></div>
-      <div class="card"><h3>End-to-end partnership</h3><p>Implementation, user training and ongoing support from one team.</p></div>
     </div>
   </div>
 </section>
@@ -359,22 +354,20 @@
   </div>
 </section>
 
-<!-- 7. Proof. Fill each slot with verified, approved evidence only, or delete the slot before launch. -->
-<section class="soft" id="proof">
+<!-- 7. Why work with Intrasoft. Only confirmed capabilities. Add verified partner status, delivery numbers or approved testimonials here once you have them. -->
+<section class="soft" id="why-intrasoft">
   <div class="wrap">
     <div class="section-head center">
-      <p class="eyebrow">Proof</p>
-      <h2>Why companies trust Intrasoft</h2>
+      <p class="eyebrow">Why work with Intrasoft?</p>
+      <h2>One partner from first workshop to life after go-live</h2>
+      <p class="lead">Intrasoft is an SAP partner that delivers SAP GROW Fast from start to finish, and stays with you afterwards.</p>
     </div>
-    <div class="grid-3">
-      <div class="card proof-slot"><h3>SAP partner status</h3><p>[Add Intrasoft's verified SAP partner level and badge, using the approved SAP partner logo.]</p></div>
-      <div class="card proof-slot"><h3>Regional delivery</h3><p>[Add verified delivery facts, e.g. number of SAP projects or manufacturing clients in Saudi Arabia, Oman and Iraq.]</p></div>
-      <div class="card proof-slot"><h3>Customer evidence</h3><p>[Add an approved customer quote or logo, with the customer's written permission.]</p></div>
+    <div class="grid-2">
+      <div class="card"><h3>Structured implementation</h3><p>A predefined scope and methodology built on SAP best practices, with clear milestones from alignment to go-live.</p></div>
+      <div class="card"><h3>User training</h3><p>Your team learns to run its finance, supply chain and HR processes in SAP Cloud ERP before and at go-live.</p></div>
+      <div class="card"><h3>Regional and manufacturing focus</h3><p>We focus on growing mid-size companies, especially manufacturers, in Saudi Arabia, Oman and Iraq.</p></div>
+      <div class="card"><h3>Ongoing support</h3><p>Support continues after go-live, including help adding capabilities as your business grows.</p></div>
     </div>
-    <blockquote class="proof-slot quote">
-      <p>"[Approved customer testimonial: the problem before, the implementation experience and what changed.]"</p>
-      <footer>[Name, Title, Company], used with permission</footer>
-    </blockquote>
   </div>
 </section>
 
@@ -458,6 +451,12 @@
   document.querySelector('.yr').textContent = new Date().getFullYear();
   document.querySelectorAll('.privacy-link').forEach(function (a) { a.href = cfg.privacyUrl; });
   document.querySelectorAll('.ebook-link').forEach(function (a) { a.href = cfg.ebookUrl; });
+  if (cfg.ebookCoverUrl) {
+    var mock = document.querySelector('.cover');
+    var img = document.createElement('img');
+    img.src = cfg.ebookCoverUrl; img.alt = mock.getAttribute('aria-label'); img.className = 'cover-img';
+    mock.replaceWith(img);
+  }
 
   // UTM / source attribution.
   var params = new URLSearchParams(location.search);
@@ -501,9 +500,17 @@
     }
     var data = Object.fromEntries(new FormData(form).entries());
     data.marketingConsent = data.marketingConsent === 'yes';
+    data.marketingConsentText = data.marketingConsent ? form.querySelector('.consent').innerText.replace(/^Optional\s*/i, '').trim() : '';
+    data.privacyNoticeUrl = cfg.privacyUrl;
+    data.submittedAt = new Date().toISOString();
     data.campaign = cfg.campaign;
     data.page = location.href.split('?')[0];
     Object.assign(data, utm);
+
+    // Open the download tab inside the click, so browsers don't treat it as a pop-up.
+    var hasEbook = cfg.ebookUrl && cfg.ebookUrl !== '#';
+    var win = hasEbook ? window.open('', '_blank') : null;
+    if (win) win.opener = null;
 
     var btn = form.querySelector('button[type=submit]');
     btn.disabled = true; btn.textContent = 'Sending…';
@@ -518,11 +525,12 @@
       form.querySelector('.form-body').style.display = 'none';
       form.querySelector('.success').style.display = 'block';
       track('thank_you_view');
-      if (cfg.ebookUrl && cfg.ebookUrl !== '#') {
-        window.open(cfg.ebookUrl, '_blank', 'noopener');
+      if (win) {
+        win.location.href = cfg.ebookUrl;
         track('resource_download_success');
       }
     }).catch(function () {
+      if (win) win.close();
       form.querySelector('.form-error').style.display = 'block';
       btn.disabled = false; btn.textContent = 'Download the e-book';
     });

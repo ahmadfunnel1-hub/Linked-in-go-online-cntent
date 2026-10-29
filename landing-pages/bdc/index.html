@@ -70,6 +70,7 @@
   /* E-book cover placeholder */
   .cover { position: relative; aspect-ratio: 3/4; max-width: 360px; margin: 0 auto; border-radius: 10px; background: linear-gradient(150deg, #fff 0%, #eeeafc 100%); box-shadow: 0 30px 60px rgba(0,0,0,.4); padding: 34px 28px; display: flex; flex-direction: column; justify-content: space-between; transform: rotate(-2deg); }
   .cover::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 10px; background: var(--accent); border-radius: 10px 0 0 10px; }
+  .cover-img { max-width: 360px; margin: 0 auto; border-radius: 6px; box-shadow: 0 30px 60px rgba(0,0,0,.4); }
   .cover small { font-size: .72rem; font-weight: 700; letter-spacing: .14em; color: var(--accent); text-transform: uppercase; }
   .cover strong { display: block; font-size: 1.7rem; line-height: 1.15; color: var(--ink); margin-top: 10px; }
   .cover span { color: var(--muted); font-size: .9rem; }
@@ -174,6 +175,8 @@
     formEndpoint: "",
     // Hosted URL of the approved "Connect and Harmonize Business Data to Amplify the Power of AI" e-book PDF.
     ebookUrl: "#",
+    // URL or relative path of the official SAP e-book cover image (e.g. "assets/ebook-cover.png"). Leave empty to show the text mock-up.
+    ebookCoverUrl: "",
     privacyUrl: "#"
   };
   window.dataLayer = window.dataLayer || [];
@@ -411,6 +414,12 @@
   document.querySelector('.yr').textContent = new Date().getFullYear();
   document.querySelectorAll('.privacy-link').forEach(function (a) { a.href = cfg.privacyUrl; });
   document.querySelectorAll('.ebook-link').forEach(function (a) { a.href = cfg.ebookUrl; });
+  if (cfg.ebookCoverUrl) {
+    var mock = document.querySelector('.cover');
+    var img = document.createElement('img');
+    img.src = cfg.ebookCoverUrl; img.alt = mock.getAttribute('aria-label'); img.className = 'cover-img';
+    mock.replaceWith(img);
+  }
 
   // UTM / source attribution.
   var params = new URLSearchParams(location.search);
@@ -451,9 +460,17 @@
     }
     var data = Object.fromEntries(new FormData(form).entries());
     data.marketingConsent = data.marketingConsent === 'yes';
+    data.marketingConsentText = data.marketingConsent ? form.querySelector('.consent').innerText.replace(/^Optional\s*/i, '').trim() : '';
+    data.privacyNoticeUrl = cfg.privacyUrl;
+    data.submittedAt = new Date().toISOString();
     data.campaign = cfg.campaign;
     data.page = location.href.split('?')[0];
     Object.assign(data, utm);
+
+    // Open the download tab inside the click, so browsers don't treat it as a pop-up.
+    var hasEbook = cfg.ebookUrl && cfg.ebookUrl !== '#';
+    var win = hasEbook ? window.open('', '_blank') : null;
+    if (win) win.opener = null;
 
     var btn = form.querySelector('button[type=submit]');
     btn.disabled = true; btn.textContent = 'Sending…';
@@ -468,11 +485,12 @@
       form.querySelector('.form-body').style.display = 'none';
       form.querySelector('.success').style.display = 'block';
       track('thank_you_view');
-      if (cfg.ebookUrl && cfg.ebookUrl !== '#') {
-        window.open(cfg.ebookUrl, '_blank', 'noopener');
+      if (win) {
+        win.location.href = cfg.ebookUrl;
         track('resource_download_success');
       }
     }).catch(function () {
+      if (win) win.close();
       form.querySelector('.form-error').style.display = 'block';
       btn.disabled = false; btn.textContent = 'Download the e-book';
     });
