@@ -8,8 +8,19 @@ Two separate lead-generation pages built from the brief in
 | SAP Cloud ERP – GROW Fast | `grow-fast/index.html` | CEO, CFO, CIO at growing mid-size manufacturers (KSA, Oman, Iraq) | SAP GROW Fast Myth Busting e-book |
 | SAP Business Data Cloud | `bdc/index.html` | CIO, CDO, data leaders; CFO secondary | Connect and Harmonize Business Data to Amplify the Power of AI |
 
-Each page is a single self-contained HTML file: open it in a browser, or paste it into a
-GoHighLevel / CMS custom-code block.
+Each page is a single self-contained HTML file. It works as a standalone page, or you can paste it into GoHighLevel.
+
+## Pasting into GoHighLevel
+
+1. Open the file, select everything (Ctrl/Cmd+A) and copy it.
+2. In the GHL page builder, add a full-width section with one full-width row and zero padding. Add a
+   **Custom JS/HTML** element and paste the whole file into it.
+3. Edit `LP_CONFIG` (near the top of the file) before pasting, or inside the GHL element afterwards.
+4. Preview and publish. Use one page per GHL funnel step: GROW Fast and BDC each get their own step.
+
+Every class and ID is prefixed `isl-` and all CSS is scoped under `.isl-lp`, so the page can't change
+GHL's own styles, and GHL's theme can't change the page. Duplicate IDs (such as a GHL form field with
+`id="email"`) don't conflict either. In-page buttons scroll smoothly without changing the URL.
 
 ## Before launch, set `window.LP_CONFIG` in each file
 
