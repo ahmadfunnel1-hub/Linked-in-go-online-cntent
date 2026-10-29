@@ -79,7 +79,7 @@
   .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
   .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
   .card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; }
-  .card p { color: var(--muted); margin: 0; }
+  .card p { color: var(--muted); margin: 0; font-size: 1.04rem; }
   .icon { width: 46px; height: 46px; border-radius: 12px; background: #efebff; color: var(--accent); display: inline-flex; align-items: center; justify-content: center; margin-bottom: 16px; }
   .icon svg { width: 24px; height: 24px; }
   .section-head { margin-bottom: 48px; }
@@ -120,18 +120,19 @@
   .learn li { display: flex; gap: 12px; }
   form.lead-form { background: #fff; color: var(--text); border-radius: 16px; padding: 32px; box-shadow: 0 30px 60px rgba(0,0,0,.35); }
   form.lead-form h3 { margin-bottom: 4px; }
-  form.lead-form .sub { color: var(--muted); font-size: .92rem; margin-bottom: 20px; }
+  form.lead-form .sub { color: var(--muted); font-size: 1rem; margin-bottom: 20px; }
   .field { margin-bottom: 14px; }
-  .field label { display: block; font-weight: 600; font-size: .88rem; margin-bottom: 6px; color: var(--ink); }
-  .field input, .field select { width: 100%; padding: 12px 14px; border: 1.5px solid var(--line); border-radius: 9px; font: inherit; font-size: .98rem; color: var(--text); background: #fff; }
+  .field label { display: block; font-weight: 600; font-size: .95rem; margin-bottom: 6px; color: var(--ink); }
+  .field input, .field select { width: 100%; padding: 12px 14px; border: 1.5px solid var(--line); border-radius: 9px; font: inherit; font-size: 16px; color: var(--text); background: #fff; min-height: 48px; }
   .field input:focus, .field select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(91,63,214,.15); }
   .field.invalid input, .field.invalid select { border-color: var(--err); }
-  .field .error { display: none; color: var(--err); font-size: .82rem; margin-top: 4px; }
+  .field .error { display: none; color: var(--err); font-size: .88rem; margin-top: 4px; }
   .field.invalid .error { display: block; }
-  .consent { display: flex; gap: 10px; align-items: flex-start; font-size: .85rem; color: var(--muted); margin: 6px 0 18px; }
-  .consent input { margin-top: 3px; width: 16px; height: 16px; flex: 0 0 16px; }
+  .consent { display: flex; gap: 12px; align-items: flex-start; font-size: .92rem; color: var(--text); margin: 8px 0 16px; padding: 14px; background: var(--bg-soft); border: 1px solid var(--line); border-radius: 9px; cursor: pointer; }
+  .consent input { margin-top: 2px; width: 20px; height: 20px; flex: 0 0 20px; accent-color: var(--accent); }
+  .consent .opt { display: block; font-size: .78rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
   form.lead-form .btn { width: 100%; }
-  .privacy { font-size: .78rem; color: var(--muted); margin: 14px 0 0; }
+  .privacy { font-size: .88rem; color: var(--muted); margin: 0 0 16px; }
   .form-error { display: none; color: var(--err); font-size: .9rem; margin-top: 12px; }
   .success { display: none; text-align: center; padding: 20px 0; }
   .success .big { width: 64px; height: 64px; border-radius: 50%; background: #e7f6ee; color: var(--ok); display: inline-flex; align-items: center; justify-content: center; font-size: 1.8rem; margin-bottom: 14px; }
@@ -341,10 +342,10 @@
             <option value="">Select…</option>
             <option>1–199 employees</option><option>200–999 employees</option><option>1,000–4,999 employees</option><option>5,000–9,999 employees</option><option>10,000+ employees</option>
           </select><div class="error">Please select your company size.</div></div>
-        <label class="consent"><input type="checkbox" name="marketingConsent" value="yes"><span>Yes, Intrasoft may email me about SAP solutions, events and insights. I can unsubscribe at any time. (Optional; you don't need to opt in to download the e-book.)</span></label>
+        <label class="consent"><input type="checkbox" name="marketingConsent" value="yes"><span><span class="opt">Optional</span>Yes, Intrasoft may email me about SAP solutions, events and insights. I can unsubscribe at any time. You don't need to tick this to get the e-book.</span></label>
+        <p class="privacy">By downloading, you acknowledge that Intrasoft will process your details to deliver this resource, as described in our <a class="privacy-link" href="#">privacy notice</a>.</p>
         <button class="btn btn-primary" type="submit">Download the e-book</button>
         <p class="form-error" role="alert">Something went wrong. Please try again.</p>
-        <p class="privacy">We process your details as described in our <a class="privacy-link" href="#">privacy notice</a>.</p>
       </div>
       <div class="success" role="status">
         <div class="big">✓</div>

@@ -27,6 +27,12 @@ GoHighLevel / CMS custom-code block.
 
 ## Still to replace (approval gates from the brief)
 
+- **GROW Fast proof section (`#proof`)**: the dashed cards and quote are placeholders. Fill them with verified
+  SAP partner status, regional delivery facts and an approved testimonial, or delete any slot you can't fill.
+  Don't launch with bracketed text.
+- **E-book title**: the GROW Fast page uses "SAP GROW Fast Myth Busting E-Book", taken from the SAP asset
+  `SAP_GROW_Fast_Myth_Busting_E-Book.pdf`. Use the same title in the delivery email and CRM.
+
 - The logo slots and e-book covers are placeholders. Use approved SAP and Intrasoft assets.
 - The colours are neutral placeholders in the `:root` tokens. Apply the official brand guides.
 - Confirm the GROW Fast scope, pricing wording and the ~4-month target with Intrasoft.
