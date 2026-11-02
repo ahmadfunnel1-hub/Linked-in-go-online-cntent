@@ -3,10 +3,10 @@
 Two separate lead-generation pages built from the brief in
 `content/Intrasoft_Complete_Conversation_and_Landing_Page_Archive.docx`.
 
-| Page | File | Audience | Lead magnet |
-|---|---|---|---|
-| SAP Cloud ERP – GROW Fast | `grow-fast/index.html` | CEO, CFO, CIO at growing mid-size manufacturers in Saudi Arabia | SAP GROW Fast Myth Busting e-book |
-| SAP Business Data Cloud | `bdc/index.html` | CIO, CDO, data leaders; CFO secondary | Connect and Harmonize Business Data to Amplify the Power of AI |
+| Page | File | Live URL (GHL) | Audience | Lead magnet |
+|---|---|---|---|---|
+| SAP Cloud ERP – GROW Fast | `grow-fast/index.html` | https://menu.goonlinejo.com/sap-2 | CEO, CFO, CIO at growing mid-size manufacturers in Saudi Arabia | SAP GROW Fast Myth Busting e-book |
+| SAP Business Data Cloud | `bdc/index.html` | https://menu.goonlinejo.com/sap-1 | CIO, CDO, data leaders; CFO secondary | Connect and Harmonize Business Data to Amplify the Power of AI |
 
 Each page is a single self-contained HTML file. It works as a standalone page, or you can paste it into GoHighLevel.
 

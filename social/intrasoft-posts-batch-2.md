@@ -21,8 +21,10 @@
 
 | المسار | البوستات | الرابط |
 |---|---|---|
-| Cloud ERP / GROW Fast | 10، 11، 12، 15، 16، 17 | صفحة GROW Fast والـ e-book |
-| SAP Analytics Cloud / Business Data Cloud | 13، 14، 18 | صفحة Business Data Cloud والـ e-book |
+| Cloud ERP / GROW Fast | 10، 11، 12، 15، 16، 17 | https://menu.goonlinejo.com/sap-2 |
+| SAP Analytics Cloud / Business Data Cloud | 13، 14، 18 | https://menu.goonlinejo.com/sap-1 |
+
+لتتبّع مصدر كل عميل محتمل، يُضاف للرابط مثلًا: `?utm_source=instagram&utm_medium=social&utm_campaign=batch2&utm_content=post16`. الصفحتان تسجّلان هذه القيم مع بيانات النموذج.
 
 ---
 
