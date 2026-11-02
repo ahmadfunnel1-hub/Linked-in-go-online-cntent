@@ -5,7 +5,7 @@ Two separate lead-generation pages built from the brief in
 
 | Page | File | Audience | Lead magnet |
 |---|---|---|---|
-| SAP Cloud ERP – GROW Fast | `grow-fast/index.html` | CEO, CFO, CIO at growing mid-size manufacturers (KSA, Oman, Iraq) | SAP GROW Fast Myth Busting e-book |
+| SAP Cloud ERP – GROW Fast | `grow-fast/index.html` | CEO, CFO, CIO at growing mid-size manufacturers in Saudi Arabia | SAP GROW Fast Myth Busting e-book |
 | SAP Business Data Cloud | `bdc/index.html` | CIO, CDO, data leaders; CFO secondary | Connect and Harmonize Business Data to Amplify the Power of AI |
 
 Each page is a single self-contained HTML file. It works as a standalone page, or you can paste it into GoHighLevel.
@@ -55,6 +55,9 @@ CRM field, separate from the lead itself.
 - Proof: the GROW Fast "Why work with Intrasoft?" section lists confirmed capabilities only. Add a
   verified SAP partner level, delivery numbers or an approved testimonial there when available. Never add an unapproved one.
 
+- Target market is Saudi Arabia only. Have the privacy notice and consent wording reviewed against the
+  Saudi Personal Data Protection Law (PDPL).
+
 ## GROW Fast claims to sign off
 
 | Claim on page | Where | Confirm with |
@@ -66,4 +69,4 @@ CRM field, separate from the lead itself.
 | Five phases: Align, Configure, Validate, Launch, Support | "Why Intrasoft GROW Fast" | Intrasoft methodology owner |
 | Six myth/reality answers | Myth busting section | SAP myth-busting e-book and campaign landing-page copy |
 | SAP runs infrastructure, updates, security, maintenance | Benefits; myth card; FAQ | SAP Cloud ERP public edition terms |
-| Focus on mid-size manufacturers in KSA, Oman, Iraq | Hero note; "Why work with Intrasoft?" | Intrasoft |
+| Focus on mid-size manufacturers in Saudi Arabia | Hero note; "Why work with Intrasoft?" | Intrasoft |
