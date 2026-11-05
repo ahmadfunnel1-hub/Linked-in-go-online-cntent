@@ -7,6 +7,7 @@ Two separate lead-generation pages built from the brief in
 |---|---|---|---|---|
 | SAP Cloud ERP – GROW Fast | `grow-fast/index.html` | https://menu.goonlinejo.com/sap-2 | CEO, CFO, CIO at growing mid-size manufacturers in Saudi Arabia | SAP GROW Fast Myth Busting e-book |
 | SAP Business Data Cloud | `bdc/index.html` | https://menu.goonlinejo.com/sap-1 | CIO, CDO, data leaders; CFO secondary | Connect and Harmonize Business Data to Amplify the Power of AI |
+| SAP Analytics Cloud Finance Planning | `sac/index.html` | (new GHL page, not set yet) | CFO, Finance Director, FP&A leaders | Consultation booking (no e-book) |
 
 Each page is a single self-contained HTML file. It works as a standalone page, or you can paste it into GoHighLevel.
 
@@ -76,6 +77,16 @@ CRM field, separate from the lead itself.
 
 - Target market is Saudi Arabia only. Have the privacy notice and consent wording reviewed against the
   Saudi Personal Data Protection Law (PDPL).
+
+## SAC finance planning page: sign-off
+
+| Item | Where | Confirm with |
+|---|---|---|
+| "Plan for What's Next." is a proposed Intrasoft campaign line, not an official SAP tagline | Hero; final CTA | Intrasoft brand / SAP partner guidelines |
+| Four service components: planning design, SAC implementation, enablement, managed services | Hero; "What you get" | Intrasoft SAC practice lead |
+| Five stages, including "Implement with SAP Activate" | "Why Intrasoft is different" | Intrasoft methodology owner |
+| Managed services and optimization are offered as ongoing services | "What you get"; FAQ | Intrasoft commercial |
+| Testimonial or case study slot (HTML comment only, nothing shown) | "Building confidence" | Add only with client approval |
 
 ## GROW Fast claims to sign off
 
