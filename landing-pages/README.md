@@ -85,7 +85,10 @@ CRM field, separate from the lead itself.
 | Fixed fee for the agreed, predefined scope, separate from the SAP subscription; extras quoted separately | Hero bullet; myth card; pricing card; FAQ | Intrasoft commercial / legal |
 | Starting scope covers core finance, supply chain and HR | Manufacturing section; FAQ | Intrasoft GROW Fast package definition |
 | Example process flow (purchase order through to reporting) | Manufacturing section | Intrasoft package definition |
-| Five phases: Align, Configure, Validate, Launch, Support | "Why Intrasoft GROW Fast" | Intrasoft methodology owner |
-| Six myth/reality answers | Myth busting section | SAP myth-busting e-book and campaign landing-page copy |
+| Five phases: Align and define, Configure to proven practices, Validate and prepare, Launch and enable, Support and expand | "How GROW Fast works" | Intrasoft methodology owner |
+| Data preparation, agreed data responsibilities and readiness checks are part of the plan | FAQ | Intrasoft delivery lead |
+| Fit gaps and out-of-scope requirements are identified before the customer commits | Manufacturing section; FAQ | Intrasoft presales |
+| User training is part of the package | Hero; FAQ; "Why work with Intrasoft?" | Intrasoft package definition |
+| Six myth/reality answers (from the Offer DNA "myths this offer rejects") | Myth busting section | SAP myth-busting e-book and campaign landing-page copy |
 | SAP runs infrastructure, updates, security, maintenance | Benefits; myth card; FAQ | SAP Cloud ERP public edition terms |
 | Focus on mid-size manufacturers in Saudi Arabia | Hero note; "Why work with Intrasoft?" | Intrasoft |
