@@ -1,13 +1,12 @@
 # Intrasoft SAP landing pages
 
-Two separate lead-generation pages built from the brief in
+Two lead-generation pages, one per product, built from the brief in
 `content/Intrasoft_Complete_Conversation_and_Landing_Page_Archive.docx`.
 
 | Page | File | Live URL (GHL) | Audience | Lead magnet |
 |---|---|---|---|---|
 | SAP Cloud ERP – GROW Fast | `grow-fast/index.html` | https://menu.goonlinejo.com/sap-2 | CEO, CFO, CIO at growing mid-size manufacturers in Saudi Arabia | SAP GROW Fast Myth Busting e-book |
-| SAP Business Data Cloud | `bdc/index.html` | https://menu.goonlinejo.com/sap-1 | CIO, CDO, data leaders; CFO secondary | Connect and Harmonize Business Data to Amplify the Power of AI |
-| SAP Analytics Cloud Finance Planning | `sac/index.html` | (new GHL page, not set yet) | CFO, Finance Director, FP&A leaders | Consultation booking (no e-book) |
+| SAP Business Data Cloud (finance planning with SAP Analytics Cloud) | `bdc/index.html` | https://menu.goonlinejo.com/sap-1 | CFO, Finance Director, FP&A leaders | Consultation booking |
 
 Each page is a single self-contained HTML file. It works as a standalone page, or you can paste it into GoHighLevel.
 
@@ -26,8 +25,8 @@ GHL's own styles, and GHL's theme can't change the page. Duplicate IDs (such as 
 ## Before launch, set `window.LP_CONFIG` in each file
 
 - `formEndpoint`: the URL that receives leads as JSON (CRM or GHL webhook). If it's empty, the form validates but sends nothing.
-- `ebookUrl`: the hosted URL of the approved e-book PDF. A tab opens on submit and loads it once the lead is saved; the thank-you screen also has a download button.
-- `ebookCoverUrl`: the official SAP e-book cover image. Put it in `<page>/assets/` and use e.g. `"assets/ebook-cover.png"`. If it's empty, a text mock-up is shown, which isn't for production.
+- `ebookUrl` (GROW Fast only): the hosted URL of the approved e-book PDF. A tab opens on submit and loads it once the lead is saved; the thank-you screen also has a download button.
+- `ebookCoverUrl` (GROW Fast only): the official SAP e-book cover image. Put it in `<page>/assets/` and use e.g. `"assets/ebook-cover.png"`. If it's empty, a text mock-up is shown, which isn't for production.
 - `privacyUrl`: your privacy notice.
 
 ### Connecting the form to a GoHighLevel sub-account
@@ -42,9 +41,9 @@ Use one workflow per page so each page gets its own tag and follow-up.
    fields below become available for mapping.
 5. Add the action **Create Contact** (or **Create/Update Contact**) and map:
    `fullName` → Full Name, `email` → Email, `company` → Company Name, `jobTitle` and `companySize` → custom fields.
-6. Add tags such as `ebook-download` and the page's `campaign` value (`grow-fast-mythbusting` or `bdc-connect-harmonize`).
+6. Add the page's `campaign` value as a tag: `grow-fast-mythbusting` (plus `ebook-download`) or `bdc-finance-planning` (plus `consultation-request`).
 7. Save `marketingConsent`, `marketingConsentText` and `submittedAt` to their own custom fields. Use an **If/Else**
-   on `marketingConsent` = `true` before any marketing email or SMS. The e-book delivery email goes to everyone.
+   on `marketingConsent` = `true` before any marketing email or SMS. On GROW Fast the e-book delivery email goes to everyone; on BDC, notify sales to arrange the consultation.
 8. Optionally add **Create Opportunity** in your sales pipeline, then publish the workflow.
 
 Inbound Webhook may be billed as a premium workflow trigger, depending on your GHL plan.
@@ -78,7 +77,7 @@ CRM field, separate from the lead itself.
 - Target market is Saudi Arabia only. Have the privacy notice and consent wording reviewed against the
   Saudi Personal Data Protection Law (PDPL).
 
-## SAC finance planning page: sign-off
+## Business Data Cloud page: sign-off
 
 | Item | Where | Confirm with |
 |---|---|---|
