@@ -29,6 +29,25 @@ GHL's own styles, and GHL's theme can't change the page. Duplicate IDs (such as 
 - `ebookCoverUrl`: the official SAP e-book cover image. Put it in `<page>/assets/` and use e.g. `"assets/ebook-cover.png"`. If it's empty, a text mock-up is shown, which isn't for production.
 - `privacyUrl`: your privacy notice.
 
+### Connecting the form to a GoHighLevel sub-account
+
+Use one workflow per page so each page gets its own tag and follow-up.
+
+1. In the sub-account, go to **Automation → Workflows → Create workflow → Start from scratch**.
+2. Add the trigger **Inbound Webhook** and copy its URL (`https://services.leadconnectorhq.com/hooks/...`).
+3. Paste that URL into `formEndpoint` in the page's `LP_CONFIG` and republish the page. Leave `formMode: "auto"`:
+   it detects the GHL URL and sends form-encoded data, which browsers can post to GHL without being blocked.
+4. Submit the form once with test details. In the trigger, click **Fetch sample requests** and pick it, so the
+   fields below become available for mapping.
+5. Add the action **Create Contact** (or **Create/Update Contact**) and map:
+   `fullName` → Full Name, `email` → Email, `company` → Company Name, `jobTitle` and `companySize` → custom fields.
+6. Add tags such as `ebook-download` and the page's `campaign` value (`grow-fast-mythbusting` or `bdc-connect-harmonize`).
+7. Save `marketingConsent`, `marketingConsentText` and `submittedAt` to their own custom fields. Use an **If/Else**
+   on `marketingConsent` = `true` before any marketing email or SMS. The e-book delivery email goes to everyone.
+8. Optionally add **Create Opportunity** in your sales pipeline, then publish the workflow.
+
+Inbound Webhook may be billed as a premium workflow trigger, depending on your GHL plan.
+
 ### Lead payload sent to `formEndpoint`
 
 `fullName`, `email`, `company`, `jobTitle`, `companySize`, `marketingConsent` (true/false),

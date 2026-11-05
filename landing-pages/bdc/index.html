@@ -182,6 +182,9 @@
     campaign: "bdc-connect-harmonize",
     // POST endpoint for leads (CRM / GoHighLevel / marketing-automation webhook). Leave empty to preview without sending.
     formEndpoint: "",
+    // "auto": GoHighLevel webhook URLs (leadconnectorhq.com) get form-encoded data; anything else gets JSON.
+    // Set "ghl" or "json" to force one.
+    formMode: "auto",
     // Hosted URL of the approved "Connect and Harmonize Business Data to Amplify the Power of AI" e-book PDF.
     ebookUrl: "#",
     // URL or relative path of the official SAP e-book cover image (e.g. "assets/ebook-cover.png"). Leave empty to show the text mock-up.
@@ -426,6 +429,7 @@
       if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
     });
   });
+  function hostOf(url) { try { return new URL(url, location.href).hostname; } catch (e) { return ''; } }
   function track(event, data) { window.dataLayer.push(Object.assign({ event: event, campaign: cfg.campaign }, data || {})); }
 
   document.querySelector('.isl-yr').textContent = new Date().getFullYear();
@@ -492,10 +496,20 @@
     var btn = form.querySelector('button[type=submit]');
     btn.disabled = true; btn.textContent = 'Sending…';
 
-    var send = cfg.formEndpoint
-      ? fetch(cfg.formEndpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
-          .then(function (r) { if (!r.ok) throw new Error(r.status); })
-      : Promise.resolve();
+    var ghl = cfg.formMode === 'ghl' || (cfg.formMode !== 'json' && /(^|\.)leadconnectorhq\.com$/i.test(hostOf(cfg.formEndpoint)));
+    var send;
+    if (!cfg.formEndpoint) {
+      send = Promise.resolve();
+    } else if (ghl) {
+      // GHL inbound webhooks don't answer browser CORS checks, so send a form-encoded "simple" request.
+      // The response can't be read in no-cors mode; a network failure still rejects.
+      var body = new URLSearchParams();
+      Object.keys(data).forEach(function (k) { body.append(k, String(data[k])); });
+      send = fetch(cfg.formEndpoint, { method: 'POST', mode: 'no-cors', body: body });
+    } else {
+      send = fetch(cfg.formEndpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
+        .then(function (r) { if (!r.ok) throw new Error(r.status); });
+    }
 
     send.then(function () {
       track('form_submit_success');
