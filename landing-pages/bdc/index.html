@@ -202,7 +202,7 @@
     // "auto": GoHighLevel webhook URLs (leadconnectorhq.com) get form-encoded data; anything else gets JSON.
     // Set "ghl" or "json" to force one.
     formMode: "auto",
-    // No e-book on this page: the form books a consultation.
+    // Hosted URL of the approved "Connect and Harmonize Business Data to Amplify the Power of AI" e-book PDF.
     ebookUrl: "#",
     ebookCoverUrl: "",
     privacyUrl: "#"
@@ -216,7 +216,7 @@
     <a class="isl-brand" href="#">
       <span class="isl-logo-slot">INTRASOFT</span><span class="isl-sep">|</span><span class="isl-logo-slot">SAP Partner</span>
     </a>
-    <a class="isl-btn isl-btn-primary" href="#isl-consult" data-cta="header">Book a consultation</a>
+    <a class="isl-btn isl-btn-primary" href="#isl-download" data-cta="header">Get the e-book</a>
   </div>
 </header>
 
@@ -234,7 +234,7 @@
         <li><span class="isl-tick">✓</span><span>User enablement and continuous optimization</span></li>
       </ul>
       <div class="isl-hero-ctas">
-        <a class="isl-btn isl-btn-primary" href="#isl-consult" data-cta="hero">Book your finance planning consultation</a>
+        <a class="isl-btn isl-btn-primary" href="#isl-download" data-cta="hero">Download the free e-book</a>
         <a class="isl-btn isl-btn-ghost" href="#isl-cycle">See how we work</a>
       </div>
       <p class="isl-hero-note">For CFOs, finance directors and FP&amp;A leaders in Saudi Arabia. Even if your planning relies heavily on Excel today.</p>
@@ -381,26 +381,25 @@
   </div>
 </section>
 
-<!-- 7. Final offer + consultation form -->
-<section class="isl-convert" id="isl-consult">
+<!-- 7. E-book + form -->
+<section class="isl-convert" id="isl-download">
   <div class="isl-wrap isl-convert-grid">
     <div>
-      <p class="isl-eyebrow" style="color:var(--accent-2)">Finance planning consultation</p>
-      <h2>The next business decision won't wait for your next annual budget</h2>
-      <p class="isl-lead" style="color:#b9c8de">Let's start with the planning challenges that matter most to your business. In the consultation we can explore:</p>
+      <p class="isl-eyebrow" style="color:var(--accent-2)">Free e-book</p>
+      <h2>Connect and Harmonize Business Data to Amplify the Power of AI</h2>
+      <p class="isl-lead" style="color:#b9c8de">The next business decision won't wait for your next annual budget. Reliable planning and scenario analysis start with connected, trusted business data. Learn how to build that foundation.</p>
       <ul class="isl-learn">
-        <li><span class="isl-tick">✓</span><span>Where your current planning process creates friction</span></li>
-        <li><span class="isl-tick">✓</span><span>Which financial scenarios your leadership needs to evaluate</span></li>
-        <li><span class="isl-tick">✓</span><span>How SAP Analytics Cloud may support your requirements</span></li>
-        <li><span class="isl-tick">✓</span><span>What implementation, adoption and ongoing support could involve</span></li>
-        <li><span class="isl-tick">✓</span><span>Next steps toward a tailored solution and commercial proposal</span></li>
+        <li><span class="isl-tick">✓</span><span>Why disconnected data limits planning, insight and AI</span></li>
+        <li><span class="isl-tick">✓</span><span>How harmonizing SAP and non-SAP data keeps its business meaning</span></li>
+        <li><span class="isl-tick">✓</span><span>What a trusted data foundation for analytics and planning looks like</span></li>
+        <li><span class="isl-tick">✓</span><span>Practical first steps for finance and data leaders</span></li>
       </ul>
-      <p style="color:#8ea3c0;font-size:.92rem;margin-top:20px">Engagement scope and pricing are set through consultation, based on your needs and the agreed services.</p>
+      <p style="color:#8ea3c0;font-size:.92rem;margin-top:20px">Want to discuss your planning challenges? After you download, the Intrasoft team can arrange a finance planning conversation with you.</p>
     </div>
     <form class="isl-lead-form" novalidate>
       <div class="isl-form-body">
-        <h3>Book your consultation</h3>
-        <p class="isl-sub">Share a few details and we'll contact you to arrange a time.</p>
+        <h3>Get your copy</h3>
+        <p class="isl-sub">Complete the form and the download will start straight away.</p>
         <div class="isl-field"><label for="isl-fullName">Full name</label><input id="isl-fullName" name="fullName" autocomplete="name" required><div class="isl-error">Please enter your full name.</div></div>
         <div class="isl-field"><label for="isl-email">Business email</label><input id="isl-email" name="email" type="email" autocomplete="email" required><div class="isl-error">Please use a valid business email address.</div></div>
         <div class="isl-field"><label for="isl-company">Company name</label><input id="isl-company" name="company" autocomplete="organization" required><div class="isl-error">Please enter your company name.</div></div>
@@ -410,15 +409,16 @@
             <option value="">Select…</option>
             <option>1–199 employees</option><option>200–999 employees</option><option>1,000–4,999 employees</option><option>5,000+ employees</option>
           </select><div class="isl-error">Please select your company size.</div></div>
-        <label class="isl-consent"><input type="checkbox" name="marketingConsent" value="yes"><span><span class="isl-opt">Optional</span>Yes, Intrasoft may email me about SAP solutions, events and insights. I can unsubscribe at any time. You don't need to tick this to book a consultation.</span></label>
-        <p class="isl-privacy">By submitting, you acknowledge that Intrasoft will process your details to arrange this consultation, as described in our <a class="isl-privacy-link" href="#">privacy notice</a>.</p>
-        <button class="isl-btn isl-btn-primary" type="submit">Book my consultation</button>
+        <label class="isl-consent"><input type="checkbox" name="marketingConsent" value="yes"><span><span class="isl-opt">Optional</span>Yes, Intrasoft may email me about SAP solutions, events and insights. I can unsubscribe at any time. You don't need to tick this to get the e-book.</span></label>
+        <p class="isl-privacy">By downloading, you acknowledge that Intrasoft will process your details to deliver this resource, as described in our <a class="isl-privacy-link" href="#">privacy notice</a>.</p>
+        <button class="isl-btn isl-btn-primary" type="submit">Download the e-book</button>
         <p class="isl-form-error" role="alert">Something went wrong. Please try again.</p>
       </div>
       <div class="isl-success" role="status">
         <div class="isl-big">✓</div>
-        <h3>Thank you, your request is in</h3>
-        <p class="isl-sub">A member of the Intrasoft team will contact you to arrange your finance planning consultation.</p>
+        <h3>Thank you, your e-book is ready</h3>
+        <p class="isl-sub">If the download didn't start automatically, use the button below. We've also sent a copy to your inbox.</p>
+        <a class="isl-btn isl-btn-primary isl-ebook-link" href="#" target="_blank" rel="noopener">Download the e-book</a>
       </div>
     </form>
   </div>
@@ -435,7 +435,8 @@
       <details><summary>Can SAP Analytics Cloud work with our existing systems?</summary><p>SAP Analytics Cloud offers integration capabilities. The right approach depends on your applications, data sources and architecture, and is reviewed during assessment and design.</p></details>
       <details><summary>How long does implementation take?</summary><p>It depends on scope: planning-model complexity, integrations, processes, testing and user readiness. We agree a realistic delivery plan with your stakeholders.</p></details>
       <details><summary>What happens after go-live?</summary><p>Planning requirements keep evolving. The offer includes options for ongoing managed services, support and optimization, subject to the agreed engagement scope.</p></details>
-      <details><summary>How much does it cost?</summary><p>Pricing is tailored to scope, implementation complexity, enablement needs and ongoing services. The consultation is where requirements and the commercial approach are defined.</p></details>
+      <details><summary>How much does it cost?</summary><p>Pricing is tailored to scope, implementation complexity, enablement needs and ongoing services. Requirements and the commercial approach are defined together with Intrasoft.</p></details>
+      <details><summary>What happens after I download the e-book?</summary><p>You get the e-book straight away. If you opted in, Intrasoft may follow up with related insights and an invitation to discuss your planning challenges, with no obligation.</p></details>
       <details><summary>How do we know whether it's working?</summary><p>Success measures are agreed before implementation begins, such as planning-process efficiency, user adoption and scenario-analysis capability. Specific business or financial results depend on your context.</p></details>
     </div>
   </div>
@@ -445,7 +446,7 @@
   <div class="isl-wrap">
     <h2>Don't just prepare the next forecast. Prepare your finance team for what comes next.</h2>
     <p class="isl-lead" style="margin:0 auto 28px">Plan with more flexibility. Evaluate alternative scenarios. Support better-informed decisions.</p>
-    <a class="isl-btn isl-btn-primary" href="#isl-consult" data-cta="final">Book your finance planning consultation</a>
+    <a class="isl-btn isl-btn-primary" href="#isl-download" data-cta="final">Download the free e-book</a>
   </div>
 </section>
 
@@ -565,7 +566,7 @@
     }).catch(function () {
       if (win) win.close();
       form.querySelector('.isl-form-error').style.display = 'block';
-      btn.disabled = false; btn.textContent = 'Book my consultation';
+      btn.disabled = false; btn.textContent = 'Download the e-book';
     });
   });
 

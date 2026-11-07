@@ -24,7 +24,7 @@
 | Cloud ERP / GROW Fast | 10، 11، 12، 15، 16، 17 | https://menu.goonlinejo.com/sap-2 |
 | SAP Analytics Cloud / Business Data Cloud | 13، 14، 18 | https://menu.goonlinejo.com/sap-1 |
 
-> صفحة sap-1 صار هدفها **حجز استشارة للتخطيط المالي**، مش تحميل كتاب. البوستان 13 و14 مناسبان لها كما هما. البوست 18 لازم يتغيّر فيه الـ CTA من «حمّل الكتاب» إلى «احجز استشارة».
+> صفحة sap-1 هدفها **تحميل كتاب Connect and Harmonize**، فكل البوستات المرتبطة فيها (13، 14، 18) تبقى بـ CTA «حمّل الكتاب».
 
 لتتبّع مصدر كل عميل محتمل، يُضاف للرابط مثلًا: `?utm_source=instagram&utm_medium=social&utm_campaign=batch2&utm_content=post16`. الصفحتان تسجّلان هذه القيم مع بيانات النموذج.
 
