@@ -217,7 +217,9 @@
     // Hosted URL of the approved "Connect and Harmonize Business Data to Amplify the Power of AI" e-book PDF.
     ebookUrl: "#",
     ebookCoverUrl: "",
-    privacyUrl: "#"
+    privacyUrl: "#",
+    // Thank-you page in GHL (e.g. "https://link.goonlinejo.com/sap-2-thank-you"). Empty = show the thank-you message on this page.
+    thankYouUrl: ""
   };
   window.dataLayer = window.dataLayer || [];
 </script>
@@ -576,6 +578,10 @@
       if (win) {
         win.location.href = cfg.ebookUrl;
         track('resource_download_success');
+      }
+      if (cfg.thankYouUrl) {
+        try { sessionStorage.setItem('isl_first_name', (data.fullName || '').split(' ')[0]); } catch (e) {}
+        setTimeout(function () { location.href = cfg.thankYouUrl; }, 400);
       }
     }).catch(function () {
       if (win) win.close();

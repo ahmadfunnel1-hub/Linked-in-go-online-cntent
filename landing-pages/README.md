@@ -77,6 +77,14 @@ CRM field, separate from the lead itself.
 - Target market is Saudi Arabia only. Have the privacy notice and consent wording reviewed against the
   Saudi Personal Data Protection Law (PDPL).
 
+## Thank-you pages and follow-up
+
+- `thank-you/grow-fast.html` and `thank-you/bdc.html`: confirm the download and invite a free 30-minute call
+  (GROW Fast fit check / finance planning data review). Settings: `ebookUrl`, `bookingUrl` (GHL calendar), `contactUrl`.
+- Every landing page has `thankYouUrl` in `LP_CONFIG`. Set it to send people to the thank-you page after the form.
+- Nurture emails and GHL workflow steps: `content/nurture/`.
+- Inputs requested from Intrasoft: `content/intrasoft-request-email.md`.
+
 ## Brand-aligned variants (`variants/`)
 
 Three versions per product in the Intrasoft x SAP social identity (navy #132146, SAP blue #00A7E3,
