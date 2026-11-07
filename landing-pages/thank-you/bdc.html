@@ -68,8 +68,6 @@
 <script>
   window.LP_CONFIG = {
     campaign: "bdc-thank-you",
-    // Same approved PDF as on the landing page.
-    ebookUrl: "#",
     // GHL calendar for the finance planning data review. Paste the calendar's booking/embed link
     // (e.g. https://api.leadconnectorhq.com/widget/booking/XXXX). It is embedded on the page.
     bookingUrl: "",
@@ -93,14 +91,13 @@
   <div class="isl-wrap">
     <div class="isl-check">✓</div>
     <p class="isl-eyebrow">Step 1 of 2 complete</p>
-    <h1><span class="isl-name"></span><span class="isl-h1t">Your SAP e-book is ready.</span></h1>
-    <p class="isl-lead">Connect and Harmonize Business Data to Amplify the Power of AI shows why trusted, connected data comes first. The next step applies it to your planning.</p>
+    <h1><span class="isl-name"></span><span class="isl-h1t">Your SAP e-book is on its way.</span></h1>
+    <p class="isl-lead">The e-book shows why trusted, connected data comes first. A free 30-minute data review applies it to your own planning.</p>
     <div class="isl-ctas">
-      <a class="isl-btn isl-btn-primary isl-ebook-link" href="#" target="_blank" rel="noopener" data-cta="ebook">Download the e-book</a>
-      <a class="isl-btn isl-btn-ghost" href="#isl-next" data-cta="to-next">Next step: book a data review</a>
+      <a class="isl-btn isl-btn-primary" href="#isl-next" data-cta="to-next">Book your free data review</a>
     </div>
-    <p class="isl-small">We've also emailed you a copy. If it isn't in your inbox within a few minutes, check your spam or promotions folder.</p>
-    <div class="isl-steps"><span class="isl-on">1. Get the e-book ✓</span><span>2. Book a data review (optional)</span></div>
+    <p class="isl-small">Your e-book opened in a new tab, and a copy is on its way to your inbox. If you can't find the email, check your spam or promotions folder.</p>
+    <div class="isl-steps"><span class="isl-on">1. E-book sent ✓</span><span>2. Book a data review (optional)</span></div>
   </div>
 </section>
 
@@ -145,10 +142,6 @@
 
   root.querySelector('.isl-yr').textContent = new Date().getFullYear();
   root.querySelectorAll('.isl-privacy-link').forEach(function (a) { a.href = cfg.privacyUrl; });
-  root.querySelectorAll('.isl-ebook-link').forEach(function (a) {
-    a.href = cfg.ebookUrl;
-    a.addEventListener('click', function () { track('resource_download_success', { via: 'thank-you' }); });
-  });
 
   // Personal greeting from the landing page (first name only, kept in this browser tab).
   try {

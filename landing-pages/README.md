@@ -80,7 +80,7 @@ CRM field, separate from the lead itself.
 ## Thank-you pages and follow-up
 
 - `thank-you/grow-fast.html` and `thank-you/bdc.html`: confirm the download and invite a free 30-minute call
-  (GROW Fast fit check / finance planning data review). Settings: `ebookUrl`, `bookingUrl` (GHL calendar), `contactUrl`.
+  (GROW Fast fit check / finance planning data review). Settings: `bookingUrl` (GHL calendar), `contactUrl`. They don't offer the e-book again: the landing page already delivers it.
 - Every landing page has `thankYouUrl` in `LP_CONFIG`. Set it to send people to the thank-you page after the form.
 - Nurture emails and GHL workflow steps: `content/nurture/`.
 - Inputs requested from Intrasoft: `content/intrasoft-request-email.md`.

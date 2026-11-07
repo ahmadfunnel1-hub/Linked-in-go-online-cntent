@@ -10,7 +10,7 @@ Build it in this order, as a checklist. Do it once per product (GROW Fast, BDC).
 | Thank-you page | new step, e.g. `sap-2-thank-you`: paste `landing-pages/thank-you/grow-fast.html` | new step, e.g. `sap-1-thank-you`: paste `landing-pages/thank-you/bdc.html` |
 
 - On each **landing page**, set `thankYouUrl` in `LP_CONFIG` to that product's thank-you page link.
-- On each **thank-you page**, set `ebookUrl`, `bookingUrl` (the GHL calendar link), and optionally `contactUrl` (WhatsApp or email) and `logoUrl`/`sapLogoUrl`.
+- On each **thank-you page**, set `bookingUrl` (the GHL calendar link), and optionally `contactUrl` (WhatsApp or email) and `logoUrl`/`sapLogoUrl`.
 - The landing page passes only the **first name** to the thank-you page, held in the browser tab (sessionStorage), never in the URL.
 
 ## 2. Calendars
