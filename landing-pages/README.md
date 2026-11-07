@@ -77,6 +77,16 @@ CRM field, separate from the lead itself.
 - Target market is Saudi Arabia only. Have the privacy notice and consent wording reviewed against the
   Saudi Personal Data Protection Law (PDPL).
 
+## Headline tests (run one at a time with a GHL split test)
+
+| Page | A (live) | B | C |
+|---|---|---|---|
+| GROW Fast | Think SAP is too expensive, too slow or too big for your company? Read this first. | Map a faster path to cloud ERP with SAP GROW Fast. (SAP campaign line as the headline) | The 5 SAP myths that keep growing companies stuck on spreadsheets |
+| BDC | When business conditions change, can your financial plan keep up? | Your forecast is only as fast as your data. Here's how to fix that. | Why finance teams can't plan fast on disconnected data |
+
+Test the headline first, then the button text ("Send me the free e-book" vs "Get instant access").
+Confirm that the "Inside the e-book" bullets match the actual PDFs before launch.
+
 ## Business Data Cloud page: sign-off
 
 | Item | Where | Confirm with |

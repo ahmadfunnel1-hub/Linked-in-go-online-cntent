@@ -175,6 +175,19 @@
     .isl-lp form.isl-lead-form { padding: 24px 20px; }
     .isl-lp .isl-hero { padding: 56px 0 72px; }
   }
+  .isl-lp .isl-tagline { font-size: 1.35rem; font-weight: 800; color: var(--accent-2); margin: -4px 0 14px; }
+
+  /* Hero opt-in: form above the fold */
+  .isl-lp .isl-hero-form { scroll-margin-top: 84px; }
+  .isl-lp .isl-hero .isl-lead-form { padding: 28px; }
+  .isl-lp .isl-inside { font-size: .78rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #8ea3c0; margin: 22px 0 10px; }
+  .isl-lp .isl-trust { background: var(--ink-2); border-top: 1px solid rgba(255,255,255,.08); padding: 14px 0; }
+  .isl-lp .isl-trust .isl-wrap { display: flex; flex-wrap: wrap; gap: 10px 28px; justify-content: center; }
+  .isl-lp .isl-trust span { color: #dbe6f5; font-size: .9rem; font-weight: 600; }
+  .isl-lp .isl-trust span::before { content: "✓ "; color: var(--accent-2); }
+  .isl-lp .isl-mobile-only { display: none; }
+  @media (max-width: 960px) { .isl-lp .isl-mobile-only { display: inline-flex; margin-top: 4px; } }
+  .isl-lp .isl-inside-cta { display: flex; flex-direction: column; align-items: center; gap: 24px; }
 </style>
 <script>
   // Configure before launch.
@@ -208,32 +221,50 @@
 <section class="isl-hero">
   <div class="isl-wrap isl-hero-grid">
     <div>
-      <p class="isl-eyebrow" style="color:var(--accent-2)">SAP Cloud ERP · SAP GROW Fast</p>
-      <h1>Map a faster path to cloud ERP with SAP GROW Fast.</h1>
-      <p class="isl-lead">Enterprise-grade cloud ERP for growing businesses. Move beyond disconnected systems and legacy ERP with a structured, accelerated SAP Cloud ERP implementation, supported by Intrasoft from implementation through go-live and beyond.</p>
+      <p class="isl-eyebrow" style="color:var(--accent-2)">Free SAP e-book · For growing companies in Saudi Arabia</p>
+      <h1>Think SAP is too expensive, too slow or too big for your company? Read this first.</h1>
+      <p class="isl-tagline">Map a faster path to cloud ERP with SAP GROW Fast.</p>
+      <p class="isl-lead">SAP GROW Fast is SAP's faster path to cloud ERP for growing mid-size companies. This free SAP e-book busts the myths that can keep a growing company from even considering it.</p>
+      <a class="isl-btn isl-btn-primary isl-mobile-only" href="#isl-download" data-cta="hero-mobile">Get the free e-book</a>
+      <p class="isl-inside">Inside the e-book</p>
       <ul class="isl-hero-points">
-        <li><span class="isl-tick">✓</span><span>A predefined scope, with Intrasoft's implementation fee agreed upfront</span></li>
-        <li><span class="isl-tick">✓</span><span>SAP best practices and a target go-live of about 4 months*</span></li>
-        <li><span class="isl-tick">✓</span><span>User training and ongoing support after go-live</span></li>
+        <li><span class="isl-tick">✓</span><span>What's really changed about cost and company size, so you judge SAP Cloud ERP on facts, not old assumptions</span></li>
+        <li><span class="isl-tick">✓</span><span>Why go-live is now measured in months, not years, and what that depends on</span></li>
+        <li><span class="isl-tick">✓</span><span>How to tell whether SAP GROW Fast fits your business, before you commit to a long evaluation</span></li>
       </ul>
-      <div class="isl-hero-ctas">
-        <a class="isl-btn isl-btn-primary" href="#isl-download" data-cta="hero">Download the free e-book</a>
-        <a class="isl-btn isl-btn-ghost" href="#isl-myths" data-nav="myths">See myth vs reality</a>
-      </div>
-      <p class="isl-hero-note">For growing mid-size companies in Saudi Arabia, especially manufacturers.<br>*A target, not a guarantee. It depends on scope, data readiness and agreed project conditions.</p>
+      <p class="isl-hero-note">For growing mid-size companies in Saudi Arabia, especially manufacturers.</p>
     </div>
-    <div>
-      <div class="isl-cover" role="img" aria-label="SAP GROW Fast Myth Busting E-Book cover">
-        <div>
-          <small>Free e-book</small>
-          <strong>SAP GROW Fast Myth Busting E-Book</strong>
+    <div class="isl-hero-form" id="isl-download">
+      <form class="isl-lead-form" novalidate>
+        <div class="isl-form-body">
+          <h3>Get your free copy</h3>
+          <p class="isl-sub">Instant access. It takes under a minute.</p>
+          <div class="isl-field"><label for="isl-fullName">Full name</label><input id="isl-fullName" name="fullName" autocomplete="name" required><div class="isl-error">Please enter your full name.</div></div>
+          <div class="isl-field"><label for="isl-email">Business email</label><input id="isl-email" name="email" type="email" autocomplete="email" required><div class="isl-error">Please use a valid business email address.</div></div>
+          <div class="isl-field"><label for="isl-company">Company name</label><input id="isl-company" name="company" autocomplete="organization" required><div class="isl-error">Please enter your company name.</div></div>
+          <div class="isl-field"><label for="isl-jobTitle">Job title</label><input id="isl-jobTitle" name="jobTitle" autocomplete="organization-title" required><div class="isl-error">Please enter your job title.</div></div>
+          <div class="isl-field"><label for="isl-companySize">Company size</label>
+            <select id="isl-companySize" name="companySize" required>
+              <option value="">Select…</option>
+              <option>1–49 employees</option><option>50–199 employees</option><option>200–499 employees</option><option>500–999 employees</option><option>1,000+ employees</option>
+            </select><div class="isl-error">Please select your company size.</div></div>
+          <label class="isl-consent"><input type="checkbox" name="marketingConsent" value="yes"><span><span class="isl-opt">Optional</span>Yes, Intrasoft may email me about SAP solutions, events and insights. I can unsubscribe at any time. You don't need to tick this to get the e-book.</span></label>
+          <p class="isl-privacy">By downloading, you acknowledge that Intrasoft will process your details to deliver this resource, as described in our <a class="isl-privacy-link" href="#">privacy notice</a>.</p>
+          <button class="isl-btn isl-btn-primary" type="submit">Send me the free e-book</button>
+          <p class="isl-form-error" role="alert">Something went wrong. Please try again.</p>
         </div>
-        <span>What's really changed about cost, speed and complexity, and why more companies are revisiting SAP Cloud ERP now.</span>
-        <span class="isl-stamp">FREE DOWNLOAD</span>
-      </div>
+        <div class="isl-success" role="status">
+          <div class="isl-big">✓</div>
+          <h3>Thank you, your copy of the SAP GROW Fast Myth Busting E-Book is ready</h3>
+          <p class="isl-sub">If the download didn't start automatically, use the button below. We've also sent a copy to your inbox.</p>
+          <a class="isl-btn isl-btn-primary isl-ebook-link" href="#" target="_blank" rel="noopener">Download the e-book</a>
+        </div>
+      </form>
     </div>
   </div>
 </section>
+<div class="isl-trust"><div class="isl-wrap"><span>Official SAP e-book</span><span>Instant access after the form</span><span>Takes under a minute</span><span>Shared by Intrasoft, an SAP partner</span></div></div>
+
 
 <!-- 2. Business challenge -->
 <section>
@@ -399,10 +430,10 @@
 </section>
 
 <!-- 8. E-book and form -->
-<section class="isl-convert" id="isl-download">
+<section class="isl-convert">
   <div class="isl-wrap isl-convert-grid">
     <div>
-      <p class="isl-eyebrow" style="color:var(--accent-2)">Free e-book</p>
+      <p class="isl-eyebrow" style="color:var(--accent-2)">What's inside</p>
       <h2>SAP GROW Fast Myth Busting E-Book</h2>
       <p class="isl-lead" style="color:#b9c8de">See why more growing companies are revisiting SAP Cloud ERP now, and what has changed.</p>
       <ul class="isl-learn">
@@ -412,31 +443,17 @@
         <li><span class="isl-tick">✓</span><span>How to decide whether GROW Fast fits your business</span></li>
       </ul>
     </div>
-    <form class="isl-lead-form" novalidate>
-      <div class="isl-form-body">
-        <h3>Get your copy</h3>
-        <p class="isl-sub">Complete the form and the download will start straight away.</p>
-        <div class="isl-field"><label for="isl-fullName">Full name</label><input id="isl-fullName" name="fullName" autocomplete="name" required><div class="isl-error">Please enter your full name.</div></div>
-        <div class="isl-field"><label for="isl-email">Business email</label><input id="isl-email" name="email" type="email" autocomplete="email" required><div class="isl-error">Please use a valid business email address.</div></div>
-        <div class="isl-field"><label for="isl-company">Company name</label><input id="isl-company" name="company" autocomplete="organization" required><div class="isl-error">Please enter your company name.</div></div>
-        <div class="isl-field"><label for="isl-jobTitle">Job title</label><input id="isl-jobTitle" name="jobTitle" autocomplete="organization-title" required><div class="isl-error">Please enter your job title.</div></div>
-        <div class="isl-field"><label for="isl-companySize">Company size</label>
-          <select id="isl-companySize" name="companySize" required>
-            <option value="">Select…</option>
-            <option>1–49 employees</option><option>50–199 employees</option><option>200–499 employees</option><option>500–999 employees</option><option>1,000+ employees</option>
-          </select><div class="isl-error">Please select your company size.</div></div>
-        <label class="isl-consent"><input type="checkbox" name="marketingConsent" value="yes"><span><span class="isl-opt">Optional</span>Yes, Intrasoft may email me about SAP solutions, events and insights. I can unsubscribe at any time. You don't need to tick this to get the e-book.</span></label>
-        <p class="isl-privacy">By downloading, you acknowledge that Intrasoft will process your details to deliver this resource, as described in our <a class="isl-privacy-link" href="#">privacy notice</a>.</p>
-        <button class="isl-btn isl-btn-primary" type="submit">Download the e-book</button>
-        <p class="isl-form-error" role="alert">Something went wrong. Please try again.</p>
+    <div class="isl-inside-cta">
+      <div class="isl-cover" role="img" aria-label="SAP GROW Fast Myth Busting E-Book cover">
+        <div>
+          <small>Free e-book</small>
+          <strong>SAP GROW Fast Myth Busting E-Book</strong>
+        </div>
+        <span>What's really changed about cost, speed and complexity, and why more companies are revisiting SAP Cloud ERP now.</span>
+        <span class="isl-stamp">FREE DOWNLOAD</span>
       </div>
-      <div class="isl-success" role="status">
-        <div class="isl-big">✓</div>
-        <h3>Thank you, your copy of the SAP GROW Fast Myth Busting E-Book is ready</h3>
-        <p class="isl-sub">If the download didn't start automatically, use the button below. We've also sent a copy to your inbox.</p>
-        <a class="isl-btn isl-btn-primary isl-ebook-link" href="#" target="_blank" rel="noopener">Download the e-book</a>
-      </div>
-    </form>
+      <a class="isl-btn isl-btn-primary" href="#isl-download" data-cta="inside">Get your free copy</a>
+    </div>
   </div>
 </section>
 
@@ -583,7 +600,7 @@
     }).catch(function () {
       if (win) win.close();
       form.querySelector('.isl-form-error').style.display = 'block';
-      btn.disabled = false; btn.textContent = 'Download the e-book';
+      btn.disabled = false; btn.textContent = 'Send me the free e-book';
     });
   });
 
