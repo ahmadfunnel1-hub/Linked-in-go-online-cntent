@@ -1,0 +1,190 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your SAP Business Data Cloud E-Book | Intrasoft</title>
+<meta name="robots" content="noindex">
+<!--
+  Thank-you page for the SAP Business Data Cloud landing page.
+  Works standalone, or paste this WHOLE file into a GoHighLevel "Custom JS/HTML" element
+  (full-width section and row, zero padding). All names start with isl- so nothing clashes with GHL.
+  Settings are in LP_CONFIG below.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  .isl-lp, .isl-lp * { box-sizing: border-box; font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif; letter-spacing: normal; text-transform: none; }
+  .isl-lp { --ink: #132146; --ink-2: #1b2d63; --accent: #00A7E3; --accent-2: #78DCFF; --red: #CD0000; --text: #1b2540; --muted: #55627a; --line: #e1e8f2; --bg-soft: #f1f7fc; --bar: #CD0000;
+    width: 100%; text-align: left; font-size: 16px; color: var(--text); background: #fff; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  .isl-lp h1, .isl-lp h2, .isl-lp h3 { color: var(--ink); line-height: 1.2; margin: 0 0 14px; letter-spacing: -.01em; }
+  .isl-lp h1 { font-size: clamp(1.9rem, 4vw, 2.9rem); font-weight: 800; color: #fff; }
+  .isl-lp h2 { font-size: clamp(1.5rem, 3vw, 2.1rem); font-weight: 800; }
+  .isl-lp h3 { font-size: 1.1rem; font-weight: 700; }
+  .isl-lp p { margin: 0 0 14px; }
+  .isl-lp ul { list-style: none; margin: 0; padding: 0; }
+  .isl-lp section { display: block; padding: 72px 0; }
+  .isl-lp .isl-wrap { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+  .isl-lp .isl-eyebrow { font-size: .78rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--red); margin: 0 0 12px; }
+  .isl-lp .isl-lead { font-size: 1.12rem; color: var(--muted); max-width: 680px; }
+  .isl-lp .isl-btn { display: inline-flex; align-items: center; justify-content: center; padding: 15px 26px; border-radius: 10px; font-weight: 700; font-size: 1rem; text-decoration: none; border: 0; cursor: pointer; }
+  .isl-lp .isl-btn-primary { background: var(--accent); color: var(--ink); box-shadow: 0 8px 24px rgba(0,167,227,.35); }
+  .isl-lp .isl-btn-primary:hover { background: #33bdea; }
+  .isl-lp .isl-btn-ghost { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,.45); }
+  .isl-lp header.isl-top { background: #132146; }
+  .isl-lp header.isl-top .isl-wrap { display: flex; align-items: center; height: 68px; }
+  .isl-lp .isl-brand { display: flex; align-items: center; gap: 12px; color: #fff; font-weight: 800; text-decoration: none; }
+  .isl-lp .isl-brand img { height: 34px; width: auto; display: block; }
+  .isl-lp .isl-logo-slot { display: inline-flex; align-items: center; height: 34px; padding: 0 12px; border: 1px dashed rgba(120,220,255,.45); border-radius: 6px; font-size: .85rem; }
+  .isl-lp .isl-sep { color: rgba(255,255,255,.4); font-weight: 400; }
+  .isl-lp .isl-hero { color: #dbe6f5; padding: 72px 0 80px;
+    background-color: var(--ink);
+    background-image: radial-gradient(700px 420px at 92% 8%, rgba(0,167,227,.35), transparent 60%), radial-gradient(rgba(120,220,255,.16) 1px, transparent 1.2px), linear-gradient(160deg, #132146 0%, #0d1838 100%);
+    background-size: auto, 22px 22px, auto; }
+  .isl-lp .isl-hero .isl-lead { color: #b9c8de; }
+  .isl-lp .isl-hero .isl-eyebrow { color: var(--accent-2); }
+  .isl-lp .isl-check { width: 56px; height: 56px; border-radius: 50%; background: rgba(0,167,227,.18); color: var(--accent-2); display: flex; align-items: center; justify-content: center; font-size: 1.6rem; font-weight: 800; margin-bottom: 18px; }
+  .isl-lp .isl-ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
+  .isl-lp .isl-small { font-size: .88rem; color: #8ea3c0; margin-top: 16px; }
+  .isl-lp .isl-steps { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 30px; }
+  .isl-lp .isl-steps span { font-size: .85rem; font-weight: 600; padding: 7px 12px; border-radius: 999px; background: rgba(255,255,255,.07); color: #b9c8de; }
+  .isl-lp .isl-steps span.isl-on { background: var(--accent); color: var(--ink); }
+  .isl-lp .isl-next { background: var(--bg-soft); }
+  .isl-lp .isl-next-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+  .isl-lp .isl-card { background: #fff; border: 1px solid var(--line); border-left: 4px solid var(--bar); border-radius: 14px; padding: 26px; }
+  .isl-lp .isl-points li { display: flex; gap: 12px; margin: 0 0 14px; }
+  .isl-lp .isl-points b { color: var(--ink); }
+  .isl-lp .isl-tick { flex: 0 0 22px; height: 22px; border-radius: 50%; background: #e3f6fd; color: #0089ba; display: inline-flex; align-items: center; justify-content: center; font-size: .8rem; font-weight: 800; margin-top: 2px; }
+  .isl-lp .isl-note { font-size: .92rem; color: var(--muted); }
+  .isl-lp .isl-book { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 24px; box-shadow: 0 24px 60px rgba(19,33,70,.12); }
+  .isl-lp .isl-book iframe { width: 100%; min-height: 680px; border: 0; display: block; }
+  .isl-lp .isl-book .isl-btn { width: 100%; }
+  .isl-lp .isl-alt { text-align: center; font-size: .92rem; color: var(--muted); margin: 14px 0 0; }
+  .isl-lp .isl-alt a { color: #0077b6; }
+  .isl-lp footer { background: var(--ink); color: #8ea3c0; padding: 32px 0; font-size: .85rem; }
+  .isl-lp footer a { color: #b9c8de; }
+  .isl-lp .isl-brandline b { color: #fff; }
+  @media (max-width: 860px) { .isl-lp .isl-next-grid { grid-template-columns: 1fr; gap: 28px; } .isl-lp section { padding: 56px 0; } }
+</style>
+<script>
+  window.LP_CONFIG = {
+    campaign: "bdc-thank-you",
+    // GHL calendar for the finance planning data review. Paste the calendar's booking/embed link
+    // (e.g. https://api.leadconnectorhq.com/widget/booking/XXXX). It is embedded on the page.
+    bookingUrl: "",
+    // Fallback if there is no calendar yet: a WhatsApp link (https://wa.me/9665XXXXXXXX) or mailto: link.
+    contactUrl: "",
+    logoUrl: "",
+    sapLogoUrl: "",
+    privacyUrl: "#"
+  };
+  window.dataLayer = window.dataLayer || [];
+</script>
+
+<div class="isl-lp">
+<header class="isl-top">
+  <div class="isl-wrap">
+    <a class="isl-brand" href="#"><span class="isl-logo-slot">INTRASOFT</span><span class="isl-sep">|</span><span class="isl-logo-slot">SAP Partner</span></a>
+  </div>
+</header>
+
+<section class="isl-hero">
+  <div class="isl-wrap">
+    <div class="isl-check">✓</div>
+    <p class="isl-eyebrow">Step 1 of 2 complete</p>
+    <h1><span class="isl-name"></span><span class="isl-h1t">Your SAP e-book is on its way.</span></h1>
+    <p class="isl-lead">The e-book shows why trusted, connected data comes first. A free 30-minute data review applies it to your own planning.</p>
+    <div class="isl-ctas">
+      <a class="isl-btn isl-btn-primary" href="#isl-next" data-cta="to-next">Book your free data review</a>
+    </div>
+    <p class="isl-small">Your e-book opened in a new tab, and a copy is on its way to your inbox. If you can't find the email, check your spam or promotions folder.</p>
+    <div class="isl-steps"><span class="isl-on">1. E-book sent ✓</span><span>2. Book a data review (optional)</span></div>
+  </div>
+</section>
+
+<section class="isl-next" id="isl-next">
+  <div class="isl-wrap isl-next-grid">
+    <div>
+      <p class="isl-eyebrow">Step 2 · Optional, free, 30 minutes</p>
+      <h2>Book your free finance planning data review</h2>
+      <p class="isl-lead">In 30 minutes, we look at where your planning and reporting slow down, and whether SAP Business Data Cloud and SAP Analytics Cloud could help.</p>
+      <div class="isl-card">
+        <h3>In 30 minutes, we'll cover</h3>
+        <ul class="isl-points">
+          <li><span class="isl-tick">✓</span><span><b>Where planning slows down:</b> the manual steps between your data and the forecast leadership sees.</span></li>
+          <li><span class="isl-tick">✓</span><span><b>Your data sources:</b> which SAP and non-SAP systems feed your reports, and where definitions differ.</span></li>
+          <li><span class="isl-tick">✓</span><span><b>What could connect them:</b> how SAP Business Data Cloud and SAP Analytics Cloud could support your planning and scenarios.</span></li>
+          <li><span class="isl-tick">✓</span><span><b>Sensible next steps:</b> what an assessment, scope and plan could involve.</span></li>
+        </ul>
+      </div>
+      <p class="isl-note" style="margin-top:18px">You'll speak with an Intrasoft data and analytics consultant. No obligation and no sales pressure: if this approach isn't the right fit for you, we'll say so.</p>
+    </div>
+    <div class="isl-book">
+      <h3>Choose a time that suits you</h3>
+      <div class="isl-cal"></div>
+      <p class="isl-alt"></p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="isl-wrap">
+    <p class="isl-brandline" style="margin:0"><b>INTRASOFT × SAP</b> · Connected business. Clearer decisions. &nbsp;·&nbsp; © <span class="isl-yr"></span> Intrasoft. SAP and other SAP products are trademarks of SAP SE. &nbsp;·&nbsp; <a class="isl-privacy-link" href="#">Privacy notice</a></p>
+  </div>
+</footer>
+</div>
+
+<script>
+(function () {
+  var cfg = window.LP_CONFIG;
+  function track(event, data) { window.dataLayer.push(Object.assign({ event: event, campaign: cfg.campaign }, data || {})); }
+  var root = document.querySelector('.isl-lp');
+  track('thank_you_page_view');
+
+  root.querySelector('.isl-yr').textContent = new Date().getFullYear();
+  root.querySelectorAll('.isl-privacy-link').forEach(function (a) { a.href = cfg.privacyUrl; });
+
+  // Personal greeting from the landing page (first name only, kept in this browser tab).
+  try {
+    var first = sessionStorage.getItem('isl_first_name');
+    if (first) {
+      root.querySelector('.isl-name').textContent = first.replace(/[<>]/g, '') + ', ';
+      var t = root.querySelector('.isl-h1t'); t.textContent = t.textContent.charAt(0).toLowerCase() + t.textContent.slice(1);
+    }
+  } catch (e) {}
+
+  if (cfg.logoUrl || cfg.sapLogoUrl) {
+    root.querySelector('.isl-brand').innerHTML =
+      (cfg.logoUrl ? '<img src="' + cfg.logoUrl + '" alt="Intrasoft Middle East">' : '<span class="isl-logo-slot">INTRASOFT</span>') +
+      '<span class="isl-sep">|</span>' +
+      (cfg.sapLogoUrl ? '<img src="' + cfg.sapLogoUrl + '" alt="SAP Partner">' : '<span class="isl-logo-slot">SAP Partner</span>');
+  }
+
+  // Booking: embedded GHL calendar, else a contact button, else a "we'll contact you" note.
+  var cal = root.querySelector('.isl-cal'), alt = root.querySelector('.isl-alt');
+  if (cfg.bookingUrl) {
+    var f = document.createElement('iframe');
+    f.src = cfg.bookingUrl; f.title = 'Book your finance planning data review'; f.loading = 'lazy';
+    cal.appendChild(f);
+    if (cfg.contactUrl) alt.innerHTML = 'Prefer to message us? <a href="' + cfg.contactUrl + '" target="_blank" rel="noopener" data-cta="contact">Contact the Intrasoft team</a>';
+  } else if (cfg.contactUrl) {
+    cal.innerHTML = '<a class="isl-btn isl-btn-primary" href="' + cfg.contactUrl + '" target="_blank" rel="noopener" data-cta="contact">Request your finance planning data review</a>';
+  } else {
+    cal.innerHTML = '<p class="isl-note">The Intrasoft team will contact you shortly to arrange a time.</p>';
+  }
+
+  root.addEventListener('click', function (e) {
+    var a = e.target.closest('a[data-cta]');
+    if (!a) return;
+    track('cta_click', { position: a.getAttribute('data-cta') });
+    if (a.getAttribute('href') === '#isl-next') {
+      e.preventDefault();
+      document.getElementById('isl-next').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    if (a.getAttribute('data-cta') === 'contact') track('booking_request_click');
+  });
+  window.addEventListener('message', function (e) {
+    // GHL calendar widgets post messages when a booking completes; record any we receive.
+    if (typeof e.data === 'string' && /booking|appointment/i.test(e.data)) track('booking_widget_event', { detail: e.data.slice(0, 80) });
+  });
+})();
+</script>
