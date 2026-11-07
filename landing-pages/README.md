@@ -77,6 +77,24 @@ CRM field, separate from the lead itself.
 - Target market is Saudi Arabia only. Have the privacy notice and consent wording reviewed against the
   Saudi Personal Data Protection Law (PDPL).
 
+## Brand-aligned variants (`variants/`)
+
+Three versions per product in the Intrasoft x SAP social identity (navy #132146, SAP blue #00A7E3,
+light blue #78DCFF, red accent #CD0000). Each hero matches a social post, so ad and page say the same thing.
+Every version has its own `campaign` value, so GHL shows which one converts best.
+
+| File | Matches post | Hero style | Body |
+|---|---|---|---|
+| `variants/grow-fast/v1-myths.html` | GROW Fast Post 01 "Too expensive? Too complex? Too slow?" | Dark | GROW Fast |
+| `variants/grow-fast/v2-clear-answers.html` | Posts 02 / 05 / 07 | Light | GROW Fast |
+| `variants/grow-fast/v3-growth.html` | Posts 03 / 06 | Dark | GROW Fast |
+| `variants/bdc/v1-one-truth.html` | BDC Post 06 + Carousel 4 | Light | Finance planning |
+| `variants/bdc/v2-reliable-ai.html` | BDC Posts 04 / 05 + Carousel 2 | Dark | Data & AI |
+| `variants/bdc/v3-finance-operations.html` | BDC Post 01 | Dark | Finance planning |
+
+New `LP_CONFIG` options: `logoUrl`, `sapLogoUrl` (approved logo files) and `heroImageUrl`
+(reuse a post's artwork behind the hero).
+
 ## Headline tests (run one at a time with a GHL split test)
 
 | Page | A (live) | B | C |

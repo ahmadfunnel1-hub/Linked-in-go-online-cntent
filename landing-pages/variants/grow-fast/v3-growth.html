@@ -1,0 +1,698 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Growing Faster Than Your Systems? | Intrasoft</title>
+<meta name="description" content="Is your business growing faster than your systems? Download the free SAP GROW Fast Myth Busting E-Book from Intrasoft, an SAP partner.">
+<!--
+  Works as a standalone page, or paste this WHOLE file into a GoHighLevel "Custom JS/HTML" element.
+  - In GHL, set the section and row to full width with zero padding so the design spans the page.
+  - All classes and IDs start with isl- so they can't clash with GHL styles, forms or scripts.
+  - Settings (form endpoint, e-book PDF, cover image, privacy link) are in LP_CONFIG below.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* Everything is scoped under .isl-lp with isl- names so it can't clash with GoHighLevel's own styles. */
+  .isl-lp, .isl-lp * { box-sizing: border-box; font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif; letter-spacing: normal; text-transform: none; }
+  .isl-lp { width: 100%; text-align: left; font-size: 16px; }
+  .isl-lp section { display: block; scroll-margin-top: 68px; }
+  .isl-lp ul { list-style: none; }
+
+  /* Neutral placeholder palette. Replace with approved SAP / Intrasoft brand tokens before launch. */
+  .isl-lp {
+    --ink: #0b1b33;
+    --ink-2: #13294b;
+    --accent: #0a6ed1;
+    --accent-2: #3fa9f5;
+    --text: #1d2939;
+    --muted: #5b6b80;
+    --line: #e3e8ef;
+    --bg: #ffffff;
+    --bg-soft: #f4f7fb;
+    --ok: #127c4a;
+    --err: #b42318;
+    --radius: 14px;
+  }
+  .isl-lp, .isl-lp * { box-sizing: border-box; }
+  .isl-lp { margin: 0; font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif; color: var(--text); background: var(--bg); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  .isl-lp img { max-width: 100%; display: block; }
+  .isl-lp a { color: var(--accent); }
+  .isl-lp .isl-wrap { max-width: 1160px; margin: 0 auto; padding: 0 20px; }
+  .isl-lp .isl-eyebrow { font-size: .78rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin: 0 0 12px; }
+  .isl-lp h1, .isl-lp h2, .isl-lp h3 { color: var(--ink); line-height: 1.2; margin: 0 0 16px; letter-spacing: -.01em; }
+  .isl-lp h1 { font-size: clamp(2rem, 4.4vw, 3.2rem); font-weight: 800; }
+  .isl-lp h2 { font-size: clamp(1.6rem, 3vw, 2.3rem); font-weight: 800; }
+  .isl-lp h3 { font-size: 1.15rem; font-weight: 700; }
+  .isl-lp p { margin: 0 0 16px; }
+  .isl-lp .isl-lead { font-size: 1.15rem; color: var(--muted); max-width: 680px; }
+  .isl-lp section { padding: 88px 0; }
+  .isl-lp .isl-soft { background: var(--bg-soft); }
+  .isl-lp .isl-center { text-align: center; }
+  .isl-lp .isl-center .isl-lead { margin-left: auto; margin-right: auto; }
+
+  .isl-lp .isl-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 15px 26px; border-radius: 10px; font-weight: 700; font-size: 1rem; text-decoration: none; border: 0; cursor: pointer; transition: transform .15s, box-shadow .15s, background .15s; }
+  .isl-lp .isl-btn-primary { background: var(--accent); color: #fff; box-shadow: 0 8px 24px rgba(10,110,209,.3); }
+  .isl-lp .isl-btn-primary:hover { background: #0857a6; transform: translateY(-1px); }
+  .isl-lp .isl-btn-ghost { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,.4); }
+  .isl-lp .isl-btn-ghost:hover { border-color: #fff; }
+
+  /* Header */
+  .isl-lp header.isl-top { position: sticky; top: 0; z-index: 50; background: rgba(11,27,51,.96); backdrop-filter: blur(8px); }
+  .isl-lp header.isl-top .isl-wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+  .isl-lp .isl-brand { display: flex; align-items: center; gap: 12px; color: #fff; font-weight: 800; letter-spacing: .02em; text-decoration: none; }
+  .isl-lp .isl-brand .isl-logo-slot { display: inline-flex; align-items: center; justify-content: center; height: 34px; padding: 0 12px; border: 1px dashed rgba(255,255,255,.35); border-radius: 6px; font-size: .85rem; }
+  .isl-lp .isl-brand .isl-sep { color: rgba(255,255,255,.4); font-weight: 400; }
+  .isl-lp header.isl-top .isl-btn { padding: 10px 18px; font-size: .92rem; }
+
+  /* Hero */
+  .isl-lp .isl-hero { background: radial-gradient(1200px 600px at 85% -10%, rgba(63,169,245,.25), transparent 60%), linear-gradient(160deg, var(--ink) 0%, var(--ink-2) 100%); color: #dbe6f5; padding: 80px 0 96px; }
+  .isl-lp .isl-hero h1 { color: #fff; }
+  .isl-lp .isl-hero .isl-lead { color: #b9c8de; }
+  .isl-lp .isl-hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 56px; align-items: center; }
+  .isl-lp .isl-hero-points { list-style: none; padding: 0; margin: 24px 0 32px; display: grid; gap: 10px; }
+  .isl-lp .isl-hero-points li { display: flex; gap: 10px; align-items: flex-start; }
+  .isl-lp .isl-tick { flex: 0 0 22px; height: 22px; border-radius: 50%; background: rgba(63,169,245,.18); color: var(--accent-2); display: inline-flex; align-items: center; justify-content: center; font-size: .8rem; font-weight: 800; margin-top: 2px; }
+  .isl-lp .isl-hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+  .isl-lp .isl-hero-note { font-size: .85rem; color: #8ea3c0; margin-top: 18px; }
+
+  /* E-book cover placeholder */
+  .isl-lp .isl-cover { position: relative; aspect-ratio: 3/4; max-width: 360px; margin: 0 auto; border-radius: 10px; background: linear-gradient(150deg, #fff 0%, #e9f1fb 100%); box-shadow: 0 30px 60px rgba(0,0,0,.4); padding: 34px 28px; display: flex; flex-direction: column; justify-content: space-between; transform: rotate(-2deg); }
+  .isl-lp .isl-cover::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 10px; background: var(--accent); border-radius: 10px 0 0 10px; }
+  .isl-lp .isl-cover-img { max-width: 360px; margin: 0 auto; border-radius: 6px; box-shadow: 0 30px 60px rgba(0,0,0,.4); }
+  .isl-lp .isl-cover small { font-size: .72rem; font-weight: 700; letter-spacing: .14em; color: var(--accent); text-transform: uppercase; }
+  .isl-lp .isl-cover strong { display: block; font-size: 1.7rem; line-height: 1.15; color: var(--ink); margin-top: 10px; }
+  .isl-lp .isl-cover span { color: var(--muted); font-size: .9rem; }
+  .isl-lp .isl-cover .isl-stamp { align-self: flex-start; background: var(--ink); color: #fff; font-size: .72rem; font-weight: 700; padding: 6px 10px; border-radius: 6px; letter-spacing: .08em; }
+
+  /* Cards */
+  .isl-lp .isl-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .isl-lp .isl-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+  .isl-lp .isl-card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; }
+  .isl-lp .isl-card p { color: var(--muted); margin: 0; font-size: 1.04rem; }
+  .isl-lp .isl-icon { width: 46px; height: 46px; border-radius: 12px; background: #e8f2fc; color: var(--accent); display: inline-flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+  .isl-lp .isl-icon svg { width: 24px; height: 24px; }
+  .isl-lp .isl-section-head { margin-bottom: 48px; }
+
+  /* Myths */
+  .isl-lp .isl-myth { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; }
+  .isl-lp .isl-myth .isl-m { padding: 22px 24px; background: #fdf3f2; border-bottom: 1px solid #f6dcd9; }
+  .isl-lp .isl-myth .isl-m b { display: block; font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--err); margin-bottom: 6px; }
+  .isl-lp .isl-myth .isl-m p { margin: 0; font-weight: 600; color: var(--ink); font-style: italic; }
+  .isl-lp .isl-myth .isl-r { padding: 22px 24px; }
+  .isl-lp .isl-myth .isl-r b { display: block; font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--ok); margin-bottom: 6px; }
+  .isl-lp .isl-myth .isl-r p { margin: 0; color: var(--muted); }
+
+  /* Steps */
+  .isl-lp .isl-steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; counter-reset: s; }
+  .isl-lp .isl-step { position: relative; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 24px 20px; }
+  .isl-lp .isl-step::before { counter-increment: s; content: counter(s, decimal-leading-zero); display: block; font-size: .85rem; font-weight: 800; color: var(--accent); margin-bottom: 10px; }
+  .isl-lp .isl-step h3 { font-size: 1.02rem; margin-bottom: 8px; }
+  .isl-lp .isl-step p { color: var(--muted); font-size: .93rem; margin: 0; }
+  .isl-lp .isl-timeline-bar { margin-top: 28px; display: flex; align-items: center; gap: 16px; padding: 18px 22px; background: var(--ink); color: #dbe6f5; border-radius: var(--radius); flex-wrap: wrap; }
+  .isl-lp .isl-timeline-bar strong { color: #fff; font-size: 1.1rem; }
+
+  /* Industry */
+  .isl-lp .isl-split { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+  .isl-lp .isl-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+  .isl-lp .isl-chip { padding: 9px 14px; border-radius: 999px; background: #fff; border: 1px solid var(--line); font-weight: 600; font-size: .92rem; color: var(--ink); }
+  .isl-lp .isl-flow { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; }
+  .isl-lp .isl-flow-row { display: flex; align-items: center; gap: 12px; padding: 14px 0; border-bottom: 1px dashed var(--line); }
+  .isl-lp .isl-flow-row:last-child { border-bottom: 0; }
+  .isl-lp .isl-flow-row .isl-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); flex: 0 0 10px; }
+  .isl-lp .isl-flow-row span { color: var(--muted); font-size: .92rem; margin-left: auto; text-align: right; }
+
+  /* Ebook + form */
+  .isl-lp .isl-convert { background: linear-gradient(160deg, var(--ink) 0%, var(--ink-2) 100%); color: #dbe6f5; }
+  .isl-lp .isl-convert h2 { color: #fff; }
+  .isl-lp .isl-convert-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+  .isl-lp .isl-learn { list-style: none; padding: 0; margin: 20px 0 0; display: grid; gap: 14px; }
+  .isl-lp .isl-learn li { display: flex; gap: 12px; }
+  .isl-lp form.isl-lead-form { background: #fff; color: var(--text); border-radius: 16px; padding: 32px; box-shadow: 0 30px 60px rgba(0,0,0,.35); }
+  .isl-lp form.isl-lead-form h3 { margin-bottom: 4px; }
+  .isl-lp form.isl-lead-form .isl-sub { color: var(--muted); font-size: 1rem; margin-bottom: 20px; }
+  .isl-lp .isl-field { margin-bottom: 14px; }
+  .isl-lp .isl-field label { display: block; font-weight: 600; font-size: .95rem; margin-bottom: 6px; color: var(--ink); }
+  .isl-lp .isl-field input, .isl-lp .isl-field select { width: 100%; padding: 12px 14px; border: 1.5px solid var(--line); border-radius: 9px; font: inherit; font-size: 16px; color: var(--text); background: #fff; min-height: 48px; }
+  .isl-lp .isl-field input:focus, .isl-lp .isl-field select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(10,110,209,.15); }
+  .isl-lp .isl-field.isl-invalid input, .isl-lp .isl-field.isl-invalid select { border-color: var(--err); }
+  .isl-lp .isl-field .isl-error { display: none; color: var(--err); font-size: .88rem; margin-top: 4px; }
+  .isl-lp .isl-field.isl-invalid .isl-error { display: block; }
+  .isl-lp .isl-consent { display: flex; gap: 12px; align-items: flex-start; font-size: .92rem; color: var(--text); margin: 8px 0 16px; padding: 14px; background: var(--bg-soft); border: 1px solid var(--line); border-radius: 9px; cursor: pointer; }
+  .isl-lp .isl-consent input { margin-top: 2px; width: 20px; height: 20px; flex: 0 0 20px; accent-color: var(--accent); }
+  .isl-lp .isl-consent .isl-opt { display: block; font-size: .78rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+  .isl-lp form.isl-lead-form .isl-btn { width: 100%; }
+  .isl-lp .isl-privacy { font-size: .88rem; color: var(--muted); margin: 0 0 16px; }
+  .isl-lp .isl-form-error { display: none; color: var(--err); font-size: .9rem; margin-top: 12px; }
+  .isl-lp .isl-success { display: none; text-align: center; padding: 20px 0; }
+  .isl-lp .isl-success .isl-big { width: 64px; height: 64px; border-radius: 50%; background: #e7f6ee; color: var(--ok); display: inline-flex; align-items: center; justify-content: center; font-size: 1.8rem; margin-bottom: 14px; }
+
+  /* FAQ */
+  .isl-lp .isl-faq { max-width: 820px; margin: 0 auto; }
+  .isl-lp details { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 18px 22px; margin-bottom: 12px; }
+  .isl-lp summary { cursor: pointer; font-weight: 700; color: var(--ink); list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+  .isl-lp summary::-webkit-details-marker { display: none; }
+  .isl-lp summary::after { content: "+"; color: var(--accent); font-size: 1.3rem; line-height: 1; }
+  .isl-lp details[open] summary::after { content: "−"; }
+  .isl-lp details p { color: var(--muted); margin: 12px 0 0; }
+
+  /* Final CTA + footer */
+  .isl-lp .isl-final { text-align: center; }
+  .isl-lp footer { background: var(--ink); color: #8ea3c0; padding: 40px 0; font-size: .85rem; }
+  .isl-lp footer .isl-wrap { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+  .isl-lp footer a { color: #b9c8de; }
+
+  @media (max-width: 960px) {
+    .isl-lp .isl-hero-grid, .isl-lp .isl-convert-grid, .isl-lp .isl-split { grid-template-columns: 1fr; gap: 40px; }
+    .isl-lp .isl-grid-3 { grid-template-columns: 1fr 1fr; }
+    .isl-lp .isl-steps { grid-template-columns: 1fr 1fr; }
+    .isl-lp .isl-cover { max-width: 280px; }
+  }
+  @media (max-width: 640px) {
+    .isl-lp section { padding: 64px 0; }
+    .isl-lp .isl-grid-3, .isl-lp .isl-grid-2, .isl-lp .isl-steps { grid-template-columns: 1fr; }
+    .isl-lp header.isl-top .isl-brand .isl-logo-slot:last-child, .isl-lp header.isl-top .isl-brand .isl-sep { display: none; }
+    .isl-lp form.isl-lead-form { padding: 24px 20px; }
+    .isl-lp .isl-hero { padding: 56px 0 72px; }
+  }
+  .isl-lp .isl-tagline { font-size: 1.35rem; font-weight: 800; color: var(--accent-2); margin: -4px 0 14px; }
+
+  /* Hero opt-in: form above the fold */
+  .isl-lp .isl-hero-form { scroll-margin-top: 84px; }
+  .isl-lp .isl-hero .isl-lead-form { padding: 28px; }
+  .isl-lp .isl-inside { font-size: .78rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #8ea3c0; margin: 22px 0 10px; }
+  .isl-lp .isl-trust { background: var(--ink-2); border-top: 1px solid rgba(255,255,255,.08); padding: 14px 0; }
+  .isl-lp .isl-trust .isl-wrap { display: flex; flex-wrap: wrap; gap: 10px 28px; justify-content: center; }
+  .isl-lp .isl-trust span { color: #dbe6f5; font-size: .9rem; font-weight: 600; }
+  .isl-lp .isl-trust span::before { content: "✓ "; color: var(--accent-2); }
+  .isl-lp .isl-mobile-only { display: none; }
+  @media (max-width: 960px) { .isl-lp .isl-mobile-only { display: inline-flex; margin-top: 4px; } }
+  .isl-lp .isl-inside-cta { display: flex; flex-direction: column; align-items: center; gap: 24px; }
+
+  /* ===== Intrasoft x SAP social identity (from the social content portfolio) ===== */
+  .isl-lp {
+    --ink: #132146; --ink-2: #1b2d63; --accent: #00A7E3; --accent-2: #78DCFF; --red: #CD0000;
+    --text: #1b2540; --muted: #55627a; --line: #e1e8f2; --bg-soft: #f1f7fc;
+  }
+  .isl-lp header.isl-top { background: rgba(19,33,70,.97); }
+  .isl-lp .isl-brand .isl-logo-slot { border-color: rgba(120,220,255,.45); }
+  .isl-lp .isl-brand img { height: 34px; width: auto; display: block; }
+  .isl-lp .isl-eyebrow { color: var(--red); }
+  .isl-lp a { color: #0077b6; }
+  .isl-lp .isl-btn-primary, .isl-lp a.isl-btn-primary { background: var(--accent); color: var(--ink); box-shadow: 0 8px 24px rgba(0,167,227,.35); }
+  .isl-lp .isl-btn-primary:hover { background: #33bdea; }
+  .isl-lp .isl-hero {
+    background-color: var(--ink);
+    background-image:
+      radial-gradient(700px 420px at 92% 8%, rgba(0,167,227,.35), transparent 60%),
+      radial-gradient(520px 360px at 8% 100%, rgba(120,220,255,.14), transparent 60%),
+      radial-gradient(rgba(120,220,255,.16) 1px, transparent 1.2px),
+      linear-gradient(160deg, #132146 0%, #0d1838 100%);
+    background-size: auto, auto, 22px 22px, auto;
+    background-position: center;
+  }
+  .isl-lp .isl-hero.isl-has-photo { background-size: cover; }
+  .isl-lp .isl-tagline { color: var(--accent-2); }
+  .isl-lp .isl-tick { background: rgba(0,167,227,.18); color: var(--accent-2); }
+  .isl-lp .isl-trust { background: #0f1a3a; }
+  .isl-lp .isl-trust span::before { color: var(--accent); }
+  .isl-lp .isl-card { border-left: 4px solid var(--bar, var(--accent)); }
+  .isl-lp .isl-icon { background: #e3f6fd; color: #0089ba; }
+  .isl-lp .isl-step::before { color: var(--red); }
+  .isl-lp .isl-dot { background: var(--accent); }
+  .isl-lp .isl-chip { border-color: #bfe9f8; }
+  .isl-lp .isl-convert { background-image: radial-gradient(600px 360px at 90% 0%, rgba(0,167,227,.25), transparent 60%), linear-gradient(160deg, #132146 0%, #0d1838 100%); }
+  .isl-lp .isl-cover { background: linear-gradient(150deg, #fff 0%, #e6f7fd 100%); }
+  .isl-lp .isl-cover::before { background: var(--accent); }
+  .isl-lp .isl-cover small { color: var(--red); }
+  .isl-lp .isl-cover .isl-stamp { background: var(--ink); }
+  .isl-lp .isl-field input:focus, .isl-lp .isl-field select:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(0,167,227,.2); }
+  .isl-lp .isl-consent input { accent-color: var(--accent); }
+  .isl-lp .isl-list li::before { background: var(--accent); }
+  .isl-lp .isl-sc-row i { background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
+  .isl-lp .isl-brandline { color: #8ea3c0; font-size: .85rem; letter-spacing: .04em; margin-top: 18px; }
+  .isl-lp .isl-brandline b { color: #fff; }
+
+  /* Light hero (matches the white social posts: navy headline, red subline) */
+  .isl-lp .isl-hero.isl-hero-light {
+    background-color: #fff;
+    background-image:
+      radial-gradient(640px 400px at 95% 0%, rgba(0,167,227,.16), transparent 60%),
+      radial-gradient(rgba(19,33,70,.08) 1px, transparent 1.2px),
+      linear-gradient(180deg, #ffffff 0%, #eef7fd 100%);
+    background-size: auto, 22px 22px, auto;
+    color: var(--text);
+  }
+  .isl-lp .isl-hero-light h1 { color: var(--ink); }
+  .isl-lp .isl-hero-light .isl-lead { color: var(--muted); }
+  .isl-lp .isl-hero-light .isl-eyebrow { color: var(--red); }
+  .isl-lp .isl-hero-light .isl-tagline { color: var(--red); }
+  .isl-lp .isl-hero-light .isl-inside { color: var(--muted); }
+  .isl-lp .isl-hero-light .isl-hero-points li { color: var(--ink); }
+  .isl-lp .isl-hero-light .isl-tick { background: #e3f6fd; color: #0089ba; }
+  .isl-lp .isl-hero-light .isl-hero-note { color: var(--muted); }
+  .isl-lp .isl-hero-light .isl-brandline { color: var(--muted); }
+  .isl-lp .isl-hero-light .isl-brandline b { color: var(--ink); }
+  .isl-lp .isl-hero-light .isl-lead-form { box-shadow: 0 24px 60px rgba(19,33,70,.18); border: 1px solid var(--line); }
+</style>
+<script>
+  // Configure before launch.
+  window.LP_CONFIG = {
+    campaign: "grow-fast-v3-growth",
+    // POST endpoint for leads (CRM / GoHighLevel / marketing-automation webhook). Leave empty to preview without sending.
+    formEndpoint: "",
+    // "auto": GoHighLevel webhook URLs (leadconnectorhq.com) get form-encoded data; anything else gets JSON.
+    // Set "ghl" or "json" to force one.
+    formMode: "auto",
+    // Hosted URL of the approved "SAP GROW Fast Myth Busting E-Book" PDF (SAP_GROW_Fast_Myth_Busting_E-Book.pdf).
+    ebookUrl: "#",
+    // URL or relative path of the official SAP e-book cover image (e.g. "assets/ebook-cover.png"). Leave empty to show the text mock-up.
+    ebookCoverUrl: "",
+    // Brand assets (approved files only). Leave empty to keep the text placeholders.
+    logoUrl: "",        // Intrasoft Middle East logo (light version for the navy header)
+    sapLogoUrl: "",     // SAP partner logo
+    heroImageUrl: "",   // Optional: reuse a social post's artwork as the hero background
+    privacyUrl: "#"
+  };
+  window.dataLayer = window.dataLayer || [];
+</script>
+
+<div class="isl-lp">
+<header class="isl-top">
+  <div class="isl-wrap">
+    <a class="isl-brand" href="#">
+      <span class="isl-logo-slot">INTRASOFT</span><span class="isl-sep">|</span><span class="isl-logo-slot">SAP Partner</span>
+    </a>
+    <a class="isl-btn isl-btn-primary" href="#isl-download" data-cta="header">Get the e-book</a>
+  </div>
+</header>
+
+<!-- 1. Hero -->
+<section class="isl-hero">
+  <div class="isl-wrap isl-hero-grid">
+    <div>
+      <p class="isl-eyebrow" style="color:var(--accent-2)">Free SAP e-book · For growing manufacturers in Saudi Arabia</p>
+      <h1>Is your business growing faster than your systems?</h1>
+      <p class="isl-tagline">Connect finance, operations and supply chain with SAP Cloud ERP.</p>
+      <p class="isl-lead">When growth outpaces spreadsheets and legacy ERP, every report takes longer and every decision waits. The free SAP GROW Fast Myth Busting E-Book shows why growing companies are revisiting SAP Cloud ERP now.</p>
+      <a class="isl-btn isl-btn-primary isl-mobile-only" href="#isl-download" data-cta="hero-mobile">Explore the e-book</a>
+      <p class="isl-inside">Inside the e-book</p>
+      <ul class="isl-hero-points">
+        <li><span class="isl-tick">✓</span><span>Why growing companies are revisiting SAP Cloud ERP now, and what has changed</span></li>
+        <li><span class="isl-tick">✓</span><span>What cost, company size and implementation time really look like today, so growth isn't held back by old assumptions</span></li>
+        <li><span class="isl-tick">✓</span><span>How to tell whether SAP GROW Fast fits your business, so you can take a practical first step</span></li>
+      </ul>
+      <p class="isl-hero-note">For growing mid-size companies in Saudi Arabia, especially manufacturers.</p>
+      <p class="isl-brandline"><b>INTRASOFT × SAP</b> · Connected business. Clearer decisions.</p>
+    </div>
+    <div class="isl-hero-form" id="isl-download">
+      <form class="isl-lead-form" novalidate>
+        <div class="isl-form-body">
+          <h3>Get your free copy</h3>
+          <p class="isl-sub">Instant access. It takes under a minute.</p>
+          <div class="isl-field"><label for="isl-fullName">Full name</label><input id="isl-fullName" name="fullName" autocomplete="name" required><div class="isl-error">Please enter your full name.</div></div>
+          <div class="isl-field"><label for="isl-email">Business email</label><input id="isl-email" name="email" type="email" autocomplete="email" required><div class="isl-error">Please use a valid business email address.</div></div>
+          <div class="isl-field"><label for="isl-company">Company name</label><input id="isl-company" name="company" autocomplete="organization" required><div class="isl-error">Please enter your company name.</div></div>
+          <div class="isl-field"><label for="isl-jobTitle">Job title</label><input id="isl-jobTitle" name="jobTitle" autocomplete="organization-title" required><div class="isl-error">Please enter your job title.</div></div>
+          <div class="isl-field"><label for="isl-companySize">Company size</label>
+            <select id="isl-companySize" name="companySize" required>
+              <option value="">Select…</option>
+              <option>1–49 employees</option><option>50–199 employees</option><option>200–499 employees</option><option>500–999 employees</option><option>1,000+ employees</option>
+            </select><div class="isl-error">Please select your company size.</div></div>
+          <label class="isl-consent"><input type="checkbox" name="marketingConsent" value="yes"><span><span class="isl-opt">Optional</span>Yes, Intrasoft may email me about SAP solutions, events and insights. I can unsubscribe at any time. You don't need to tick this to get the e-book.</span></label>
+          <p class="isl-privacy">By downloading, you acknowledge that Intrasoft will process your details to deliver this resource, as described in our <a class="isl-privacy-link" href="#">privacy notice</a>.</p>
+          <button class="isl-btn isl-btn-primary" type="submit">Send me the free e-book</button>
+          <p class="isl-form-error" role="alert">Something went wrong. Please try again.</p>
+        </div>
+        <div class="isl-success" role="status">
+          <div class="isl-big">✓</div>
+          <h3>Thank you, your copy of the SAP GROW Fast Myth Busting E-Book is ready</h3>
+          <p class="isl-sub">If the download didn't start automatically, use the button below. We've also sent a copy to your inbox.</p>
+          <a class="isl-btn isl-btn-primary isl-ebook-link" href="#" target="_blank" rel="noopener">Download the e-book</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+<div class="isl-trust"><div class="isl-wrap"><span>Official SAP e-book</span><span>Instant access after the form</span><span>Takes under a minute</span><span>Shared by Intrasoft, an SAP partner</span></div></div>
+
+
+<!-- 2. Business challenge -->
+<section>
+  <div class="isl-wrap">
+    <div class="isl-section-head isl-center">
+      <p class="isl-eyebrow">The challenge</p>
+      <h2>Growth has outpaced your systems</h2>
+      <p class="isl-lead">Operations are expanding, but information is scattered across spreadsheets, separate applications and legacy ERP. Leadership spends more effort assembling the business picture than using it.</p>
+    </div>
+    <div class="isl-grid-3">
+      <div class="isl-card">
+        <div class="isl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+        <h3>Combining data by hand</h3>
+        <p>Getting one view of the business means pulling numbers from several systems and reconciling them manually.</p>
+      </div>
+      <div class="isl-card">
+        <div class="isl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><path d="M9 6h6a3 3 0 0 1 3 3v6"/><path d="M6 9v9"/></svg></div>
+        <h3>Reporting instead of deciding</h3>
+        <p>Teams spend their time preparing reports rather than using them to make timely decisions.</p>
+      </div>
+      <div class="isl-card">
+        <div class="isl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="9"/></svg></div>
+        <h3>Legacy systems and workarounds</h3>
+        <p>Older ERP, point integrations and spreadsheet workarounds make every change slower and riskier.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. Business value -->
+<section class="isl-soft">
+  <div class="isl-wrap">
+    <div class="isl-section-head isl-center">
+      <p class="isl-eyebrow">SAP Cloud ERP</p>
+      <h2>An integrated foundation for better business visibility</h2>
+      <p class="isl-lead">SAP Cloud ERP brings core finance, supply chain and HR processes onto one cloud platform, giving decision-makers a stronger basis for understanding performance.</p>
+    </div>
+    <div class="isl-grid-2">
+      <div class="isl-card"><h3>Integrated finance and operations</h3><p>Finance, supply chain and HR processes work from one shared source of data, with fewer hand-offs and fewer reconciliations.</p></div>
+      <div class="isl-card"><h3>More timely business visibility</h3><p>Leadership gets more timely information across core processes, without manual consolidation. What you see depends on the agreed configuration, data quality and reporting requirements.</p></div>
+      <div class="isl-card"><h3>SAP runs the system</h3><p>SAP handles infrastructure, updates, security and maintenance, so you don't need an in-house team of SAP experts.</p></div>
+      <div class="isl-card"><h3>A foundation for growth</h3><p>Start with core processes today and consider additional capabilities as the business evolves, without implementing from scratch again.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3b. Decision-makers -->
+<section>
+  <div class="isl-wrap">
+    <div class="isl-section-head isl-center">
+      <p class="isl-eyebrow">For every decision-maker</p>
+      <h2>What GROW Fast means for your leadership team</h2>
+    </div>
+    <div class="isl-grid-3">
+      <div class="isl-card"><p class="isl-eyebrow" style="margin-bottom:6px">CEO</p><h3>Scale without losing control</h3><p>An integrated foundation that supports growth and helps you see the whole business more clearly.</p></div>
+      <div class="isl-card"><p class="isl-eyebrow" style="margin-bottom:6px">CFO</p><h3>Know the commitment upfront</h3><p>Transparent implementation pricing, clear scope boundaries and more timely access to financial information.</p></div>
+      <div class="isl-card"><p class="isl-eyebrow" style="margin-bottom:6px">CIO</p><h3>A manageable cloud ERP foundation</h3><p>A structured method, proven SAP processes, defined responsibilities and partner support beyond go-live.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. Myth-busting -->
+<section class="isl-soft" id="isl-myths">
+  <div class="isl-wrap">
+    <div class="isl-section-head isl-center">
+      <p class="isl-eyebrow">Myth busting</p>
+      <h2>What's actually changed with SAP Cloud ERP</h2>
+      <p class="isl-lead">Many growing companies still hold beliefs about SAP that date back years. The e-book covers each one in depth.</p>
+    </div>
+    <div class="isl-grid-3">
+      <div class="isl-myth">
+        <div class="isl-m"><b>Myth</b><p>"SAP is too expensive for a company our size."</p></div>
+        <div class="isl-r"><b>Reality</b><p>With GROW Fast, the SAP subscription and Intrasoft's implementation service are priced separately, and the service price for the predefined scope is set upfront. You understand the implementation commitment before you decide.</p></div>
+      </div>
+      <div class="isl-myth">
+        <div class="isl-m"><b>Myth</b><p>"ERP projects always run late and over budget."</p></div>
+        <div class="isl-r"><b>Reality</b><p>GROW Fast is built around a predefined scope, SAP best practices and a structured method, with the agreed scope and service price set before work begins.</p></div>
+      </div>
+      <div class="isl-myth">
+        <div class="isl-m"><b>Myth</b><p>"ERP always takes a year or more."</p></div>
+        <div class="isl-r"><b>Reality</b><p>GROW Fast targets go-live in about four months, using SAP's preconfigured processes as the starting point.</p></div>
+      </div>
+      <div class="isl-myth">
+        <div class="isl-m"><b>Myth</b><p>"Every process must be customized before go-live."</p></div>
+        <div class="isl-r"><b>Reality</b><p>SAP best practices give you a proven starting point, so you begin with standard processes instead of designing everything from scratch.</p></div>
+      </div>
+      <div class="isl-myth">
+        <div class="isl-m"><b>Myth</b><p>"Enterprise ERP needs a large in-house SAP team."</p></div>
+        <div class="isl-r"><b>Reality</b><p>SAP runs the cloud system, and Intrasoft provides the implementation, user training and ongoing support.</p></div>
+      </div>
+      <div class="isl-myth">
+        <div class="isl-m"><b>Myth</b><p>"We need to be bigger before ERP makes sense."</p></div>
+        <div class="isl-r"><b>Reality</b><p>Waiting until your systems become unmanageable makes the move harder. GROW Fast is designed for growing mid-size companies.</p></div>
+      </div>
+    </div>
+    <div class="isl-center" style="margin-top:36px"><a class="isl-btn isl-btn-primary" href="#isl-download" data-cta="myths">Download the SAP GROW Fast Myth Busting E-Book</a></div>
+  </div>
+</section>
+
+<!-- 5. Why Intrasoft GROW Fast -->
+<section>
+  <div class="isl-wrap">
+    <div class="isl-section-head isl-center">
+      <p class="isl-eyebrow">How GROW Fast works</p>
+      <h2>A structured path to SAP Cloud ERP</h2>
+      <p class="isl-lead">Enterprise-grade ERP, delivered with a partner who stays with you.</p>
+    </div>
+    <div class="isl-steps">
+      <div class="isl-step"><h3>Align and define</h3><p>Confirm business requirements, the agreed scope, responsibilities and expectations.</p></div>
+      <div class="isl-step"><h3>Configure to proven practices</h3><p>Use SAP preconfigured processes and relevant templates to set up the agreed solution.</p></div>
+      <div class="isl-step"><h3>Validate and prepare</h3><p>Test the solution, prepare data, train users and check readiness for go-live.</p></div>
+      <div class="isl-step"><h3>Launch and enable</h3><p>Go live with the agreed scope and support users as they start working in the system.</p></div>
+      <div class="isl-step"><h3>Support and expand</h3><p>Ongoing support, and help assessing additional capabilities as the business grows.</p></div>
+    </div>
+    <div class="isl-timeline-bar">
+      <strong>Target: about 4 months to go-live</strong>
+      <span>The timeline depends on scope, data readiness and agreed project conditions.</span>
+    </div>
+    <div style="margin-top:22px">
+      <div class="isl-card"><h3>Upfront, transparent implementation pricing</h3><p>A fixed fee for Intrasoft's agreed, predefined implementation scope, quoted before you start and separate from the SAP subscription. Extra scope, integrations or change requests are quoted separately.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. Manufacturing relevance -->
+<section class="isl-soft">
+  <div class="isl-wrap isl-split">
+    <div>
+      <p class="isl-eyebrow">Relevant for manufacturers</p>
+      <h2>Clearer visibility across finance and operations</h2>
+      <p class="isl-lead">For growing manufacturers, visibility means seeing how purchasing, stock and supply chain activity show up in the financials, without reconciling separate systems by hand.</p>
+      <div class="isl-chips">
+        <span class="isl-chip">Finance</span><span class="isl-chip">Procurement</span><span class="isl-chip">Inventory</span><span class="isl-chip">Supply chain</span><span class="isl-chip">HR</span>
+      </div>
+      <p style="margin-top:18px">Need something outside the standard package? We identify fit gaps early, so you know what is in scope and what isn't before you commit.</p>
+      <p style="font-size:.9rem;color:var(--muted)">The example is illustrative. The exact processes in your starting scope are confirmed with Intrasoft during discovery.</p>
+    </div>
+    <div class="isl-flow" aria-label="Illustrative connected process flow">
+      <div class="isl-flow-row"><span class="isl-dot"></span><b>Purchase order</b><span>Procurement</span></div>
+      <div class="isl-flow-row"><span class="isl-dot"></span><b>Goods receipt and stock</b><span>Inventory</span></div>
+      <div class="isl-flow-row"><span class="isl-dot"></span><b>Sales order and delivery</b><span>Supply chain</span></div>
+      <div class="isl-flow-row"><span class="isl-dot"></span><b>Invoice and payment</b><span>Finance</span></div>
+      <div class="isl-flow-row"><span class="isl-dot"></span><b>Consolidated reporting</b><span>Leadership</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. Why work with Intrasoft. Only confirmed capabilities. Add verified partner status, delivery numbers or approved testimonials here once you have them. -->
+<section id="isl-why-intrasoft">
+  <div class="isl-wrap">
+    <div class="isl-section-head isl-center">
+      <p class="isl-eyebrow">Why work with Intrasoft?</p>
+      <h2>One partner from first workshop to life after go-live</h2>
+      <p class="isl-lead">Intrasoft is an SAP partner that delivers SAP GROW Fast from start to finish, and stays with you afterwards.</p>
+    </div>
+    <div class="isl-grid-2">
+      <div class="isl-card"><h3>Structured implementation</h3><p>A predefined scope and methodology built on SAP best practices, with clear milestones from alignment to go-live.</p></div>
+      <div class="isl-card"><h3>User training</h3><p>Your team learns to run its finance, supply chain and HR processes in SAP Cloud ERP before and at go-live.</p></div>
+      <div class="isl-card"><h3>Saudi market and manufacturing focus</h3><p>We focus on growing mid-size companies in Saudi Arabia, especially manufacturers.</p></div>
+      <div class="isl-card"><h3>Ongoing support</h3><p>Support continues after go-live, including help adding capabilities as your business grows.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. E-book and form -->
+<section class="isl-convert">
+  <div class="isl-wrap isl-convert-grid">
+    <div>
+      <p class="isl-eyebrow" style="color:var(--accent-2)">What's inside</p>
+      <h2>SAP GROW Fast Myth Busting E-Book</h2>
+      <p class="isl-lead" style="color:#b9c8de">See why more growing companies are revisiting SAP Cloud ERP now, and what has changed.</p>
+      <ul class="isl-learn">
+        <li><span class="isl-tick">✓</span><span>The most common misconceptions about cost, size, speed and complexity</span></li>
+        <li><span class="isl-tick">✓</span><span>How a predefined scope keeps ERP modernization under control</span></li>
+        <li><span class="isl-tick">✓</span><span>What growing companies gain by moving to cloud ERP</span></li>
+        <li><span class="isl-tick">✓</span><span>How to decide whether GROW Fast fits your business</span></li>
+      </ul>
+    </div>
+    <div class="isl-inside-cta">
+      <div class="isl-cover" role="img" aria-label="SAP GROW Fast Myth Busting E-Book cover">
+        <div>
+          <small>Free e-book</small>
+          <strong>SAP GROW Fast Myth Busting E-Book</strong>
+        </div>
+        <span>What's really changed about cost, speed and complexity, and why more companies are revisiting SAP Cloud ERP now.</span>
+        <span class="isl-stamp">FREE DOWNLOAD</span>
+      </div>
+      <a class="isl-btn isl-btn-primary" href="#isl-download" data-cta="inside">Get your free copy</a>
+    </div>
+  </div>
+</section>
+
+<!-- 9. FAQ -->
+<section class="isl-soft">
+  <div class="isl-wrap">
+    <div class="isl-section-head isl-center"><p class="isl-eyebrow">FAQ</p><h2>Common questions</h2></div>
+    <div class="isl-faq">
+      <details><summary>What is SAP GROW Fast?</summary><p>An accelerated way to start with SAP Cloud ERP (public edition). It uses SAP preconfigured best practices and a predefined implementation scope, delivered by an SAP partner such as Intrasoft.</p></details>
+      <details><summary>How is the price structured?</summary><p>There are two parts: the SAP Cloud ERP subscription and Intrasoft's fixed-price GROW Fast service for the predefined scope. Both are agreed upfront. The fixed price covers the agreed scope only. Additional scope, integrations or change requests are quoted separately.</p></details>
+      <details><summary>What's included in the starting scope?</summary><p>The predefined package covers core finance, supply chain and HR processes. We confirm the exact processes in scope for your business during the first conversation.</p></details>
+      <details><summary>How long does implementation take?</summary><p>The target is about four months to go-live. The actual timeline depends on scope, data readiness and your team's availability.</p></details>
+      <details><summary>Who runs and supports the system after go-live?</summary><p>SAP runs the cloud system, including infrastructure, updates, security and maintenance. Intrasoft provides user training and ongoing support.</p></details>
+      <details><summary>Our data isn't ready. Can we still start?</summary><p>Data preparation is part of the plan. Data responsibilities are agreed upfront, and readiness is checked before go-live.</p></details>
+      <details><summary>Will the move disrupt our operations?</summary><p>The transition is planned and tested in advance, with clear responsibilities and go-live preparation, so the switch happens in a controlled way.</p></details>
+      <details><summary>Will it fit our manufacturing processes?</summary><p>We walk you through the relevant standard processes and identify any fit gaps, or requirements outside the package scope, before you commit.</p></details>
+      <details><summary>Our team is used to the current systems. Will they adapt?</summary><p>User training is part of the package, and Intrasoft keeps supporting your team after go-live.</p></details>
+      <details><summary>Is this right for us?</summary><p>GROW Fast suits growing mid-size companies, especially manufacturers, that have outgrown spreadsheets, disconnected systems or a legacy ERP. It's less suited to companies that need extensive bespoke development or a scope well outside the predefined package.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="isl-final">
+  <div class="isl-wrap">
+    <h2>Turn readiness into a practical starting point.</h2>
+    <p class="isl-lead" style="margin:0 auto 28px">Download the SAP GROW Fast Myth Busting E-Book, free.</p>
+    <a class="isl-btn isl-btn-primary" href="#isl-download" data-cta="final">Download the free e-book</a>
+  </div>
+</section>
+
+<footer>
+  <div class="isl-wrap">
+    <span>© <span class="isl-yr"></span> Intrasoft. SAP, SAP Cloud ERP and SAP GROW are trademarks or registered trademarks of SAP SE in Germany and other countries.</span>
+    <span><a class="isl-privacy-link" href="#">Privacy notice</a></span>
+  </div>
+</footer>
+</div>
+
+<script>
+(function () {
+  var cfg = window.LP_CONFIG;
+
+  // In-page links scroll smoothly without changing the URL (safe inside GHL page builders).
+  document.querySelectorAll('.isl-lp a[href^="#isl-"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var t = document.getElementById(a.getAttribute('href').slice(1));
+      if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    });
+  });
+  function hostOf(url) { try { return new URL(url, location.href).hostname; } catch (e) { return ''; } }
+  function track(event, data) { window.dataLayer.push(Object.assign({ event: event, campaign: cfg.campaign }, data || {})); }
+
+
+  // Brand assets from LP_CONFIG
+  (function () {
+    var brand = document.querySelector('.isl-lp .isl-brand');
+    if (brand && (cfg.logoUrl || cfg.sapLogoUrl)) {
+      brand.innerHTML = (cfg.logoUrl ? '<img src="' + cfg.logoUrl + '" alt="Intrasoft Middle East">' : '<span class="isl-logo-slot">INTRASOFT</span>') +
+        '<span class="isl-sep">|</span>' +
+        (cfg.sapLogoUrl ? '<img src="' + cfg.sapLogoUrl + '" alt="SAP Partner">' : '<span class="isl-logo-slot">SAP Partner</span>');
+    }
+    var hero = document.querySelector('.isl-lp .isl-hero');
+    if (hero && cfg.heroImageUrl) {
+      var light = hero.classList.contains('isl-hero-light');
+      var veil = light ? 'linear-gradient(90deg, rgba(255,255,255,.96) 0%, rgba(255,255,255,.88) 55%, rgba(255,255,255,.55) 100%)'
+                       : 'linear-gradient(90deg, rgba(19,33,70,.96) 0%, rgba(19,33,70,.85) 55%, rgba(19,33,70,.55) 100%)';
+      hero.style.backgroundImage = veil + ', url("' + cfg.heroImageUrl + '")';
+      hero.classList.add('isl-has-photo');
+    }
+  })();
+  document.querySelector('.isl-yr').textContent = new Date().getFullYear();
+  document.querySelectorAll('.isl-privacy-link').forEach(function (a) { a.href = cfg.privacyUrl; });
+  document.querySelectorAll('.isl-ebook-link').forEach(function (a) { a.href = cfg.ebookUrl; });
+  if (cfg.ebookCoverUrl) {
+    var mock = document.querySelector('.isl-cover');
+    var img = document.createElement('img');
+    img.src = cfg.ebookCoverUrl; img.alt = mock.getAttribute('aria-label'); img.className = 'isl-cover-img';
+    mock.replaceWith(img);
+  }
+
+  // UTM / source attribution.
+  var params = new URLSearchParams(location.search);
+  var utm = {};
+  ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'].forEach(function (k) { if (params.get(k)) utm[k] = params.get(k); });
+  track('page_view', utm);
+
+  document.querySelectorAll('.isl-lp [data-cta]').forEach(function (el) {
+    el.addEventListener('click', function () {
+      track('ebook_cta_click', { position: el.dataset.cta });
+      setTimeout(function () { document.getElementById('isl-fullName').focus({ preventScroll: true }); }, 500);
+    });
+  });
+
+  var freeDomains = /@(gmail|googlemail|yahoo|hotmail|outlook|live|msn|icloud|me|aol|proton|protonmail|gmx|mail|yandex)\./i;
+  var form = document.querySelector('form.isl-lead-form');
+  var started = false;
+  form.addEventListener('input', function () { if (!started) { started = true; track('form_start'); } });
+
+  function validate() {
+    var ok = true;
+    form.querySelectorAll('.isl-field').forEach(function (f) {
+      var input = f.querySelector('input, select');
+      var v = input.value.trim();
+      var bad = !v;
+      if (input.type === 'isl-email') bad = !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) || freeDomains.test(v);
+      f.classList.toggle('isl-invalid', bad);
+      if (bad) ok = false;
+    });
+    return ok;
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    form.querySelector('.isl-form-error').style.display = 'none';
+    if (!validate()) {
+      track('form_error');
+      var first = form.querySelector('.isl-invalid input, .isl-invalid select');
+      if (first) first.focus();
+      return;
+    }
+    var data = Object.fromEntries(new FormData(form).entries());
+    data.marketingConsent = data.marketingConsent === 'yes';
+    data.marketingConsentText = data.marketingConsent ? form.querySelector('.isl-consent').innerText.replace(/^Optional\s*/i, '').trim() : '';
+    data.privacyNoticeUrl = cfg.privacyUrl;
+    data.submittedAt = new Date().toISOString();
+    data.campaign = cfg.campaign;
+    data.page = location.href.split('?')[0];
+    Object.assign(data, utm);
+
+    // Open the download tab inside the click, so browsers don't treat it as a pop-up.
+    var hasEbook = cfg.ebookUrl && cfg.ebookUrl !== '#';
+    var win = hasEbook ? window.open('', '_blank') : null;
+    if (win) win.opener = null;
+
+    var btn = form.querySelector('button[type=submit]');
+    btn.disabled = true; btn.textContent = 'Sending…';
+
+    var ghl = cfg.formMode === 'ghl' || (cfg.formMode !== 'json' && /(^|\.)leadconnectorhq\.com$/i.test(hostOf(cfg.formEndpoint)));
+    var send;
+    if (!cfg.formEndpoint) {
+      send = Promise.resolve();
+    } else if (ghl) {
+      // GHL inbound webhooks don't answer browser CORS checks, so send a form-encoded "simple" request.
+      // The response can't be read in no-cors mode; a network failure still rejects.
+      var body = new URLSearchParams();
+      Object.keys(data).forEach(function (k) { body.append(k, String(data[k])); });
+      send = fetch(cfg.formEndpoint, { method: 'POST', mode: 'no-cors', body: body });
+    } else {
+      send = fetch(cfg.formEndpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
+        .then(function (r) { if (!r.ok) throw new Error(r.status); });
+    }
+
+    send.then(function () {
+      track('form_submit_success');
+      form.querySelector('.isl-form-body').style.display = 'none';
+      form.querySelector('.isl-success').style.display = 'block';
+      track('thank_you_view');
+      if (win) {
+        win.location.href = cfg.ebookUrl;
+        track('resource_download_success');
+      }
+    }).catch(function () {
+      if (win) win.close();
+      form.querySelector('.isl-form-error').style.display = 'block';
+      btn.disabled = false; btn.textContent = 'Send me the free e-book';
+    });
+  });
+
+  form.querySelector('.isl-success .isl-ebook-link').addEventListener('click', function () { track('resource_download_success', { via: 'button' }); });
+})();
+</script>
