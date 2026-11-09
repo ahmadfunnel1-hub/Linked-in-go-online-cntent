@@ -19,7 +19,7 @@ To turn downloads into meetings, we need a few inputs that only Intrasoft can pr
 
 Senior buyers will ask, "Has Intrasoft done this for companies like ours?" At the moment the pages can't answer that. Anything you can share and approve for public use would make a strong difference:
 
-- [ ] **SAP partner status:** your official partner level and the approved SAP partner badge file
+- [x] **SAP partner status:** received, thank you. The SAP Gold Partner badge is now on all pages, following the SAP treatment guide.
 - [ ] **Delivery facts:** for example, the number of SAP projects delivered, years of SAP experience, or industries served in Saudi Arabia and the region (exact figures only)
 - [ ] **One or two client testimonials:** name, title, company, the challenge before and what changed, with the client's written permission
 - [ ] **Client logos** (3–5) that we're allowed to display
@@ -62,7 +62,7 @@ We'd like to make the offer more concrete, using only true facts:
   1. BDC Post 01 mentions *SAP Cloud ERP* in its subline. It should refer to *SAP Business Data Cloud*.
   2. BDC Carousel 2, slide 2 says "Download the Mythbusting E-Book". For BDC it should point to *Connect and Harmonize*.
 
-If it's easier, we can go through everything in a 30-minute call. Could you share what's available by **[date]**? We can launch as soon as items 1 (at least the partner status) and 2 are confirmed. The rest can follow.
+If it's easier, we can go through everything in a 30-minute call. Could you share what's available by **[date]**? We can launch as soon as item 2 is confirmed (we already have the partner status). The rest can follow.
 
 Thank you, and we look forward to launching this together.
 
