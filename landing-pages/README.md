@@ -99,6 +99,7 @@ Every version has its own `campaign` value, so GHL shows which one converts best
 | `variants/bdc/v1-one-truth.html` | BDC Post 06 + Carousel 4 | Light | Finance planning |
 | `variants/bdc/v2-reliable-ai.html` | BDC Posts 04 / 05 + Carousel 2 | Dark | Data & AI |
 | `variants/bdc/v3-finance-operations.html` | BDC Post 01 | Dark | Finance planning |
+| `variants/bdc/v4-impactful-decisions.html` | (test) CFO angle, second BDC E-Book: *Driving Impactful Business Decisions* | Dark | Finance planning |
 
 New `LP_CONFIG` options: `logoUrl`, `sapLogoUrl` (approved logo files) and `heroImageUrl`
 (reuse a post's artwork behind the hero).
@@ -109,8 +110,6 @@ New `LP_CONFIG` options: `logoUrl`, `sapLogoUrl` (approved logo files) and `hero
   SAP logo 96px wide (min 92), never larger than the Intrasoft logo, clear space 32px (half its height = 28px).
 - The SAP Gold Partner logo links to https://www.sap.com/partners/profile/intrasoft-middle-east
 - Footer uses SAP's trademark statement word for word.
-- Page paths must not contain "sap" (otherwise SAP requires "This site is not affiliated with SAP SE or an SAP affiliate
-  company."). The new paths (`/gf-…`, `/bdc-…`) are fine. Retire the old `/sap-1` and `/sap-2` pages.
 - "E-Book" spelling everywhere. "SAP Gold Partner" in copy. No "Official SAP" or "INTRASOFT × SAP" lines.
 - Intrasoft logo: official files from the Intrasoft branding folder (`content/brand/logo/`), hosted in GHL.
 - E-Books are hosted in GHL and set in every page's `ebookUrl`: GROW Fast = SAP GROW Fast Myth Busting E-Book (15 pages),

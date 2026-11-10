@@ -37,7 +37,7 @@ Build it in this order, as a checklist. Do it once per product (GROW Fast, BDC).
 - **Trigger:** Inbound Webhook or form submitted, from that product's landing page.
 - **Actions:**
   1. Create/update contact. Map the fields and add tags (see the README).
-  2. **Send E0** (the delivery email) to everyone, immediately.
+  2. **Send E0** (the delivery email) to everyone, immediately. For the BDC V4 page (`campaign = bdc-v4-impactful-decisions`) send **E0b** instead, which delivers *Driving Impactful Business Decisions*.
   3. Internal notification to the assigned consultant: "New E-Book lead: {{contact.name}}, {{contact.company_name}}, {{contact.job_title}}".
   4. **If/Else:** `marketing-consent` tag present?
      - **No:** end. They received only the E-Book.

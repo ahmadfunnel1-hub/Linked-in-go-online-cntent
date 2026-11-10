@@ -21,6 +21,7 @@ GHL's public API can't create funnels or pages, so build these in **Sites → Fu
 | 1 | BDC V1 · One Truth | `/bdc-one-truth` | `landing-pages/variants/bdc/v1-one-truth.html` | `bdc-v1-one-truth` |
 | 2 | BDC V2 · Reliable AI | `/bdc-reliable-ai` | `landing-pages/variants/bdc/v2-reliable-ai.html` | `bdc-v2-reliable-ai` |
 | 3 | BDC V3 · Finance & Operations | `/bdc-finance-ops` | `landing-pages/variants/bdc/v3-finance-operations.html` | `bdc-v3-finance-ops` |
+| 3b | BDC V4 · Impactful Decisions (second E-Book, test) | `/bdc-impactful-decisions` | `landing-pages/variants/bdc/v4-impactful-decisions.html` | `bdc-v4-impactful-decisions` |
 | 4 | BDC · Thank You | `/bdc-thank-you` | `landing-pages/thank-you/bdc.html` | `bdc-thank-you` |
 
 The landing page files already point to `/gf-thank-you` and `/bdc-thank-you`. Keep those exact paths, and put both
@@ -64,13 +65,11 @@ Templates don't store subject lines. Set the subject in each workflow's Send Ema
 | SAP BDC · E2 | Excel isn't the problem | Relying on it alone is |
 | SAP BDC · E3 | "What happens if…?" | The question leadership asks finance most |
 | SAP BDC · E4 | Before your AI pilot, check this | Reliable AI starts with reliable data |
+| SAP BDC · E0b (V4 only) | Your E-Book: Driving Impactful Business Decisions | {{contact.first_name}}, here's your copy |
 | SAP BDC · E5 | The next decision won't wait for the next budget | An honest question about timing |
 
 Workflow timing, tags and exits: see `content/nurture/ghl-workflow-notes.md`.
 
 ## Existing funnels to tidy up
 
-- **"1st sap product"** has 3 steps that all use the same path, `/sap-grow-fast`. Only one of them can be reached.
-  Archive this funnel, or give each step its own path.
-- **"sap - Project (grow fast & bdc)"** holds the earlier pages (`/sap-1`, `/sap-2`, 2nd copies). Keep it until
-  the new funnels are live, then redirect `/sap-1` → `/bdc-one-truth` and `/sap-2` → `/gf-myths` so old links still work.
+- **"1st sap product"** has 3 steps that all use the same path, `/sap-grow-fast`. Only one can be reached.
