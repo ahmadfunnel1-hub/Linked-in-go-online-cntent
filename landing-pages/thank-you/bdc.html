@@ -94,7 +94,9 @@
     // Official Intrasoft logo files (from the Intrasoft branding folder).
     logoUrl: "https://files.leadconnectorhq.com/file/6af2d08730caaf80f6316eda/intrasoft-logo-white-official.png",        // for navy backgrounds
     logoOnLightUrl: "https://files.leadconnectorhq.com/file/6af2d088923b4bc1094f29c0/intrasoft-logo-dark-official.png", // for white backgrounds
-    privacyUrl: "#"
+    privacyUrl: "#",
+    // Cover for the second E-Book (BDC V4 page sends ?ebook=impactful). Empty = no cover shown.
+    impactfulCoverUrl: ""
   };
   window.dataLayer = window.dataLayer || [];
 </script>
@@ -166,6 +168,17 @@
   root.querySelectorAll('.isl-logo-dark').forEach(function (i) { if (cfg.logoUrl) i.src = cfg.logoUrl; });
   root.querySelector('.isl-yr').textContent = new Date().getFullYear();
   root.querySelectorAll('.isl-privacy-link').forEach(function (a) { a.href = cfg.privacyUrl; });
+
+  // BDC V4 visitors downloaded "Driving Impactful Business Decisions": don't show the other book's cover.
+  try {
+    if (/[?&]ebook=impactful\b/.test(location.search)) {
+      var cv = root.querySelector('.isl-ty-cover');
+      if (cv) {
+        if (cfg.impactfulCoverUrl) { cv.src = cfg.impactfulCoverUrl; cv.alt = 'Driving Impactful Business Decisions E-Book cover'; }
+        else { cv.remove(); }
+      }
+    }
+  } catch (e) {}
 
   // Personal greeting from the landing page (first name only, kept in this browser tab).
   try {
