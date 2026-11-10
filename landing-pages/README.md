@@ -112,9 +112,10 @@ New `LP_CONFIG` options: `logoUrl`, `sapLogoUrl` (approved logo files) and `hero
 - Page paths must not contain "sap" (otherwise SAP requires "This site is not affiliated with SAP SE or an SAP affiliate
   company."). The new paths (`/gf-…`, `/bdc-…`) are fine. Retire the old `/sap-1` and `/sap-2` pages.
 - "E-Book" spelling everywhere. "SAP Gold Partner" in copy. No "Official SAP" or "INTRASOFT × SAP" lines.
-- Intrasoft logo: **interim** files cut from the approved covers (`content/brand/logo/`). Replace `logoUrl` /
-  `logoOnLightUrl` in `LP_CONFIG` with the official files when Intrasoft sends them.
-- To verify with the E-Book PDF: "PureTech Scientific went live in 15 weeks" (quoted as an SAP customer result).
+- Intrasoft logo: official files from the Intrasoft branding folder (`content/brand/logo/`), hosted in GHL.
+- E-Books are hosted in GHL and set in every page's `ebookUrl`: GROW Fast = SAP GROW Fast Myth Busting E-Book (15 pages),
+  BDC = Connect and Harmonize Business Data (10 pages). "Inside the E-Book" bullets and the PureTech result were checked
+  against the PDFs. Full Drive index: `content/drive-index.md`.
 
 ## Headline tests (run one at a time with a GHL split test)
 
