@@ -33,14 +33,14 @@ Build it in this order, as a checklist. Do it once per product (GROW Fast, BDC).
 
 ## 4. Workflows
 
-**Workflow 1: E-book delivery and nurture (one per product)**
+**Workflow 1: E-Book delivery and nurture (one per product)**
 - **Trigger:** Inbound Webhook or form submitted, from that product's landing page.
 - **Actions:**
   1. Create/update contact. Map the fields and add tags (see the README).
   2. **Send E0** (the delivery email) to everyone, immediately.
-  3. Internal notification to the assigned consultant: "New e-book lead: {{contact.name}}, {{contact.company_name}}, {{contact.job_title}}".
+  3. Internal notification to the assigned consultant: "New E-Book lead: {{contact.name}}, {{contact.company_name}}, {{contact.job_title}}".
   4. **If/Else:** `marketing-consent` tag present?
-     - **No:** end. They received only the e-book.
+     - **No:** end. They received only the E-Book.
      - **Yes:** E1 (wait 2 days) → E2 (wait 2 days) → E3 (wait 3 days) → E4 (wait 3 days) → E5 (wait 4 days).
 - **Send window:** Sunday to Thursday, 09:00–11:00 Asia/Riyadh. No Friday sends.
 - **Goal / exit:** appointment booked, OR tag `nurture-replied`, OR unsubscribed. They leave the sequence immediately.
@@ -56,7 +56,7 @@ Build it in this order, as a checklist. Do it once per product (GROW Fast, BDC).
 
 ## 5. Pipeline: "SAP leads"
 
-E-book downloaded → Engaged (clicked a nurture link) → Call booked → Call held → Proposal → Won / Lost
+E-Book downloaded → Engaged (clicked a nurture link) → Call booked → Call held → Proposal → Won / Lost
 
 ## 6. Speed to lead
 
@@ -70,5 +70,5 @@ When the job title contains CEO, CFO, CIO, Director or Head, create a task for t
 
 ## 8. KPIs (weekly)
 
-Landing page conversion rate → e-book downloads → nurture click rate → **calls booked** → calls held → proposals.
+Landing page conversion rate → E-Book downloads → nurture click rate → **calls booked** → calls held → proposals.
 Compare landing page versions by the `campaign` tag.

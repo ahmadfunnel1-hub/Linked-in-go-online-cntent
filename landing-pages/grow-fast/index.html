@@ -7,7 +7,7 @@
   Works as a standalone page, or paste this WHOLE file into a GoHighLevel "Custom JS/HTML" element.
   - In GHL, set the section and row to full width with zero padding so the design spans the page.
   - All classes and IDs start with isl- so they can't clash with GHL styles, forms or scripts.
-  - Settings (form endpoint, e-book PDF, cover image, privacy link) are in LP_CONFIG below.
+  - Settings (form endpoint, E-Book PDF, cover image, privacy link) are in LP_CONFIG below.
 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -76,7 +76,7 @@
   .isl-lp .isl-hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
   .isl-lp .isl-hero-note { font-size: .85rem; color: #8ea3c0; margin-top: 18px; }
 
-  /* E-book cover placeholder */
+  /* E-Book cover placeholder */
   .isl-lp .isl-cover { position: relative; aspect-ratio: 3/4; max-width: 360px; margin: 0 auto; border-radius: 10px; background: linear-gradient(150deg, #fff 0%, #e9f1fb 100%); box-shadow: 0 30px 60px rgba(0,0,0,.4); padding: 34px 28px; display: flex; flex-direction: column; justify-content: space-between; transform: rotate(-2deg); }
   .isl-lp .isl-cover::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 10px; background: var(--accent); border-radius: 10px 0 0 10px; }
   .isl-lp .isl-cover-img { max-width: 360px; margin: 0 auto; border-radius: 6px; box-shadow: 0 30px 60px rgba(0,0,0,.4); }
@@ -193,11 +193,21 @@
   .isl-lp .isl-gp { display: inline-block; margin: 38px 0 0; padding: 0; line-height: 0; }
   .isl-lp .isl-gp-svg { width: 128px; height: auto; display: block; }
 
-  /* E-book cover: thumbnail in the form header + large cover in "What's inside" */
+  /* E-Book cover: thumbnail in the form header + large cover in "What's inside" */
   .isl-lp .isl-form-head { display: flex; gap: 16px; align-items: center; margin-bottom: 18px; }
   .isl-lp .isl-form-head .isl-sub { margin-bottom: 0; }
   .isl-lp .isl-form-cover { width: 76px; height: auto; flex: 0 0 76px; border-radius: 6px; box-shadow: 0 8px 20px rgba(19,33,70,.25); }
   .isl-lp .isl-cover-img { max-width: 340px; width: 100%; border-radius: 8px; box-shadow: 0 30px 60px rgba(0,0,0,.45); transform: rotate(-2deg); }
+
+  /* Brand lockup (SAP partner rules): Intrasoft logo + SAP Gold Partner logo, separate (no divider),
+     SAP logo never larger than Intrasoft's, >= 92px wide, clear space >= half its height (28px). */
+  .isl-lp .isl-brand .isl-logo-img { height: 40px; width: auto; display: block; }
+  .isl-lp .isl-lockup { display: flex; align-items: center; gap: 32px; margin-top: 38px; flex-wrap: wrap; }
+  .isl-lp .isl-lockup img { height: 64px; width: auto; display: block; }
+  .isl-lp .isl-lockup .isl-gp { margin: 0; }
+  .isl-lp .isl-lockup .isl-gp-svg { width: 96px; height: auto; }
+  .isl-lp .isl-proof { text-align: center; margin: 28px auto 0; max-width: 680px; font-size: .98rem; color: var(--muted); }
+  .isl-lp .isl-proof b { color: var(--ink); }
 </style>
 <script>
   // Configure before launch.
@@ -210,8 +220,11 @@
     formMode: "auto",
     // Hosted URL of the approved "SAP GROW Fast Myth Busting E-Book" PDF (SAP_GROW_Fast_Myth_Busting_E-Book.pdf).
     ebookUrl: "#",
-    // URL or relative path of the official SAP e-book cover image (e.g. "assets/ebook-cover.png"). Leave empty to show the text mock-up.
+    // URL or relative path of the official SAP E-Book cover image (e.g. "assets/ebook-cover.png"). Leave empty to show the text mock-up.
     ebookCoverUrl: "https://assets.cdn.filesafe.space/vhJRhZJvL4LvDBJd7NM0/media/e1457bb8-e1de-4e03-a320-27210bbd34bb.webp",
+    // Intrasoft logo files. Interim versions cut from the approved covers: replace with the official files.
+    logoUrl: "https://files.leadconnectorhq.com/file/6af2cb8f30caaf80f630eda7/intrasoft-intrasoft-logo-on-dark-interim-from-approved-covers.png",        // for navy backgrounds
+    logoOnLightUrl: "https://files.leadconnectorhq.com/file/6af2cb8f30caaf80f630ede7/intrasoft-intrasoft-logo-on-light-interim-from-approved-covers.png", // for white backgrounds
     privacyUrl: "#",
     // Thank-you page in GHL (e.g. "https://link.goonlinejo.com/sap-2-thank-you"). Empty = show the thank-you message on this page.
     thankYouUrl: ""
@@ -222,10 +235,8 @@
 <div class="isl-lp">
 <header class="isl-top">
   <div class="isl-wrap">
-    <a class="isl-brand" href="#">
-      <span class="isl-logo-slot">INTRASOFT</span><span class="isl-sep">|</span><span class="isl-logo-slot">SAP Gold Partner</span>
-    </a>
-    <a class="isl-btn isl-btn-primary" href="#isl-download" data-cta="header">Get the e-book</a>
+    <a class="isl-brand" href="#"><img class="isl-logo-img isl-logo-dark" src="https://files.leadconnectorhq.com/file/6af2cb8f30caaf80f630eda7/intrasoft-intrasoft-logo-on-dark-interim-from-approved-covers.png" alt="Intrasoft Middle East" width="79" height="40"></a>
+    <a class="isl-btn isl-btn-primary" href="#isl-download" data-cta="header">Get the E-Book</a>
   </div>
 </header>
 
@@ -233,19 +244,19 @@
 <section class="isl-hero">
   <div class="isl-wrap isl-hero-grid">
     <div>
-      <p class="isl-eyebrow" style="color:var(--accent-2)">Free SAP e-book · For growing companies in Saudi Arabia</p>
+      <p class="isl-eyebrow" style="color:var(--accent-2)">Free E-Book · For growing companies in Saudi Arabia</p>
       <h1>Think SAP is too expensive, too slow or too big for your company? Read this first.</h1>
       <p class="isl-tagline">Map a faster path to cloud ERP with SAP GROW Fast.</p>
-      <p class="isl-lead">SAP GROW Fast is SAP's faster path to cloud ERP for growing mid-size companies. This free SAP e-book busts the myths that can keep a growing company from even considering it.</p>
-      <a class="isl-btn isl-btn-primary isl-mobile-only" href="#isl-download" data-cta="hero-mobile">Get the free e-book</a>
-      <p class="isl-inside">Inside the e-book</p>
+      <p class="isl-lead">SAP GROW Fast is SAP's faster path to cloud ERP for growing mid-size companies. This free SAP E-Book busts the myths that can keep a growing company from even considering it.</p>
+      <a class="isl-btn isl-btn-primary isl-mobile-only" href="#isl-download" data-cta="hero-mobile">Get the free E-Book</a>
+      <p class="isl-inside">Inside the E-Book</p>
       <ul class="isl-hero-points">
         <li><span class="isl-tick">✓</span><span>What's really changed about cost and company size, so you judge SAP Cloud ERP on facts, not old assumptions</span></li>
         <li><span class="isl-tick">✓</span><span>Why go-live is now measured in months, not years, and what that depends on</span></li>
         <li><span class="isl-tick">✓</span><span>How to tell whether SAP GROW Fast fits your business, before you commit to a long evaluation</span></li>
       </ul>
       <p class="isl-hero-note">For growing mid-size companies in Saudi Arabia, especially manufacturers.</p>
-      <div class="isl-gp"><svg class="isl-gp-svg" role="img" aria-label="SAP Gold Partner" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 97.7 57.3"><defs><style>.isl-gp-cls-1{fill:#fff;}.isl-gp-cls-1,.isl-gp-cls-2{fill-rule:evenodd;}.isl-gp-cls-3{fill:#6d1900;}.isl-gp-cls-4{fill:#ffc933;}.isl-gp-cls-2{fill:url(#isl-gp-grad);}.isl-gp-cls-5{fill:#a9b4be;}</style><linearGradient id="isl-gp-grad" x1="36" y1="0" x2="36" y2="35.618" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#00b8f1"/><stop offset=".016" stop-color="#00b5ef"/><stop offset=".308" stop-color="#0d90d8"/><stop offset=".578" stop-color="#1675c8"/><stop offset=".817" stop-color="#1c64be"/><stop offset="1" stop-color="#1e5fbb"/></linearGradient></defs><polygon class="isl-gp-cls-5" points="97.7 57.3 0 35.619 0 0 97.7 21.683 97.7 57.3"/><polygon class="isl-gp-cls-4" points="61.315 21.685 25.7 57.3 97.7 57.3 97.7 21.685 61.315 21.685"/><path class="isl-gp-cls-3" d="M56.853,35.315c0-2.158,1.309-3.564,3.579-3.564,1.25,0,2.1.415,2.705,1.133l-.874.874c-.391-.513-.913-.854-1.831-.854-1.47,0-2.236.889-2.236,2.388,0,1.567.791,2.393,2.134,2.393,1.284,0,1.919-.752,1.919-1.665h-1.636v-1.05h2.876v3.765h-1.108v-1.187c-.361.864-1.25,1.284-2.28,1.284-1.689,0-3.247-1.128-3.247-3.516Z"/><path class="isl-gp-cls-3" d="M64.28,36.062c0-1.685,1.124-2.773,2.72-2.773s2.72,1.089,2.72,2.773-1.123,2.769-2.72,2.769-2.72-1.084-2.72-2.769ZM67,37.83c.83,0,1.426-.62,1.426-1.768s-.596-1.768-1.426-1.768-1.426.615-1.426,1.768.596,1.768,1.426,1.768Z"/><path class="isl-gp-cls-3" d="M70.638,37.42v-5.967h1.24v5.752c0,.415.098.562.454.562.151,0,.283-.024.425-.054v1.021c-.195.049-.459.088-.728.088-1.006,0-1.392-.479-1.392-1.401Z"/><path class="isl-gp-cls-3" d="M73.25,36.062c0-1.665.835-2.773,2.217-2.773,1.04,0,1.641.557,1.89,1.162h.024v-2.998h1.235v7.28h-1.191v-1.099h-.024c-.259.615-.757,1.196-1.885,1.196-1.357,0-2.266-1.05-2.266-2.769ZM75.97,37.83c.83,0,1.421-.62,1.421-1.768s-.591-1.768-1.421-1.768c-.835,0-1.426.615-1.426,1.768s.591,1.768,1.426,1.768Z"/><path class="isl-gp-cls-3" d="M57.234,40.853h2.915c1.719,0,2.524.884,2.524,2.192,0,1.221-.786,2.261-2.456,2.261h-1.685v2.427h-1.299v-6.88ZM60.037,44.203c.908,0,1.333-.439,1.333-1.143,0-.708-.469-1.089-1.372-1.089h-1.465v2.231h1.504Z"/><path class="isl-gp-cls-3" d="M63.005,46.278c0-1.147.938-1.685,2.325-1.685h.967v-.308c0-.645-.312-.996-.962-.996-.606,0-1.031.259-1.363.679l-.737-.732c.493-.537,1.162-.947,2.232-.947,1.357,0,2.061.708,2.061,2.002v3.442h-1.191v-.991h-.029c-.327.747-.864,1.089-1.705,1.089-.933,0-1.597-.557-1.597-1.553ZM65.041,46.878c.796,0,1.255-.601,1.255-1.23v-.347h-.757c-.708,0-1.304.19-1.304.859,0,.444.303.718.806.718Z"/><path class="isl-gp-cls-3" d="M68.787,42.391h1.196v1.147h.02c.181-.854.581-1.25,1.25-1.25.195,0,.361.034.459.068v1.157c-.132-.034-.327-.063-.513-.063-.879,0-1.177.605-1.177,1.597v2.686h-1.235v-5.342Z"/><path class="isl-gp-cls-3" d="M72.693,46.4v-3.052h-.781v-.566l1.782-1.777h.234v1.387h1.157v.957h-1.157v2.812c0,.469.151.596.571.596.21,0,.41-.034.586-.083v1.06c-.215.054-.532.088-.845.088-1.074,0-1.548-.396-1.548-1.421Z"/><path class="isl-gp-cls-3" d="M76.126,42.391h1.196v1.123h.02c.244-.61.732-1.226,1.753-1.226,1.147,0,1.66.781,1.66,1.919v3.525h-1.235v-3.228c0-.718-.249-1.152-.967-1.152-.737,0-1.191.488-1.191,1.387v2.993h-1.235v-5.342Z"/><path class="isl-gp-cls-3" d="M81.673,45.062c0-1.86,1.226-2.773,2.681-2.773,1.787,0,2.422,1.309,2.422,2.607,0,.156-.01.317-.02.469h-3.779c.088,1.016.615,1.499,1.543,1.499.601,0,1.001-.176,1.362-.596l.718.718c-.498.562-1.108.845-2.139.845-1.714,0-2.788-.981-2.788-2.769ZM85.545,44.598c-.068-.942-.527-1.357-1.221-1.357-.684,0-1.206.415-1.328,1.357h2.549Z"/><path class="isl-gp-cls-3" d="M87.737,42.391h1.196v1.147h.02c.181-.854.581-1.25,1.25-1.25.195,0,.361.034.459.068v1.157c-.132-.034-.327-.063-.513-.063-.879,0-1.177.605-1.177,1.597v2.686h-1.235v-5.342Z"/><polyline class="isl-gp-cls-2" points="0 35.618 36.388 35.618 72 0 0 0 0 35.618"/><path class="isl-gp-cls-1" d="M42.728,6.697l-7.087-.004v16.852l-6.191-16.852h-6.139l-5.286,14.093c-.563-3.553-4.239-4.781-7.131-5.7-1.91-.613-3.936-1.515-3.917-2.512.016-.818,1.087-1.578,3.209-1.464,1.427.076,2.684.191,5.187,1.398l2.462-4.288c-2.285-1.162-5.442-1.897-8.029-1.9h-.015c-3.017,0-5.531.977-7.089,2.588-1.086,1.125-1.671,2.554-1.696,4.134-.04,2.174.758,3.718,2.434,4.948,1.415,1.038,3.224,1.71,4.819,2.204,1.968.61,3.574,1.139,3.555,2.27-.014.411-.171.795-.466,1.106-.49.506-1.244.696-2.285.715-2.007.042-3.497-.272-5.868-1.673l-2.189,4.348c2.365,1.345,5.166,2.134,8.023,2.134l.368-.004c2.487-.045,4.495-.754,6.099-2.045.092-.073.175-.147.26-.223l-.711,1.899h6.438l1.081-3.286c1.131.387,2.418.6,3.785.6,1.33,0,2.583-.204,3.694-.568l1.042,3.254h10.5v-6.804h2.29c5.536,0,8.809-2.819,8.809-7.543,0-5.262-3.181-7.677-9.954-7.677ZM26.348,21.117c-.827,0-1.602-.145-2.271-.397l2.246-7.087h.043l2.207,7.108c-.664.235-1.421.377-2.225.377ZM43.144,17.044h-1.561v-5.711h1.561c2.082,0,3.743.692,3.743,2.818,0,2.2-1.66,2.893-3.743,2.893"/></svg></div>
+      <div class="isl-lockup"><img class="isl-logo-dark" src="https://files.leadconnectorhq.com/file/6af2cb8f30caaf80f630eda7/intrasoft-intrasoft-logo-on-dark-interim-from-approved-covers.png" alt="Intrasoft Middle East" width="126" height="64"><a class="isl-gp" href="https://www.sap.com/partners/profile/intrasoft-middle-east" target="_blank" rel="noopener" aria-label="Intrasoft Middle East on SAP Partner Finder"><svg class="isl-gp-svg" role="img" aria-label="SAP Gold Partner" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 97.7 57.3"><defs><style>.isl-gp-cls-1{fill:#fff;}.isl-gp-cls-1,.isl-gp-cls-2{fill-rule:evenodd;}.isl-gp-cls-3{fill:#6d1900;}.isl-gp-cls-4{fill:#ffc933;}.isl-gp-cls-2{fill:url(#isl-gp-grad);}.isl-gp-cls-5{fill:#a9b4be;}</style><linearGradient id="isl-gp-grad" x1="36" y1="0" x2="36" y2="35.618" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#00b8f1"/><stop offset=".016" stop-color="#00b5ef"/><stop offset=".308" stop-color="#0d90d8"/><stop offset=".578" stop-color="#1675c8"/><stop offset=".817" stop-color="#1c64be"/><stop offset="1" stop-color="#1e5fbb"/></linearGradient></defs><polygon class="isl-gp-cls-5" points="97.7 57.3 0 35.619 0 0 97.7 21.683 97.7 57.3"/><polygon class="isl-gp-cls-4" points="61.315 21.685 25.7 57.3 97.7 57.3 97.7 21.685 61.315 21.685"/><path class="isl-gp-cls-3" d="M56.853,35.315c0-2.158,1.309-3.564,3.579-3.564,1.25,0,2.1.415,2.705,1.133l-.874.874c-.391-.513-.913-.854-1.831-.854-1.47,0-2.236.889-2.236,2.388,0,1.567.791,2.393,2.134,2.393,1.284,0,1.919-.752,1.919-1.665h-1.636v-1.05h2.876v3.765h-1.108v-1.187c-.361.864-1.25,1.284-2.28,1.284-1.689,0-3.247-1.128-3.247-3.516Z"/><path class="isl-gp-cls-3" d="M64.28,36.062c0-1.685,1.124-2.773,2.72-2.773s2.72,1.089,2.72,2.773-1.123,2.769-2.72,2.769-2.72-1.084-2.72-2.769ZM67,37.83c.83,0,1.426-.62,1.426-1.768s-.596-1.768-1.426-1.768-1.426.615-1.426,1.768.596,1.768,1.426,1.768Z"/><path class="isl-gp-cls-3" d="M70.638,37.42v-5.967h1.24v5.752c0,.415.098.562.454.562.151,0,.283-.024.425-.054v1.021c-.195.049-.459.088-.728.088-1.006,0-1.392-.479-1.392-1.401Z"/><path class="isl-gp-cls-3" d="M73.25,36.062c0-1.665.835-2.773,2.217-2.773,1.04,0,1.641.557,1.89,1.162h.024v-2.998h1.235v7.28h-1.191v-1.099h-.024c-.259.615-.757,1.196-1.885,1.196-1.357,0-2.266-1.05-2.266-2.769ZM75.97,37.83c.83,0,1.421-.62,1.421-1.768s-.591-1.768-1.421-1.768c-.835,0-1.426.615-1.426,1.768s.591,1.768,1.426,1.768Z"/><path class="isl-gp-cls-3" d="M57.234,40.853h2.915c1.719,0,2.524.884,2.524,2.192,0,1.221-.786,2.261-2.456,2.261h-1.685v2.427h-1.299v-6.88ZM60.037,44.203c.908,0,1.333-.439,1.333-1.143,0-.708-.469-1.089-1.372-1.089h-1.465v2.231h1.504Z"/><path class="isl-gp-cls-3" d="M63.005,46.278c0-1.147.938-1.685,2.325-1.685h.967v-.308c0-.645-.312-.996-.962-.996-.606,0-1.031.259-1.363.679l-.737-.732c.493-.537,1.162-.947,2.232-.947,1.357,0,2.061.708,2.061,2.002v3.442h-1.191v-.991h-.029c-.327.747-.864,1.089-1.705,1.089-.933,0-1.597-.557-1.597-1.553ZM65.041,46.878c.796,0,1.255-.601,1.255-1.23v-.347h-.757c-.708,0-1.304.19-1.304.859,0,.444.303.718.806.718Z"/><path class="isl-gp-cls-3" d="M68.787,42.391h1.196v1.147h.02c.181-.854.581-1.25,1.25-1.25.195,0,.361.034.459.068v1.157c-.132-.034-.327-.063-.513-.063-.879,0-1.177.605-1.177,1.597v2.686h-1.235v-5.342Z"/><path class="isl-gp-cls-3" d="M72.693,46.4v-3.052h-.781v-.566l1.782-1.777h.234v1.387h1.157v.957h-1.157v2.812c0,.469.151.596.571.596.21,0,.41-.034.586-.083v1.06c-.215.054-.532.088-.845.088-1.074,0-1.548-.396-1.548-1.421Z"/><path class="isl-gp-cls-3" d="M76.126,42.391h1.196v1.123h.02c.244-.61.732-1.226,1.753-1.226,1.147,0,1.66.781,1.66,1.919v3.525h-1.235v-3.228c0-.718-.249-1.152-.967-1.152-.737,0-1.191.488-1.191,1.387v2.993h-1.235v-5.342Z"/><path class="isl-gp-cls-3" d="M81.673,45.062c0-1.86,1.226-2.773,2.681-2.773,1.787,0,2.422,1.309,2.422,2.607,0,.156-.01.317-.02.469h-3.779c.088,1.016.615,1.499,1.543,1.499.601,0,1.001-.176,1.362-.596l.718.718c-.498.562-1.108.845-2.139.845-1.714,0-2.788-.981-2.788-2.769ZM85.545,44.598c-.068-.942-.527-1.357-1.221-1.357-.684,0-1.206.415-1.328,1.357h2.549Z"/><path class="isl-gp-cls-3" d="M87.737,42.391h1.196v1.147h.02c.181-.854.581-1.25,1.25-1.25.195,0,.361.034.459.068v1.157c-.132-.034-.327-.063-.513-.063-.879,0-1.177.605-1.177,1.597v2.686h-1.235v-5.342Z"/><polyline class="isl-gp-cls-2" points="0 35.618 36.388 35.618 72 0 0 0 0 35.618"/><path class="isl-gp-cls-1" d="M42.728,6.697l-7.087-.004v16.852l-6.191-16.852h-6.139l-5.286,14.093c-.563-3.553-4.239-4.781-7.131-5.7-1.91-.613-3.936-1.515-3.917-2.512.016-.818,1.087-1.578,3.209-1.464,1.427.076,2.684.191,5.187,1.398l2.462-4.288c-2.285-1.162-5.442-1.897-8.029-1.9h-.015c-3.017,0-5.531.977-7.089,2.588-1.086,1.125-1.671,2.554-1.696,4.134-.04,2.174.758,3.718,2.434,4.948,1.415,1.038,3.224,1.71,4.819,2.204,1.968.61,3.574,1.139,3.555,2.27-.014.411-.171.795-.466,1.106-.49.506-1.244.696-2.285.715-2.007.042-3.497-.272-5.868-1.673l-2.189,4.348c2.365,1.345,5.166,2.134,8.023,2.134l.368-.004c2.487-.045,4.495-.754,6.099-2.045.092-.073.175-.147.26-.223l-.711,1.899h6.438l1.081-3.286c1.131.387,2.418.6,3.785.6,1.33,0,2.583-.204,3.694-.568l1.042,3.254h10.5v-6.804h2.29c5.536,0,8.809-2.819,8.809-7.543,0-5.262-3.181-7.677-9.954-7.677ZM26.348,21.117c-.827,0-1.602-.145-2.271-.397l2.246-7.087h.043l2.207,7.108c-.664.235-1.421.377-2.225.377ZM43.144,17.044h-1.561v-5.711h1.561c2.082,0,3.743.692,3.743,2.818,0,2.2-1.66,2.893-3.743,2.893"/></svg></a></div>
     </div>
     <div class="isl-hero-form" id="isl-download">
       <form class="isl-lead-form" novalidate>
@@ -261,22 +272,22 @@
               <option value="">Select…</option>
               <option>1–49 employees</option><option>50–199 employees</option><option>200–499 employees</option><option>500–999 employees</option><option>1,000+ employees</option>
             </select><div class="isl-error">Please select your company size.</div></div>
-          <label class="isl-consent"><input type="checkbox" name="marketingConsent" value="yes"><span><span class="isl-opt">Optional</span>Yes, Intrasoft may email me about SAP solutions, events and insights. I can unsubscribe at any time. You don't need to tick this to get the e-book.</span></label>
+          <label class="isl-consent"><input type="checkbox" name="marketingConsent" value="yes"><span><span class="isl-opt">Optional</span>Yes, Intrasoft may email me about SAP solutions, events and insights. I can unsubscribe at any time. You don't need to tick this to get the E-Book.</span></label>
           <p class="isl-privacy">By downloading, you acknowledge that Intrasoft will process your details to deliver this resource, as described in our <a class="isl-privacy-link" href="#">privacy notice</a>.</p>
-          <button class="isl-btn isl-btn-primary" type="submit">Send me the free e-book</button>
+          <button class="isl-btn isl-btn-primary" type="submit">Send me the free E-Book</button>
           <p class="isl-form-error" role="alert">Something went wrong. Please try again.</p>
         </div>
         <div class="isl-success" role="status">
           <div class="isl-big">✓</div>
           <h3>Thank you, your copy of the SAP GROW Fast Myth Busting E-Book is ready</h3>
           <p class="isl-sub">If the download didn't start automatically, use the button below. We've also sent a copy to your inbox.</p>
-          <a class="isl-btn isl-btn-primary isl-ebook-link" href="#" target="_blank" rel="noopener">Download the e-book</a>
+          <a class="isl-btn isl-btn-primary isl-ebook-link" href="#" target="_blank" rel="noopener">Download the E-Book</a>
         </div>
       </form>
     </div>
   </div>
 </section>
-<div class="isl-trust"><div class="isl-wrap"><span>Official SAP e-book</span><span>Instant access after the form</span><span>Takes under a minute</span><span>Shared by Intrasoft, an SAP Gold Partner</span></div></div>
+<div class="isl-trust"><div class="isl-wrap"><span>SAP Gold Partner</span><span>26 years of regional presence</span><span>Arabic and English-speaking teams</span><span>Instant access to the E-Book</span></div></div>
 
 
 <!-- 2. Business challenge -->
@@ -319,7 +330,7 @@
       <div class="isl-card"><h3>Integrated finance and operations</h3><p>Finance, supply chain and HR processes work from one shared source of data, with fewer hand-offs and fewer reconciliations.</p></div>
       <div class="isl-card"><h3>More timely business visibility</h3><p>Leadership gets more timely information across core processes, without manual consolidation. What you see depends on the agreed configuration, data quality and reporting requirements.</p></div>
       <div class="isl-card"><h3>SAP runs the system</h3><p>SAP handles infrastructure, updates, security and maintenance, so you don't need an in-house team of SAP experts.</p></div>
-      <div class="isl-card"><h3>A foundation for growth</h3><p>Start with core processes today and consider additional capabilities as the business evolves, without implementing from scratch again.</p></div>
+      <div class="isl-card"><h3>AI-powered, and ready to grow</h3><p>SAP Cloud ERP is SAP's AI-powered cloud ERP. Start with core processes today and add capabilities as the business evolves, without implementing from scratch again.</p></div>
     </div>
   </div>
 </section>
@@ -345,7 +356,7 @@
     <div class="isl-section-head isl-center">
       <p class="isl-eyebrow">Myth busting</p>
       <h2>What's actually changed with SAP Cloud ERP</h2>
-      <p class="isl-lead">Many growing companies still hold beliefs about SAP that date back years. The e-book covers each one in depth.</p>
+      <p class="isl-lead">Many growing companies still hold beliefs about SAP that date back years. The E-Book covers each one in depth.</p>
     </div>
     <div class="isl-grid-3">
       <div class="isl-myth">
@@ -373,7 +384,8 @@
         <div class="isl-r"><b>Reality</b><p>Waiting until your systems become unmanageable makes the move harder. GROW Fast is designed for growing mid-size companies.</p></div>
       </div>
     </div>
-    <div class="isl-center" style="margin-top:36px"><a class="isl-btn isl-btn-primary" href="#isl-download" data-cta="myths">Download the SAP GROW Fast Myth Busting E-Book</a></div>
+    <p class="isl-proof">One of the SAP customer results in the E-Book: <b>PureTech Scientific went live in 15 weeks.</b></p>
+    <div class="isl-center" style="margin-top:28px"><a class="isl-btn isl-btn-primary" href="#isl-download" data-cta="myths">Download the SAP GROW Fast Myth Busting E-Book</a></div>
   </div>
 </section>
 
@@ -386,7 +398,7 @@
       <p class="isl-lead">Enterprise-grade ERP, delivered with a partner who stays with you.</p>
     </div>
     <div class="isl-steps">
-      <div class="isl-step"><h3>Align and define</h3><p>Confirm business requirements, the agreed scope, responsibilities and expectations.</p></div>
+      <div class="isl-step"><h3>Align on priorities</h3><p>Confirm your priorities, roles and timeline within the predefined scope.</p></div>
       <div class="isl-step"><h3>Configure to proven practices</h3><p>Use SAP preconfigured processes and relevant templates to set up the agreed solution.</p></div>
       <div class="isl-step"><h3>Validate and prepare</h3><p>Test the solution, prepare data, train users and check readiness for go-live.</p></div>
       <div class="isl-step"><h3>Launch and enable</h3><p>Go live with the agreed scope and support users as they start working in the system.</p></div>
@@ -412,8 +424,8 @@
       <div class="isl-chips">
         <span class="isl-chip">Finance</span><span class="isl-chip">Procurement</span><span class="isl-chip">Inventory</span><span class="isl-chip">Supply chain</span><span class="isl-chip">HR</span>
       </div>
-      <p style="margin-top:18px">Need something outside the standard package? We identify fit gaps early, so you know what is in scope and what isn't before you commit.</p>
-      <p style="font-size:.9rem;color:var(--muted)">The example is illustrative. The exact processes in your starting scope are confirmed with Intrasoft during discovery.</p>
+      <p style="margin-top:18px">The scope is defined up front: core finance, supply chain and HR, built on SAP best practices. No open-ended project, no scope creep.</p>
+      <p style="font-size:.9rem;color:var(--muted)">The example is illustrative.</p>
     </div>
     <div class="isl-flow" aria-label="Illustrative connected process flow">
       <div class="isl-flow-row"><span class="isl-dot"></span><b>Purchase order</b><span>Procurement</span></div>
@@ -436,13 +448,13 @@
     <div class="isl-grid-2">
       <div class="isl-card"><h3>Structured implementation</h3><p>A predefined scope and methodology built on SAP best practices, with clear milestones from alignment to go-live.</p></div>
       <div class="isl-card"><h3>User training</h3><p>Your team learns to run its finance, supply chain and HR processes in SAP Cloud ERP before and at go-live.</p></div>
-      <div class="isl-card"><h3>Saudi market and manufacturing focus</h3><p>We focus on growing mid-size companies in Saudi Arabia, especially manufacturers.</p></div>
+      <div class="isl-card"><h3>Regional presence</h3><p>26 years of regional presence, Arabic and English-speaking teams, and a focus on growing mid-size companies in Saudi Arabia, especially manufacturers.</p></div>
       <div class="isl-card"><h3>Ongoing support</h3><p>Support continues after go-live, including help adding capabilities as your business grows.</p></div>
     </div>
   </div>
 </section>
 
-<!-- 8. E-book and form -->
+<!-- 8. E-Book and form -->
 <section class="isl-convert">
   <div class="isl-wrap isl-convert-grid">
     <div>
@@ -459,7 +471,7 @@
     <div class="isl-inside-cta">
       <div class="isl-cover" role="img" aria-label="SAP GROW Fast Myth Busting E-Book cover">
         <div>
-          <small>Free e-book</small>
+          <small>Free E-Book</small>
           <strong>SAP GROW Fast Myth Busting E-Book</strong>
         </div>
         <span>What's really changed about cost, speed and complexity, and why more companies are revisiting SAP Cloud ERP now.</span>
@@ -477,12 +489,12 @@
     <div class="isl-faq">
       <details><summary>What is SAP GROW Fast?</summary><p>An accelerated way to start with SAP Cloud ERP (public edition). It uses SAP preconfigured best practices and a predefined implementation scope, delivered by an SAP partner such as Intrasoft.</p></details>
       <details><summary>How is the price structured?</summary><p>There are two parts: the SAP Cloud ERP subscription and Intrasoft's fixed-price GROW Fast service for the predefined scope. Both are agreed upfront. The fixed price covers the agreed scope only. Additional scope, integrations or change requests are quoted separately.</p></details>
-      <details><summary>What's included in the starting scope?</summary><p>The predefined package covers core finance, supply chain and HR processes. We confirm the exact processes in scope for your business during the first conversation.</p></details>
+      <details><summary>What's included in the starting scope?</summary><p>The predefined scope covers core finance, supply chain and HR, built on SAP's preconfigured best practices. It's defined up front, so there's no open-ended project.</p></details>
       <details><summary>How long does implementation take?</summary><p>The target is about four months to go-live. The actual timeline depends on scope, data readiness and your team's availability.</p></details>
       <details><summary>Who runs and supports the system after go-live?</summary><p>SAP runs the cloud system, including infrastructure, updates, security and maintenance. Intrasoft provides user training and ongoing support.</p></details>
       <details><summary>Our data isn't ready. Can we still start?</summary><p>Data preparation is part of the plan. Data responsibilities are agreed upfront, and readiness is checked before go-live.</p></details>
       <details><summary>Will the move disrupt our operations?</summary><p>The transition is planned and tested in advance, with clear responsibilities and go-live preparation, so the switch happens in a controlled way.</p></details>
-      <details><summary>Will it fit our manufacturing processes?</summary><p>We walk you through the relevant standard processes and identify any fit gaps, or requirements outside the package scope, before you commit.</p></details>
+      <details><summary>Will it fit our manufacturing processes?</summary><p>We show you how SAP's preconfigured best practices cover your core finance, supply chain and HR processes, so you can see the fit before you commit.</p></details>
       <details><summary>Our team is used to the current systems. Will they adapt?</summary><p>User training is part of the package, and Intrasoft keeps supporting your team after go-live.</p></details>
       <details><summary>Is this right for us?</summary><p>GROW Fast suits growing mid-size companies, especially manufacturers, that have outgrown spreadsheets, disconnected systems or a legacy ERP. It's less suited to companies that need extensive bespoke development or a scope well outside the predefined package.</p></details>
     </div>
@@ -493,13 +505,13 @@
   <div class="isl-wrap">
     <h2>See what's really changed with SAP Cloud ERP</h2>
     <p class="isl-lead" style="margin:0 auto 28px">Download the SAP GROW Fast Myth Busting E-Book, free.</p>
-    <a class="isl-btn isl-btn-primary" href="#isl-download" data-cta="final">Download the free e-book</a>
+    <a class="isl-btn isl-btn-primary" href="#isl-download" data-cta="final">Download the free E-Book</a>
   </div>
 </section>
 
 <footer>
   <div class="isl-wrap">
-    <span>© <span class="isl-yr"></span> Intrasoft. SAP, SAP Cloud ERP and SAP GROW are trademarks or registered trademarks of SAP SE in Germany and other countries.</span>
+    <span>© <span class="isl-yr"></span> Intrasoft. SAP, the SAP logo, and the SAP partner logos are trademarks or registered trademarks of SAP SE or an SAP affiliated company in Germany and other countries.</span>
     <span><a class="isl-privacy-link" href="#">Privacy notice</a></span>
   </div>
 </footer>
@@ -519,6 +531,8 @@
   function hostOf(url) { try { return new URL(url, location.href).hostname; } catch (e) { return ''; } }
   function track(event, data) { window.dataLayer.push(Object.assign({ event: event, campaign: cfg.campaign }, data || {})); }
 
+  document.querySelectorAll('.isl-lp .isl-logo-dark').forEach(function (i) { if (cfg.logoUrl) i.src = cfg.logoUrl; });
+  document.querySelectorAll('.isl-lp .isl-logo-light').forEach(function (i) { if (cfg.logoOnLightUrl) i.src = cfg.logoOnLightUrl; });
   document.querySelector('.isl-yr').textContent = new Date().getFullYear();
   document.querySelectorAll('.isl-privacy-link').forEach(function (a) { a.href = cfg.privacyUrl; });
   document.querySelectorAll('.isl-ebook-link').forEach(function (a) { a.href = cfg.ebookUrl; });
@@ -617,7 +631,7 @@
     }).catch(function () {
       if (win) win.close();
       form.querySelector('.isl-form-error').style.display = 'block';
-      btn.disabled = false; btn.textContent = 'Send me the free e-book';
+      btn.disabled = false; btn.textContent = 'Send me the free E-Book';
     });
   });
 

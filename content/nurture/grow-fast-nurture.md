@@ -1,13 +1,13 @@
-# SAP GROW Fast: e-book nurture sequence
+# SAP GROW Fast: E-Book nurture sequence
 
-**Goal:** turn e-book downloads into booked **GROW Fast fit checks** (30 minutes, free).
+**Goal:** turn E-Book downloads into booked **GROW Fast fit checks** (30 minutes, free).
 **Audience:** CEOs, CFOs and CIOs of growing mid-size companies in Saudi Arabia, often manufacturers. Cold traffic, so the emails are problem-led.
 **Language:** English, plain B2B tone. Short lines for mobile.
 **Sender:** a real Intrasoft person, not "Intrasoft Marketing": `[SENDER NAME], [TITLE], Intrasoft Middle East`. People reply to people.
 
 | # | When | Who gets it | Job |
 |---|---|---|---|
-| E0 | Immediately | Everyone | Deliver the e-book |
+| E0 | Immediately | Everyone | Deliver the E-Book |
 | E1 | Day 2 | Marketing consent = true | Myth 1: cost |
 | E2 | Day 4 | Consent | Myth 2: overruns, plus making decisions early |
 | E3 | Day 7 | Consent | The month-end test (visibility) |
@@ -28,7 +28,7 @@ Hi {{contact.first_name}},
 
 Here's your copy of the SAP GROW Fast Myth Busting E-Book:
 
-**[Download the e-book]([E-BOOK LINK])**
+**[Download the E-Book]([E-BOOK LINK])**
 
 A quick tip: start with the myth that matches your biggest hesitation about SAP, whether that's cost, company size, time or complexity.
 

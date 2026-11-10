@@ -5,7 +5,7 @@ Sub-account: **Intrasoft Middle East** (`vhJRhZJvL4LvDBJd7NM0`)
 GHL's public API can't create funnels or pages, so build these in **Sites → Funnels**. Each step is one
 **Custom JS/HTML** element in a full-width section and row with zero padding. Paste the whole file.
 
-## Funnel 1: `Intrasoft | SAP GROW Fast | E-book`
+## Funnel 1: `Intrasoft | SAP GROW Fast | E-Book`
 
 | # | Step name | Path | Paste this file | Campaign tag sent |
 |---|---|---|---|---|
@@ -14,7 +14,7 @@ GHL's public API can't create funnels or pages, so build these in **Sites → Fu
 | 3 | GF V3 · Growth | `/gf-growth` | `landing-pages/variants/grow-fast/v3-growth.html` | `grow-fast-v3-growth` |
 | 4 | GF · Thank You | `/gf-thank-you` | `landing-pages/thank-you/grow-fast.html` | `grow-fast-thank-you` |
 
-## Funnel 2: `Intrasoft | SAP BDC | E-book`
+## Funnel 2: `Intrasoft | SAP BDC | E-Book`
 
 | # | Step name | Path | Paste this file | Campaign tag sent |
 |---|---|---|---|---|
@@ -26,16 +26,7 @@ GHL's public API can't create funnels or pages, so build these in **Sites → Fu
 The landing page files already point to `/gf-thank-you` and `/bdc-thank-you`. Keep those exact paths, and put both
 funnels on the same domain as the landing pages, or edit `thankYouUrl` in each file.
 
-**Each step gets its own path**, so every ad can link to the version that matches its post:
-
-| Social post | Link to |
-|---|---|
-| GROW Fast Post 01 | `/gf-myths` |
-| GROW Fast Posts 02, 05, 07 | `/gf-clear-answers` |
-| GROW Fast Posts 03, 06 | `/gf-growth` |
-| BDC Post 06, Carousel 4 | `/bdc-one-truth` |
-| BDC Posts 04, 05, Carousel 2 | `/bdc-reliable-ai` |
-| BDC Post 01 (after its subline fix) | `/bdc-finance-ops` |
+**Each step gets its own path.** The full post → page → E-Book mapping is in `content/social-portfolio-review.md`.
 
 ## Before publishing each step, fill in `LP_CONFIG`
 
@@ -68,7 +59,7 @@ Templates don't store subject lines. Set the subject in each workflow's Send Ema
 | SAP GROW Fast · E3 | The month-end test | How many days does your month-end close take? |
 | SAP GROW Fast · E4 | Who runs it after go-live? | You don't need an in-house SAP team |
 | SAP GROW Fast · E5 | Should you look at this now, or next year? | The real cost of waiting |
-| SAP BDC · E0 | Your SAP e-book: Connect and Harmonize Business Data | {{contact.first_name}}, here's your copy |
+| SAP BDC · E0 | Your SAP E-Book: Connect and Harmonize Business Data | {{contact.first_name}}, here's your copy |
 | SAP BDC · E1 | Same business. Same question. Different numbers. | Why your reports disagree |
 | SAP BDC · E2 | Excel isn't the problem | Relying on it alone is |
 | SAP BDC · E3 | "What happens if…?" | The question leadership asks finance most |

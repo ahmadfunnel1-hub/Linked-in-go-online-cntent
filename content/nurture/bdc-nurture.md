@@ -1,13 +1,13 @@
-# SAP Business Data Cloud: e-book nurture sequence
+# SAP Business Data Cloud: E-Book nurture sequence
 
-**Goal:** turn e-book downloads into booked **finance planning data reviews** (30 minutes, free).
+**Goal:** turn E-Book downloads into booked **finance planning data reviews** (30 minutes, free).
 **Audience:** CFOs, finance directors and FP&A leaders in Saudi Arabia. CIOs and data leaders arrive through the AI landing page version (`bdc-v2-reliable-ai`) and get the same sequence, with E4 most relevant to them.
 **Language:** English, plain B2B tone. Short lines for mobile.
 **Sender:** a real Intrasoft person: `[SENDER NAME], [TITLE], Intrasoft Middle East`.
 
 | # | When | Who gets it | Job |
 |---|---|---|---|
-| E0 | Immediately | Everyone | Deliver the e-book |
+| E0 | Immediately | Everyone | Deliver the E-Book |
 | E1 | Day 2 | Marketing consent = true | Same question, different numbers |
 | E2 | Day 4 | Consent | Excel isn't the problem |
 | E3 | Day 7 | Consent | "What happens if…?" (scenario planning) |
@@ -20,7 +20,7 @@ Merge fields follow GHL: `{{contact.first_name}}`. `[E-BOOK LINK]` is the PDF an
 
 ## E0 · Immediately · Delivery (transactional)
 
-**Subject:** Your SAP e-book: Connect and Harmonize Business Data
+**Subject:** Your SAP E-Book: Connect and Harmonize Business Data
 **Alt subject:** {{contact.first_name}}, here's your copy
 **Preview:** Plus one question to keep in mind while you read.
 
@@ -28,7 +28,7 @@ Hi {{contact.first_name}},
 
 Here's your copy of *Connect and Harmonize Business Data to Amplify the Power of AI*:
 
-**[Download the e-book]([E-BOOK LINK])**
+**[Download the E-Book]([E-BOOK LINK])**
 
 One question to keep in mind while you read: *if leadership asked for a new scenario today, how much of the work would be finding and matching the data?*
 
@@ -143,7 +143,7 @@ An AI pilot needs more than a promising idea. Before you scale anything, three c
 - **Context:** are business definitions understood the same way everywhere?
 - **Access:** can the right people use the right data?
 
-AI is only as reliable as the data behind it. That's why the e-book you downloaded starts with connecting and harmonizing business data, not with AI itself.
+AI is only as reliable as the data behind it. That's why the E-Book you downloaded starts with connecting and harmonizing business data, not with AI itself.
 
 If you're planning AI or analytics initiatives, a data review is a good place to start:
 **[Book a data review]([REVIEW LINK])**

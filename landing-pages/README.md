@@ -87,7 +87,7 @@ CRM field, separate from the lead itself.
 
 ## Brand-aligned variants (`variants/`)
 
-Three versions per product in the Intrasoft x SAP social identity (navy #132146, SAP blue #00A7E3,
+Three versions per product in the Intrasoft social identity (navy #132146, Intrasoft blue #00A7E3,
 light blue #78DCFF, red accent #CD0000). Each hero matches a social post, so ad and page say the same thing.
 Every version has its own `campaign` value, so GHL shows which one converts best.
 
@@ -102,6 +102,19 @@ Every version has its own `campaign` value, so GHL shows which one converts best
 
 New `LP_CONFIG` options: `logoUrl`, `sapLogoUrl` (approved logo files) and `heroImageUrl`
 (reuse a post's artwork behind the hero).
+
+## SAP partner rules applied (client feedback, Nov 8)
+
+- Header: Intrasoft logo only. Hero: Intrasoft logo + SAP Gold Partner logo side by side, separate (no divider),
+  SAP logo 96px wide (min 92), never larger than the Intrasoft logo, clear space 32px (half its height = 28px).
+- The SAP Gold Partner logo links to https://www.sap.com/partners/profile/intrasoft-middle-east
+- Footer uses SAP's trademark statement word for word.
+- Page paths must not contain "sap" (otherwise SAP requires "This site is not affiliated with SAP SE or an SAP affiliate
+  company."). The new paths (`/gf-…`, `/bdc-…`) are fine. Retire the old `/sap-1` and `/sap-2` pages.
+- "E-Book" spelling everywhere. "SAP Gold Partner" in copy. No "Official SAP" or "INTRASOFT × SAP" lines.
+- Intrasoft logo: **interim** files cut from the approved covers (`content/brand/logo/`). Replace `logoUrl` /
+  `logoOnLightUrl` in `LP_CONFIG` with the official files when Intrasoft sends them.
+- To verify with the E-Book PDF: "PureTech Scientific went live in 15 weeks" (quoted as an SAP customer result).
 
 ## Headline tests (run one at a time with a GHL split test)
 
