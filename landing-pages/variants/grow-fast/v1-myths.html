@@ -258,6 +258,12 @@
   /* SAP Gold Partner badge: RGB file, unmodified colours, >= 92px wide, clear space = half its height */
   .isl-lp .isl-gp { display: inline-block; margin: 38px 0 0; padding: 0; line-height: 0; }
   .isl-lp .isl-gp-svg { width: 128px; height: auto; display: block; }
+
+  /* E-book cover: thumbnail in the form header + large cover in "What's inside" */
+  .isl-lp .isl-form-head { display: flex; gap: 16px; align-items: center; margin-bottom: 18px; }
+  .isl-lp .isl-form-head .isl-sub { margin-bottom: 0; }
+  .isl-lp .isl-form-cover { width: 76px; height: auto; flex: 0 0 76px; border-radius: 6px; box-shadow: 0 8px 20px rgba(19,33,70,.25); }
+  .isl-lp .isl-cover-img { max-width: 340px; width: 100%; border-radius: 8px; box-shadow: 0 30px 60px rgba(0,0,0,.45); transform: rotate(-2deg); }
 </style>
 <script>
   // Configure before launch.
@@ -271,7 +277,7 @@
     // Hosted URL of the approved "SAP GROW Fast Myth Busting E-Book" PDF (SAP_GROW_Fast_Myth_Busting_E-Book.pdf).
     ebookUrl: "#",
     // URL or relative path of the official SAP e-book cover image (e.g. "assets/ebook-cover.png"). Leave empty to show the text mock-up.
-    ebookCoverUrl: "",
+    ebookCoverUrl: "https://assets.cdn.filesafe.space/vhJRhZJvL4LvDBJd7NM0/media/4582ddef-004a-4564-8946-c182c9d4eb80.webp",
     // Brand assets (approved files only). Leave empty to keep the text placeholders.
     logoUrl: "",        // Intrasoft Middle East logo (light version for the navy header)
     sapLogoUrl: "",     // SAP partner logo
@@ -315,8 +321,8 @@
     <div class="isl-hero-form" id="isl-download">
       <form class="isl-lead-form" novalidate>
         <div class="isl-form-body">
-          <h3>Get your free copy</h3>
-          <p class="isl-sub">Instant access. It takes under a minute.</p>
+          <div class="isl-form-head"><img class="isl-form-cover" src="https://assets.cdn.filesafe.space/vhJRhZJvL4LvDBJd7NM0/media/4582ddef-004a-4564-8946-c182c9d4eb80.webp" alt="SAP GROW Fast Myth Busting E-Book cover" width="76" height="92"><div><h3>Get your free copy</h3>
+          <p class="isl-sub">Instant access. It takes under a minute.</p></div></div>
           <div class="isl-field"><label for="isl-fullName">Full name</label><input id="isl-fullName" name="fullName" autocomplete="name" required><div class="isl-error">Please enter your full name.</div></div>
           <div class="isl-field"><label for="isl-email">Business email</label><input id="isl-email" name="email" type="email" autocomplete="email" required><div class="isl-error">Please use a valid business email address.</div></div>
           <div class="isl-field"><label for="isl-company">Company name</label><input id="isl-company" name="company" autocomplete="organization" required><div class="isl-error">Please enter your company name.</div></div>
