@@ -309,6 +309,9 @@
   window.LP_CONFIG = {
     campaign: "grow-fast-v1-myths",
     // POST endpoint for leads (CRM / GoHighLevel / marketing-automation webhook). Leave empty to preview without sending.
+    // Native GHL form "SAP E-Book Download": submissions create the contact and fire "Form Submitted".
+    ghlFormId: "CuX90ywuRHRkbUw72BWV",
+    ghlLocationId: "vhJRhZJvL4LvDBJd7NM0",
     formEndpoint: "",
     // "auto": GoHighLevel webhook URLs (leadconnectorhq.com) get form-encoded data; anything else gets JSON.
     // Set "ghl" or "json" to force one.
@@ -695,7 +698,7 @@
     }
     var data = Object.fromEntries(new FormData(form).entries());
     data.marketingConsent = data.marketingConsent === 'yes';
-    data.marketingConsentText = data.marketingConsent ? form.querySelector('.isl-consent').innerText.replace(/^Optional\s*/i, '').trim() : '';
+    data.marketingConsentText = data.marketingConsent ? form.querySelector('.isl-consent').innerText.replace(/^Optional\s*/i, '').replace(/\s*You don.t need to tick this.*$/i, '').trim() : '';
     data.privacyNoticeUrl = cfg.privacyUrl;
     data.submittedAt = new Date().toISOString();
     data.campaign = cfg.campaign;
@@ -712,7 +715,27 @@
 
     var ghl = cfg.formMode === 'ghl' || (cfg.formMode !== 'json' && /(^|\.)leadconnectorhq\.com$/i.test(hostOf(cfg.formEndpoint)));
     var send;
-    if (!cfg.formEndpoint) {
+    if (cfg.ghlFormId) {
+      // Send to the native GHL form. Multipart is a "simple" request, so no CORS preflight is needed.
+      var fd = {
+        full_name: data.fullName || '', email: data.email || '', organization: data.company || '',
+        ZQSKktjkyPL8h8JLjqk3: data.jobTitle || '',            // Job Title
+        l2FumkrB0rpHrSHruNzh: data.companySize || '',         // Company Size
+        X8NvXbldFGtIpNbvipxu: data.marketingConsent ? 'Yes' : 'No', // Marketing Consent
+        zQAmA2lQlOLlGMLiWJCd: data.marketingConsentText || '', // Marketing Consent Text
+        dCkNYTc8Wo9Mud4MfbrF: data.submittedAt,               // Consent Timestamp
+        lWDeYsbE6TOEhFrNSpwQ: data.campaign,                  // Lead Campaign
+        atWbpAcyPhNN0VzEEE2B: data.page,                      // Lead Source Page
+        formId: cfg.ghlFormId, location_id: cfg.ghlLocationId,
+        eventData: { source: 'direct', page: { url: location.href, title: document.title }, url_params: utm, campaign: cfg.campaign, referrer: document.referrer },
+        sessionId: String(Date.now()), Timezone: 'Asia/Riyadh'
+      };
+      var mp = new FormData();
+      mp.append('formData', JSON.stringify(fd));
+      mp.append('locationId', cfg.ghlLocationId);
+      mp.append('formId', cfg.ghlFormId);
+      send = fetch('https://backend.leadconnectorhq.com/forms/submit', { method: 'POST', mode: 'no-cors', body: mp });
+    } else if (!cfg.formEndpoint) {
       send = Promise.resolve();
     } else if (ghl) {
       // GHL inbound webhooks don't answer browser CORS checks, so send a form-encoded "simple" request.
