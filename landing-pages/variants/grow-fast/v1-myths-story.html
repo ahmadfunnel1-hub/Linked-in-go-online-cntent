@@ -132,6 +132,22 @@
 .isl-turn p.isl-t2 em{font-style:normal;color:var(--blue-l)}
 .isl-turn .isl-btn{margin-top:30px}
 
+.isl-pain-ans{display:none;gap:10px;align-items:flex-start;margin-top:14px;padding:12px 14px;border-radius:12px;background:#E8F6FD;color:var(--navy);font-size:.92rem;font-weight:600;line-height:1.55}
+.isl-pain-ans svg{flex:none;width:18px;height:18px;color:var(--blue);margin-top:2px}
+.isl-pain.isl-on .isl-pain-ans{display:flex;animation:islFade .35s ease}
+@keyframes islFade{from{opacity:0;transform:translateY(-4px)}}
+.isl-result{display:flex;align-items:center;gap:22px;margin:26px auto 0;max-width:1092px;padding:22px 26px;border-radius:20px;background:#fff;border:1.5px dashed #BFD3E8;transition:border-color .3s,box-shadow .3s}
+.isl-result.isl-has{border-style:solid;border-color:var(--blue);box-shadow:0 18px 40px -22px rgba(0,167,227,.6)}
+.isl-meter{flex:none;display:flex;gap:5px;align-items:flex-end;height:44px}
+.isl-meter i{width:10px;border-radius:3px;background:#DCE6F2;transition:background .3s}
+.isl-meter i:nth-child(1){height:14px}.isl-meter i:nth-child(2){height:24px}.isl-meter i:nth-child(3){height:34px}.isl-meter i:nth-child(4){height:44px}
+.isl-meter i.isl-lit{background:var(--blue)}
+.isl-result-txt{flex:1}
+.isl-r-title{display:block;font-size:1.12rem;font-weight:800;color:var(--ink)}
+.isl-r-body{display:block;margin-top:4px;color:var(--ink2);line-height:1.6}
+.isl-r-cta{flex:none;display:none}
+.isl-result.isl-has .isl-r-cta{display:inline-flex}
+@media (max-width:760px){.isl-result{flex-direction:column;text-align:center;padding:22px 18px}.isl-r-cta{width:100%}}
 /* Myths */
 .isl-myths{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:52px}
 .isl-myth{position:relative;perspective:1400px;min-height:300px}
@@ -429,29 +445,38 @@
     <div class="isl-narrow isl-center isl-rv">
       <p class="isl-eyebrow">Sound familiar?</p>
       <h2 class="isl-h2">Your business is growing. <span class="isl-grad">Your systems aren't.</span></h2>
-      <p class="isl-tick-hint">Tick the ones that apply to you: <b class="isl-count">0 of 4</b></p>
+      <p class="isl-tick-hint">Tick the ones that apply to your company. We'll show you where the E-Book answers each one.</p>
     </div>
     <div class="isl-pain-grid">
       <button type="button" class="isl-pain isl-rv" aria-pressed="false">
         <span class="isl-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
         <span class="isl-pain-top"><span class="isl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg><i class="isl-num">1</i></span><h3>Numbers from too many places</h3></span>
         <p>One view of the business means pulling data from <b>several systems and spreadsheets</b>, then matching it by hand.</p>
+      <span class="isl-pain-ans"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/></svg>Covered in the E-Book: how one integrated system replaces manual matching across finance, supply chain and HR.</span>
       </button>
       <button type="button" class="isl-pain isl-rv" aria-pressed="false">
         <span class="isl-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
         <span class="isl-pain-top"><span class="isl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><i class="isl-num">2</i></span><h3>Month-end takes too long</h3></span>
         <p>Teams spend days <b>preparing reports</b> instead of using them, and decisions wait for the numbers.</p>
+      <span class="isl-pain-ans"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/></svg>Covered in the E-Book: why reporting gets faster when processes share one source of data.</span>
       </button>
       <button type="button" class="isl-pain isl-rv" aria-pressed="false">
         <span class="isl-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
         <span class="isl-pain-top"><span class="isl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg><i class="isl-num">3</i></span><h3>Workarounds everywhere</h3></span>
         <p>Older ERP, point integrations and spreadsheet fixes make <b>every change slower and riskier</b>.</p>
+      <span class="isl-pain-ans"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/></svg>Covered in the E-Book: starting from SAP best practices instead of custom fixes.</span>
       </button>
       <button type="button" class="isl-pain isl-rv" aria-pressed="false">
         <span class="isl-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
         <span class="isl-pain-top"><span class="isl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg><i class="isl-num">4</i></span><h3>"SAP isn't for companies our size"</h3></span>
         <p>You've ruled out SAP because of <b>cost, time or complexity</b>, without seeing today's numbers.</p>
+      <span class="isl-pain-ans"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/></svg>Covered in the E-Book: the myths on cost, company size and time.</span>
       </button>
+    </div>
+    <div class="isl-result" aria-live="polite">
+      <div class="isl-meter" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      <div class="isl-result-txt"><b class="isl-r-title">Tick at least one to see your result</b><span class="isl-r-body">It takes ten seconds and helps you see what to read first.</span></div>
+      <a class="isl-btn isl-btn-primary isl-r-cta" href="#isl-download" data-cta="self-check">Get the answers in the E-Book</a>
     </div>
     <div class="isl-link" aria-hidden="true"><span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></div>
     <div class="isl-turn isl-narrow isl-rv">
@@ -707,10 +732,23 @@
   root.querySelectorAll('.isl-logo-light').forEach(function (i) { if (cfg.logoOnLightUrl) i.src = cfg.logoOnLightUrl; });
 
   // Tickable pain cards
-  var pains = root.querySelectorAll('.isl-pain'), count = root.querySelector('.isl-count');
+  var pains = root.querySelectorAll('.isl-pain'), res = root.querySelector('.isl-result');
+  var R = [
+    ['Tick at least one to see your result', 'It takes ten seconds and helps you see what to read first.', ''],
+    ['1 of 4: an early sign', 'One gap today tends to become several as the business grows. The E-Book shows how growing companies get ahead of it.', 'See how others got ahead of it'],
+    ['2 of 4: your systems are starting to slow you down', 'This is the point where many growing companies start looking at cloud ERP. The E-Book shows what has changed about cost and time.', 'Read what has changed'],
+    ['3 of 4: your systems are holding growth back', 'Most of your time goes into working around systems, not running the business. The E-Book answers each of these points.', 'Get the answers in the E-Book'],
+    ['4 of 4: GROW Fast was built for exactly this', 'Every point you ticked is covered in the E-Book, along with how to tell whether GROW Fast fits your company.', 'Get the free E-Book now']
+  ];
   pains.forEach(function (c) { c.addEventListener('click', function () {
     var on = c.classList.toggle('isl-on'); c.setAttribute('aria-pressed', on);
-    count.textContent = root.querySelectorAll('.isl-pain.isl-on').length + ' of 4';
+    var n = root.querySelectorAll('.isl-pain.isl-on').length;
+    res.classList.toggle('isl-has', n > 0);
+    res.querySelectorAll('.isl-meter i').forEach(function (b, i) { b.classList.toggle('isl-lit', i < n); });
+    res.querySelector('.isl-r-title').textContent = R[n][0];
+    res.querySelector('.isl-r-body').textContent = R[n][1];
+    if (R[n][2]) res.querySelector('.isl-r-cta').textContent = R[n][2];
+    window.dataLayer && window.dataLayer.push({ event: 'self_check', ticked: n, campaign: cfg.campaign });
   }); });
 
   // Myth flip cards
