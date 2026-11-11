@@ -1,0 +1,375 @@
+<title>سينكرو × Go Online</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap">
+<style>
+/* Layout: a single long RTL sales page split around the brand line — "the order arrives" (Syncro) / "the customer returns" (Smart Growth). */
+:root{
+  --bg:#FBF8F2; --surface:#FFFFFF; --soft:#E6F2F0; --line:#E5DED2;
+  --fg:#1C1C1A; --muted:#5F5F58; --brand:#0F766E; --brand-ink:#0B5B55; --on-brand:#FFFFFF;
+  --accent:#F2B441; --deep:#12302A; --on-deep:#F3F0E8;
+  --display:'Readex Pro','IBM Plex Sans Arabic',Tahoma,sans-serif;
+  --text:'IBM Plex Sans Arabic',Tahoma,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0F1614; --surface:#16201D; --soft:#16312C; --line:#26332F;
+  --fg:#EDEAE2; --muted:#A8ADA6; --brand:#2BA394; --brand-ink:#3CC0AF; --on-brand:#06120F;
+  --accent:#F2B441; --deep:#0A1311; --on-deep:#EDEAE2; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F1614; --surface:#16201D; --soft:#16312C; --line:#26332F;
+  --fg:#EDEAE2; --muted:#A8ADA6; --brand:#2BA394; --brand-ink:#3CC0AF; --on-brand:#06120F;
+  --accent:#F2B441; --deep:#0A1311; --on-deep:#EDEAE2; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--text);font-size:17px;line-height:1.8;direction:rtl;text-align:right;margin:0}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.narrow{max-width:760px}
+section{padding-block:72px}
+h1,h2,h3{font-family:var(--display);line-height:1.35;margin:0;text-wrap:balance}
+h1{font-size:clamp(32px,5.4vw,56px);font-weight:700}
+h2{font-size:clamp(25px,3.6vw,36px);font-weight:700}
+h3{font-size:20px;font-weight:600}
+p{margin:0}
+.muted{color:var(--muted)}
+.small{font-size:14px}
+.eyebrow{display:inline-block;font-family:var(--display);font-weight:600;font-size:14px;letter-spacing:.02em;color:var(--brand);background:var(--soft);padding:4px 14px;border-radius:999px}
+.hl{color:var(--brand)}
+.ic{width:44px;height:44px;flex:0 0 44px}
+svg{max-width:100%}
+/* top */
+.top{border-bottom:1px solid var(--line);padding-block:16px}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.brand{font-family:var(--display);font-weight:700;font-size:20px;color:var(--brand);display:flex;gap:8px;align-items:baseline}
+.brand span{color:var(--muted);font-weight:500;font-size:15px}
+/* buttons */
+.btn{appearance:none;border:0;cursor:pointer;display:inline-block;text-decoration:none;text-align:center;font-family:var(--display);font-weight:700;font-size:19px;padding:16px 36px;border-radius:14px;background:var(--brand);color:var(--on-brand);transition:transform .15s,background .15s}
+.btn:hover{background:var(--brand-ink);transform:translateY(-2px)}
+.btn:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.btn.ghost{background:transparent;color:var(--brand);box-shadow:inset 0 0 0 2px var(--brand)}
+.btn.ghost:hover{background:var(--soft)}
+.ctas{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.note{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:14px;color:var(--muted);margin-top:12px}
+/* hero — the line is split visually */
+.hero{padding-block:56px 40px}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+.hero h1 .line{display:block}
+.hero h1 .two{color:var(--brand)}
+.hero .sub{font-size:clamp(17px,2vw,19px);color:var(--muted);margin:18px 0 26px;max-width:560px}
+.halves{display:grid;gap:12px}
+.half{border-radius:18px;padding:20px 22px;background:var(--surface);border:1px solid var(--line);display:flex;gap:14px;align-items:flex-start}
+.half.b{background:var(--deep);color:var(--on-deep);border-color:transparent}
+.half .tag{font-family:var(--display);font-size:13px;font-weight:600;color:var(--brand)}
+.half.b .tag{color:var(--accent)}
+.half h3{margin:2px 0 4px}
+.half p{font-size:15px;opacity:.85}
+.join{text-align:center;font-family:var(--display);color:var(--muted);font-size:14px}
+/* pain */
+.pain{background:var(--surface)}
+.pain-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:28px}
+.pain-col{min-width:0}
+.pain-col h3{margin-bottom:10px}
+.pain-col ul{margin:0;padding:0 18px 0 0;display:grid;gap:6px}
+.thesis{margin-top:32px;font-family:var(--display);font-size:clamp(20px,2.6vw,26px);font-weight:600;color:var(--brand)}
+/* loop */
+.loop-wrap{overflow-x:auto;margin-top:28px}
+.loop{display:grid;grid-template-columns:repeat(6,minmax(140px,1fr));gap:10px;min-width:880px;counter-reset:s}
+.step{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;position:relative}
+.step.sg{background:var(--soft);border-color:transparent}
+.step b{font-family:var(--display);display:block;font-size:15px;margin-bottom:4px}
+.step span{font-size:14px;color:var(--muted);display:block;line-height:1.6}
+.step .who{font-family:var(--display);font-size:12px;color:var(--brand);margin-bottom:6px;display:block}
+.legend{display:flex;gap:18px;flex-wrap:wrap;margin-top:14px;font-size:14px;color:var(--muted)}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:4px;margin-left:6px;vertical-align:middle;border:1px solid var(--line);background:var(--surface)}
+.legend i.sg{background:var(--soft);border-color:transparent}
+/* features */
+.feat-head{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap;margin-bottom:24px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.f{display:flex;gap:14px;align-items:flex-start;padding:18px;border-radius:16px;background:var(--surface);border:1px solid var(--line);min-width:0}
+.f h3{font-size:17px;margin-bottom:2px}
+.f p{font-size:15px;color:var(--muted);line-height:1.7}
+.sgband{background:var(--deep);color:var(--on-deep)}
+.sgband .eyebrow{background:rgba(242,180,65,.15);color:var(--accent)}
+.sgband .muted{color:var(--on-deep);opacity:.75}
+.sgband .f{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.08)}
+.sgband .f p{color:var(--on-deep);opacity:.75}
+.tiers{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:28px 0 8px;border-radius:16px;overflow:hidden;border:1px solid rgba(255,255,255,.1)}
+.tier{padding:18px 16px;border-left:1px solid rgba(255,255,255,.1)}
+.tier:last-child{border-left:0}
+.tier .n{font-family:var(--display);font-weight:700;font-size:19px;color:var(--accent)}
+.tier .r{font-size:13px;opacity:.7;display:block}
+.tier p{font-size:14px;margin-top:6px;opacity:.9;line-height:1.6}
+/* data */
+.data{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center}
+.fields{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.fields span{font-size:14px;padding:6px 12px;border-radius:999px;background:var(--surface);border:1px solid var(--line)}
+.card-sample{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px}
+.card-sample .row{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px dashed var(--line);font-size:15px}
+.card-sample .row:last-child{border:0}
+.card-sample .k{color:var(--muted)}
+.card-sample .v{font-family:var(--display);font-weight:600;font-variant-numeric:tabular-nums}
+.pill{display:inline-block;font-size:12px;font-family:var(--display);padding:2px 10px;border-radius:999px;background:var(--accent);color:#1C1C1A}
+/* plans */
+.plans{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:32px;align-items:stretch}
+.plan{background:var(--surface);border:1.5px solid var(--line);border-radius:20px;padding:24px 20px;display:flex;flex-direction:column;position:relative;min-width:0}
+.plan.pop{border:2.5px solid var(--brand)}
+.plan .badge{position:absolute;top:-13px;right:20px;background:var(--accent);color:#1C1C1A;font-family:var(--display);font-weight:700;font-size:12px;padding:3px 12px;border-radius:999px}
+.plan .who{font-size:14px;color:var(--muted);margin:2px 0 14px;min-height:46px}
+.price{font-family:var(--display);font-weight:700;font-size:40px;color:var(--brand);line-height:1;font-variant-numeric:tabular-nums}
+.price small{font-size:15px;color:var(--muted);font-weight:500}
+.calc{font-size:13px;color:var(--muted);margin:6px 0 14px;font-variant-numeric:tabular-nums}
+.plan ul{list-style:none;margin:0 0 18px;padding:0;display:grid;gap:8px;flex:1}
+.plan li{font-size:15px;display:flex;gap:8px;align-items:flex-start;line-height:1.6}
+.plan li svg{width:18px;height:18px;flex:0 0 18px;margin-top:4px}
+.plan li.sgli{color:var(--brand-ink);font-weight:500}
+.plan .btn{width:100%;font-size:17px;padding:14px}
+.addons{margin-top:22px;font-size:15px;color:var(--muted)}
+/* timeline */
+.tl{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:28px}
+.tl div{border-top:3px solid var(--brand);padding-top:14px}
+.tl b{font-family:var(--display);display:block;color:var(--brand);font-size:15px}
+.tl h3{font-size:17px;margin:4px 0}
+.tl p{font-size:15px;color:var(--muted);line-height:1.7}
+/* guarantee */
+.guar{display:flex;gap:24px;align-items:center;background:var(--surface);border:2px dashed var(--brand);border-radius:24px;padding:30px}
+.guar svg{width:88px;height:88px;flex:0 0 88px}
+/* faq */
+.faq details{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 20px;margin-bottom:10px}
+.faq summary{cursor:pointer;font-family:var(--display);font-weight:600;list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";float:left;color:var(--brand);font-weight:700}
+.faq details[open] summary::after{content:"–"}
+.faq details p{margin-top:8px;color:var(--muted);font-size:16px}
+/* final */
+.final{background:var(--deep);color:var(--on-deep);text-align:center}
+.final h2{font-size:clamp(28px,4.4vw,44px)}
+.final p{opacity:.8;margin:12px auto 26px;max-width:560px}
+.final .ctas{justify-content:center}
+.final .btn.ghost{color:var(--on-deep);box-shadow:inset 0 0 0 2px rgba(255,255,255,.4)}
+.final .btn.ghost:hover{background:rgba(255,255,255,.08)}
+footer{padding-block:22px;font-size:13px;color:var(--muted);text-align:center}
+/* modal */
+[hidden]{display:none!important}
+.modal{position:fixed;inset:0;background:rgba(10,20,17,.6);display:flex;align-items:center;justify-content:center;padding:16px;z-index:50}
+.dialog{background:var(--surface);color:var(--fg);width:100%;max-width:430px;border-radius:20px;padding:26px 22px;position:relative;max-height:92vh;overflow:auto}
+.close{position:absolute;top:10px;left:12px;background:none;border:0;font-size:26px;cursor:pointer;color:var(--muted)}
+.field{margin-bottom:12px}
+.field label{display:block;font-size:14px;font-weight:600;margin-bottom:4px}
+.field input,.field select{width:100%;font:inherit;font-size:16px;padding:11px 13px;border:1.5px solid var(--line);border-radius:12px;background:var(--bg);color:var(--fg)}
+.field input:focus,.field select:focus{outline:none;border-color:var(--brand)}
+.phone{display:flex;gap:8px;direction:ltr}
+.phone select{flex:0 0 118px}
+.dialog .btn{width:100%}
+.done{text-align:center;padding:18px 0}
+@media (max-width:960px){
+  .hero-grid,.data{grid-template-columns:1fr}
+  .plans{grid-template-columns:1fr 1fr}
+  .grid3{grid-template-columns:1fr 1fr}
+  .tl{grid-template-columns:1fr 1fr}
+  .tiers{grid-template-columns:1fr 1fr}
+  .tier:nth-child(2){border-left:0}
+}
+@media (max-width:600px){
+  section{padding-block:52px}
+  .plans,.grid3,.pain-grid,.tl{grid-template-columns:1fr}
+  .plan .who{min-height:0}
+  .guar{flex-direction:column;text-align:center}
+  .ctas .btn{width:100%}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<header class="top"><div class="wrap">
+  <div class="brand">سينكرو <span>× Go Online · Smart Growth</span></div>
+  <a class="btn ghost" href="#plans" style="font-size:15px;padding:9px 18px">الباقات</a>
+</div></header>
+
+<main>
+<section class="hero"><div class="wrap hero-grid">
+  <div>
+    <span class="eyebrow">للمطاعم والمقاهي</span>
+    <h1 style="margin-top:14px"><span class="line">الطلب يوصل…</span><span class="line two">والزبون يرجع.</span></h1>
+    <p class="sub">سينكرو بيجيبلك الطلب على قناة مطعمك: صفحة طلب، كاشير، وطباعة للمطبخ. وفريق Go Online بيخلّي الزبون اللي طلب مرة يرجع: ولاء، تقييمات، ورسائل استرجاع. وما بتلمس شي.</p>
+    <div class="ctas">
+      <button class="btn" type="button" data-open>ابدأ 14 يوم مجاناً</button>
+      <a class="btn ghost" href="#how">شوف كيف بيشتغل</a>
+    </div>
+    <div class="note"><span>بدون بطاقة</span><span>بدون رسوم إعداد</span><span>فريقنا بيرفع المنيو</span></div>
+  </div>
+  <div class="halves" aria-label="نصّي الباقة">
+    <div class="half"><svg class="ic" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44"><rect width="44" height="44" rx="12" fill="#E6F2F0"/><g transform="translate(10 10)"><path fill="none" stroke="#0F766E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M6 9V3h12v6"/><rect fill="none" stroke="#0F766E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" x="3" y="9" width="18" height="8" rx="2"/><path fill="none" stroke="#0F766E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M7 14h10v7H7z"/><path stroke="#F2B441" stroke-width="2" stroke-linecap="round" d="M9.5 17h5"/></g></svg><div><span class="tag">سينكرو</span><h3>الطلب يوصل</h3><p>الطلب يطلع على الطابعة لحاله، ويفتح واتساب محلك وهو جاهز.</p></div></div>
+    <div class="join">+ نفس الزبون، نفس البيانات +</div>
+    <div class="half b"><svg class="ic" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44"><rect width="44" height="44" rx="12" fill="#E6F2F0"/><g transform="translate(10 10)"><circle fill="none" stroke="#0F766E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" cx="12" cy="7" r="3.5"/><path fill="none" stroke="#0F766E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 20a7 7 0 0 1 11-5.7"/><path fill="none" stroke="#0F766E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M21 17a4 4 0 1 1-1.2-2.8"/><path stroke="#F2B441" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" d="M20 12v2.5h-2.5"/></g></svg><div><span class="tag">Smart Growth · Go Online</span><h3>والزبون يرجع</h3><p>كل زبون بيدخل قاعدة بيانات مطعمك، وبيرجع بالولاء والعروض بالوقت المناسب.</p></div></div>
+  </div>
+</div></section>
+
+<section class="pain"><div class="wrap">
+  <h2>مشكلتين، مش وحدة</h2>
+  <div class="pain-grid">
+    <div class="pain-col"><h3>قبل الطلب</h3><ul>
+      <li>الواتساب والتلفون والتطبيق بيرنّوا بنفس الدقيقة.</li>
+      <li>الطلب بينكتب على ورقة، والورقة بتضيع.</li>
+      <li>بتدفع لشركات الطلبات حتى توصلك طلباتك.</li>
+    </ul></div>
+    <div class="pain-col"><h3>بعد الطلب</h3><ul>
+      <li>الزبون طلب مرة… وما بتعرف ليش ما رجع.</li>
+      <li>تقييم سيئ واحد على Google بيضل قدام كل زبون جديد.</li>
+      <li>رمضان والمباريات بتعدّي بدون حملة جاهزة.</li>
+    </ul></div>
+  </div>
+  <p class="thesis">النظام اللي بيجيب الطلب لحاله ما بيكفي. لازم يكون في نظام يرجّع الزبون.</p>
+</div></section>
+
+<section id="how"><div class="wrap">
+  <span class="eyebrow">كيف بيشتغلوا مع بعض</span>
+  <h2 style="margin-top:10px">طلب واحد بيشغّل الدورة كلها</h2>
+  <div class="loop-wrap" tabindex="0" aria-label="دورة الطلب والرجوع">
+    <div class="loop">
+      <div class="step"><span class="who">سينكرو</span><b>الزبون بيطلب</b><span>من رابط محلك، أو على الكاشير بالصالة.</span></div>
+      <div class="step"><span class="who">سينكرو</span><b>المطبخ بيطبع</b><span>والطلب بيفتح واتساب محلك جاهز.</span></div>
+      <div class="step"><span class="who">سينكرو ← Go Online</span><b>البيانات بتنتقل</b><span>رقم الزبون والقيمة والفرع بيدخلوا قاعدة بيانات مطعمك.</span></div>
+      <div class="step sg"><span class="who">Smart Growth</span><b>طلب تقييم</b><span>الراضي على Google، والزعلان عليك أولاً.</span></div>
+      <div class="step sg"><span class="who">Smart Growth</span><b>مستوى ولاء</b><span>كل زيارة بتقرّبه من المستوى الجاي.</span></div>
+      <div class="step sg"><span class="who">Smart Growth</span><b>رسالة رجوع</b><span>إذا غاب 30 يوم، بيوصله عرض.</span></div>
+    </div>
+  </div>
+  <div class="legend"><span><i></i>سينكرو: الطلب</span><span><i class="sg"></i>Smart Growth: الرجوع</span></div>
+  <p class="muted small" style="margin-top:10px">وطلبات موقعك الحقيقية بتوصل لحسابات Meta وGA4 وGoogle Ads كعمليات شراء. مبيعاتك بتظبط استهدافك.</p>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <div class="feat-head"><div><span class="eyebrow">سينكرو</span><h2 style="margin-top:10px">الطلب يوصل</h2></div><p class="muted">بيشتغل من أول يوم، وفريقنا بيجهّز المتجر.</p></div>
+  <div class="grid3">
+    <div class="f"><svg class="ic" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44"><rect width="44" height="44" rx="12" fill="#E6F2F0"/><g transform="translate(10 10)"><path fill="none" stroke="#0F766E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M10 14a4 4 0 0 0 5.6 0l3-3a4 4 0 0 0-5.6-5.6l-1 1"/><path fill="none" stroke="#0F766E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M14 10a4 4 0 0 0-5.6 0l-3 3a4 4 0 0 0 5.6 5.6l1-1"/><circle cx="19" cy="19" r="2" fill="#F2B441"/></g></svg><div><h3>صفحة طلب للمحل</h3><p>رابط بتحطه بالإنستغرام والواتساب وGoogle.</p></div></div>
+    <div class="f"><svg class="ic" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44"><rect width="44" height="44" rx="12" fill="#E6F2F0"/><g transform="translate(10 10)"><path fill="none" stroke="#0F766E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M6 9V3h12v6"/><rect fill="none" stroke="#0F766E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" x="3" y="9" width="18" height="8" rx="2"/><path fill="none" stroke="#0F766E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M7 14h10v7H7z"/><path stroke="#F2B441" stroke-width="2" stroke-linecap="round" d="M9.5 17h5"/></g></svg><div><h3>طباعة للمطبخ</h3><p>الطلب بيطلع لحاله، وبضغطة بيفتح واتساب محلك.</p></div></div>
+    <div class="f"><svg class="ic" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44"><rect width="44" height="44" rx="12" fill="#E6F2F0"/><g transform="translate(10 10)"><rect fill="none" stroke="#0F766E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" x="6" y="2" width="12" height="20" rx="2.5"/><rect x="8.5" y="5" width="7" height="6" rx="1" fill="#F2B441"/><path fill="none" stroke="#0F766E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 15h.01M12 15h.01M15 15h.01M9 18h.01M12 18h.01M15 18h.01"/></g></svg><div><h3>كاشير على Sunmi</h3><p>الصالة والتيك أواي والأونلاين على نظام واحد. الأجهزة مجاناً بنفس الفرع.</p></div></div>
+    <div class="f"><svg class="ic" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44"><rect width="44" height="44" rx="12" fill="#E6F2F0"/><g transform="translate(10 10)"><path fill="none" stroke="#0F766E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M3 21V9l9-6 9 6v12z"/><path fill="none" stroke="#0F766E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 21v-6h6v6"/><circle cx="12" cy="10" r="1.8" fill="#F2B441"/></g></svg><div><h3>تطبيق النادل</h3><p>الطاولة بتنفتح من التابلت.</p></div></div>
+    <div class="f"><svg class="ic" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="#0F766E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 20V10M10 20V6M16 20v-8M3 20h18"/><path fill="none" stroke="#0F766E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M14 5l4-2 1 4"/></svg><div><h3>تقارير يومية</h3><p>بتعرف كم بعت آخر اليوم، مش آخر الشهر.</p></div></div>
+    <div class="f"><svg class="ic" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44"><rect width="44" height="44" rx="12" fill="#E6F2F0"/><g transform="translate(10 10)"><rect fill="none" stroke="#0F766E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" x="2" y="9" width="12" height="8" rx="1.5"/><path fill="none" stroke="#0F766E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M14 12h4l3 3v2h-7"/><circle fill="none" stroke="#0F766E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" cx="6" cy="19" r="2"/><circle fill="none" stroke="#0F766E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" cx="17" cy="19" r="2"/><path stroke="#F2B441" stroke-width="2" stroke-linecap="round" d="M3 5h7"/></g></svg><div><h3>ديليفري</h3><p>طلب سواق من الطلب نفسه، وصفحة تتبع للزبون. $0 على المطعم.</p></div></div>
+  </div>
+</div></section>
+
+<section class="sgband"><div class="wrap">
+  <div class="feat-head"><div><span class="eyebrow">Smart Growth · Go Online</span><h2 style="margin-top:10px">والزبون يرجع</h2></div><p class="muted">مُدار بالكامل من فريق Go Online. الزبائن والبيانات إلك.</p></div>
+  <h3>نادي ولاء بأربع مستويات، بدون تطبيق إضافي</h3>
+  <div class="tiers">
+    <div class="tier"><span class="n">الاحتياطي</span><span class="r">أول زيارة</span><p>رسالة ترحيب وهدية على الطلب الجاي.</p></div>
+    <div class="tier"><span class="n">الأساسي</span><span class="r">3 زيارات</span><p>صنف جانبي مجاناً، وأولوية بالعروض.</p></div>
+    <div class="tier"><span class="n">الكابتن</span><span class="r">8 زيارات</span><p>هدية عيد ميلاد ومعاملة مميزة.</p></div>
+    <div class="tier"><span class="n">الأسطورة</span><span class="r">15+ زيارة</span><p>VIP: دعوات وعروض خاصة.</p></div>
+  </div>
+  <p class="small" style="opacity:.7;margin-bottom:26px">المكافآت مثال. بنحددها مع كل مطعم حسب منيوه وهامشه.</p>
+  <div class="grid3">
+    <div class="f"><svg class="ic" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44"><rect width="44" height="44" rx="12" fill="#E6F2F0"/><g transform="translate(10 10)"><path fill="none" stroke="#0F766E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 21s-8-4.6-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 6.4-8 11-8 11z"/><circle cx="12" cy="11" r="2" fill="#F2B441"/></g></svg><div><h3>رسائل رجوع</h3><p>زبون غاب 30 يوم؟ بيوصله عرض، وبعدها تذكير.</p></div></div>
+    <div class="f"><svg class="ic" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="none" stroke="#0F766E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M4 5h16v11H9l-5 4z"/><path fill="none" stroke="#0F766E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M8.5 10.5l2.2 2.2 4.3-4.3"/></svg><div><h3>آلة التقييمات</h3><p>بعد كل زيارة: الراضي لـ Google، والزعلان لإلك أولاً.</p></div></div>
+    <div class="f"><svg class="ic" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44"><rect width="44" height="44" rx="12" fill="#E6F2F0"/><g transform="translate(10 10)"><rect fill="none" stroke="#0F766E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" x="4" y="3" width="16" height="18" rx="2"/><path fill="none" stroke="#0F766E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M8 9l1.5 1.5L12 8M8 15l1.5 1.5L12 14"/><path stroke="#F2B441" stroke-width="2" stroke-linecap="round" d="M14 9.5h3M14 15.5h3"/></g></svg><div><h3>حملات موسمية جاهزة</h3><p>رمضان، العيد، ليالي المباريات، وعرض الثلاثاء للأيام الهادية.</p></div></div>
+    <div class="f"><svg class="ic" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44"><rect width="44" height="44" rx="12" fill="#E6F2F0"/><g transform="translate(10 10)"><circle fill="none" stroke="#0F766E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" cx="11" cy="13" r="8"/><circle fill="none" stroke="#0F766E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" cx="11" cy="13" r="4"/><circle cx="11" cy="13" r="1.6" fill="#F2B441"/><path fill="none" stroke="#0F766E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M11 13l9-9M16 4h4v4"/></g></svg><div><h3>صفحة تسجيل وولاء</h3><p>متابعينك بيصيروا زبائن بأسماء وأرقام.</p></div></div>
+    <div class="f"><svg class="ic" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44"><rect width="44" height="44" rx="12" fill="#E6F2F0"/><g transform="translate(10 10)"><path fill="none" stroke="#0F766E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M2 14l8-6 10-4-4 10-6 8-2-6z"/><circle cx="14" cy="9" r="1.8" fill="#F2B441"/></g></svg><div><h3>واتساب وإيميل</h3><p>رسائل باسم مطعمك، وكل زبون يقدر يلغي اشتراكه.</p></div></div>
+    <div class="f"><svg class="ic" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><circle cx="32" cy="32" r="30" fill="#E6F2F0"/><path fill="none" stroke="#0F766E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M32 14l14 6v10c0 9-6 16-14 20-8-4-14-11-14-20V20z"/><path d="M25 32l5 5 9-9" fill="none" stroke="#F2B441" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><div><h3>تقرير شهري</h3><p>كم زبون رجع، وكم تقييم جديد، ومن أي حملة.</p></div></div>
+  </div>
+</div></section>
+
+<section><div class="wrap data">
+  <div>
+    <span class="eyebrow">ليش الاثنين مع بعض؟</span>
+    <h2 style="margin-top:10px">لأن كل طلب بيصير ملف زبون</h2>
+    <p class="muted" style="margin-top:12px">طلبات الموقع والصالة والتيك أواي، كلها بتنتقل من سينكرو لقاعدة بيانات مطعمك بنفس اللحظة. هيك بنعرف مين غاب ومين ترقّى، ومين يستاهل رسالة اليوم.</p>
+    <div class="fields"><span>اسم الزبون</span><span>رقم الجوال</span><span>تاريخ الطلب</span><span>القيمة</span><span>الفرع</span><span>أونلاين / صالة / تيك أواي</span></div>
+  </div>
+  <div class="card-sample" aria-label="مثال لملف زبون">
+    <div class="row"><span class="k">مثال توضيحي</span><span class="pill">الكابتن</span></div>
+    <div class="row"><span class="k">عدد الطلبات</span><span class="v">9</span></div>
+    <div class="row"><span class="k">آخر طلب</span><span class="v">قبل 12 يوم · صالة</span></div>
+    <div class="row"><span class="k">متوسط الفاتورة</span><span class="v">8.50 د.أ</span></div>
+    <div class="row"><span class="k">الخطوة الجاية</span><span class="v">رسالة رجوع بعد 18 يوم</span></div>
+  </div>
+</div></section>
+
+<section id="plans" style="background:var(--surface)"><div class="wrap">
+  <div style="text-align:center"><span class="eyebrow">الباقات</span><h2 style="margin-top:10px">ابدأ بالطلب، وزيد الرجوع لما تكون جاهز</h2>
+  <p class="muted" style="margin-top:8px">كل الباقات بتبدأ بتجربة سينكرو 14 يوم مجاناً. Smart Growth بيشتغل بعد الاشتراك.</p></div>
+  <div class="plans">
+    <div class="plan"><h3>طلبات</h3><p class="who">محل صغير بدّه يبدأ</p>
+      <div class="price">$39 <small>/ شهر</small></div><div class="calc">سينكرو ستور</div>
+      <ul><li><svg class="" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#0F766E"/><path d="M6 10.3l2.6 2.6L14 7.5" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>صفحة طلب + كاشير Sunmi</li><li><svg class="" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#0F766E"/><path d="M6 10.3l2.6 2.6L14 7.5" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>طباعة المطبخ + النادل</li><li><svg class="" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#0F766E"/><path d="M6 10.3l2.6 2.6L14 7.5" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>تقارير يومية</li><li><svg class="" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#0F766E"/><path d="M6 10.3l2.6 2.6L14 7.5" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>الأجهزة مجاناً</li></ul>
+      <button class="btn ghost" type="button" data-open data-plan="orders">ابدأ 14 يوم مجاناً</button></div>
+    <div class="plan pop"><span class="badge">مناسب لأغلب المطاعم</span><h3>طلبات + زبون يرجع</h3><p class="who">فرع واحد بدّه رجوع زبائن وتقييمات</p>
+      <div class="price">$189 <small>/ شهر</small></div><div class="calc">39 سينكرو + 150 Smart Growth Starter</div>
+      <ul><li><svg class="" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#0F766E"/><path d="M6 10.3l2.6 2.6L14 7.5" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>كل باقة «طلبات»</li><li class="sgli"><svg class="" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#0F766E"/><path d="M6 10.3l2.6 2.6L14 7.5" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>قاعدة بيانات زبائنك</li><li class="sgli"><svg class="" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#0F766E"/><path d="M6 10.3l2.6 2.6L14 7.5" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>واتساب وإيميل تلقائي</li><li class="sgli"><svg class="" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#0F766E"/><path d="M6 10.3l2.6 2.6L14 7.5" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>آلة التقييمات</li><li class="sgli"><svg class="" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#0F766E"/><path d="M6 10.3l2.6 2.6L14 7.5" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>صفحة تسجيل + تقرير شهري</li></ul>
+      <button class="btn" type="button" data-open data-plan="return">ابدأ 14 يوم مجاناً</button></div>
+    <div class="plan"><h3>نمو</h3><p class="who">مطعم بفريق، بدّه ولاء ومحتوى</p>
+      <div class="price">$354 <small>/ شهر</small></div><div class="calc">39 + 15 تاسكس + 300 Operator</div>
+      <ul><li><svg class="" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#0F766E"/><path d="M6 10.3l2.6 2.6L14 7.5" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>كل «طلبات + زبون يرجع»</li><li class="sgli"><svg class="" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#0F766E"/><path d="M6 10.3l2.6 2.6L14 7.5" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>نادي ولاء بأربع مستويات</li><li class="sgli"><svg class="" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#0F766E"/><path d="M6 10.3l2.6 2.6L14 7.5" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>6 أتمتة شغالة</li><li class="sgli"><svg class="" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#0F766E"/><path d="M6 10.3l2.6 2.6L14 7.5" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>مخطط محتوى + داشبورد</li><li><svg class="" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#0F766E"/><path d="M6 10.3l2.6 2.6L14 7.5" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>تاسكس لـ 3 مستخدمين</li></ul>
+      <button class="btn ghost" type="button" data-open data-plan="growth">ابدأ 14 يوم مجاناً</button></div>
+    <div class="plan"><h3>سلسلة</h3><p class="who">3 فروع أو أكثر</p>
+      <div class="price"><small>من</small> $500 <small>+ سينكرو</small></div><div class="calc">Smart Growth Champion + فاتورة سينكرو حسب الفروع</div>
+      <ul><li><svg class="" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#0F766E"/><path d="M6 10.3l2.6 2.6L14 7.5" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>كل الفروع على نظام واحد</li><li class="sgli"><svg class="" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#0F766E"/><path d="M6 10.3l2.6 2.6L14 7.5" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>6 حملات موسمية جاهزة</li><li class="sgli"><svg class="" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#0F766E"/><path d="M6 10.3l2.6 2.6L14 7.5" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>مسار فرنشايز وطلبات الشركات</li><li class="sgli"><svg class="" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#0F766E"/><path d="M6 10.3l2.6 2.6L14 7.5" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>بوت رد على الواتساب والموقع</li><li class="sgli"><svg class="" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" fill="#0F766E"/><path d="M6 10.3l2.6 2.6L14 7.5" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>اجتماع أسبوعي + تقرير كامل</li></ul>
+      <button class="btn ghost" type="button" data-open data-plan="chain">ابدأ 14 يوم مجاناً</button></div>
+  </div>
+  <p class="addons">إضافات سينكرو: فرع إضافي $30 · تاسكس $5 للمستخدم (بعد 5 مستخدمين $3) · سينكرو آدز $49 · 313 بتدير إعلاناتك $400 شهرياً. الأسعار بالدولار للمحلات الجديدة.</p>
+</div></section>
+
+<section><div class="wrap">
+  <span class="eyebrow">شو بيصير بعد ما تسجّل</span>
+  <h2 style="margin-top:10px">خطة أول 90 يوم</h2>
+  <div class="tl">
+    <div><b>اليوم 1–14</b><h3>متجرك شغال</h3><p>بنرفع المنيو، وبتربط Sunmi معنا على واتساب أو فيديو، وبتجرّب على طلبات حقيقية.</p></div>
+    <div><b>بعد الاشتراك · أسبوع 1–2</b><h3>قاعدة الزبائن</h3><p>بنربط الطلبات بقاعدة البيانات، وبنشغّل الترحيب والتقييمات.</p></div>
+    <div><b>اليوم 31–60</b><h3>الولاء والحملات</h3><p>بنطلق نادي الولاء ورسائل الرجوع، وأول حملة موسمية.</p></div>
+    <div><b>اليوم 61–90</b><h3>نحسّن على الأرقام</h3><p>بنشوف شو اشتغل، وبنكبّره، ومنعطيك تقرير الـ 90 يوم.</p></div>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap narrow">
+  <div class="guar"><svg class="" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><circle cx="32" cy="32" r="30" fill="#E6F2F0"/><path fill="none" stroke="#0F766E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M32 14l14 6v10c0 9-6 16-14 20-8-4-14-11-14-20V20z"/><path d="M25 32l5 5 9-9" fill="none" stroke="#F2B441" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg><div><h2 style="font-size:26px">جرّبه قبل ما تدفع شي.</h2>
+  <p class="muted" style="margin-top:6px">14 يوم على طلبات حقيقية بمطعمك، بدون بطاقة وبدون رسوم إعداد. وبعدها اشتراك شهري، بتوقفه أي وقت.</p></div></div>
+</div></section>
+
+<section class="faq" style="background:var(--surface)"><div class="wrap narrow">
+  <h2 style="margin-bottom:22px">أسئلة بتيجي ببال كل صاحب مطعم</h2>
+  <details><summary>عندي تطبيق توصيل وبيكفيني.</summary><p>ما حدا بيقلك وقّفه. بس تطبيق التوصيل بياخد جزء من كل طلب، والزبون بيصير إله. سينكرو بيخلّي طلب موقعك يوصلك إنت، وSmart Growth بيخلّي الزبون يرجعلك إنت.</p></details>
+  <details><summary>ما عندي وقت لنظام جديد.</summary><p>إحنا بنجهّز المتجر وبنرفع المنيو، وفريق Go Online بيدير الولاء والرسائل والحملات. إنت بتقرأ التقرير.</p></details>
+  <details><summary>هل الرسائل رح تزعج زبائني؟</summary><p>كل رسالة بتنبعت بوقت ومناسبة واضحة، وكل زبون بيقدر يلغي اشتراكه بضغطة.</p></details>
+  <details><summary>لمين بيانات الزبائن؟</summary><p>إلك. قاعدة بيانات مطعمك منفصلة تماماً عن أي مطعم ثاني.</p></details>
+  <details><summary>بيستقبل طلبات التطبيقات تلقائياً؟</summary><p>لا. طلبات التطبيقات بتنضاف يدوياً على الكاشير. اللي بيوصل لحاله هو طلب موقعك.</p></details>
+  <details><summary>بقدر أبدأ بسينكرو بس؟</summary><p>أكيد. باقة «طلبات» بـ $39، وبتضيف Smart Growth وقت ما بدك.</p></details>
+</div></section>
+
+<section class="final"><div class="wrap narrow">
+  <h2>الطلب يوصل… والزبون يرجع.</h2>
+  <p>ابدأ بتجربة سينكرو اليوم، وإحنا بنجهّز الباقي.</p>
+  <div class="ctas"><button class="btn" type="button" data-open>ابدأ 14 يوم مجاناً</button><a class="btn ghost" href="#plans">قارن الباقات</a></div>
+</div></section>
+</main>
+<footer>سينكرو × Go Online · الشروط · سياسة الخصوصية</footer>
+
+<div class="modal" id="signup" role="dialog" aria-modal="true" aria-labelledby="st" hidden>
+  <div class="dialog">
+    <button class="close" type="button" data-close aria-label="إغلاق">×</button>
+    <div id="formview">
+      <h3 id="st" style="font-size:23px">خلّينا نجهّز متجرك</h3>
+      <p class="muted small" style="margin:4px 0 16px">دقيقة وحدة، وبعدها بنبلّش.</p>
+      <form id="sf" novalidate>
+        <input type="hidden" id="plan" name="plan" value="return">
+        <div class="field"><label for="store">اسم المحل</label><input id="store" name="store" required></div>
+        <div class="field"><label for="phone">رقم الجوال</label>
+          <div class="phone"><select id="cc" aria-label="كود الدولة"><option>🇯🇴 +962</option><option>🇸🇦 +966</option><option>🇦🇪 +971</option><option>🇰🇼 +965</option><option>🇶🇦 +974</option><option>🇧🇭 +973</option><option>🇴🇲 +968</option><option>🇵🇸 +970</option><option>🇱🇧 +961</option><option>🇮🇶 +964</option><option>🇪🇬 +20</option></select>
+          <input id="phone" type="tel" inputmode="tel" required placeholder="7XXXXXXXX"></div></div>
+        <div class="field"><label for="type">نوع المحل</label><select id="type" required><option value="">اختر</option><option>مطعم</option><option>مقهى</option><option>مطبخ سحابي / توصيل</option><option>سلسلة فروع</option></select></div>
+        <p class="small muted" style="margin:6px 0 10px">مجاناً 14 يوم · بدون بطاقة · بدون رسوم إعداد</p>
+        <button class="btn" type="submit">ابدأ 14 يوم مجاناً</button>
+      </form>
+    </div>
+    <div id="doneview" class="done" hidden><h3>وصلنا طلبك ✓</h3><p class="muted" style="margin-top:8px">هاي نسخة عرض. بالصفحة الحقيقية، الطلب بيدخل على GoHighLevel وبتبدأ رسائل الترحيب.</p></div>
+  </div>
+</div>
+<script>
+(function(){
+  var m=document.getElementById('signup'),last;
+  function open(e){last=e.currentTarget;var p=last.getAttribute('data-plan');if(p)document.getElementById('plan').value=p;document.getElementById('formview').hidden=false;document.getElementById('doneview').hidden=true;m.hidden=false;setTimeout(function(){document.getElementById('store').focus()},30)}
+  function close(){m.hidden=true;if(last)last.focus()}
+  document.querySelectorAll('[data-open]').forEach(function(b){b.addEventListener('click',open)});
+  document.querySelectorAll('[data-close]').forEach(function(b){b.addEventListener('click',close)});
+  m.addEventListener('click',function(e){if(e.target===m)close()});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!m.hidden)close()});
+  document.getElementById('sf').addEventListener('submit',function(e){e.preventDefault();var f=e.target;if(!f.store.value||!document.getElementById('phone').value||!document.getElementById('type').value){f.reportValidity&&f.reportValidity();return}document.getElementById('formview').hidden=true;document.getElementById('doneview').hidden=false});
+})();
+</script>
