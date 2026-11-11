@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>سينكرو — ابدأ 14 يوم مجاناً</title>
+<meta name="description" content="مطعمك كله بمكان واحد: صفحة طلب، كاشير على Sunmi، طباعة المطبخ والتقارير. جرّب 14 يوم مجاناً بدون بطاقة.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ===== Syncro tokens (استبدل HEX بالأكواد الرسمية عند توفرها) ===== */
+:root{
+  --primary:#0F766E;      /* أخضر سينكرو */
+  --primary-dark:#0B5B55;
+  --primary-soft:#E6F2F0;
+  --secondary:#F2B441;    /* زعفراني للإبراز */
+  --cta:#0F766E;          /* الزر = أخضر سينكرو (لا تستخدم ألوان المنتجات الفرعية) */
+  --cta-hover:#0B5B55;
+  --bg:#FBF7F0;
+  --surface:#FFFFFF;
+  --text:#1C1C1A;
+  --muted:#6B6B63;
+  --border:#E5DED2;
+  --radius:16px;
+  --shadow:0 10px 30px rgba(28,28,26,.08);
+  --font-head:'Readex Pro','IBM Plex Sans Arabic',system-ui,sans-serif;
+  --font-body:'IBM Plex Sans Arabic',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:18px;line-height:1.75;-webkit-font-smoothing:antialiased}
+img,svg{max-width:100%;display:block}
+.wrap{width:100%;max-width:1040px;margin:0 auto;padding:0 20px}
+.narrow{max-width:760px}
+section{padding:72px 0}
+h1,h2,h3{font-family:var(--font-head);line-height:1.35;color:var(--text)}
+h1{font-size:clamp(30px,5vw,48px);font-weight:700}
+h2{font-size:clamp(24px,3.6vw,34px);font-weight:700}
+.hl{color:var(--primary);position:relative;white-space:nowrap}
+.hl::after{content:"";position:absolute;inset-inline:0;bottom:.08em;height:.32em;background:var(--secondary);opacity:.45;z-index:-1;border-radius:4px}
+.muted{color:var(--muted);font-size:15px}
+.center{text-align:center}
+
+/* ===== Top bar ===== */
+.topbar{padding:18px 0;border-bottom:1px solid var(--border);background:var(--bg)}
+.logo{display:flex;align-items:center;gap:10px;font-family:var(--font-head);font-weight:700;font-size:22px;color:var(--primary)}
+.logo .mark{width:34px;height:34px}
+
+/* ===== Hero ===== */
+.hero{padding:56px 0 40px;text-align:center;position:relative;overflow:hidden}
+.hero .eyebrow{display:inline-flex;gap:8px;align-items:center;background:var(--primary-soft);color:var(--primary);font-weight:600;font-size:15px;padding:6px 14px;border-radius:999px;margin-bottom:18px}
+.hero .sub{font-size:clamp(17px,2.2vw,20px);color:#3a3a36;max-width:680px;margin:18px auto 28px}
+.hero .flow{display:flex;justify-content:center;margin:0 auto 26px;max-width:520px}
+.hero-bg{position:absolute;inset:0;z-index:-1;pointer-events:none}
+
+/* ===== CTA ===== */
+.cta-block{display:flex;flex-direction:column;align-items:center;gap:10px}
+.btn{appearance:none;border:0;cursor:pointer;background:var(--cta);color:#fff;font-family:var(--font-head);font-weight:700;font-size:20px;padding:18px 42px;border-radius:14px;box-shadow:0 8px 20px rgba(15,118,110,.28);transition:transform .15s,background .15s;min-width:280px}
+.btn:hover{background:var(--cta-hover);transform:translateY(-2px)}
+.btn:focus-visible{outline:3px solid var(--secondary);outline-offset:3px}
+.reassure{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 16px;font-size:14px;color:var(--muted)}
+.reassure span{display:inline-flex;align-items:center;gap:6px}
+.reassure .ic{width:16px;height:16px}
+
+/* ===== Video ===== */
+.video{padding:16px 0 64px}
+.video-frame{position:relative;aspect-ratio:16/9;border-radius:20px;overflow:hidden;background:#13241C;box-shadow:var(--shadow);border:6px solid var(--surface)}
+.video-frame iframe,.video-frame video{position:absolute;inset:0;width:100%;height:100%;border:0}
+.video-ph{position:absolute;inset:0;display:grid;place-items:center;color:#FBF7F0;font-family:var(--font-head);text-align:center;padding:20px}
+.video-ph .play{width:84px;height:84px;margin:0 auto 12px}
+
+/* ===== Divider ===== */
+.divider{display:flex;justify-content:center;padding:0}
+.divider .dv{width:220px;height:24px}
+
+/* ===== Benefits ===== */
+.benefits{background:var(--surface)}
+.benefits h2{text-align:center;margin-bottom:36px}
+.list{display:grid;gap:16px;max-width:760px;margin:0 auto}
+.item{display:flex;gap:16px;align-items:flex-start;background:var(--bg);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px}
+.item .ic{flex:0 0 44px;width:44px;height:44px}
+.item strong{font-family:var(--font-head);font-weight:600}
+.item .note{display:block;font-size:13px;color:var(--muted);margin-top:4px}
+.highlight{margin:28px auto 0;max-width:760px;background:var(--primary);color:#fff;border-radius:var(--radius);padding:22px 24px;display:flex;gap:16px;align-items:center}
+.highlight .ic{flex:0 0 52px;width:52px;height:52px}
+.highlight strong{font-family:var(--font-head);font-size:20px;display:block}
+
+/* ===== Steps ===== */
+.steps h2{text-align:center;margin-bottom:12px}
+.steps .lead{text-align:center;color:var(--muted);margin-bottom:36px}
+.step-row{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;position:relative}
+.step{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;text-align:center;box-shadow:var(--shadow)}
+.step .num{width:56px;height:56px;margin:0 auto 12px}
+.step h3{font-size:19px;margin-bottom:6px}
+.step p{font-size:15px;color:var(--muted)}
+.progress{display:flex;justify-content:center;margin-bottom:24px}
+.progress .pg{width:100%;max-width:560px;height:28px}
+
+/* ===== Trust ===== */
+.trust{padding:48px 0}
+.badges{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.badge{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px 10px;text-align:center;font-size:14px;font-weight:500}
+.badge .ic{width:40px;height:40px;margin:0 auto 8px}
+
+/* ===== Final CTA ===== */
+.final{background:#13241C;color:#FBF7F0;text-align:center;border-radius:28px;margin:0 20px 48px;padding:64px 20px}
+.final h2{color:#FBF7F0;margin-bottom:12px}
+.final p{color:rgba(251,247,240,.85);margin-bottom:28px}
+.final .reassure{color:rgba(251,247,240,.75)}
+.final .btn{box-shadow:0 8px 24px rgba(0,0,0,.35)}
+
+/* ===== Footer ===== */
+footer{padding:24px 0 40px;text-align:center;font-size:13px;color:var(--muted)}
+footer a{color:var(--muted)}
+
+/* ===== Modal ===== */
+.modal{position:fixed;inset:0;background:rgba(19,36,28,.6);display:none;align-items:center;justify-content:center;padding:16px;z-index:50}
+.modal.open{display:flex}
+.dialog{background:var(--surface);width:100%;max-width:440px;border-radius:20px;padding:28px 24px;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.3);max-height:95vh;overflow:auto}
+.dialog h3{font-size:24px;margin-bottom:4px}
+.dialog .muted{margin-bottom:18px}
+.close{position:absolute;top:12px;left:12px;background:none;border:0;font-size:26px;line-height:1;cursor:pointer;color:var(--muted);padding:6px}
+.field{margin-bottom:14px}
+.field label{display:block;font-size:14px;font-weight:600;margin-bottom:6px}
+.field input,.field select{width:100%;font:inherit;font-size:16px;padding:12px 14px;border:1.5px solid var(--border);border-radius:12px;background:#fff;color:var(--text)}
+.field input:focus,.field select:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-soft)}
+.phone{display:flex;gap:8px;direction:ltr}
+.phone select{flex:0 0 120px}
+.dialog .btn{width:100%;min-width:0;margin-top:6px}
+.dialog .reassure{margin-top:12px}
+.legal{font-size:12px;color:var(--muted);text-align:center;margin-top:10px}
+
+/* ===== Responsive ===== */
+@media (max-width:820px){
+  section{padding:56px 0}
+  .step-row{grid-template-columns:1fr}
+  .badges{grid-template-columns:repeat(2,1fr)}
+  .badges .badge:last-child{grid-column:1/-1}
+  .progress{display:none}
+}
+@media (max-width:480px){
+  body{font-size:16px}
+  .hero{padding:36px 0 28px}
+  .btn{width:100%;min-width:0;font-size:18px;padding:16px 20px}
+  .final{margin:0 12px 32px;padding:48px 18px;border-radius:20px}
+  .highlight{flex-direction:column;text-align:center}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<!-- BLOCK 0: Top bar — الشعار فقط، بدون روابط -->
+<header class="topbar">
+  <div class="wrap">
+    <div class="logo">
+      <!-- SVG #8: شعار سينكرو الرسمي هنا (استبدل الـ div والنص) -->
+      <div class="mark" aria-hidden="true"></div>
+      <span>سينكرو</span>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- BLOCK 1+2+3: Hero — Headline + Sub + CTA -->
+<section class="hero">
+  <div class="hero-bg" aria-hidden="true">
+    <!-- SVG #7: خلفية هيرو (دوائر/خطوط حلقة باهتة بالأخضر 6% opacity) هنا -->
+  </div>
+  <div class="wrap narrow">
+    <div class="eyebrow">
+      <!-- SVG #2 (صغير 16px): أيقونة تشيك هنا -->
+      تجربة 14 يوم • بدون بطاقة
+    </div>
+    <h1>خلال أيام، يصير عندك <span class="hl">موقع طلبات جاهز</span>… والطلب يطلع على الطابعة لحاله.</h1>
+    <p class="sub">فريق سينكرو بيرفع المنيو ويجهّز متجرك. جرّب 14 يوم على طلبات حقيقية — بدون بطاقة، وبدون رسوم إعداد.</p>
+
+    <div class="flow" aria-hidden="true">
+      <!-- SVG #1: مخطط "موقعك ← الطابعة ← واتسابك" (3 أيقونات بأسهم) هنا — العرض 520px -->
+    </div>
+
+    <div class="cta-block">
+      <button class="btn" type="button" data-open>ابدأ 14 يوم مجاناً</button>
+      <div class="reassure">
+        <span><!-- SVG #2 small -->بدون بطاقة</span>
+        <span><!-- SVG #2 small -->بدون رسوم إعداد</span>
+        <span><!-- SVG #2 small -->فريقنا بيجهّز المنيو</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOCK 4: VSL -->
+<section class="video">
+  <div class="wrap narrow">
+    <div class="video-frame">
+      <!-- ضع هنا iframe الفيديو (VSL 6–7 دقائق من 08-vsl-script.md) واحذف video-ph -->
+      <div class="video-ph">
+        <div>
+          <!-- SVG #6: زر تشغيل دائري (أبيض على أخضر) هنا -->
+          <div class="play" aria-hidden="true"></div>
+          شوف كيف بيشتغل — 7 دقائق
+        </div>
+      </div>
+    </div>
+    <p class="muted center" style="margin-top:12px">الفيديو فيه ترجمة مكتوبة — بتقدر تتابعه بدون صوت.</p>
+  </div>
+</section>
+
+<div class="divider" aria-hidden="true"><!-- SVG #9: فاصل (خط + 3 نقاط) هنا --><div class="dv"></div></div>
+
+<!-- BLOCK 5: Benefits -->
+<section class="benefits">
+  <div class="wrap">
+    <h2>شو رح يصير عندك من <span class="hl">أول أسبوع</span>؟</h2>
+    <div class="list">
+      <div class="item">
+        <!-- SVG #3a: أيقونة رابط/سلسلة -->
+        <div class="ic" aria-hidden="true"></div>
+        <p><strong>رح يصير عندك رابط طلب للمحل</strong> تحطه بالإنستغرام والواتساب — والطلب يوصلك إنت، بدون عمولة على كل طلب.</p>
+      </div>
+      <div class="item">
+        <!-- SVG #3b: أيقونة طابعة + تذكرة -->
+        <div class="ic" aria-hidden="true"></div>
+        <p><strong>رح تشوف الطلب يطلع على طابعة المطبخ لحاله</strong>، وبضغطة وحدة يفتح واتساب محلك بنفس الطلب.</p>
+      </div>
+      <div class="item">
+        <!-- SVG #3c: أيقونة جهاز كاشير -->
+        <div class="ic" aria-hidden="true"></div>
+        <p><strong>الكاشير على جهاز Sunmi</strong>، تطبيق النادل، والتقارير — كلهم بنفس النظام، بدخول واحد.</p>
+      </div>
+      <div class="item">
+        <!-- SVG #3d: أيقونة زبون + سهم رجوع -->
+        <div class="ic" aria-hidden="true"></div>
+        <p><strong>رح تعرف مين زبونك</strong>، وتخليه يرجع.</p>
+      </div>
+      <div class="item">
+        <!-- SVG #3e: أيقونة هدف/استهداف -->
+        <div class="ic" aria-hidden="true"></div>
+        <p><strong>طلبات موقعك الحقيقية بتوصل لحسابات Meta وGoogle</strong> — مبيعاتك بتظبط استهدافك.<span class="note">طلبات الموقع فقط • بتتفعّل لكل محل</span></p>
+      </div>
+    </div>
+
+    <div class="highlight">
+      <!-- SVG #5: أيقونة "إحنا بنجهّز" (يد + منيو) بالأبيض -->
+      <div class="ic" aria-hidden="true"></div>
+      <div><strong>ما بدك تدخّل ولا صنف.</strong>فريق سينكرو بيرفع المنيو، وبنساعدك تربط Sunmi على واتساب أو فيديو.</div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOCK 5b: 3 Steps (إضافة احترافية) -->
+<section class="steps">
+  <div class="wrap">
+    <h2>3 خطوات وبتستقبل طلبات</h2>
+    <p class="lead">الشاشة بتقولك الشي الواحد اللي بيلزم.</p>
+    <div class="progress" aria-hidden="true"><!-- SVG #4: شريط تقدم 3 نقاط --><div class="pg"></div></div>
+    <div class="step-row">
+      <div class="step"><!-- SVG #4a: رقم 1 داخل دائرة --><div class="num" aria-hidden="true"></div><h3>سجّل برقم جوالك</h3><p>اسم المحل ورقمك. بدون بطاقة.</p></div>
+      <div class="step"><!-- SVG #4b: رقم 2 --><div class="num" aria-hidden="true"></div><h3>إحنا بنجهّز متجرك</h3><p>بنرفع المنيو، وبنساعدك تربط الجهاز.</p></div>
+      <div class="step"><!-- SVG #4c: رقم 3 --><div class="num" aria-hidden="true"></div><h3>انشر الرابط</h3><p>والطلب يطلع على الطابعة لحاله.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOCK 6: Trust -->
+<section class="trust">
+  <div class="wrap">
+    <div class="badges">
+      <div class="badge"><!-- SVG #10a: طابعة --><div class="ic" aria-hidden="true"></div>Sunmi + طباعة للمطبخ</div>
+      <div class="badge"><!-- SVG #10b: فقاعة محادثة --><div class="ic" aria-hidden="true"></div>واتساب مطعمك إنت</div>
+      <div class="badge"><!-- SVG #10c: مخطط بياني --><div class="ic" aria-hidden="true"></div>Meta وGA4 وGoogle Ads</div>
+      <div class="badge"><!-- SVG #10d: بطاقة مشطوبة --><div class="ic" aria-hidden="true"></div>بدون بطاقة</div>
+      <div class="badge"><!-- SVG #10e: مفتاح ربط --><div class="ic" aria-hidden="true"></div>بدون رسوم إعداد</div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- BLOCK 7: Final CTA -->
+<section class="final">
+  <div class="wrap narrow">
+    <h2>الطلب يوصل… والزبون يرجع.</h2>
+    <p>مطعمك كله بمكان واحد. ابدأ اليوم، وإحنا بنجهّز الباقي.</p>
+    <div class="cta-block">
+      <button class="btn" type="button" data-open>ابدأ 14 يوم مجاناً</button>
+      <div class="reassure"><span>بدون بطاقة</span><span>بدون رسوم إعداد</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOCK 8: Legal -->
+<footer>
+  <a href="#">الشروط</a> • <a href="#">سياسة الخصوصية</a>
+</footer>
+
+<!-- POPUP FORM -->
+<div class="modal" id="signup" role="dialog" aria-modal="true" aria-labelledby="signup-title">
+  <div class="dialog">
+    <button class="close" type="button" data-close aria-label="إغلاق">×</button>
+    <h3 id="signup-title">خلّينا نجهّز متجرك</h3>
+    <p class="muted">دقيقة وحدة، وبعدها بنبلّش.</p>
+    <!-- اربط action بفورم GHL أو Webhook سينكرو -->
+    <form id="signup-form" action="#" method="post">
+      <div class="field">
+        <label for="store">اسم المحل</label>
+        <input id="store" name="store_name" required autocomplete="organization">
+      </div>
+      <div class="field">
+        <label for="phone">رقم الجوال</label>
+        <div class="phone">
+          <select name="country_code" aria-label="كود الدولة">
+            <option value="+962" selected>🇯🇴 +962</option>
+            <option value="+966">🇸🇦 +966</option>
+            <option value="+971">🇦🇪 +971</option>
+            <option value="+965">🇰🇼 +965</option>
+            <option value="+974">🇶🇦 +974</option>
+            <option value="+973">🇧🇭 +973</option>
+            <option value="+968">🇴🇲 +968</option>
+            <option value="+970">🇵🇸 +970</option>
+            <option value="+961">🇱🇧 +961</option>
+            <option value="+963">🇸🇾 +963</option>
+            <option value="+964">🇮🇶 +964</option>
+            <option value="+20">🇪🇬 +20</option>
+            <!-- أضف باقي الدول أو استخدم مكتبة intl-tel-input -->
+          </select>
+          <input id="phone" name="phone" type="tel" inputmode="tel" required autocomplete="tel-national" placeholder="7XXXXXXXX">
+        </div>
+      </div>
+      <div class="field">
+        <label for="type">نوع المحل</label>
+        <select id="type" name="business_type" required>
+          <option value="" disabled selected>اختر</option>
+          <option>مطعم</option><option>مقهى</option><option>مطبخ سحابي / توصيل</option><option>محل آخر</option>
+        </select>
+      </div>
+      <div class="reassure" style="margin:4px 0 10px"><span>مجاناً 14 يوم</span><span>بدون بطاقة</span><span>بدون رسوم إعداد</span></div>
+      <button class="btn" type="submit">ابدأ 14 يوم مجاناً</button>
+      <p class="legal">بالتسجيل بتوافق على الشروط وسياسة الخصوصية.</p>
+    </form>
+  </div>
+</div>
+
+<script>
+(function(){
+  var m=document.getElementById('signup'),last;
+  function open(e){last=e&&e.currentTarget;m.classList.add('open');document.body.style.overflow='hidden';setTimeout(function(){document.getElementById('store').focus()},50);}
+  function close(){m.classList.remove('open');document.body.style.overflow='';if(last)last.focus();}
+  document.querySelectorAll('[data-open]').forEach(function(b){b.addEventListener('click',open)});
+  document.querySelectorAll('[data-close]').forEach(function(b){b.addEventListener('click',close)});
+  m.addEventListener('click',function(e){if(e.target===m)close()});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&m.classList.contains('open'))close()});
+  document.getElementById('signup-form').addEventListener('submit',function(){
+    /* التتبع عند الإرسال فقط:
+       if(window.fbq) fbq('track','StartTrial');
+       if(window.gtag) gtag('event','sign_up'); */
+  });
+})();
+</script>
+</body>
+</html>
