@@ -82,6 +82,9 @@ CRM field, separate from the lead itself.
 - `thank-you/grow-fast.html` and `thank-you/bdc.html`: confirm the download and invite a free 30-minute call
   (GROW Fast fit check / finance planning data review). Settings: `bookingUrl` (GHL calendar), `contactUrl`. They don't offer the e-book again: the landing page already delivers it.
 - Every landing page has `thankYouUrl` in `LP_CONFIG`. Set it to send people to the thank-you page after the form.
+  BDC V2 uses `/bdc-thank-you?for=ai` (data and AI readiness review for CIOs) and V4 uses `/bdc-thank-you?ebook=impactful`
+  (shows that book's title). Every CTA names the actual E-Book title, never just "E-Book".
+- `variants/grow-fast/v1-myths-story.html`: long-form version of GROW Fast V1 with the form after the content (A/B test against V1; campaign `grow-fast-v1-myths-story`).
 - Nurture emails and GHL workflow steps: `content/nurture/`.
 - Inputs requested from Intrasoft: `content/intrasoft-request-email.md`.
 

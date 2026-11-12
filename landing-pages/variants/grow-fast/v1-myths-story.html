@@ -38,7 +38,7 @@
 .isl-dark{background:var(--navy);color:#DDE6F3;position:relative;overflow:hidden}
 
 /* Buttons */
-.isl-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 28px;border-radius:12px;font-weight:800;font-size:1.02rem;text-decoration:none;cursor:pointer;border:0;transition:transform .2s,box-shadow .2s,background .2s}
+.isl-btn{white-space:normal;text-align:center;line-height:1.35;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 28px;border-radius:12px;font-weight:800;font-size:1.02rem;text-decoration:none;cursor:pointer;border:0;transition:transform .2s,box-shadow .2s,background .2s}
 .isl-btn svg{width:18px;height:18px}
 .isl-btn-primary{background:var(--blue);color:var(--navy) !important;box-shadow:0 14px 30px -12px rgba(0,167,227,.75)}
 .isl-btn-primary:hover{transform:translateY(-2px);box-shadow:0 18px 36px -12px rgba(0,167,227,.9)}
@@ -57,6 +57,7 @@
 .isl-top .isl-wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
 .isl-top img{height:40px;width:auto}
 .isl-top .isl-btn{padding:11px 20px;font-size:.92rem}
+@media (max-width:600px){.isl-top .isl-btn{font-size:.8rem;padding:8px 12px;max-width:190px}}
 
 /* Hero */
 .isl-hero{background:radial-gradient(900px 480px at 85% 10%,rgba(0,167,227,.28),transparent 60%),radial-gradient(700px 400px at 0% 100%,rgba(120,220,255,.10),transparent 60%),var(--navy);color:#fff;position:relative;overflow:hidden;padding:84px 0 96px}
@@ -79,19 +80,18 @@
 .isl-gp-svg{display:block;width:96px;height:auto}
 
 /* Hero visual */
-.isl-visual{position:relative;display:flex;justify-content:center;align-items:center;min-height:470px}
-.isl-visual::before{content:"";position:absolute;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(0,167,227,.38),transparent 65%)}
+.isl-visual{display:flex;flex-direction:column;align-items:center;gap:24px}
+.isl-stage{position:relative;display:flex;justify-content:center;align-items:center;width:100%;min-height:430px}
+.isl-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+.isl-stage::before{content:"";position:absolute;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(0,167,227,.38),transparent 65%)}
 .isl-ring{position:absolute;width:440px;height:440px;border-radius:50%;border:1.5px dashed rgba(120,220,255,.35);animation:islSpin 60s linear infinite}
 @keyframes islSpin{to{transform:rotate(360deg)}}
 .isl-book{position:relative;width:290px;border-radius:10px;box-shadow:0 40px 70px -20px rgba(0,0,0,.7),0 0 0 1px rgba(255,255,255,.08);transform:perspective(1200px) rotateY(-14deg) rotateX(3deg);transition:transform .6s}
 .isl-visual:hover .isl-book{transform:perspective(1200px) rotateY(-4deg) rotateX(1deg)}
-.isl-chip-myth{position:absolute;display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;background:#fff;color:var(--navy);font-weight:800;font-size:.95rem;box-shadow:0 18px 34px -14px rgba(0,0,0,.55)}
+.isl-chip-myth{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;background:#fff;color:var(--navy);font-weight:800;font-size:.95rem;box-shadow:0 18px 34px -14px rgba(0,0,0,.55)}
 .isl-chip-myth s{text-decoration:none;position:relative}
 .isl-chip-myth s::after{content:"";position:absolute;left:-3px;right:-3px;top:52%;height:2.5px;background:var(--red);transform:rotate(-6deg)}
 .isl-chip-myth i{width:22px;height:22px;border-radius:50%;background:var(--red);color:#fff;font-style:normal;font-size:12px;display:grid;place-items:center}
-.isl-c1{top:40px;left:0}.isl-c2{top:48%;right:-6px}.isl-c3{bottom:44px;left:16px}
-.isl-float{animation:islFloat 5s ease-in-out infinite}.isl-c2{animation-delay:1.2s}.isl-c3{animation-delay:2.4s}
-@keyframes islFloat{50%{transform:translateY(-10px)}}
 
 /* Trust strip */
 .isl-trust{background:var(--navy-d);color:#CFE3F5;border-top:1px solid rgba(120,220,255,.12)}
@@ -317,7 +317,7 @@
 @media (max-width:1024px){
   .isl-hero h1{font-size:3rem}
   .isl-hero-grid,.isl-convert-grid{grid-template-columns:1fr;gap:40px}
-  .isl-visual{min-height:400px}
+  .isl-stage{min-height:400px}
   .isl-myths{grid-template-columns:repeat(2,1fr)}
   .isl-steps{grid-template-columns:repeat(3,1fr);row-gap:34px}
   .isl-steps::before{display:none}
@@ -332,12 +332,11 @@
   .isl-tagline{font-size:1.2rem}
   .isl-lead{font-size:1.05rem}
   .isl-hero-ctas .isl-btn{width:100%}
-  .isl-visual{min-height:340px}
-  .isl-visual::before{width:300px;height:300px}
+  .isl-stage{min-height:320px}
+  .isl-stage::before{width:300px;height:300px}
   .isl-ring{width:310px;height:310px}
   .isl-book{width:200px}
   .isl-chip-myth{font-size:.82rem;padding:8px 12px}
-  .isl-c1{top:10px;left:0}.isl-c2{right:0}.isl-c3{bottom:14px;left:4px}
   .isl-lockup{gap:24px}
   .isl-lockup img{height:52px}
   .isl-h2{font-size:1.85rem}
@@ -399,7 +398,7 @@
 <header class="isl-top">
   <div class="isl-wrap">
     <img class="isl-logo-dark" src="https://files.leadconnectorhq.com/file/6af2d08730caaf80f6316eda/intrasoft-logo-white-official.png" alt="Intrasoft Middle East" width="82" height="40">
-    <a class="isl-btn isl-btn-primary" href="#isl-download" data-cta="header">Get the E-Book</a>
+    <a class="isl-btn isl-btn-primary" href="#isl-download" data-cta="header">Get the Myth Busting E-Book</a>
   </div>
 </header>
 
@@ -412,7 +411,7 @@
       <p class="isl-tagline">Most of what you've heard about SAP is out of date.</p>
       <p class="isl-lead">SAP GROW Fast is SAP's faster path to cloud ERP for growing mid-size companies. The free Myth Busting E-Book shows what has really changed, so you decide on facts, not old assumptions.</p>
       <div class="isl-hero-ctas">
-        <a class="isl-btn isl-btn-primary" href="#isl-download" data-cta="hero">Get the free E-Book <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg></a>
+        <a class="isl-btn isl-btn-primary" href="#isl-download" data-cta="hero">Get the SAP GROW Fast Myth Busting E-Book <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg></a>
         <a class="isl-btn isl-btn-ghost" href="#isl-myths">See the myths first</a>
       </div>
       <div class="isl-hero-meta">
@@ -423,11 +422,8 @@
       <div class="isl-lockup"><img class="isl-logo-dark" src="https://files.leadconnectorhq.com/file/6af2d08730caaf80f6316eda/intrasoft-logo-white-official.png" alt="Intrasoft Middle East" width="131" height="64"><a class="isl-gp" href="https://www.sap.com/partners/profile/intrasoft-middle-east" target="_blank" rel="noopener" aria-label="Intrasoft Middle East on SAP Partner Finder"><svg class="isl-gp-svg" role="img" aria-label="SAP Gold Partner" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 97.7 57.3"><defs><style>.isl-gp-cls-1{fill:#fff;}.isl-gp-cls-1,.isl-gp-cls-2{fill-rule:evenodd;}.isl-gp-cls-3{fill:#6d1900;}.isl-gp-cls-4{fill:#ffc933;}.isl-gp-cls-2{fill:url(#isl-gp-grad);}.isl-gp-cls-5{fill:#a9b4be;}</style><linearGradient id="isl-gp-grad" x1="36" y1="0" x2="36" y2="35.618" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#00b8f1"/><stop offset=".016" stop-color="#00b5ef"/><stop offset=".308" stop-color="#0d90d8"/><stop offset=".578" stop-color="#1675c8"/><stop offset=".817" stop-color="#1c64be"/><stop offset="1" stop-color="#1e5fbb"/></linearGradient></defs><polygon class="isl-gp-cls-5" points="97.7 57.3 0 35.619 0 0 97.7 21.683 97.7 57.3"/><polygon class="isl-gp-cls-4" points="61.315 21.685 25.7 57.3 97.7 57.3 97.7 21.685 61.315 21.685"/><path class="isl-gp-cls-3" d="M56.853,35.315c0-2.158,1.309-3.564,3.579-3.564,1.25,0,2.1.415,2.705,1.133l-.874.874c-.391-.513-.913-.854-1.831-.854-1.47,0-2.236.889-2.236,2.388,0,1.567.791,2.393,2.134,2.393,1.284,0,1.919-.752,1.919-1.665h-1.636v-1.05h2.876v3.765h-1.108v-1.187c-.361.864-1.25,1.284-2.28,1.284-1.689,0-3.247-1.128-3.247-3.516Z"/><path class="isl-gp-cls-3" d="M64.28,36.062c0-1.685,1.124-2.773,2.72-2.773s2.72,1.089,2.72,2.773-1.123,2.769-2.72,2.769-2.72-1.084-2.72-2.769ZM67,37.83c.83,0,1.426-.62,1.426-1.768s-.596-1.768-1.426-1.768-1.426.615-1.426,1.768.596,1.768,1.426,1.768Z"/><path class="isl-gp-cls-3" d="M70.638,37.42v-5.967h1.24v5.752c0,.415.098.562.454.562.151,0,.283-.024.425-.054v1.021c-.195.049-.459.088-.728.088-1.006,0-1.392-.479-1.392-1.401Z"/><path class="isl-gp-cls-3" d="M73.25,36.062c0-1.665.835-2.773,2.217-2.773,1.04,0,1.641.557,1.89,1.162h.024v-2.998h1.235v7.28h-1.191v-1.099h-.024c-.259.615-.757,1.196-1.885,1.196-1.357,0-2.266-1.05-2.266-2.769ZM75.97,37.83c.83,0,1.421-.62,1.421-1.768s-.591-1.768-1.421-1.768c-.835,0-1.426.615-1.426,1.768s.591,1.768,1.426,1.768Z"/><path class="isl-gp-cls-3" d="M57.234,40.853h2.915c1.719,0,2.524.884,2.524,2.192,0,1.221-.786,2.261-2.456,2.261h-1.685v2.427h-1.299v-6.88ZM60.037,44.203c.908,0,1.333-.439,1.333-1.143,0-.708-.469-1.089-1.372-1.089h-1.465v2.231h1.504Z"/><path class="isl-gp-cls-3" d="M63.005,46.278c0-1.147.938-1.685,2.325-1.685h.967v-.308c0-.645-.312-.996-.962-.996-.606,0-1.031.259-1.363.679l-.737-.732c.493-.537,1.162-.947,2.232-.947,1.357,0,2.061.708,2.061,2.002v3.442h-1.191v-.991h-.029c-.327.747-.864,1.089-1.705,1.089-.933,0-1.597-.557-1.597-1.553ZM65.041,46.878c.796,0,1.255-.601,1.255-1.23v-.347h-.757c-.708,0-1.304.19-1.304.859,0,.444.303.718.806.718Z"/><path class="isl-gp-cls-3" d="M68.787,42.391h1.196v1.147h.02c.181-.854.581-1.25,1.25-1.25.195,0,.361.034.459.068v1.157c-.132-.034-.327-.063-.513-.063-.879,0-1.177.605-1.177,1.597v2.686h-1.235v-5.342Z"/><path class="isl-gp-cls-3" d="M72.693,46.4v-3.052h-.781v-.566l1.782-1.777h.234v1.387h1.157v.957h-1.157v2.812c0,.469.151.596.571.596.21,0,.41-.034.586-.083v1.06c-.215.054-.532.088-.845.088-1.074,0-1.548-.396-1.548-1.421Z"/><path class="isl-gp-cls-3" d="M76.126,42.391h1.196v1.123h.02c.244-.61.732-1.226,1.753-1.226,1.147,0,1.66.781,1.66,1.919v3.525h-1.235v-3.228c0-.718-.249-1.152-.967-1.152-.737,0-1.191.488-1.191,1.387v2.993h-1.235v-5.342Z"/><path class="isl-gp-cls-3" d="M81.673,45.062c0-1.86,1.226-2.773,2.681-2.773,1.787,0,2.422,1.309,2.422,2.607,0,.156-.01.317-.02.469h-3.779c.088,1.016.615,1.499,1.543,1.499.601,0,1.001-.176,1.362-.596l.718.718c-.498.562-1.108.845-2.139.845-1.714,0-2.788-.981-2.788-2.769ZM85.545,44.598c-.068-.942-.527-1.357-1.221-1.357-.684,0-1.206.415-1.328,1.357h2.549Z"/><path class="isl-gp-cls-3" d="M87.737,42.391h1.196v1.147h.02c.181-.854.581-1.25,1.25-1.25.195,0,.361.034.459.068v1.157c-.132-.034-.327-.063-.513-.063-.879,0-1.177.605-1.177,1.597v2.686h-1.235v-5.342Z"/><polyline class="isl-gp-cls-2" points="0 35.618 36.388 35.618 72 0 0 0 0 35.618"/><path class="isl-gp-cls-1" d="M42.728,6.697l-7.087-.004v16.852l-6.191-16.852h-6.139l-5.286,14.093c-.563-3.553-4.239-4.781-7.131-5.7-1.91-.613-3.936-1.515-3.917-2.512.016-.818,1.087-1.578,3.209-1.464,1.427.076,2.684.191,5.187,1.398l2.462-4.288c-2.285-1.162-5.442-1.897-8.029-1.9h-.015c-3.017,0-5.531.977-7.089,2.588-1.086,1.125-1.671,2.554-1.696,4.134-.04,2.174.758,3.718,2.434,4.948,1.415,1.038,3.224,1.71,4.819,2.204,1.968.61,3.574,1.139,3.555,2.27-.014.411-.171.795-.466,1.106-.49.506-1.244.696-2.285.715-2.007.042-3.497-.272-5.868-1.673l-2.189,4.348c2.365,1.345,5.166,2.134,8.023,2.134l.368-.004c2.487-.045,4.495-.754,6.099-2.045.092-.073.175-.147.26-.223l-.711,1.899h6.438l1.081-3.286c1.131.387,2.418.6,3.785.6,1.33,0,2.583-.204,3.694-.568l1.042,3.254h10.5v-6.804h2.29c5.536,0,8.809-2.819,8.809-7.543,0-5.262-3.181-7.677-9.954-7.677ZM26.348,21.117c-.827,0-1.602-.145-2.271-.397l2.246-7.087h.043l2.207,7.108c-.664.235-1.421.377-2.225.377ZM43.144,17.044h-1.561v-5.711h1.561c2.082,0,3.743.692,3.743,2.818,0,2.2-1.66,2.893-3.743,2.893"/></svg></a></div>
     </div>
     <div class="isl-visual" aria-hidden="true">
-      <span class="isl-ring"></span>
-      <img class="isl-book isl-cover-src" src="" alt="">
-      <span class="isl-chip-myth isl-c1 isl-float"><i>✕</i><s>Too expensive</s></span>
-      <span class="isl-chip-myth isl-c2 isl-float"><i>✕</i><s>Takes years</s></span>
-      <span class="isl-chip-myth isl-c3 isl-float"><i>✕</i><s>Too big for us</s></span>
+      <div class="isl-stage"><span class="isl-ring"></span><img class="isl-book isl-cover-src" src="" alt=""></div>
+      <div class="isl-chips"><span class="isl-chip-myth"><i>✕</i><s>Too expensive</s></span><span class="isl-chip-myth"><i>✕</i><s>Takes years</s></span><span class="isl-chip-myth"><i>✕</i><s>Too big for us</s></span></div>
     </div>
   </div>
 </section>
@@ -452,31 +448,31 @@
         <span class="isl-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
         <span class="isl-pain-top"><span class="isl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg><i class="isl-num">1</i></span><h3>Numbers from too many places</h3></span>
         <p>One view of the business means pulling data from <b>several systems and spreadsheets</b>, then matching it by hand.</p>
-      <span class="isl-pain-ans"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/></svg>Covered in the E-Book: how one integrated system replaces manual matching across finance, supply chain and HR.</span>
+      <span class="isl-pain-ans"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/></svg>Covered in the Myth Busting E-Book: how one integrated system replaces manual matching across finance, supply chain and HR.</span>
       </button>
       <button type="button" class="isl-pain isl-rv" aria-pressed="false">
         <span class="isl-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
         <span class="isl-pain-top"><span class="isl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><i class="isl-num">2</i></span><h3>Month-end takes too long</h3></span>
         <p>Teams spend days <b>preparing reports</b> instead of using them, and decisions wait for the numbers.</p>
-      <span class="isl-pain-ans"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/></svg>Covered in the E-Book: why reporting gets faster when processes share one source of data.</span>
+      <span class="isl-pain-ans"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/></svg>Covered in the Myth Busting E-Book: why reporting gets faster when processes share one source of data.</span>
       </button>
       <button type="button" class="isl-pain isl-rv" aria-pressed="false">
         <span class="isl-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
         <span class="isl-pain-top"><span class="isl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/></svg><i class="isl-num">3</i></span><h3>Workarounds everywhere</h3></span>
         <p>Older ERP, point integrations and spreadsheet fixes make <b>every change slower and riskier</b>.</p>
-      <span class="isl-pain-ans"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/></svg>Covered in the E-Book: starting from SAP best practices instead of custom fixes.</span>
+      <span class="isl-pain-ans"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/></svg>Covered in the Myth Busting E-Book: starting from SAP best practices instead of custom fixes.</span>
       </button>
       <button type="button" class="isl-pain isl-rv" aria-pressed="false">
         <span class="isl-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
         <span class="isl-pain-top"><span class="isl-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9L1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg><i class="isl-num">4</i></span><h3>"SAP isn't for companies our size"</h3></span>
         <p>You've ruled out SAP because of <b>cost, time or complexity</b>, without seeing today's numbers.</p>
-      <span class="isl-pain-ans"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/></svg>Covered in the E-Book: the myths on cost, company size and time.</span>
+      <span class="isl-pain-ans"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5z"/></svg>Covered in the Myth Busting E-Book: the myths on cost, company size and time.</span>
       </button>
     </div>
     <div class="isl-result" aria-live="polite">
       <div class="isl-meter" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
       <div class="isl-result-txt"><b class="isl-r-title">Tick at least one to see your result</b><span class="isl-r-body">It takes ten seconds and helps you see what to read first.</span></div>
-      <a class="isl-btn isl-btn-primary isl-r-cta" href="#isl-download" data-cta="self-check">Get the answers in the E-Book</a>
+      <a class="isl-btn isl-btn-primary isl-r-cta" href="#isl-download" data-cta="self-check">Get the answers in the Myth Busting E-Book</a>
     </div>
     <div class="isl-link" aria-hidden="true"><span></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></div>
     <div class="isl-turn isl-narrow isl-rv">
@@ -484,7 +480,7 @@
       <div class="isl-sep"></div>
       <p class="isl-t1">The cost, the timeline and the effort have all changed.</p>
       <p class="isl-t2">SAP GROW Fast starts from a <em>predefined scope</em> and SAP best practices, with the implementation price agreed <em>before</em> work begins.</p>
-      <a class="isl-btn isl-btn-primary" href="#isl-download" data-cta="turn">Read the facts in the free E-Book</a>
+      <a class="isl-btn isl-btn-primary" href="#isl-download" data-cta="turn">Read the facts in the Myth Busting E-Book</a>
     </div>
   </div>
 </section>
@@ -641,7 +637,7 @@
             </select><div class="isl-error">Please select your company size.</div></div>
           <label class="isl-consent"><input type="checkbox" name="marketingConsent" value="yes"><span><span class="isl-opt">Optional</span>Yes, Intrasoft may email me about SAP solutions, events and insights. I can unsubscribe at any time. You don't need to tick this to get the E-Book.</span></label>
           <p class="isl-privacy">By downloading, you acknowledge that Intrasoft will process your details to deliver this resource, as described in our <a class="isl-privacy-link" href="#">privacy notice</a>.</p>
-          <button class="isl-btn isl-btn-primary" type="submit">Send me the free E-Book</button>
+          <button class="isl-btn isl-btn-primary" type="submit">Send me the SAP GROW Fast Myth Busting E-Book</button>
           <p class="isl-form-error" role="alert">Something went wrong. Please try again.</p>
           <div class="isl-safe"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Your details stay private</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9z"/></svg>Instant access</span></div>
         </div>
@@ -649,7 +645,7 @@
           <div class="isl-big">✓</div>
           <h3>Your copy is ready</h3>
           <p class="isl-sub">If it didn't open automatically, use the button below. We've also sent a copy to your inbox.</p>
-          <a class="isl-btn isl-btn-primary isl-ebook-link" href="#" target="_blank" rel="noopener">Open the E-Book</a>
+          <a class="isl-btn isl-btn-primary isl-ebook-link" href="#" target="_blank" rel="noopener">Open the Myth Busting E-Book</a>
         </div>
       </form>
     </div>
@@ -711,7 +707,7 @@
   <div class="isl-wrap">
     <h2>Decide on facts, <span class="isl-grad">not assumptions.</span></h2>
     <p>The SAP GROW Fast Myth Busting E-Book. Free, 15 pages, instant access.</p>
-    <a class="isl-btn isl-btn-primary" href="#isl-download" data-cta="final">Get the free E-Book</a>
+    <a class="isl-btn isl-btn-primary" href="#isl-download" data-cta="final">Get the SAP GROW Fast Myth Busting E-Book</a>
   </div>
 </section>
 
@@ -722,7 +718,7 @@
   </div>
 </footer>
 
-<div class="isl-sticky"><a class="isl-btn isl-btn-primary" href="#isl-download" data-cta="sticky">Get the free E-Book</a></div>
+<div class="isl-sticky"><a class="isl-btn isl-btn-primary" href="#isl-download" data-cta="sticky">Get the Myth Busting E-Book</a></div>
 </div>
 
 <script>
@@ -737,8 +733,8 @@
     ['Tick at least one to see your result', 'It takes ten seconds and helps you see what to read first.', ''],
     ['1 of 4: an early sign', 'One gap today tends to become several as the business grows. The E-Book shows how growing companies get ahead of it.', 'See how others got ahead of it'],
     ['2 of 4: your systems are starting to slow you down', 'This is the point where many growing companies start looking at cloud ERP. The E-Book shows what has changed about cost and time.', 'Read what has changed'],
-    ['3 of 4: your systems are holding growth back', 'Most of your time goes into working around systems, not running the business. The E-Book answers each of these points.', 'Get the answers in the E-Book'],
-    ['4 of 4: GROW Fast was built for exactly this', 'Every point you ticked is covered in the E-Book, along with how to tell whether GROW Fast fits your company.', 'Get the free E-Book now']
+    ['3 of 4: your systems are holding growth back', 'Most of your time goes into working around systems, not running the business. The E-Book answers each of these points.', 'Get the answers in the Myth Busting E-Book'],
+    ['4 of 4: GROW Fast was built for exactly this', 'Every point you ticked is covered in the E-Book, along with how to tell whether GROW Fast fits your company.', 'Get the Myth Busting E-Book now']
   ];
   pains.forEach(function (c) { c.addEventListener('click', function () {
     var on = c.classList.toggle('isl-on'); c.setAttribute('aria-pressed', on);
@@ -938,7 +934,7 @@
     }).catch(function () {
       if (win) win.close();
       form.querySelector('.isl-form-error').style.display = 'block';
-      btn.disabled = false; btn.textContent = 'Send me the free E-Book';
+      btn.disabled = false; btn.textContent = 'Send me the SAP GROW Fast Myth Busting E-Book';
     });
   });
 

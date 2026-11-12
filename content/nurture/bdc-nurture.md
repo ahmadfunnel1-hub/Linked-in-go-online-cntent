@@ -28,7 +28,7 @@ Hi {{contact.first_name}},
 
 Here's your copy of *Connect and Harmonize Business Data to Amplify the Power of AI*:
 
-**[Download the E-Book]([E-BOOK LINK])**
+**[Download the E-Book: Connect and Harmonize Business Data to Amplify the Power of AI]([E-BOOK LINK])**
 
 One question to keep in mind while you read: *if leadership asked for a new scenario today, how much of the work would be finding and matching the data?*
 

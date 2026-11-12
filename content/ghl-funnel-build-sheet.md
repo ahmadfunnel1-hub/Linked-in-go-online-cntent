@@ -27,6 +27,21 @@ GHL's public API can't create funnels or pages, so build these in **Sites → Fu
 The landing page files already point to `/gf-thank-you` and `/bdc-thank-you`. Keep those exact paths, and put both
 funnels on the same domain as the landing pages, or edit `thankYouUrl` in each file.
 
+**One BDC thank-you page serves both E-Books and both audiences.** The landing page adds a small tag to the link, and the page
+switches its E-Book title and step 2 to match. No second thank-you page is needed.
+
+| BDC landing page | `thankYouUrl` | Thank-you page shows |
+|---|---|---|
+| V1 One truth, V3 Finance ops | `/bdc-thank-you` | Connect and Harmonize + finance planning data review |
+| V2 Reliable AI (CIO, data leaders) | `/bdc-thank-you?for=ai` | Connect and Harmonize + **data and AI readiness review** |
+| V4 Impactful decisions | `/bdc-thank-you?ebook=impactful` | Driving Impactful Business Decisions (no cover until the team designs one) + finance data review |
+
+Optional: set `bookingUrlAi` in `thank-you/bdc.html` to give the AI review its own calendar. Empty = same calendar.
+
+**Calendar:** the "Intrasoft" calendar must offer **Sunday to Thursday** (Saudi Arabia and Jordan working week), not Friday. In GHL:
+Calendars > Intrasoft > Availability, and check the team member's own availability too. Also set the week to start on Sunday
+if GHL offers it. Test by opening `/bdc-thank-you`: Friday and Saturday must be greyed out.
+
 **Each step gets its own path.** The full post → page → E-Book mapping is in `content/social-portfolio-review.md`.
 
 ## Before publishing each step, fill in `LP_CONFIG`

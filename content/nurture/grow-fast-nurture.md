@@ -28,7 +28,7 @@ Hi {{contact.first_name}},
 
 Here's your copy of the SAP GROW Fast Myth Busting E-Book:
 
-**[Download the E-Book]([E-BOOK LINK])**
+**[Download the SAP GROW Fast Myth Busting E-Book]([E-BOOK LINK])**
 
 A quick tip: start with the myth that matches your biggest hesitation about SAP, whether that's cost, company size, time or complexity.
 

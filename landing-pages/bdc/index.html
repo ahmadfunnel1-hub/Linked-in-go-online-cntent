@@ -253,6 +253,8 @@
   .isl-lp section.isl-dark .isl-flow-row b { color: #fff; }
   .isl-lp section.isl-dark .isl-flow-row { border-color: rgba(120,220,255,.18); }
   .isl-lp section.isl-dark .isl-timeline-bar { background: rgba(0,167,227,.16); border: 1px solid rgba(120,220,255,.25); }
+ .isl-lp .isl-btn { white-space: normal; text-align: center; line-height: 1.35; }
+  @media (max-width: 600px) { .isl-lp header.isl-top .isl-btn { font-size: .8rem; padding: 8px 12px; max-width: 190px; } }
 </style>
 <script>
   // Configure before launch.
@@ -280,7 +282,7 @@
 <header class="isl-top">
   <div class="isl-wrap">
     <a class="isl-brand" href="#"><img class="isl-logo-img isl-logo-dark" src="https://files.leadconnectorhq.com/file/6af2d08730caaf80f6316eda/intrasoft-logo-white-official.png" alt="Intrasoft Middle East" width="82" height="40"></a>
-    <a class="isl-btn isl-btn-primary" href="#isl-download" data-cta="header">Get the E-Book</a>
+    <a class="isl-btn isl-btn-primary" href="#isl-download" data-cta="header">Get the Connect and Harmonize E-Book</a>
   </div>
 </header>
 
@@ -309,14 +311,14 @@
             </select><div class="isl-error">Please select your company size.</div></div>
           <label class="isl-consent"><input type="checkbox" name="marketingConsent" value="yes"><span><span class="isl-opt">Optional</span>Yes, Intrasoft may email me about SAP solutions, events and insights. I can unsubscribe at any time. You don't need to tick this to get the E-Book.</span></label>
           <p class="isl-privacy">By downloading, you acknowledge that Intrasoft will process your details to deliver this resource, as described in our <a class="isl-privacy-link" href="#">privacy notice</a>.</p>
-          <button class="isl-btn isl-btn-primary" type="submit">Send me the free E-Book</button>
+          <button class="isl-btn isl-btn-primary" type="submit">Send me the E-Book: Connect and Harmonize Business Data to Amplify the Power of AI</button>
           <p class="isl-form-error" role="alert">Something went wrong. Please try again.</p>
         </div>
         <div class="isl-success" role="status">
           <div class="isl-big">✓</div>
-          <h3>Thank you, your E-Book is ready</h3>
+          <h3>Thank you, your copy of Connect and Harmonize Business Data to Amplify the Power of AI is ready</h3>
           <p class="isl-sub">If the download didn't start automatically, use the button below. We've also sent a copy to your inbox.</p>
-          <a class="isl-btn isl-btn-primary isl-ebook-link" href="#" target="_blank" rel="noopener">Download the E-Book</a>
+          <a class="isl-btn isl-btn-primary isl-ebook-link" href="#" target="_blank" rel="noopener">Read the E-Book: Connect and Harmonize Business Data to Amplify the Power of AI</a>
         </div>
       </form>
     </div>
@@ -514,7 +516,7 @@
   <div class="isl-wrap">
     <h2>Don't just prepare the next forecast. Prepare your finance team for what comes next.</h2>
     <p class="isl-lead" style="margin:0 auto 28px">Plan with more flexibility. Evaluate alternative scenarios. Support better-informed decisions.</p>
-    <a class="isl-btn isl-btn-primary" href="#isl-download" data-cta="final">Download the free E-Book</a>
+    <a class="isl-btn isl-btn-primary" href="#isl-download" data-cta="final">Read the E-Book: Connect and Harmonize Business Data to Amplify the Power of AI</a>
   </div>
 </section>
 
@@ -640,7 +642,7 @@
     }).catch(function () {
       if (win) win.close();
       form.querySelector('.isl-form-error').style.display = 'block';
-      btn.disabled = false; btn.textContent = 'Send me the free E-Book';
+      btn.disabled = false; btn.textContent = 'Send me the E-Book: Connect and Harmonize Business Data to Amplify the Power of AI';
     });
   });
 
