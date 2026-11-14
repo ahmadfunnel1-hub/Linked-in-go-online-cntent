@@ -84,7 +84,12 @@ CRM field, separate from the lead itself.
 - Every landing page has `thankYouUrl` in `LP_CONFIG`. Set it to send people to the thank-you page after the form.
   BDC V2 uses `/bdc-thank-you?for=ai` (data and AI readiness review for CIOs) and V4 uses `/bdc-thank-you?ebook=impactful`
   (shows that book's title). Every CTA names the actual E-Book title, never just "E-Book".
-- `variants/grow-fast/v1-myths-story.html`: long-form version of GROW Fast V1 with the form after the content (A/B test against V1; campaign `grow-fast-v1-myths-story`).
+- **Long-form design (all pages).** Every landing page and both thank-you pages use one design system with a different layout each
+  (own hero visual and interactive modules): story-first, with the form after the content. Source and generator are in `src/`:
+  `kit.css` + `kit2.css` (design), `ui.js` (interactions), `form.js` (GHL form logic), `components.py` (blocks),
+  `pages_gf.py`, `pages_bdc.py`, `pages_ty.py` (page content). To change copy, edit the page file and run `python3 src/build.py`
+  (or `python3 src/build.py bdc-v2` for one page), then paste the generated file into GHL.
+- **No page counts.** Pages never mention how many pages an E-Book has (it can put people off). Keep it that way.
 - Nurture emails and GHL workflow steps: `content/nurture/`.
 - Inputs requested from Intrasoft: `content/intrasoft-request-email.md`.
 
@@ -115,8 +120,8 @@ New `LP_CONFIG` options: `logoUrl`, `sapLogoUrl` (approved logo files) and `hero
 - Footer uses SAP's trademark statement word for word.
 - "E-Book" spelling everywhere. "SAP Gold Partner" in copy. No "Official SAP" or "INTRASOFT × SAP" lines.
 - Intrasoft logo: official files from the Intrasoft branding folder (`content/brand/logo/`), hosted in GHL.
-- E-Books are hosted in GHL and set in every page's `ebookUrl`: GROW Fast = SAP GROW Fast Myth Busting E-Book (15 pages),
-  BDC = Connect and Harmonize Business Data (10 pages). "Inside the E-Book" bullets and the PureTech result were checked
+- E-Books are hosted in GHL and set in every page's `ebookUrl`: GROW Fast = SAP GROW Fast Myth Busting E-Book,
+  BDC = Connect and Harmonize Business Data (V4: Driving Impactful Business Decisions). "Inside the E-Book" bullets and the PureTech result were checked
   against the PDFs. Full Drive index: `content/drive-index.md`.
 
 ## Headline tests (run one at a time with a GHL split test)
