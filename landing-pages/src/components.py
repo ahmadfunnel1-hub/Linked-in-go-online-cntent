@@ -7,7 +7,9 @@ GP = read('gp.svg')
 LOGO_DARK = 'https://files.leadconnectorhq.com/file/6af2d08730caaf80f6316eda/intrasoft-logo-white-official.png'
 LOGO_LIGHT = 'https://files.leadconnectorhq.com/file/6af2d088923b4bc1094f29c0/intrasoft-logo-dark-official.png'
 PARTNER_URL = 'https://www.sap.com/partners/profile/intrasoft-middle-east'
-FORM_ID, LOCATION_ID = 'CuX90ywuRHRkbUw72BWV', 'vhJRhZJvL4LvDBJd7NM0'
+LOCATION_ID = 'vhJRhZJvL4LvDBJd7NM0'
+# One native GHL form per product, so each product runs its own workflow, tags and emails.
+FORM_IDS = {'grow-fast': 's4SEN1Q2Jc1jmF6CUy4A', 'bdc': 'AJ2Qa4FMs3ghxZVJRAAK'}  # "SAP GROW Fast E-Book Download", "SAP BDC E-Book Download"
 
 _I = {
  'check': '<path d="M20 6L9 17l-5-5"/>',
@@ -51,11 +53,12 @@ def lockup(light=False):
             f'<a class="isl-gp" href="{PARTNER_URL}" target="_blank" rel="noopener" aria-label="Intrasoft Middle East on SAP Partner Finder">{gp}</a></div>')
 
 def cfg_block(campaign, ebook_url, cover_url, thank_url):
+    FORM_ID = FORM_IDS['grow-fast' if campaign.startswith('grow-fast') else 'bdc']
     return f'''<script>
   // Configure before launch.
   window.LP_CONFIG = {{
     campaign: "{campaign}",
-    // Native GHL form "SAP E-Book Download": submissions create the contact and fire "Form Submitted".
+    // Native GHL form for this product: submissions create the contact and fire "Form Submitted" for that form only.
     ghlFormId: "{FORM_ID}",
     ghlLocationId: "{LOCATION_ID}",
     formEndpoint: "",

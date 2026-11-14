@@ -20,6 +20,16 @@ Build it in this order, as a checklist. Do it once per product (GROW Fast, BDC).
 - Availability: **Sunday to Thursday**, Saudi working hours (Asia/Riyadh).
 - Turn off GHL's own confirmation emails if the workflow below sends them, so nobody gets duplicates.
 
+## 2b. Forms (one per product)
+
+| Product | GHL form | Used by |
+|---|---|---|
+| GROW Fast | **SAP GROW Fast E-Book Download** | GF V1, V2, V3 |
+| BDC | **SAP BDC E-Book Download** | BDC V1, V2, V3, V4 |
+
+Both have the same fields. Each Workflow 1 uses **Form Submitted** with *that product's form* as the trigger, so the two products
+never mix. The page also sends `Lead Campaign` (the page version) with every lead.
+
 ## 3. Tags
 
 | Tag | Added when |
