@@ -110,7 +110,7 @@ def bdc_v2():
           ['A strong position', 'Keep the foundation governed as AI use grows. The E-Book shows how connected data supports AI across the business.']]
     ready = (f'<div class="isl-ready isl-rv" data-ready="{jattr(rm)}">{rows}<div class="isl-rout" style="display:none"><p><b></b><span></span></p>{btn(BDC_MAIN, cta="readiness")}</div></div>')
     s_ready = section(head('Three checks before any AI pilot', f'Is your data {g("ready for AI?")}', 'Answer three quick questions. No details needed.') + ready, 'isl-pad isl-dark', 'isl-ready')
-    chev = ''.join(f'<div class="isl-chev isl-rv"><small>{a}</small><b>{b}</b><span>{c}</span></div>' for a, b, c in
+    chev = ''.join(f'<div class="isl-chevc isl-rv"><small>{a}</small><b>{b}</b><span>{c}</span></div>' for a, b, c in
                    [('Connect', 'SAP and third-party sources', 'Bring them together without copying.'), ('Context', 'Harmonized data products', 'Business context is kept.'), ('Trust', 'A governed data foundation', 'Quality and access under control.'),
                     ('Insight', 'Analytics and planning', 'Decisions grounded in trusted data.'), ('Action', 'AI and decisions', 'AI that reflects how your business works.')])
     s_flow = section(head('How it works', f'From scattered data to {g("business-ready insight")}', 'SAP Business Data Cloud is a fully managed SaaS solution that unifies data and analytics. Here is how it works in business terms.') + f'<div class="isl-chev-flow">{chev}</div>', 'isl-pad isl-soft')
@@ -153,7 +153,7 @@ def bdc_v3():
                      ('Can we test that investment before we commit?', 'Evaluate an investment as a <b>scenario</b> and compare alternatives before the decision is made.')],
                     'Question {n}', 'With connected data', back_btn='Back to the question', front_btn='See how it works')
     s_q = section(head('What happens if…?', f'The questions leadership asks {g("finance most")}', "These aren't reporting questions. They're decisions that depend on what could happen next.") + f'<div class="isl-myths">{qa}</div>')
-    chev = ''.join(f'<div class="isl-chev isl-rv"><small>{a}</small><b>{b}</b><span>{c}</span></div>' for a, b, c in
+    chev = ''.join(f'<div class="isl-chevc isl-rv"><small>{a}</small><b>{b}</b><span>{c}</span></div>' for a, b, c in
                    [('Step 1', 'Operations data', 'What is actually happening in the business.'), ('Step 2', 'Business context', 'The meaning behind the numbers is kept.'), ('Step 3', 'Finance plan', 'Plans reflect operations, not last quarter.'), ('Step 4', 'Decision', 'Alternatives compared before you commit.')])
     s_flow = section(head('Why finance and operations need one view', f'Planning is only as good as {g("the data under it")}', 'Bring finance and operations data together, with its full business context, in SAP Business Data Cloud.') + f'<div class="isl-chev-flow isl-four">{chev}</div>', 'isl-pad isl-soft')
     s_xl = section(head('Excel is not the enemy', f'Excel is not the problem. {g("Relying on it alone is.")}', 'Let us be fair to Excel. It is one of the most useful tools a finance team has.') +
@@ -198,7 +198,7 @@ def bdc_v4():
                ('Receivables', '<h3>Spot overdue payments early</h3><p>Finance can <b>quickly identify overdue payments</b> and receive tailored recommendations to improve collection rates.</p>'),
                ('Payables', '<h3>Know what you owe, and when</h3><p>Visibility into accounts payable, alongside accounts receivable and cash flow, <b>without complex, time-consuming manual work</b>.</p>')])
     s_see = section(head('What finance can see', f'Visibility {g("in time to act")}', 'Intelligent content brings liquidity, accounts receivable and accounts payable into one view.') + tb, 'isl-pad', 'isl-see')
-    chev = ''.join(f'<div class="isl-chev isl-rv"><small>{a}</small><b>{b}</b><span>{c}</span></div>' for a, b, c in
+    chev = ''.join(f'<div class="isl-chevc isl-rv"><small>{a}</small><b>{b}</b><span>{c}</span></div>' for a, b, c in
                    [('Step 1', 'Connect', 'SAP and third-party data, with its business context.'), ('Step 2', 'Prebuilt content', 'Predefined metrics, reports and dashboards linked to real-time business data.'), ('Step 3', 'Decide', 'Practical insights and recommendations, so finance spends less time building reports and more time deciding.')])
     s_flow = section(head('How it works', f'From data to decision, {g("in three steps")}', None) + f'<div class="isl-chev-flow isl-three">{chev}</div>', 'isl-pad isl-soft')
     tb2 = tabs([('Finance', '<h3>Cash flow visibility and working capital</h3><p>Finance leaders can <b>improve cash flow visibility</b>, optimize working capital and adapt strategies to changing market conditions.</p>'),

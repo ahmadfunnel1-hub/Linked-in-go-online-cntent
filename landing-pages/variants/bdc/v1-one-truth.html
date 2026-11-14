@@ -610,13 +610,13 @@
 
 /* Chevron flow (static, hover) */
 .isl-chev-flow{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:44px}
-.isl-chev{position:relative;padding:20px 18px 20px 26px;background:#fff;border:1.5px solid var(--line);border-radius:16px;clip-path:none;transition:all .25s}
-.isl-chev:hover{border-color:var(--blue);transform:translateY(-3px)}
-.isl-chev small{font-size:.72rem;font-weight:900;letter-spacing:.14em !important;text-transform:uppercase !important;color:var(--red)}
-.isl-chev b{display:block;font-size:1.02rem;margin-top:4px;color:var(--ink)}
-.isl-chev span{display:block;margin-top:4px;font-size:.88rem;color:var(--ink2);line-height:1.5}
-.isl-chev::after{content:"›";position:absolute;right:-12px;top:50%;transform:translateY(-50%);width:22px;height:22px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-size:16px;font-weight:900;z-index:2}
-.isl-chev:last-child::after{display:none}
+.isl-chevc{position:relative;padding:20px 18px 20px 26px;background:#fff;border:1.5px solid var(--line);border-radius:16px;clip-path:none;transition:all .25s}
+.isl-chevc:hover{border-color:var(--blue);transform:translateY(-3px)}
+.isl-chevc small{font-size:.72rem;font-weight:900;letter-spacing:.14em !important;text-transform:uppercase !important;color:var(--red)}
+.isl-chevc b{display:block;font-size:1.02rem;margin-top:4px;color:var(--ink)}
+.isl-chevc span{display:block;margin-top:4px;font-size:.88rem;color:var(--ink2);line-height:1.5}
+.isl-chevc::after{content:"›";position:absolute;right:-12px;top:50%;transform:translateY(-50%);width:22px;height:22px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-size:16px;font-weight:900;z-index:2}
+.isl-chevc:last-child::after{display:none}
 
 /* Mini cards row */
 .isl-mini{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:40px}
@@ -759,7 +759,7 @@
   .isl-eq{grid-template-columns:1fr}
   .isl-eq-op{justify-self:center}
   .isl-radios,.isl-mini,.isl-persona,.isl-chev-flow{grid-template-columns:repeat(2,1fr)}
-  .isl-chev::after{display:none}
+  .isl-chevc::after{display:none}
   .isl-ringbox{grid-template-columns:1fr;gap:24px}
   .isl-whyband,.isl-ty-grid,.isl-ty-book{grid-template-columns:1fr;gap:36px}
   .isl-acc{grid-template-columns:1fr}
