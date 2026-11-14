@@ -1,0 +1,173 @@
+[
+ {
+  "product": "grow-fast",
+  "id": "E0",
+  "title": "SAP GROW Fast · E0 · Immediately · Delivery (transactional)",
+  "subject": "Your SAP GROW Fast Myth Busting E-Book",
+  "alt_subject": "{{contact.first_name}}, here's your copy",
+  "preview": "Plus what to read first.",
+  "file": "grow-fast-E0.html"
+ },
+ {
+  "product": "grow-fast",
+  "id": "E1",
+  "title": "SAP GROW Fast · E1 · Day 2 · \"Too expensive?\"",
+  "subject": "The \"too expensive\" question",
+  "alt_subject": "What would SAP really cost a company your size?",
+  "preview": "It's two numbers, not one.",
+  "file": "grow-fast-E1.html"
+ },
+ {
+  "product": "grow-fast",
+  "id": "E2",
+  "title": "SAP GROW Fast · E2 · Day 4 · \"ERP projects always overrun\"",
+  "subject": "Why ERP projects run over",
+  "alt_subject": "It's rarely the software",
+  "preview": "It's the decisions that were left open.",
+  "file": "grow-fast-E2.html"
+ },
+ {
+  "product": "grow-fast",
+  "id": "E3",
+  "title": "SAP GROW Fast · E3 · Day 7 · The month-end test",
+  "subject": "The month-end test",
+  "alt_subject": "How many days does your month-end close take?",
+  "preview": "One number says a lot.",
+  "file": "grow-fast-E3.html"
+ },
+ {
+  "product": "grow-fast",
+  "id": "E4",
+  "title": "SAP GROW Fast · E4 · Day 10 · Life after go-live",
+  "subject": "Who runs it after go-live?",
+  "alt_subject": "You don't need an in-house SAP team",
+  "preview": "What changes after day one.",
+  "file": "grow-fast-E4.html"
+ },
+ {
+  "product": "grow-fast",
+  "id": "E5",
+  "title": "SAP GROW Fast · E5 · Day 14 · Why now",
+  "subject": "Should you look at this now, or next year?",
+  "alt_subject": "The real cost of waiting",
+  "preview": "An honest answer either way.",
+  "file": "grow-fast-E5.html"
+ },
+ {
+  "product": "bdc",
+  "id": "E0",
+  "title": "SAP BDC · E0 · Immediately · Delivery (transactional)",
+  "subject": "Your SAP E-Book: Connect and Harmonize Business Data",
+  "alt_subject": "{{contact.first_name}}, here's your copy",
+  "preview": "Plus one question to keep in mind while you read.",
+  "file": "bdc-E0.html"
+ },
+ {
+  "product": "bdc",
+  "id": "E0b",
+  "title": "SAP BDC · E0b · Immediately · Delivery (Driving Impactful Business Decisions)",
+  "subject": "Your SAP E-Book: Driving Impactful Business Decisions",
+  "alt_subject": "{{contact.first_name}}, here's your copy",
+  "preview": "Plus one question to keep in mind while you read.",
+  "file": "bdc-E0b.html"
+ },
+ {
+  "product": "bdc",
+  "id": "E1",
+  "title": "SAP BDC · E1 · Day 2 · Same question, different numbers",
+  "subject": "Same business. Same question. Different numbers.",
+  "alt_subject": "Why your reports disagree",
+  "preview": "The mismatch usually starts in one of three places.",
+  "file": "bdc-E1.html"
+ },
+ {
+  "product": "bdc",
+  "id": "E2",
+  "title": "SAP BDC · E2 · Day 4 · Excel isn't the problem",
+  "subject": "Excel isn't the problem",
+  "alt_subject": "Relying on it alone is",
+  "preview": "Where spreadsheet planning starts to break.",
+  "file": "bdc-E2.html"
+ },
+ {
+  "product": "bdc",
+  "id": "E3",
+  "title": "SAP BDC · E3 · Day 7 · \"What happens if…?\"",
+  "subject": "\"What happens if…?\"",
+  "alt_subject": "The question leadership asks finance most",
+  "preview": "Plan for what's next, not just what happened.",
+  "file": "bdc-E3.html"
+ },
+ {
+  "product": "bdc",
+  "id": "E4",
+  "title": "SAP BDC · E4 · Day 10 · Before your AI pilot",
+  "subject": "Before your AI pilot, check this",
+  "alt_subject": "Reliable AI starts with reliable data",
+  "preview": "Three checks that come before any model.",
+  "file": "bdc-E4.html"
+ },
+ {
+  "product": "bdc",
+  "id": "E5",
+  "title": "SAP BDC · E5 · Day 14 · The next decision won't wait",
+  "subject": "The next decision won't wait for the next budget",
+  "alt_subject": "An honest question about timing",
+  "preview": "No deadline. Just a choice.",
+  "file": "bdc-E5.html"
+ },
+ {
+  "product": "bdc-ai",
+  "id": "E0",
+  "title": "SAP BDC AI · E0 · Immediately · Delivery (transactional)",
+  "subject": "Your SAP E-Book: Connect and Harmonize Business Data",
+  "alt_subject": "{{contact.first_name}}, here's your copy",
+  "preview": "Plus one question to keep in mind while you read.",
+  "file": "bdc-ai-E0.html"
+ },
+ {
+  "product": "bdc-ai",
+  "id": "E1",
+  "title": "SAP BDC AI · E1 · Day 2 · Plenty of data, not enough trust",
+  "subject": "Plenty of data. Not enough trust.",
+  "alt_subject": "Why AI pilots stall on data",
+  "preview": "One survey of 1,200 leaders, one clear answer.",
+  "file": "bdc-ai-E1.html"
+ },
+ {
+  "product": "bdc-ai",
+  "id": "E2",
+  "title": "SAP BDC AI · E2 · Day 4 · Three checks before any AI pilot",
+  "subject": "Three checks before any AI pilot",
+  "alt_subject": "Quality, context, access",
+  "preview": "Before you scale anything.",
+  "file": "bdc-ai-E2.html"
+ },
+ {
+  "product": "bdc-ai",
+  "id": "E3",
+  "title": "SAP BDC AI · E3 · Day 7 · Where context gets lost",
+  "subject": "Where business context gets lost",
+  "alt_subject": "Copying data isn't connecting it",
+  "preview": "And why it matters for AI.",
+  "file": "bdc-ai-E3.html"
+ },
+ {
+  "product": "bdc-ai",
+  "id": "E4",
+  "title": "SAP BDC AI · E4 · Day 10 · AI that understands your business",
+  "subject": "AI that understands your business",
+  "alt_subject": "What changes once the foundation is in place",
+  "preview": "Governed data first, then reliable AI.",
+  "file": "bdc-ai-E4.html"
+ },
+ {
+  "product": "bdc-ai",
+  "id": "E5",
+  "title": "SAP BDC AI · E5 · Day 14 · The next AI decision",
+  "subject": "Your AI roadmap and your data: a 30-minute check",
+  "alt_subject": "An honest question about timing",
+  "preview": "No deadline. Just a clear starting point.",
+  "file": "bdc-ai-E5.html"
+ }
+]

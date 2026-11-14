@@ -14,6 +14,8 @@
 | E4 | Day 10 | Consent | Before your AI pilot |
 | E5 | Day 14 | Consent | The next decision won't wait, plus a direct invitation |
 
+**Which E0 to send:** V4 (`campaign = bdc-v4-impactful-decisions`) gets **E0b**. The Reliable AI page (`bdc-v2-reliable-ai`) runs the separate AI sequence in `bdc-ai-nurture.md`. Everyone else gets E0 and E1 to E5 below.
+
 Merge fields follow GHL: `{{contact.first_name}}`. `[E-BOOK LINK]` is the PDF and `[REVIEW LINK]` is the thank-you page or calendar.
 
 ---
@@ -31,6 +33,29 @@ Here's your copy of *Connect and Harmonize Business Data to Amplify the Power of
 **[Download the E-Book: Connect and Harmonize Business Data to Amplify the Power of AI]([E-BOOK LINK])**
 
 One question to keep in mind while you read: *if leadership asked for a new scenario today, how much of the work would be finding and matching the data?*
+
+When you're ready to look at your own planning and data, you can book a free 30-minute data review here:
+[Book a data review]([REVIEW LINK])
+
+Best regards,
+[SENDER NAME]
+[TITLE], Intrasoft Middle East
+
+---
+
+## E0b · Immediately · Delivery (Driving Impactful Business Decisions)
+
+**Subject:** Your SAP E-Book: Driving Impactful Business Decisions
+**Alt subject:** {{contact.first_name}}, here's your copy
+**Preview:** Plus one question to keep in mind while you read.
+
+Hi {{contact.first_name}},
+
+Here's your copy of *Driving Impactful Business Decisions with Intelligent Content*:
+
+**[Download the E-Book: Driving Impactful Business Decisions]([E-BOOK 2 LINK])**
+
+One question to keep in mind while you read: *how much of your finance team's week goes into building reports, rather than acting on them?*
 
 When you're ready to look at your own planning and data, you can book a free 30-minute data review here:
 [Book a data review]([REVIEW LINK])
@@ -143,7 +168,7 @@ An AI pilot needs more than a promising idea. Before you scale anything, three c
 - **Context:** are business definitions understood the same way everywhere?
 - **Access:** can the right people use the right data?
 
-AI is only as reliable as the data behind it. That's why the E-Book you downloaded starts with connecting and harmonizing business data, not with AI itself.
+AI is only as reliable as the data behind it. That's why the data foundation comes first in the E-Book you downloaded, before AI itself.
 
 If you're planning AI or analytics initiatives, a data review is a good place to start:
 **[Book a data review]([REVIEW LINK])**
