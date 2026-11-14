@@ -1,0 +1,652 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SAP Business Data Cloud | Finance Planning | Intrasoft</title>
+<meta name="description" content="Plan for What's Next. SAP Business Data Cloud finance planning with SAP Analytics Cloud, by Intrasoft: scenario-driven planning, implementation, enablement and ongoing optimization for finance teams.">
+<!--
+  Works as a standalone page, or paste this WHOLE file into a GoHighLevel "Custom JS/HTML" element.
+  - In GHL, set the section and row to full width with zero padding so the design spans the page.
+  - All classes and IDs start with isl- so they can't clash with GHL styles, forms or scripts.
+  - Settings (form endpoint, E-Book PDF, cover image, privacy link) are in LP_CONFIG below.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* Everything is scoped under .isl-lp with isl- names so it can't clash with GoHighLevel's own styles. */
+  .isl-lp, .isl-lp * { box-sizing: border-box; font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif; letter-spacing: normal; text-transform: none; }
+  .isl-lp { width: 100%; text-align: left; font-size: 16px; }
+  .isl-lp section { display: block; scroll-margin-top: 68px; }
+  .isl-lp ul { list-style: none; }
+
+  /* Neutral placeholder palette. Replace with approved SAP / Intrasoft brand tokens before launch. */
+  .isl-lp {
+    --ink: #0a1f26;
+    --ink-2: #123540;
+    --accent: #0b7f8a;
+    --accent-2: #4fd1c5;
+    --text: #1d2939;
+    --muted: #5b6b80;
+    --line: #e3e8ef;
+    --bg: #ffffff;
+    --bg-soft: #f4f7fb;
+    --ok: #127c4a;
+    --err: #b42318;
+    --radius: 14px;
+  }
+  .isl-lp, .isl-lp * { box-sizing: border-box; }
+  .isl-lp { margin: 0; font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif; color: var(--text); background: var(--bg); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  .isl-lp img { max-width: 100%; display: block; }
+  .isl-lp a { color: var(--accent); }
+  .isl-lp .isl-wrap { max-width: 1160px; margin: 0 auto; padding: 0 20px; }
+  .isl-lp .isl-eyebrow { font-size: .78rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin: 0 0 12px; }
+  .isl-lp h1, .isl-lp h2, .isl-lp h3 { color: var(--ink); line-height: 1.2; margin: 0 0 16px; letter-spacing: -.01em; }
+  .isl-lp h1 { font-size: clamp(2rem, 4.4vw, 3.2rem); font-weight: 800; }
+  .isl-lp h2 { font-size: clamp(1.6rem, 3vw, 2.3rem); font-weight: 800; }
+  .isl-lp h3 { font-size: 1.15rem; font-weight: 700; }
+  .isl-lp p { margin: 0 0 16px; }
+  .isl-lp .isl-lead { font-size: 1.15rem; color: var(--muted); max-width: 680px; }
+  .isl-lp section { padding: 88px 0; }
+  .isl-lp .isl-soft { background: var(--bg-soft); }
+  .isl-lp .isl-center { text-align: center; }
+  .isl-lp .isl-center .isl-lead { margin-left: auto; margin-right: auto; }
+
+  .isl-lp .isl-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 15px 26px; border-radius: 10px; font-weight: 700; font-size: 1rem; text-decoration: none; border: 0; cursor: pointer; transition: transform .15s, box-shadow .15s, background .15s; }
+  .isl-lp .isl-btn-primary { background: var(--accent); color: #fff; box-shadow: 0 8px 24px rgba(11,127,138,.3); }
+  .isl-lp .isl-btn-primary:hover { background: #09656e; transform: translateY(-1px); }
+  .isl-lp .isl-btn-ghost { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,.4); }
+  .isl-lp .isl-btn-ghost:hover { border-color: #fff; }
+
+  /* Header */
+  .isl-lp header.isl-top { position: sticky; top: 0; z-index: 50; background: rgba(11,27,51,.96); backdrop-filter: blur(8px); }
+  .isl-lp header.isl-top .isl-wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+  .isl-lp .isl-brand { display: flex; align-items: center; gap: 12px; color: #fff; font-weight: 800; letter-spacing: .02em; text-decoration: none; }
+  .isl-lp .isl-brand .isl-logo-slot { display: inline-flex; align-items: center; justify-content: center; height: 34px; padding: 0 12px; border: 1px dashed rgba(255,255,255,.35); border-radius: 6px; font-size: .85rem; }
+  .isl-lp .isl-brand .isl-sep { color: rgba(255,255,255,.4); font-weight: 400; }
+  .isl-lp header.isl-top .isl-btn { padding: 10px 18px; font-size: .92rem; }
+
+  /* Hero */
+  .isl-lp .isl-hero { background: radial-gradient(1200px 600px at 85% -10%, rgba(79,209,197,.25), transparent 60%), linear-gradient(160deg, var(--ink) 0%, var(--ink-2) 100%); color: #dbe6f5; padding: 80px 0 96px; }
+  .isl-lp .isl-hero h1 { color: #fff; }
+  .isl-lp .isl-hero .isl-lead { color: #b9c8de; }
+  .isl-lp .isl-hero-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 56px; align-items: center; }
+  .isl-lp .isl-hero-points { list-style: none; padding: 0; margin: 24px 0 32px; display: grid; gap: 10px; }
+  .isl-lp .isl-hero-points li { display: flex; gap: 10px; align-items: flex-start; }
+  .isl-lp .isl-tick { flex: 0 0 22px; height: 22px; border-radius: 50%; background: rgba(79,209,197,.18); color: var(--accent-2); display: inline-flex; align-items: center; justify-content: center; font-size: .8rem; font-weight: 800; margin-top: 2px; }
+  .isl-lp .isl-hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+  .isl-lp .isl-hero-note { font-size: .85rem; color: #8ea3c0; margin-top: 18px; }
+
+  /* E-Book cover placeholder */
+  .isl-lp .isl-cover { position: relative; aspect-ratio: 3/4; max-width: 360px; margin: 0 auto; border-radius: 10px; background: linear-gradient(150deg, #fff 0%, #e8f5f4 100%); box-shadow: 0 30px 60px rgba(0,0,0,.4); padding: 34px 28px; display: flex; flex-direction: column; justify-content: space-between; transform: rotate(-2deg); }
+  .isl-lp .isl-cover::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 10px; background: var(--accent); border-radius: 10px 0 0 10px; }
+  .isl-lp .isl-cover-img { max-width: 360px; margin: 0 auto; border-radius: 6px; box-shadow: 0 30px 60px rgba(0,0,0,.4); }
+  .isl-lp .isl-cover small { font-size: .72rem; font-weight: 700; letter-spacing: .14em; color: var(--accent); text-transform: uppercase; }
+  .isl-lp .isl-cover strong { display: block; font-size: 1.7rem; line-height: 1.15; color: var(--ink); margin-top: 10px; }
+  .isl-lp .isl-cover span { color: var(--muted); font-size: .9rem; }
+  .isl-lp .isl-cover .isl-stamp { align-self: flex-start; background: var(--ink); color: #fff; font-size: .72rem; font-weight: 700; padding: 6px 10px; border-radius: 6px; letter-spacing: .08em; }
+
+  /* Cards */
+  .isl-lp .isl-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .isl-lp .isl-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+  .isl-lp .isl-card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; }
+  .isl-lp .isl-card p { color: var(--muted); margin: 0; font-size: 1.04rem; }
+  .isl-lp .isl-icon { width: 46px; height: 46px; border-radius: 12px; background: #e6f6f5; color: var(--accent); display: inline-flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+  .isl-lp .isl-icon svg { width: 24px; height: 24px; }
+  .isl-lp .isl-section-head { margin-bottom: 48px; }
+
+  /* Myths */
+  .isl-lp .isl-myth { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; }
+  .isl-lp .isl-myth .isl-m { padding: 22px 24px; background: #fdf3f2; border-bottom: 1px solid #f6dcd9; }
+  .isl-lp .isl-myth .isl-m b { display: block; font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--err); margin-bottom: 6px; }
+  .isl-lp .isl-myth .isl-m p { margin: 0; font-weight: 600; color: var(--ink); font-style: italic; }
+  .isl-lp .isl-myth .isl-r { padding: 22px 24px; }
+  .isl-lp .isl-myth .isl-r b { display: block; font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--ok); margin-bottom: 6px; }
+  .isl-lp .isl-myth .isl-r p { margin: 0; color: var(--muted); }
+
+  /* Steps */
+  .isl-lp .isl-steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; counter-reset: s; }
+  .isl-lp .isl-step { position: relative; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 24px 20px; }
+  .isl-lp .isl-step::before { counter-increment: s; content: counter(s, decimal-leading-zero); display: block; font-size: .85rem; font-weight: 800; color: var(--accent); margin-bottom: 10px; }
+  .isl-lp .isl-step h3 { font-size: 1.02rem; margin-bottom: 8px; }
+  .isl-lp .isl-step p { color: var(--muted); font-size: .93rem; margin: 0; }
+  .isl-lp .isl-timeline-bar { margin-top: 28px; display: flex; align-items: center; gap: 16px; padding: 18px 22px; background: var(--ink); color: #dbe6f5; border-radius: var(--radius); flex-wrap: wrap; }
+  .isl-lp .isl-timeline-bar strong { color: #fff; font-size: 1.1rem; }
+
+  /* Industry */
+  .isl-lp .isl-split { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
+  .isl-lp .isl-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+  .isl-lp .isl-chip { padding: 9px 14px; border-radius: 999px; background: #fff; border: 1px solid var(--line); font-weight: 600; font-size: .92rem; color: var(--ink); }
+  .isl-lp .isl-flow { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; }
+  .isl-lp .isl-flow-row { display: flex; align-items: center; gap: 12px; padding: 14px 0; border-bottom: 1px dashed var(--line); }
+  .isl-lp .isl-flow-row:last-child { border-bottom: 0; }
+  .isl-lp .isl-flow-row .isl-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); flex: 0 0 10px; }
+  .isl-lp .isl-flow-row span { color: var(--muted); font-size: .92rem; margin-left: auto; text-align: right; }
+
+  /* Ebook + form */
+  .isl-lp .isl-convert { background: linear-gradient(160deg, var(--ink) 0%, var(--ink-2) 100%); color: #dbe6f5; }
+  .isl-lp .isl-convert h2 { color: #fff; }
+  .isl-lp .isl-convert-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
+  .isl-lp .isl-learn { list-style: none; padding: 0; margin: 20px 0 0; display: grid; gap: 14px; }
+  .isl-lp .isl-learn li { display: flex; gap: 12px; }
+  .isl-lp form.isl-lead-form { background: #fff; color: var(--text); border-radius: 16px; padding: 32px; box-shadow: 0 30px 60px rgba(0,0,0,.35); }
+  .isl-lp form.isl-lead-form h3 { margin-bottom: 4px; }
+  .isl-lp form.isl-lead-form .isl-sub { color: var(--muted); font-size: 1rem; margin-bottom: 20px; }
+  .isl-lp .isl-field { margin-bottom: 14px; }
+  .isl-lp .isl-field label { display: block; font-weight: 600; font-size: .95rem; margin-bottom: 6px; color: var(--ink); }
+  .isl-lp .isl-field input, .isl-lp .isl-field select { width: 100%; padding: 12px 14px; border: 1.5px solid var(--line); border-radius: 9px; font: inherit; font-size: 16px; color: var(--text); background: #fff; min-height: 48px; }
+  .isl-lp .isl-field input:focus, .isl-lp .isl-field select:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(11,127,138,.15); }
+  .isl-lp .isl-field.isl-invalid input, .isl-lp .isl-field.isl-invalid select { border-color: var(--err); }
+  .isl-lp .isl-field .isl-error { display: none; color: var(--err); font-size: .88rem; margin-top: 4px; }
+  .isl-lp .isl-field.isl-invalid .isl-error { display: block; }
+  .isl-lp .isl-consent { display: flex; gap: 12px; align-items: flex-start; font-size: .92rem; color: var(--text); margin: 8px 0 16px; padding: 14px; background: var(--bg-soft); border: 1px solid var(--line); border-radius: 9px; cursor: pointer; }
+  .isl-lp .isl-consent input { margin-top: 2px; width: 20px; height: 20px; flex: 0 0 20px; accent-color: var(--accent); }
+  .isl-lp .isl-consent .isl-opt { display: block; font-size: .78rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+  .isl-lp form.isl-lead-form .isl-btn { width: 100%; }
+  .isl-lp .isl-privacy { font-size: .88rem; color: var(--muted); margin: 0 0 16px; }
+  .isl-lp .isl-form-error { display: none; color: var(--err); font-size: .9rem; margin-top: 12px; }
+  .isl-lp .isl-success { display: none; text-align: center; padding: 20px 0; }
+  .isl-lp .isl-success .isl-big { width: 64px; height: 64px; border-radius: 50%; background: #e7f6ee; color: var(--ok); display: inline-flex; align-items: center; justify-content: center; font-size: 1.8rem; margin-bottom: 14px; }
+
+  /* FAQ */
+  .isl-lp .isl-faq { max-width: 820px; margin: 0 auto; }
+  .isl-lp details { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 18px 22px; margin-bottom: 12px; }
+  .isl-lp summary { cursor: pointer; font-weight: 700; color: var(--ink); list-style: none; display: flex; justify-content: space-between; gap: 16px; }
+  .isl-lp summary::-webkit-details-marker { display: none; }
+  .isl-lp summary::after { content: "+"; color: var(--accent); font-size: 1.3rem; line-height: 1; }
+  .isl-lp details[open] summary::after { content: "−"; }
+  .isl-lp details p { color: var(--muted); margin: 12px 0 0; }
+
+  /* Final CTA + footer */
+  .isl-lp .isl-final { text-align: center; }
+  .isl-lp footer { background: var(--ink); color: #8ea3c0; padding: 40px 0; font-size: .85rem; }
+  .isl-lp footer .isl-wrap { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+  .isl-lp footer a { color: #b9c8de; }
+
+  @media (max-width: 960px) {
+    .isl-lp .isl-hero-grid, .isl-lp .isl-convert-grid, .isl-lp .isl-split { grid-template-columns: 1fr; gap: 40px; }
+    .isl-lp .isl-grid-3 { grid-template-columns: 1fr 1fr; }
+    .isl-lp .isl-steps { grid-template-columns: 1fr 1fr; }
+    .isl-lp .isl-cover { max-width: 280px; }
+  }
+  @media (max-width: 640px) {
+    .isl-lp section { padding: 64px 0; }
+    .isl-lp .isl-grid-3, .isl-lp .isl-grid-2, .isl-lp .isl-steps { grid-template-columns: 1fr; }
+    .isl-lp header.isl-top .isl-brand .isl-logo-slot:last-child, .isl-lp header.isl-top .isl-brand .isl-sep { display: none; }
+    .isl-lp form.isl-lead-form { padding: 24px 20px; }
+    .isl-lp .isl-hero { padding: 56px 0 72px; }
+  }
+
+  /* SAC page additions */
+  .isl-lp .isl-tagline { font-size: 1.35rem; font-weight: 800; color: var(--accent-2); margin: -4px 0 14px; }
+  .isl-lp .isl-scenario { max-width: 400px; margin: 0 auto; background: #fff; border-radius: 14px; padding: 28px; box-shadow: 0 30px 60px rgba(0,0,0,.35); color: var(--text); }
+  .isl-lp .isl-scenario small { display: block; font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+  .isl-lp .isl-scenario strong { display: block; font-size: 1.4rem; color: var(--ink); margin: 6px 0 18px; }
+  .isl-lp .isl-sc-row { margin-bottom: 14px; }
+  .isl-lp .isl-sc-row span { display: block; font-size: .9rem; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
+  .isl-lp .isl-sc-row i { display: block; height: 10px; border-radius: 6px; background: linear-gradient(90deg, var(--accent), var(--accent-2)); }
+  .isl-lp .isl-sc-note { display: block; font-size: .85rem; color: var(--muted); margin-top: 18px; }
+  .isl-lp .isl-list { margin: 14px 0 0; padding: 0; }
+  .isl-lp .isl-list li { position: relative; padding-left: 18px; margin: 6px 0; color: var(--muted); }
+  .isl-lp .isl-list li::before { content: ""; position: absolute; left: 0; top: .65em; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+  .isl-lp .isl-card-dark { background: var(--ink); border-color: var(--ink); }
+  .isl-lp .isl-card-dark h3 { color: #fff; }
+  .isl-lp .isl-card-dark p { color: #b9c8de; }
+  .isl-lp .isl-flow-row b { font-weight: 600; color: var(--ink); }
+
+  /* Hero opt-in: form above the fold */
+  .isl-lp .isl-hero-form { scroll-margin-top: 84px; }
+  .isl-lp .isl-hero .isl-lead-form { padding: 28px; }
+  .isl-lp .isl-inside { font-size: .78rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #8ea3c0; margin: 22px 0 10px; }
+  .isl-lp .isl-trust { background: var(--ink-2); border-top: 1px solid rgba(255,255,255,.08); padding: 14px 0; }
+  .isl-lp .isl-trust .isl-wrap { display: flex; flex-wrap: wrap; gap: 10px 28px; justify-content: center; }
+  .isl-lp .isl-trust span { color: #dbe6f5; font-size: .9rem; font-weight: 600; }
+  .isl-lp .isl-trust span::before { content: "✓ "; color: var(--accent-2); }
+  .isl-lp .isl-mobile-only { display: none; }
+  @media (max-width: 960px) { .isl-lp .isl-mobile-only { display: inline-flex; margin-top: 4px; } }
+  .isl-lp .isl-inside-cta { display: flex; flex-direction: column; align-items: center; gap: 24px; }
+
+  /* SAP Gold Partner badge: RGB file, unmodified colours, >= 92px wide, clear space = half its height */
+  .isl-lp .isl-gp { display: inline-block; margin: 38px 0 0; padding: 0; line-height: 0; }
+  .isl-lp .isl-gp-svg { width: 128px; height: auto; display: block; }
+
+  /* E-Book cover: thumbnail in the form header + large cover in "What's inside" */
+  .isl-lp .isl-form-head { display: flex; gap: 16px; align-items: center; margin-bottom: 18px; }
+  .isl-lp .isl-form-head .isl-sub { margin-bottom: 0; }
+  .isl-lp .isl-form-cover { width: 76px; height: auto; flex: 0 0 76px; border-radius: 6px; box-shadow: 0 8px 20px rgba(19,33,70,.25); }
+  .isl-lp .isl-cover-img { max-width: 340px; width: 100%; border-radius: 8px; box-shadow: 0 30px 60px rgba(0,0,0,.45); transform: rotate(-2deg); }
+
+  /* Brand lockup (SAP partner rules): Intrasoft logo + SAP Gold Partner logo, separate (no divider),
+     SAP logo never larger than Intrasoft's, >= 92px wide, clear space >= half its height (28px). */
+  .isl-lp .isl-brand .isl-logo-img { height: 40px; width: auto; display: block; }
+  .isl-lp .isl-lockup { display: flex; align-items: center; gap: 32px; margin-top: 38px; flex-wrap: wrap; }
+  .isl-lp .isl-lockup img { height: 64px; width: auto; display: block; }
+  .isl-lp .isl-lockup .isl-gp { margin: 0; }
+  .isl-lp .isl-lockup .isl-gp-svg { width: 96px; height: auto; }
+  .isl-lp .isl-proof { text-align: center; margin: 28px auto 0; max-width: 680px; font-size: .98rem; color: var(--muted); }
+  .isl-lp .isl-proof b { color: var(--ink); }
+
+  /* ===== Design polish (critique, Nov 10) ===== */
+  /* Hero: intro | form, then details. On mobile the form follows the headline directly. */
+  .isl-lp .isl-hero-grid { grid-template-columns: 1.1fr .9fr; grid-template-areas: "intro form" "more form"; column-gap: 56px; row-gap: 0; align-items: start; }
+  .isl-lp .isl-hero-intro { grid-area: intro; }
+  .isl-lp .isl-hero-form { grid-area: form; }
+  .isl-lp .isl-hero-more { grid-area: more; }
+  .isl-lp .isl-hero h1 { letter-spacing: -.02em; }
+  @media (max-width: 960px) {
+    .isl-lp .isl-hero-grid { grid-template-columns: 1fr; grid-template-areas: "intro" "form" "more"; row-gap: 28px; }
+    .isl-lp .isl-hero-intro .isl-lead { margin-bottom: 0; }
+  }
+  /* Calmer cards: hairline border, thin top accent, soft shadow */
+  .isl-lp .isl-card { border: 1px solid var(--line); border-top: 3px solid var(--bar, var(--accent)); border-radius: 16px;
+    box-shadow: 0 1px 2px rgba(19,33,70,.04), 0 10px 28px rgba(19,33,70,.06); transition: transform .2s, box-shadow .2s; }
+  .isl-lp .isl-card:hover { transform: translateY(-2px); box-shadow: 0 2px 4px rgba(19,33,70,.05), 0 16px 36px rgba(19,33,70,.09); }
+  .isl-lp .isl-section-head .isl-lead { line-height: 1.7; }
+  .isl-lp h2 { letter-spacing: -.015em; }
+  .isl-lp .isl-card[style*="dashed"] { border-top-width: 1px; border-top-color: var(--line); box-shadow: none; }
+  /* One dark band mid-page for rhythm */
+  .isl-lp section.isl-dark { background-color: #132146; background-image: radial-gradient(700px 380px at 90% 0%, rgba(0,167,227,.22), transparent 60%), radial-gradient(rgba(120,220,255,.12) 1px, transparent 1.2px); background-size: auto, 22px 22px; }
+  .isl-lp section.isl-dark h2, .isl-lp section.isl-dark h3 { color: #fff; }
+  .isl-lp section.isl-dark .isl-lead, .isl-lp section.isl-dark p { color: #b9c8de; }
+  .isl-lp section.isl-dark .isl-eyebrow { color: var(--accent-2); }
+  .isl-lp section.isl-dark .isl-step, .isl-lp section.isl-dark .isl-card, .isl-lp section.isl-dark .isl-flow { background: rgba(255,255,255,.06); border-color: rgba(120,220,255,.18); box-shadow: none; }
+  .isl-lp section.isl-dark .isl-step::before { color: var(--accent-2); }
+  .isl-lp section.isl-dark .isl-flow-row b { color: #fff; }
+  .isl-lp section.isl-dark .isl-flow-row { border-color: rgba(120,220,255,.18); }
+  .isl-lp section.isl-dark .isl-timeline-bar { background: rgba(0,167,227,.16); border: 1px solid rgba(120,220,255,.25); }
+ .isl-lp .isl-btn { white-space: normal; text-align: center; line-height: 1.35; }
+  @media (max-width: 600px) { .isl-lp header.isl-top .isl-btn { font-size: .8rem; padding: 8px 12px; max-width: 190px; } }
+</style>
+<script>
+  // Configure before launch.
+  window.LP_CONFIG = {
+    campaign: "bdc-finance-planning",
+    // POST endpoint for leads (CRM / GoHighLevel / marketing-automation webhook). Leave empty to preview without sending.
+    formEndpoint: "",
+    // "auto": GoHighLevel webhook URLs (leadconnectorhq.com) get form-encoded data; anything else gets JSON.
+    // Set "ghl" or "json" to force one.
+    formMode: "auto",
+    // Hosted URL of the approved "Connect and Harmonize Business Data to Amplify the Power of AI" E-Book PDF.
+    ebookUrl: "https://files.leadconnectorhq.com/file/6af2d08afbdd54a8278a436e/connect-and-harmonize-business-data-e-book.pdf",
+    ebookCoverUrl: "https://assets.cdn.filesafe.space/vhJRhZJvL4LvDBJd7NM0/media/dc63e9ca-1cbd-4e2e-98c1-e00b9ecd7c3a.webp",
+    // Official Intrasoft logo files (from the Intrasoft branding folder).
+    logoUrl: "https://files.leadconnectorhq.com/file/6af2d08730caaf80f6316eda/intrasoft-logo-white-official.png",        // for navy backgrounds
+    logoOnLightUrl: "https://files.leadconnectorhq.com/file/6af2d088923b4bc1094f29c0/intrasoft-logo-dark-official.png", // for white backgrounds
+    privacyUrl: "#",
+    // Thank-you page in GHL (e.g. "https://link.goonlinejo.com/sap-2-thank-you"). Empty = show the thank-you message on this page.
+    thankYouUrl: ""
+  };
+  window.dataLayer = window.dataLayer || [];
+</script>
+
+<div class="isl-lp">
+<header class="isl-top">
+  <div class="isl-wrap">
+    <a class="isl-brand" href="#"><img class="isl-logo-img isl-logo-dark" src="https://files.leadconnectorhq.com/file/6af2d08730caaf80f6316eda/intrasoft-logo-white-official.png" alt="Intrasoft Middle East" width="82" height="40"></a>
+    <a class="isl-btn isl-btn-primary" href="#isl-download" data-cta="header">Get the Connect and Harmonize E-Book</a>
+  </div>
+</header>
+
+<!-- 1. Hook -->
+<section class="isl-hero">
+  <div class="isl-wrap isl-hero-grid">
+    <div class="isl-hero-intro">
+      <p class="isl-eyebrow" style="color:var(--accent-2)">Free E-Book · For finance leaders in Saudi Arabia</p>
+      <h1>When business conditions change, can your financial plan keep up?</h1>
+      <p class="isl-tagline">Plan for What's Next.</p>
+      <p class="isl-lead">Fast, reliable scenario planning depends on one thing first: connected, trusted business data. This free SAP E-Book shows how to build that foundation with SAP Business Data Cloud.</p>
+    </div>
+    <div class="isl-hero-form" id="isl-download">
+      <form class="isl-lead-form" novalidate>
+        <div class="isl-form-body">
+          <div class="isl-form-head"><img class="isl-form-cover" src="https://assets.cdn.filesafe.space/vhJRhZJvL4LvDBJd7NM0/media/dc63e9ca-1cbd-4e2e-98c1-e00b9ecd7c3a.webp" alt="Connect and Harmonize Business Data to Amplify the Power of AI E-Book cover" width="76" height="92"><div><h3>Get your free copy</h3>
+          <p class="isl-sub">Instant access to the E-Book.</p></div></div>
+          <div class="isl-field"><label for="isl-fullName">Full name</label><input id="isl-fullName" name="fullName" autocomplete="name" required><div class="isl-error">Please enter your full name.</div></div>
+          <div class="isl-field"><label for="isl-email">Business email</label><input id="isl-email" name="email" type="email" autocomplete="email" required><div class="isl-error">Please use a valid business email address.</div></div>
+          <div class="isl-field"><label for="isl-company">Company name</label><input id="isl-company" name="company" autocomplete="organization" required><div class="isl-error">Please enter your company name.</div></div>
+          <div class="isl-field"><label for="isl-jobTitle">Job title</label><input id="isl-jobTitle" name="jobTitle" autocomplete="organization-title" required><div class="isl-error">Please enter your job title.</div></div>
+          <div class="isl-field"><label for="isl-companySize">Company size</label>
+            <select id="isl-companySize" name="companySize" required>
+              <option value="">Select…</option>
+              <option>1–199 employees</option><option>200–999 employees</option><option>1,000–4,999 employees</option><option>5,000+ employees</option>
+            </select><div class="isl-error">Please select your company size.</div></div>
+          <label class="isl-consent"><input type="checkbox" name="marketingConsent" value="yes"><span><span class="isl-opt">Optional</span>Yes, Intrasoft may email me about SAP solutions, events and insights. I can unsubscribe at any time. You don't need to tick this to get the E-Book.</span></label>
+          <p class="isl-privacy">By downloading, you acknowledge that Intrasoft will process your details to deliver this resource, as described in our <a class="isl-privacy-link" href="#">privacy notice</a>.</p>
+          <button class="isl-btn isl-btn-primary" type="submit">Send me the E-Book: Connect and Harmonize Business Data to Amplify the Power of AI</button>
+          <p class="isl-form-error" role="alert">Something went wrong. Please try again.</p>
+        </div>
+        <div class="isl-success" role="status">
+          <div class="isl-big">✓</div>
+          <h3>Thank you, your copy of Connect and Harmonize Business Data to Amplify the Power of AI is ready</h3>
+          <p class="isl-sub">If the download didn't start automatically, use the button below. We've also sent a copy to your inbox.</p>
+          <a class="isl-btn isl-btn-primary isl-ebook-link" href="#" target="_blank" rel="noopener">Read the E-Book: Connect and Harmonize Business Data to Amplify the Power of AI</a>
+        </div>
+      </form>
+    </div>
+    <div class="isl-hero-more">
+      <p class="isl-inside">Inside the E-Book</p>
+      <ul class="isl-hero-points">
+        <li><span class="isl-tick">✓</span><span>Why poor data quality is the top barrier to innovation: 55% of 1,200 business and technology leaders say so</span></li>
+        <li><span class="isl-tick">✓</span><span>How SAP Business Data Cloud harmonizes SAP and third-party data with its business context, so finance and operations work from the same definitions</span></li>
+        <li><span class="isl-tick">✓</span><span>Where SAP Analytics Cloud, SAP Datasphere and SAP Databricks fit, and how AI-powered applications use the data across finance, supply chain and HR</span></li>
+      </ul>
+      <p class="isl-hero-note">For CFOs, finance directors and FP&amp;A leaders in Saudi Arabia. Even if your planning relies heavily on Excel today.</p>
+      <div class="isl-lockup"><img class="isl-logo-dark" src="https://files.leadconnectorhq.com/file/6af2d08730caaf80f6316eda/intrasoft-logo-white-official.png" alt="Intrasoft Middle East" width="131" height="64"><a class="isl-gp" href="https://www.sap.com/partners/profile/intrasoft-middle-east" target="_blank" rel="noopener" aria-label="Intrasoft Middle East on SAP Partner Finder"><svg class="isl-gp-svg" role="img" aria-label="SAP Gold Partner" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 97.7 57.3"><defs><style>.isl-gp-cls-1{fill:#fff;}.isl-gp-cls-1,.isl-gp-cls-2{fill-rule:evenodd;}.isl-gp-cls-3{fill:#6d1900;}.isl-gp-cls-4{fill:#ffc933;}.isl-gp-cls-2{fill:url(#isl-gp-grad);}.isl-gp-cls-5{fill:#a9b4be;}</style><linearGradient id="isl-gp-grad" x1="36" y1="0" x2="36" y2="35.618" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#00b8f1"/><stop offset=".016" stop-color="#00b5ef"/><stop offset=".308" stop-color="#0d90d8"/><stop offset=".578" stop-color="#1675c8"/><stop offset=".817" stop-color="#1c64be"/><stop offset="1" stop-color="#1e5fbb"/></linearGradient></defs><polygon class="isl-gp-cls-5" points="97.7 57.3 0 35.619 0 0 97.7 21.683 97.7 57.3"/><polygon class="isl-gp-cls-4" points="61.315 21.685 25.7 57.3 97.7 57.3 97.7 21.685 61.315 21.685"/><path class="isl-gp-cls-3" d="M56.853,35.315c0-2.158,1.309-3.564,3.579-3.564,1.25,0,2.1.415,2.705,1.133l-.874.874c-.391-.513-.913-.854-1.831-.854-1.47,0-2.236.889-2.236,2.388,0,1.567.791,2.393,2.134,2.393,1.284,0,1.919-.752,1.919-1.665h-1.636v-1.05h2.876v3.765h-1.108v-1.187c-.361.864-1.25,1.284-2.28,1.284-1.689,0-3.247-1.128-3.247-3.516Z"/><path class="isl-gp-cls-3" d="M64.28,36.062c0-1.685,1.124-2.773,2.72-2.773s2.72,1.089,2.72,2.773-1.123,2.769-2.72,2.769-2.72-1.084-2.72-2.769ZM67,37.83c.83,0,1.426-.62,1.426-1.768s-.596-1.768-1.426-1.768-1.426.615-1.426,1.768.596,1.768,1.426,1.768Z"/><path class="isl-gp-cls-3" d="M70.638,37.42v-5.967h1.24v5.752c0,.415.098.562.454.562.151,0,.283-.024.425-.054v1.021c-.195.049-.459.088-.728.088-1.006,0-1.392-.479-1.392-1.401Z"/><path class="isl-gp-cls-3" d="M73.25,36.062c0-1.665.835-2.773,2.217-2.773,1.04,0,1.641.557,1.89,1.162h.024v-2.998h1.235v7.28h-1.191v-1.099h-.024c-.259.615-.757,1.196-1.885,1.196-1.357,0-2.266-1.05-2.266-2.769ZM75.97,37.83c.83,0,1.421-.62,1.421-1.768s-.591-1.768-1.421-1.768c-.835,0-1.426.615-1.426,1.768s.591,1.768,1.426,1.768Z"/><path class="isl-gp-cls-3" d="M57.234,40.853h2.915c1.719,0,2.524.884,2.524,2.192,0,1.221-.786,2.261-2.456,2.261h-1.685v2.427h-1.299v-6.88ZM60.037,44.203c.908,0,1.333-.439,1.333-1.143,0-.708-.469-1.089-1.372-1.089h-1.465v2.231h1.504Z"/><path class="isl-gp-cls-3" d="M63.005,46.278c0-1.147.938-1.685,2.325-1.685h.967v-.308c0-.645-.312-.996-.962-.996-.606,0-1.031.259-1.363.679l-.737-.732c.493-.537,1.162-.947,2.232-.947,1.357,0,2.061.708,2.061,2.002v3.442h-1.191v-.991h-.029c-.327.747-.864,1.089-1.705,1.089-.933,0-1.597-.557-1.597-1.553ZM65.041,46.878c.796,0,1.255-.601,1.255-1.23v-.347h-.757c-.708,0-1.304.19-1.304.859,0,.444.303.718.806.718Z"/><path class="isl-gp-cls-3" d="M68.787,42.391h1.196v1.147h.02c.181-.854.581-1.25,1.25-1.25.195,0,.361.034.459.068v1.157c-.132-.034-.327-.063-.513-.063-.879,0-1.177.605-1.177,1.597v2.686h-1.235v-5.342Z"/><path class="isl-gp-cls-3" d="M72.693,46.4v-3.052h-.781v-.566l1.782-1.777h.234v1.387h1.157v.957h-1.157v2.812c0,.469.151.596.571.596.21,0,.41-.034.586-.083v1.06c-.215.054-.532.088-.845.088-1.074,0-1.548-.396-1.548-1.421Z"/><path class="isl-gp-cls-3" d="M76.126,42.391h1.196v1.123h.02c.244-.61.732-1.226,1.753-1.226,1.147,0,1.66.781,1.66,1.919v3.525h-1.235v-3.228c0-.718-.249-1.152-.967-1.152-.737,0-1.191.488-1.191,1.387v2.993h-1.235v-5.342Z"/><path class="isl-gp-cls-3" d="M81.673,45.062c0-1.86,1.226-2.773,2.681-2.773,1.787,0,2.422,1.309,2.422,2.607,0,.156-.01.317-.02.469h-3.779c.088,1.016.615,1.499,1.543,1.499.601,0,1.001-.176,1.362-.596l.718.718c-.498.562-1.108.845-2.139.845-1.714,0-2.788-.981-2.788-2.769ZM85.545,44.598c-.068-.942-.527-1.357-1.221-1.357-.684,0-1.206.415-1.328,1.357h2.549Z"/><path class="isl-gp-cls-3" d="M87.737,42.391h1.196v1.147h.02c.181-.854.581-1.25,1.25-1.25.195,0,.361.034.459.068v1.157c-.132-.034-.327-.063-.513-.063-.879,0-1.177.605-1.177,1.597v2.686h-1.235v-5.342Z"/><polyline class="isl-gp-cls-2" points="0 35.618 36.388 35.618 72 0 0 0 0 35.618"/><path class="isl-gp-cls-1" d="M42.728,6.697l-7.087-.004v16.852l-6.191-16.852h-6.139l-5.286,14.093c-.563-3.553-4.239-4.781-7.131-5.7-1.91-.613-3.936-1.515-3.917-2.512.016-.818,1.087-1.578,3.209-1.464,1.427.076,2.684.191,5.187,1.398l2.462-4.288c-2.285-1.162-5.442-1.897-8.029-1.9h-.015c-3.017,0-5.531.977-7.089,2.588-1.086,1.125-1.671,2.554-1.696,4.134-.04,2.174.758,3.718,2.434,4.948,1.415,1.038,3.224,1.71,4.819,2.204,1.968.61,3.574,1.139,3.555,2.27-.014.411-.171.795-.466,1.106-.49.506-1.244.696-2.285.715-2.007.042-3.497-.272-5.868-1.673l-2.189,4.348c2.365,1.345,5.166,2.134,8.023,2.134l.368-.004c2.487-.045,4.495-.754,6.099-2.045.092-.073.175-.147.26-.223l-.711,1.899h6.438l1.081-3.286c1.131.387,2.418.6,3.785.6,1.33,0,2.583-.204,3.694-.568l1.042,3.254h10.5v-6.804h2.29c5.536,0,8.809-2.819,8.809-7.543,0-5.262-3.181-7.677-9.954-7.677ZM26.348,21.117c-.827,0-1.602-.145-2.271-.397l2.246-7.087h.043l2.207,7.108c-.664.235-1.421.377-2.225.377ZM43.144,17.044h-1.561v-5.711h1.561c2.082,0,3.743.692,3.743,2.818,0,2.2-1.66,2.893-3.743,2.893"/></svg></a></div>
+    </div>
+  </div>
+</section>
+<div class="isl-trust"><div class="isl-wrap"><span>SAP Gold Partner</span><span>26 years of regional presence</span><span>Arabic and English-speaking teams</span><span>Instant access to the E-Book</span></div></div>
+
+
+<!-- 2. Problem -->
+<section>
+  <div class="isl-wrap isl-split">
+    <div>
+      <p class="isl-eyebrow">The problem</p>
+      <h2>Your business is moving forward. Is your financial planning still looking back?</h2>
+      <p class="isl-lead">Revenue expectations shift, costs rise and markets move, and leadership expects finance to have answers. These aren't reporting questions. They're decisions that depend on understanding what could happen next.</p>
+    </div>
+    <div class="isl-flow" aria-label="Questions leadership asks finance">
+      <div class="isl-flow-row"><span class="isl-dot"></span><b>What happens if revenue falls below expectations?</b></div>
+      <div class="isl-flow-row"><span class="isl-dot"></span><b>How will rising costs affect our margins?</b></div>
+      <div class="isl-flow-row"><span class="isl-dot"></span><b>Can we evaluate an investment before committing?</b></div>
+      <div class="isl-flow-row"><span class="isl-dot"></span><b>What needs to change in our financial plan?</b></div>
+    </div>
+  </div>
+</section>
+
+<section class="isl-soft">
+  <div class="isl-wrap">
+    <div class="isl-section-head isl-center">
+      <p class="isl-eyebrow">Sound familiar?</p>
+      <h2>The numbers exist. The planning process gets in the way.</h2>
+      <p class="isl-lead">Evaluating a new scenario can still mean hours of manual updates, several versions of one model and repeated checks. By the time the forecast reaches leadership, the assumptions may already have changed.</p>
+    </div>
+    <div class="isl-grid-3">
+      <div class="isl-card"><h3>Budgets go out of date fast</h3><p>Business conditions change, but the planning process struggles to keep pace.</p></div>
+      <div class="isl-card"><h3>Time spent maintaining spreadsheets</h3><p>Hours go into collecting, reconciling and updating numbers instead of exploring alternatives.</p></div>
+      <div class="isl-card"><h3>"What if" takes too long</h3><p>A simple scenario question turns into another lengthy planning exercise.</p></div>
+      <div class="isl-card"><h3>Disconnected assumptions</h3><p>It's hard to see how a change in one business driver affects the wider financial picture.</p></div>
+      <div class="isl-card"><h3>Looking back, not ahead</h3><p>Finance is busy explaining past performance when leadership needs forward-looking answers.</p></div>
+      <div class="isl-card isl-card-dark"><h3>The real problem isn't a lack of data</h3><p>It's the gap between the information you have and the decisions your business needs to make.</p></div>
+    </div>
+    <div class="isl-timeline-bar">
+      <strong>Better reporting alone won't close that gap.</strong>
+      <span>More dashboards and more spreadsheets don't create a repeatable planning process. You need a way to use information to evaluate decisions.</span>
+    </div>
+  </div>
+</section>
+
+<!-- 3. Confidence -->
+<section>
+  <div class="isl-wrap">
+    <div class="isl-section-head isl-center">
+      <p class="isl-eyebrow">Building confidence</p>
+      <h2>A finance planning investment should deliver more than a new system</h2>
+      <p class="isl-lead">Success isn't just go-live. It's whether your finance team can use the new planning capability for the decisions that matter. That's why our approach starts with your finance decisions, planning challenges and workflows, and builds the implementation, enablement and improvement plan around them.</p>
+    </div>
+    <div class="isl-grid-2">
+      <div class="isl-card"><h3>A clear planning scope</h3><p>Understand the processes, scenarios and business requirements the solution should address.</p></div>
+      <div class="isl-card"><h3>A structured delivery approach</h3><p>See how implementation, testing, enablement and optimization fit together.</p></div>
+      <div class="isl-card"><h3>Relevant success measures</h3><p>Agree how your organization will judge whether the planning capability is working.</p></div>
+      <div class="isl-card"><h3>A realistic adoption plan</h3><p>Know the responsibilities, training and support your finance team will need.</p></div>
+    </div>
+    <p class="isl-center" style="margin-top:28px;color:var(--muted)">Confidence should come from a clear plan and relevant evidence, not unsupported promises.</p>
+    <!-- Add an approved Intrasoft finance-planning testimonial or case study here once available:
+         the client's original challenge, the solution implemented and verified outcomes. -->
+  </div>
+</section>
+
+<!-- 4. Who this is for -->
+<section class="isl-soft">
+  <div class="isl-wrap">
+    <div class="isl-section-head isl-center">
+      <p class="isl-eyebrow">Who this is for</p>
+      <h2>Built for finance leaders who need more than another dashboard</h2>
+    </div>
+    <div class="isl-grid-2">
+      <div class="isl-card"><p class="isl-eyebrow" style="margin-bottom:6px">CFO or Finance Director</p><h3>See potential outcomes before you decide</h3><p>You want finance to contribute to strategic discussions, not only report historical results.</p></div>
+      <div class="isl-card"><p class="isl-eyebrow" style="margin-bottom:6px">Head of FP&amp;A</p><h3>More capacity for analysis</h3><p>Your team spends too long maintaining forecasts, reconciling spreadsheets and reacting to changing assumptions.</p></div>
+      <div class="isl-card"><p class="isl-eyebrow" style="margin-bottom:6px">Finance transformation lead</p><h3>Technology people actually use</h3><p>You want implementation, processes, training and ongoing improvement to work together.</p></div>
+      <div class="isl-card"><p class="isl-eyebrow" style="margin-bottom:6px">Rethinking your planning approach</p><h3>Beyond the annual budget</h3><p>You want to explore rolling forecasts, driver-based planning, scenario modeling or more connected planning workflows.</p></div>
+    </div>
+    <div class="isl-card" style="margin-top:22px;border-style:dashed"><h3>This may not be the right fit if…</h3><p>You only need a one-off dashboard, a simple report or a standalone technical deployment with no real financial planning requirement.</p></div>
+  </div>
+</section>
+
+<!-- 5. What you get -->
+<section>
+  <div class="isl-wrap">
+    <div class="isl-section-head isl-center">
+      <p class="isl-eyebrow">What you get</p>
+      <h2>One integrated partner. A more connected finance planning capability.</h2>
+      <p class="isl-lead">Intrasoft brings planning design, SAP Analytics Cloud implementation, enablement and ongoing improvement together, as part of SAP Business Data Cloud.</p>
+    </div>
+    <div class="isl-grid-2">
+      <div class="isl-card"><p class="isl-eyebrow" style="margin-bottom:6px">01</p><h3>Finance-focused planning and solution design</h3><p>Start with the decisions your business needs to make.</p>
+        <ul class="isl-list"><li>Clearer financial planning requirements</li><li>Structured forecasting and scenario use cases</li><li>Defined planning workflows and responsibilities</li><li>Agreed priorities and measures of success</li></ul></div>
+      <div class="isl-card"><p class="isl-eyebrow" style="margin-bottom:6px">02</p><h3>SAP Analytics Cloud implementation</h3><p>Turn your planning requirements into a practical, tested solution.</p>
+        <ul class="isl-list"><li>Planning models built on defined requirements</li><li>Scenario and what-if analysis</li><li>Forecasting and driver-based planning, where appropriate</li><li>Relevant reporting and analytics</li></ul></div>
+      <div class="isl-card"><p class="isl-eyebrow" style="margin-bottom:6px">03</p><h3>Finance team enablement and training</h3><p>A planning solution creates value when people can put it to work.</p>
+        <ul class="isl-list"><li>Role-based understanding of workflows</li><li>Preparation for day-to-day use</li><li>A structured move into the new planning process</li></ul></div>
+      <div class="isl-card"><p class="isl-eyebrow" style="margin-bottom:6px">04</p><h3>Managed services and continuous optimization</h3><p>Your planning requirements won't stand still. Neither should your solution.</p>
+        <ul class="isl-list"><li>Continuing solution support</li><li>Review of changing planning requirements</li><li>Prioritized enhancements</li></ul></div>
+    </div>
+    <div class="isl-timeline-bar">
+      <strong>The outcome we work toward</strong>
+      <span>A finance team better equipped to evaluate scenarios, update assumptions, understand potential impacts, build more responsive forecasts and support leadership with better-informed analysis.</span>
+    </div>
+  </div>
+</section>
+
+<!-- 6. Why Intrasoft -->
+<section class="isl-dark" id="isl-cycle">
+  <div class="isl-wrap">
+    <div class="isl-section-head isl-center">
+      <p class="isl-eyebrow">Why Intrasoft is different</p>
+      <h2>One connected journey, from planning design to ongoing improvement</h2>
+      <p class="isl-lead">Go-live doesn't automatically change how finance plans. Processes need designing, users need involving and the solution needs to evolve with the business.</p>
+    </div>
+    <div class="isl-steps">
+      <div class="isl-step"><h3>Assess and align</h3><p>Agree priorities, scope and measures of success before implementation begins.</p></div>
+      <div class="isl-step"><h3>Design the planning model</h3><p>Define drivers, forecasting needs, scenarios, workflows and reporting.</p></div>
+      <div class="isl-step"><h3>Implement with SAP Activate</h3><p>Configure, test, validate and deploy the agreed SAP Analytics Cloud solution.</p></div>
+      <div class="isl-step"><h3>Enable finance teams</h3><p>Role-based training, participation and adoption planning.</p></div>
+      <div class="isl-step"><h3>Optimize and evolve</h3><p>Review usage, feedback and new requirements through agreed ongoing services.</p></div>
+    </div>
+    <div class="isl-grid-3" style="margin-top:22px">
+      <div class="isl-card"><h3>Solution fit</h3><p>Does the implementation support the planning requirements that actually matter?</p></div>
+      <div class="isl-card"><h3>User adoption</h3><p>Are the people responsible for planning equipped to use it?</p></div>
+      <div class="isl-card"><h3>Long-term relevance</h3><p>Can the capability keep improving as business needs evolve?</p></div>
+    </div>
+    <div class="isl-timeline-bar">
+      <strong>Go-live is a milestone, not the finish line.</strong>
+      <span>The real objective is helping finance plan, evaluate alternatives and contribute to better business decisions.</span>
+    </div>
+  </div>
+</section>
+
+<!-- 7. E-Book + form -->
+<section class="isl-convert">
+  <div class="isl-wrap isl-convert-grid">
+    <div>
+      <p class="isl-eyebrow" style="color:var(--accent-2)">What's inside</p>
+      <h2>Connect and Harmonize Business Data to Amplify the Power of AI</h2>
+      <p class="isl-lead" style="color:#b9c8de">The next business decision won't wait for your next annual budget. Reliable planning and scenario analysis start with connected, trusted business data. Learn how to build that foundation.</p>
+      <ul class="isl-learn">
+        <li><span class="isl-tick">✓</span><span>Why poor data quality and hard-to-harmonize data stall data and AI innovation</span></li>
+        <li><span class="isl-tick">✓</span><span>How SAP Business Data Cloud unifies SAP data and connects third-party data, with full business context</span></li>
+        <li><span class="isl-tick">✓</span><span>Where SAP Datasphere, SAP Analytics Cloud, SAP Business Warehouse and SAP Databricks fit</span></li>
+        <li><span class="isl-tick">✓</span><span>How AI-powered applications turn that data into decisions across finance, supply chain and HR</span></li>
+      </ul>
+      <p style="color:#8ea3c0;font-size:.92rem;margin-top:20px">Want to discuss your planning challenges? After you download, the Intrasoft team can arrange a finance planning conversation with you.</p>
+    </div>
+    <div class="isl-inside-cta">
+      <div class="isl-cover" role="img" aria-label="Connect and Harmonize Business Data to Amplify the Power of AI E-Book cover">
+        <div>
+          <small>Free SAP E-Book</small>
+          <strong>Connect and Harmonize Business Data to Amplify the Power of AI</strong>
+        </div>
+        <span>How connected, trusted business data powers planning, analytics and AI.</span>
+        <span class="isl-stamp">FREE DOWNLOAD</span>
+      </div>
+      <a class="isl-btn isl-btn-primary" href="#isl-download" data-cta="inside">Get your free copy</a>
+    </div>
+  </div>
+</section>
+
+<!-- 8. FAQ -->
+<section class="isl-soft">
+  <div class="isl-wrap">
+    <div class="isl-section-head isl-center"><p class="isl-eyebrow">FAQ</p><h2>Common questions</h2></div>
+    <div class="isl-faq">
+      <details><summary>Is SAP Analytics Cloud only for reporting and dashboards?</summary><p>No. SAP Analytics Cloud supports analytics and planning, including financial planning, scenario modeling and forecasting. The capabilities you use depend on your requirements and the solution design. This offer focuses on planning and decision support.</p></details>
+      <details><summary>We already plan in Excel. Why consider SAC?</summary><p>Excel remains a useful finance tool. But as models grow more complex and the need for collaboration, scenario comparison and changing assumptions increases, spreadsheet-heavy processes get harder to maintain. The aim is to find where your current approach creates limits, and whether SAC addresses them.</p></details>
+      <details><summary>Will our finance team need technical expertise?</summary><p>That depends on how the solution is designed and each user's tasks. Practical, role-based enablement is part of the delivery approach.</p></details>
+      <details><summary>Can SAP Analytics Cloud work with our existing systems?</summary><p>SAP Analytics Cloud offers integration capabilities. The right approach depends on your applications, data sources and architecture, and is reviewed during assessment and design.</p></details>
+      <details><summary>How long does implementation take?</summary><p>It depends on scope: planning-model complexity, integrations, processes, testing and user readiness. We agree a realistic delivery plan with your stakeholders.</p></details>
+      <details><summary>What happens after go-live?</summary><p>Planning requirements keep evolving. The offer includes options for ongoing managed services, support and optimization, subject to the agreed engagement scope.</p></details>
+      <details><summary>How much does it cost?</summary><p>Pricing is tailored to scope, implementation complexity, enablement needs and ongoing services. Requirements and the commercial approach are defined together with Intrasoft.</p></details>
+      <details><summary>What happens after I download the E-Book?</summary><p>You get the E-Book straight away. If you opted in, Intrasoft may follow up with related insights and an invitation to discuss your planning challenges, with no obligation.</p></details>
+      <details><summary>How do we know whether it's working?</summary><p>Success measures are agreed before implementation begins, such as planning-process efficiency, user adoption and scenario-analysis capability. Specific business or financial results depend on your context.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="isl-final">
+  <div class="isl-wrap">
+    <h2>Don't just prepare the next forecast. Prepare your finance team for what comes next.</h2>
+    <p class="isl-lead" style="margin:0 auto 28px">Plan with more flexibility. Evaluate alternative scenarios. Support better-informed decisions.</p>
+    <a class="isl-btn isl-btn-primary" href="#isl-download" data-cta="final">Read the E-Book: Connect and Harmonize Business Data to Amplify the Power of AI</a>
+  </div>
+</section>
+
+<footer>
+  <div class="isl-wrap">
+    <span>© <span class="isl-yr"></span> Intrasoft. SAP, the SAP logo, and the SAP partner logos are trademarks or registered trademarks of SAP SE or an SAP affiliated company in Germany and other countries.</span>
+    <span><a class="isl-privacy-link" href="#">Privacy notice</a></span>
+  </div>
+</footer>
+</div>
+
+<script>
+(function () {
+  var cfg = window.LP_CONFIG;
+
+  // In-page links scroll smoothly without changing the URL (safe inside GHL page builders).
+  document.querySelectorAll('.isl-lp a[href^="#isl-"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var t = document.getElementById(a.getAttribute('href').slice(1));
+      if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    });
+  });
+  function hostOf(url) { try { return new URL(url, location.href).hostname; } catch (e) { return ''; } }
+  function track(event, data) { window.dataLayer.push(Object.assign({ event: event, campaign: cfg.campaign }, data || {})); }
+
+  document.querySelectorAll('.isl-lp .isl-logo-dark').forEach(function (i) { if (cfg.logoUrl) i.src = cfg.logoUrl; });
+  document.querySelectorAll('.isl-lp .isl-logo-light').forEach(function (i) { if (cfg.logoOnLightUrl) i.src = cfg.logoOnLightUrl; });
+  document.querySelector('.isl-yr').textContent = new Date().getFullYear();
+  document.querySelectorAll('.isl-privacy-link').forEach(function (a) { a.href = cfg.privacyUrl; });
+  document.querySelectorAll('.isl-ebook-link').forEach(function (a) { a.href = cfg.ebookUrl; });
+  if (cfg.ebookCoverUrl && document.querySelector('.isl-cover')) {
+    var mock = document.querySelector('.isl-cover');
+    var img = document.createElement('img');
+    img.src = cfg.ebookCoverUrl; img.alt = mock.getAttribute('aria-label'); img.className = 'isl-cover-img';
+    mock.replaceWith(img);
+  }
+
+  // UTM / source attribution.
+  var params = new URLSearchParams(location.search);
+  var utm = {};
+  ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'].forEach(function (k) { if (params.get(k)) utm[k] = params.get(k); });
+  track('page_view', utm);
+
+  document.querySelectorAll('.isl-lp [data-cta]').forEach(function (el) {
+    el.addEventListener('click', function () {
+      track('ebook_cta_click', { position: el.dataset.cta });
+      setTimeout(function () { document.getElementById('isl-fullName').focus({ preventScroll: true }); }, 500);
+    });
+  });
+
+  var freeDomains = /@(gmail|googlemail|yahoo|hotmail|outlook|live|msn|icloud|me|aol|proton|protonmail|gmx|mail|yandex)\./i;
+  var form = document.querySelector('form.isl-lead-form');
+  var started = false;
+  form.addEventListener('input', function () { if (!started) { started = true; track('form_start'); } });
+
+  function validate() {
+    var ok = true;
+    form.querySelectorAll('.isl-field').forEach(function (f) {
+      var input = f.querySelector('input, select');
+      var v = input.value.trim();
+      var bad = !v;
+      if (input.type === 'isl-email') bad = !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) || freeDomains.test(v);
+      f.classList.toggle('isl-invalid', bad);
+      if (bad) ok = false;
+    });
+    return ok;
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    form.querySelector('.isl-form-error').style.display = 'none';
+    if (!validate()) {
+      track('form_error');
+      var first = form.querySelector('.isl-invalid input, .isl-invalid select');
+      if (first) first.focus();
+      return;
+    }
+    var data = Object.fromEntries(new FormData(form).entries());
+    data.marketingConsent = data.marketingConsent === 'yes';
+    data.marketingConsentText = data.marketingConsent ? form.querySelector('.isl-consent').innerText.replace(/^Optional\s*/i, '').trim() : '';
+    data.privacyNoticeUrl = cfg.privacyUrl;
+    data.submittedAt = new Date().toISOString();
+    data.campaign = cfg.campaign;
+    data.page = location.href.split('?')[0];
+    Object.assign(data, utm);
+
+    // Open the download tab inside the click, so browsers don't treat it as a pop-up.
+    var hasEbook = cfg.ebookUrl && cfg.ebookUrl !== '#';
+    var win = hasEbook ? window.open('', '_blank') : null;
+    if (win) win.opener = null;
+
+    var btn = form.querySelector('button[type=submit]');
+    btn.disabled = true; btn.textContent = 'Sending…';
+
+    var ghl = cfg.formMode === 'ghl' || (cfg.formMode !== 'json' && /(^|\.)leadconnectorhq\.com$/i.test(hostOf(cfg.formEndpoint)));
+    var send;
+    if (!cfg.formEndpoint) {
+      send = Promise.resolve();
+    } else if (ghl) {
+      // GHL inbound webhooks don't answer browser CORS checks, so send a form-encoded "simple" request.
+      // The response can't be read in no-cors mode; a network failure still rejects.
+      var body = new URLSearchParams();
+      Object.keys(data).forEach(function (k) { body.append(k, String(data[k])); });
+      send = fetch(cfg.formEndpoint, { method: 'POST', mode: 'no-cors', body: body });
+    } else {
+      send = fetch(cfg.formEndpoint, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
+        .then(function (r) { if (!r.ok) throw new Error(r.status); });
+    }
+
+    send.then(function () {
+      track('form_submit_success');
+      form.querySelector('.isl-form-body').style.display = 'none';
+      form.querySelector('.isl-success').style.display = 'block';
+      track('thank_you_view');
+      if (win) {
+        win.location.href = cfg.ebookUrl;
+        track('resource_download_success');
+      }
+      if (cfg.thankYouUrl) {
+        try { sessionStorage.setItem('isl_first_name', (data.fullName || '').split(' ')[0]); } catch (e) {}
+        setTimeout(function () { location.href = cfg.thankYouUrl; }, 400);
+      }
+    }).catch(function () {
+      if (win) win.close();
+      form.querySelector('.isl-form-error').style.display = 'block';
+      btn.disabled = false; btn.textContent = 'Send me the E-Book: Connect and Harmonize Business Data to Amplify the Power of AI';
+    });
+  });
+
+  var ebookBtn = form.querySelector('.isl-success .isl-ebook-link');
+  if (ebookBtn) ebookBtn.addEventListener('click', function () { track('resource_download_success', { via: 'button' }); });
+})();
+</script>
