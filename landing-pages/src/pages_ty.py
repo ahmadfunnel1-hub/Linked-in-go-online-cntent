@@ -33,7 +33,7 @@ TY_JS = '''<script>
   [].forEach.call(root.querySelectorAll('.isl-logo-light'), function (i) { if (cfg.logoOnLightUrl) i.src = cfg.logoOnLightUrl; });
   root.querySelector('.isl-yr').textContent = new Date().getFullYear();
   [].forEach.call(root.querySelectorAll('.isl-privacy-link'), function (a) { a.href = cfg.privacyUrl; });
-  var qs = location.search, isAI = /[?&]for=ai\\b/.test(qs), isImp = /[?&]ebook=impactful\\b/.test(qs) || root.getAttribute('data-ebook') === 'impactful', calTitle = root.getAttribute('data-cal') || 'Book your free review', reqText = root.getAttribute('data-req') || 'Request your free review';
+  var qs = location.search, isAI = /[?&]for=ai\\b/.test(qs) || /[?&](lead_)?campaign=bdc-v2/.test(qs), isImp = /[?&]ebook=impactful\\b/.test(qs) || /[?&](lead_)?campaign=bdc-v4/.test(qs) || root.getAttribute('data-ebook') === 'impactful', calTitle = root.getAttribute('data-cal') || 'Book your free review', reqText = root.getAttribute('data-req') || 'Request your free review';
   /*VARIANTS*/
   try {
     var first = sessionStorage.getItem('isl_first_name');
