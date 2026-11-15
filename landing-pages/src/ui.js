@@ -6,6 +6,9 @@
 
   var fr = root.querySelector('iframe[data-ghl-embed]');
   if (fr && cfg.ghlFormId) {
+    fr.id = 'inline-' + cfg.ghlFormId; fr.setAttribute('data-layout-iframe-id', fr.id);
+    fr.style.minHeight = '720px'; fr.style.width = '100%'; fr.style.border = '0';
+    var emb = document.createElement('script'); emb.src = 'https://link.msgsndr.com/js/form_embed.js'; document.body.appendChild(emb);
     fr.src = 'https://link.msgsndr.com/widget/form/' + cfg.ghlFormId +
       '?lead_campaign=' + encodeURIComponent(cfg.campaign) +
       '&lead_source_page=' + encodeURIComponent(location.hostname + location.pathname);
