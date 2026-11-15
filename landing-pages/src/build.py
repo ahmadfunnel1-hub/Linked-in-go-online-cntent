@@ -14,6 +14,9 @@ def gf_v1():
     s = re.sub(r'<style>.*?</style>', lambda m: '<style>\n' + css + '\n</style>', s, count=1, flags=re.S)
     s = s.replace('grow-fast-v1-myths-story', 'grow-fast-v1-myths')
     from components import form_block
+    # drop the old form-submit script block (its handler expected the old form)
+    for m in list(re.finditer(r'<script>(?:(?!</script>).)*?isl-lead-form(?:(?!</script>).)*?</script>', s, re.S))[::-1]:
+        s = s[:m.start()] + s[m.end():]
     a = s.index('<form class="isl-lead-form"'); b = s.index('</form>', a) + len('</form>')
     s = s[:a] + form_block('', 'Tell us where to send it. It opens straight away, and a copy goes to your inbox.', '') + s[b:]
     return s, None
