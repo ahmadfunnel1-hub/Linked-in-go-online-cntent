@@ -25,7 +25,7 @@ def ty_cfg(campaign, extra=''):
 
 TY_JS = '''<script>
 (function () {
-  var cfg = window.LP_CONFIG, root = document.querySelector('.isl-lp');
+  var cfg = window.LP_CONFIG, root = document.querySelector('.isl-lp[data-cal]') || document.querySelector('.isl-lp');
   function track(e, d) { try { window.dataLayer.push(Object.assign({ event: e, campaign: cfg.campaign }, d || {})); } catch (x) {} }
   function set(sel, html) { var el = root.querySelector(sel); if (el && html) el.innerHTML = html; }
   track('thank_you_page_view');

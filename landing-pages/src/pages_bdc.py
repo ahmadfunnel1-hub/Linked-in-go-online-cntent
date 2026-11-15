@@ -188,11 +188,11 @@ def bdc_v4():
              f'<div class="isl-tile"><div><small>Liquidity</small><b>Cash flow and liquidity</b><span>Visible in time to act</span></div>{spark("M2 34 L24 28 L46 32 L68 18 L90 22 L112 8 L128 12")}</div>'
              f'<div class="isl-tile isl-alert"><div><small>Receivables</small><b>Overdue payments</b><span>Surface early, with recommendations</span></div>{spark("M2 12 L24 16 L46 14 L68 26 L90 22 L112 34 L128 30")}</div>'
              f'<div class="isl-tile"><div><small>Payables</small><b>What you owe, and when</b><span>Alongside receivables and cash flow</span></div>{spark("M2 30 L24 26 L46 30 L68 24 L90 26 L112 16 L128 18")}</div></div>')
-    hero = ('<section class="isl-hero"><div class="isl-wrap isl-hero-grid"><div>' + eyebrow('Free E-Book · For CFOs, financial controllers and treasury teams in Saudi Arabia') +
+    hero = ('<section class="isl-hero"><div class="isl-wrap isl-hero-grid"><div>' + eyebrow('Free E-Book · For CFOs, financial leaders and treasury teams in Saudi Arabia') +
             f'<h1>Turn business data into {g("decisions, not more reports.")}</h1><p class="isl-tagline">See liquidity, receivables and payables in time to act.</p>'
             '<p class="isl-lead">Prebuilt metrics, reports and dashboards linked to live business data, so finance teams spend less time building reports and more time deciding. This free E-Book shows how intelligent content in SAP Business Data Cloud makes that possible.</p>'
             f'<div class="isl-hero-ctas">{btn(V4_MAIN + " " + ico("down"), cta="hero")}{btn("See what finance can see", "#isl-see", "hero-2", ghost=True)}</div><div class="isl-hero-meta"><span>{ico("bolt")}Instant access</span><span>{ico("check")}Free, no obligation</span></div>'
-            '<p class="isl-hero-note">For CFOs, financial controllers and treasury teams in Saudi Arabia. Even if cash and receivables tracking still runs on Excel today.</p>' + lockup() + '</div>'
+            '<p class="isl-hero-note">For CFOs, financial leaders and treasury teams in Saudi Arabia. Even if cash and receivables tracking still runs on Excel today.</p>' + lockup() + '</div>'
             f'<div class="isl-visual">{tiles}</div></div></section>')
     tb = tabs([('Liquidity', '<h3>See cash flow and liquidity without complex, multistep processes</h3><p>Intelligent content gives <b>real-time visibility</b> into liquidity, so finance can adjust financial strategies to maintain it.</p>'),
                ('Receivables', '<h3>Spot overdue payments early</h3><p>Finance can <b>quickly identify overdue payments</b> and receive tailored recommendations to improve collection rates.</p>'),
