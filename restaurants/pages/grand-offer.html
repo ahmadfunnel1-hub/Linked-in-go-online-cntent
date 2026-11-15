@@ -1,0 +1,704 @@
+<title>منظومة الأربع لحظات</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+/* Layout: one restaurant night, scrubbed moment by moment. A "بدون / مع المنظومة" switch rewrites the night,
+   then proof, mechanism, calculator, 14 days, comparison, guarantee, objections, application. Muhammad's identity: paper + green. */
+:root{
+  --paper:#FBF8F2; --card:#FFFFFF; --cream:#F3EEE4; --line:#E4DCCD;
+  --ink:#1B1F1D; --muted:#5A5F5B; --green:#0E7A67; --green2:#0A5E50; --green-soft:#E3F1EC;
+  --red:#B4231B; --red-soft:#FBE9E7; --amber:#8A5A00; --amber-soft:#FFF1D6; --hi:#F6E3B4;
+  --night:#14201C; --night2:#1D2C27; --night-ink:#E9F1EE; --night-muted:#9DB2AA;
+  --shadow:0 18px 40px rgba(27,31,29,.10);
+  --display:'Readex Pro','IBM Plex Sans Arabic',Tahoma,sans-serif;
+  --body:'IBM Plex Sans Arabic',Tahoma,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#101614; --card:#17201D; --cream:#1F2A26; --line:#2B3833;
+  --ink:#E8EEEB; --muted:#A3B0AA; --green:#3FB89F; --green2:#2E9A84; --green-soft:#1B3A33;
+  --red:#F07B70; --red-soft:#3A1F1C; --amber:#F2C46B; --amber-soft:#3A2F17; --hi:#4D4320;
+  --night:#0B110F; --night2:#15201C; --night-ink:#E9F1EE; --night-muted:#93A79F;
+  --shadow:0 18px 40px rgba(0,0,0,.35); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#101614; --card:#17201D; --cream:#1F2A26; --line:#2B3833;
+  --ink:#E8EEEB; --muted:#A3B0AA; --green:#3FB89F; --green2:#2E9A84; --green-soft:#1B3A33;
+  --red:#F07B70; --red-soft:#3A1F1C; --amber:#F2C46B; --amber-soft:#3A2F17; --hi:#4D4320;
+  --night:#0B110F; --night2:#15201C; --night-ink:#E9F1EE; --night-muted:#93A79F;
+  --shadow:0 18px 40px rgba(0,0,0,.35); color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.8;direction:rtl;text-align:right;padding-bottom:84px}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.narrow{max-width:820px}
+section{padding-block:76px}
+h1,h2,h3,h4{font-family:var(--display);margin:0;line-height:1.35;text-wrap:balance}
+h2{font-size:clamp(27px,3.8vw,40px);font-weight:700}
+h3{font-size:20px;font-weight:600}
+p{margin:0}
+.muted{color:var(--muted)}
+.g{color:var(--green)}
+.mark{background:linear-gradient(transparent 58%,var(--hi) 58%);padding:0 2px}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate}
+.eyebrow{display:inline-block;font-family:var(--display);font-weight:600;font-size:14px;letter-spacing:.02em;color:var(--green);background:var(--green-soft);padding:4px 14px;border-radius:999px;margin-bottom:14px}
+.head{display:grid;gap:12px;max-width:760px;margin-bottom:36px}
+.head.c{margin-inline:auto;text-align:center}
+.lead{font-size:clamp(17px,2vw,20px);color:var(--muted)}
+
+/* buttons */
+.btn{appearance:none;border:0;cursor:pointer;display:inline-flex;flex-direction:column;align-items:center;justify-content:center;text-decoration:none;font-family:var(--display);font-weight:700;font-size:19px;line-height:1.4;color:#fff;background:var(--green);padding:15px 30px;border-radius:14px;box-shadow:0 10px 24px rgba(14,122,103,.28);transition:transform .15s ease,background .15s ease}
+.btn small{font-family:var(--body);font-weight:400;font-size:13px;opacity:.92}
+.btn:hover{background:var(--green2);transform:translateY(-2px)}
+.btn:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,label:focus-within{outline:3px solid var(--hi);outline-offset:3px}
+.btn.ghost{background:transparent;color:var(--green);box-shadow:inset 0 0 0 2px var(--green)}
+.btn.ghost:hover{background:var(--green-soft)}
+.under{font-size:14px;color:var(--muted);margin-top:10px}
+.ctas{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.ctas.c{justify-content:center}
+
+/* top */
+.bar{background:var(--green);color:#fff;text-align:center;font-size:15px;padding-block:11px}
+.bar b{font-family:var(--display)}
+.top{background:var(--card);border-bottom:1px solid var(--line);padding-block:14px}
+.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.logo{font-family:var(--display);font-weight:700;font-size:20px;color:var(--green);display:flex;align-items:center;gap:10px}
+.dots{display:inline-grid;grid-template-columns:repeat(2,9px);gap:3px}
+.dots i{width:9px;height:9px;border-radius:3px;background:var(--green)}
+.dots i:nth-child(2){opacity:.75}.dots i:nth-child(3){opacity:.5}.dots i:nth-child(4){opacity:.3}
+.top .btn{font-size:15px;padding:9px 18px;box-shadow:none}
+
+/* HERO */
+.hero{padding-block:56px 46px}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
+.who{font-family:var(--display);font-weight:600;font-size:15px;color:var(--muted);margin-bottom:14px}
+.hero h1{font-size:clamp(34px,5.2vw,58px);font-weight:700}
+.hero h1 .s{display:inline-block;position:relative}
+.hero h1 .s::after{content:"";position:absolute;inset:auto 0 .08em 0;height:.22em;background:var(--hi);z-index:-1;border-radius:3px}
+.hero .sub{font-size:clamp(17px,2vw,20px);color:var(--muted);margin:18px 0 26px;max-width:560px}
+.trust{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:16px;font-size:14px;color:var(--muted)}
+.trust span::before{content:"✓ ";color:var(--green);font-weight:700}
+
+/* hero visual: morning report phone */
+.stage{position:relative;display:grid;justify-items:center}
+.phone{width:min(330px,100%);background:#0F1513;border-radius:34px;padding:10px;box-shadow:0 30px 60px rgba(0,0,0,.22)}
+.screen{background:#ECE5DA;border-radius:26px;min-height:470px;overflow:hidden;display:flex;flex-direction:column}
+.wa-top{background:#075E54;color:#fff;padding:12px 14px;display:flex;align-items:center;gap:10px;font-family:var(--display);font-size:14px}
+.wa-top .av{width:30px;height:30px;border-radius:50%;background:#fff3;display:grid;place-items:center;font-size:13px}
+.wa-top small{display:block;font-family:var(--body);font-size:11px;opacity:.8}
+.wa-body{padding:14px 12px;display:grid;gap:10px;align-content:start;flex:1}
+.bub{background:#fff;color:#1B1F1D;border-radius:12px 2px 12px 12px;padding:10px 12px;font-size:13.5px;line-height:1.65;box-shadow:0 1px 1px rgba(0,0,0,.08);max-width:92%;justify-self:end;opacity:0;transform:translateY(8px);animation:pop .45s ease forwards}
+.bub b{font-family:var(--display)}
+.bub .row{display:flex;justify-content:space-between;gap:10px}
+.bub .row span:last-child{font-family:var(--mono);font-weight:600}
+.bub .t{display:block;text-align:left;font-size:10.5px;color:#7a7f7c;margin-top:2px;font-family:var(--mono)}
+.bub:nth-child(1){animation-delay:.2s}.bub:nth-child(2){animation-delay:.9s}.bub:nth-child(3){animation-delay:1.6s}
+@keyframes pop{to{opacity:1;transform:none}}
+.ex{position:absolute;top:-12px;left:6px;background:var(--card);border:1px solid var(--line);color:var(--muted);font-size:12px;border-radius:999px;padding:2px 10px;font-family:var(--display)}
+.sticker{position:absolute;bottom:34px;right:-6px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 14px;box-shadow:var(--shadow);font-family:var(--display);font-size:13px;line-height:1.5;max-width:200px;transform:rotate(-3deg)}
+.sticker b{color:var(--green);font-size:22px;display:block;font-family:var(--mono)}
+
+/* personalised strip (from audit link) */
+.you{background:var(--amber-soft);border-block:1px solid var(--line)}
+.you .wrap{display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding-block:16px}
+.you p{font-family:var(--display);font-weight:600}
+.you .n{font-family:var(--mono);font-size:22px;color:var(--red)}
+
+/* NIGHT */
+.night{background:var(--night);color:var(--night-ink)}
+.night .eyebrow{background:#ffffff14;color:#9FE3D2}
+.night .lead{color:var(--night-muted)}
+.switch{display:inline-flex;background:#ffffff12;border-radius:999px;padding:5px;gap:4px;margin-top:8px}
+.switch button{appearance:none;border:0;cursor:pointer;font-family:var(--display);font-weight:600;font-size:15px;color:var(--night-muted);background:transparent;padding:9px 20px;border-radius:999px;transition:background .2s,color .2s}
+.switch button[aria-pressed="true"]{background:var(--night-ink);color:var(--night)}
+.switch button.on[aria-pressed="true"]{background:#3FB89F;color:#08130F}
+.timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:34px}
+.mo{background:var(--night2);border:1px solid #ffffff14;border-radius:18px;padding:20px 18px 22px;display:grid;gap:10px;align-content:start;position:relative;transition:border-color .3s,background .3s}
+.mo .clk{font-family:var(--mono);font-size:26px;font-weight:600;color:#F2B8A8;direction:ltr;text-align:right}
+.mo .tag{font-family:var(--display);font-size:13px;font-weight:600;color:var(--night-muted)}
+.mo h3{font-size:18px}
+.mo p{font-size:15px;color:#C9D6D1;line-height:1.75}
+.mo .cost{font-size:13.5px;font-family:var(--display);font-weight:600;color:#F2B8A8;border-top:1px dashed #ffffff22;padding-top:10px}
+.mo .fx{transition:opacity .25s ease}
+.night.with .mo{border-color:#3FB89F66;background:#173029}
+.night.with .mo .clk,.night.with .mo .cost{color:#7FE0C9}
+.mo .moment{position:absolute;top:-11px;right:16px;font-family:var(--display);font-size:12px;font-weight:700;background:var(--night);border:1px solid #ffffff22;color:var(--night-muted);border-radius:999px;padding:1px 10px}
+.night.with .mo .moment{color:#7FE0C9;border-color:#3FB89F66}
+.verdict{margin-top:34px;text-align:center;font-family:var(--display);font-size:clamp(20px,2.6vw,26px);font-weight:600}
+.verdict em{font-style:normal;color:#F2B8A8}
+.night.with .verdict em{color:#7FE0C9}
+
+/* PROOF */
+.proof{background:var(--card)}
+.proof-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:40px;align-items:start}
+.counter{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:22px}
+.stat{border:1px solid var(--line);border-radius:16px;padding:16px;background:var(--paper)}
+.stat b{display:block;font-family:var(--mono);font-size:34px;font-weight:600;color:var(--green);line-height:1.2}
+.stat span{font-size:14px;color:var(--muted);line-height:1.5;display:block;margin-top:4px}
+.feed{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--paper)}
+.feed-h{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid var(--line);font-family:var(--display);font-size:14px;font-weight:600;background:var(--card)}
+.feed-h small{font-family:var(--body);font-weight:400;color:var(--muted)}
+.cm{display:grid;grid-template-columns:34px 1fr auto;gap:10px;align-items:start;padding:12px 16px;border-bottom:1px solid var(--line)}
+.cm:last-child{border-bottom:0}
+.cm .a{width:34px;height:34px;border-radius:50%;background:var(--cream);display:grid;place-items:center;font-family:var(--display);font-size:13px;color:var(--muted)}
+.cm .u{font-family:var(--mono);font-size:12.5px;color:var(--muted)}
+.cm .q{font-size:15px}
+.cm .st{font-size:12px;font-family:var(--display);font-weight:600;color:var(--red);background:var(--red-soft);padding:2px 9px;border-radius:999px;white-space:nowrap}
+.note{font-size:13px;color:var(--muted);margin-top:12px;line-height:1.7}
+
+/* MECHANISM */
+.mech{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;counter-reset:m}
+.m{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px 20px;display:grid;gap:12px;align-content:start}
+.m .n{font-family:var(--mono);font-size:13px;color:var(--muted)}
+.m h3{font-size:23px;color:var(--green)}
+.m .line{font-family:var(--display);font-weight:600;font-size:15.5px}
+.m ul{list-style:none;margin:0;padding:0;display:grid;gap:8px;font-size:15px}
+.m li{padding-right:18px;position:relative;line-height:1.65}
+.m li::before{content:"";position:absolute;right:0;top:.7em;width:8px;height:8px;border-radius:2px;background:var(--green)}
+.m li i{font-style:normal;color:var(--muted)}
+.m .more{font-size:13.5px;color:var(--muted);border-top:1px dashed var(--line);padding-top:10px}
+.arrowline{display:flex;justify-content:space-between;font-family:var(--display);font-size:13px;color:var(--muted);margin-top:14px;padding-inline:8px}
+
+/* RANA */
+.story{background:var(--cream)}
+.steps{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:10px}
+.sp{background:var(--card);border-radius:14px;padding:14px;border:1px solid var(--line);display:grid;gap:6px;align-content:start}
+.sp .w{font-family:var(--mono);font-size:13px;color:var(--green);font-weight:600}
+.sp p{font-size:14.5px;line-height:1.65}
+.sp.last{background:var(--green);border-color:var(--green);color:#fff}
+.sp.last .w{color:#CFF3E9}
+
+/* CALC */
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:stretch}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px}
+.field{display:grid;gap:6px;margin-bottom:20px}
+.field label{font-family:var(--display);font-weight:600;font-size:15px;display:flex;justify-content:space-between;gap:10px}
+.field label output{font-family:var(--mono);color:var(--green);font-size:17px}
+.field small{color:var(--muted);font-size:13px;line-height:1.5}
+input[type=range]{width:100%;accent-color:var(--green)}
+.result{background:var(--night);color:var(--night-ink);border-radius:20px;padding:26px;display:grid;gap:14px;align-content:center}
+.result .big{font-family:var(--mono);font-size:clamp(40px,6vw,60px);font-weight:600;color:#7FE0C9;line-height:1.1}
+.result .big small{font-size:18px;color:var(--night-muted)}
+.result .split{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.result .split div{background:#ffffff0d;border-radius:12px;padding:12px}
+.result .split b{display:block;font-family:var(--mono);font-size:22px;color:var(--night-ink)}
+.result .split span{font-size:13px;color:var(--night-muted)}
+.result .disc{font-size:13px;color:var(--night-muted);line-height:1.7}
+
+/* 14 DAYS */
+.days{display:grid;grid-template-columns:repeat(5,1fr);gap:0;position:relative;margin-top:10px}
+.days::before{content:"";position:absolute;top:27px;right:8%;left:8%;height:3px;background:linear-gradient(to left,var(--green),var(--green-soft))}
+.d{display:grid;justify-items:center;text-align:center;gap:10px;padding-inline:8px;position:relative}
+.d .dot{width:56px;height:56px;border-radius:50%;background:var(--card);border:3px solid var(--green);display:grid;place-items:center;font-family:var(--mono);font-weight:600;font-size:15px;color:var(--green)}
+.d.end .dot{background:var(--green);color:#fff}
+.d b{font-family:var(--display);font-size:16px}
+.d p{font-size:14px;color:var(--muted);line-height:1.65}
+
+/* COMPARE */
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:18px;background:var(--card)}
+table{border-collapse:collapse;width:100%;min-width:720px;font-size:15px}
+th,td{padding:14px 16px;border-bottom:1px solid var(--line);text-align:right;vertical-align:top}
+thead th{font-family:var(--display);font-weight:600;font-size:14.5px;background:var(--paper)}
+th.us,td.us{background:var(--green-soft)}
+thead th.us{color:var(--green);font-weight:700}
+tbody th{font-family:var(--display);font-weight:600;font-size:14.5px;width:22%}
+tr:last-child td,tr:last-child th{border-bottom:0}
+.y{color:var(--green);font-weight:700}
+.n{color:var(--muted)}
+
+/* GUARANTEE */
+.guar{display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:center;background:var(--card);border:2px solid var(--green);border-radius:24px;padding:32px}
+.seal{width:150px;height:150px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;text-align:center;font-family:var(--display);font-weight:700;line-height:1.3;box-shadow:0 0 0 8px var(--green-soft);position:relative}
+.seal b{font-family:var(--mono);font-size:44px;display:block;line-height:1}
+.guar h2{font-size:clamp(24px,3.2vw,34px)}
+.guar ul{margin:14px 0 0;padding:0;list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:8px 20px;font-size:15px}
+.guar li::before{content:"✓ ";color:var(--green);font-weight:700}
+
+/* FIT */
+.fit{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.fit .col{border-radius:18px;padding:22px;border:1px solid var(--line);background:var(--card)}
+.fit .col.no{background:var(--paper)}
+.fit h3{margin-bottom:12px}
+.fit ul{margin:0;padding:0;list-style:none;display:grid;gap:10px;font-size:15.5px}
+.fit .yes li::before{content:"✓ ";color:var(--green);font-weight:700}
+.fit .no li::before{content:"✕ ";color:var(--red);font-weight:700}
+
+/* FAQ */
+.faq{display:grid;gap:10px}
+details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:0 18px}
+summary{cursor:pointer;list-style:none;font-family:var(--display);font-weight:600;font-size:16.5px;padding:16px 0;display:flex;justify-content:space-between;gap:12px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-family:var(--mono);color:var(--green);font-size:22px;line-height:1}
+details[open] summary::after{content:"–"}
+details p{padding-bottom:16px;color:var(--muted);font-size:15.5px}
+
+/* FINAL */
+.final{background:var(--night);color:var(--night-ink);text-align:center}
+.final .lead{color:var(--night-muted)}
+.final .btn{background:#3FB89F;color:#08130F;box-shadow:none}
+.final .btn:hover{background:#7FE0C9}
+.cap{display:inline-flex;gap:10px;align-items:center;background:#ffffff10;border-radius:999px;padding:6px 16px;font-family:var(--display);font-size:14px;margin-top:18px;color:var(--night-muted)}
+.cap b{font-family:var(--mono);color:#7FE0C9}
+.ps{max-width:680px;margin:40px auto 0;font-size:16px;color:var(--night-muted);border-top:1px dashed #ffffff22;padding-top:22px}
+.ps b{color:var(--night-ink);font-family:var(--display)}
+footer{background:var(--night);color:var(--night-muted);font-size:13px;text-align:center;padding-block:20px;border-top:1px solid #ffffff14}
+
+/* sticky */
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--card);border-top:1px solid var(--line);box-shadow:0 -8px 24px rgba(0,0,0,.08);padding-block:10px calc(10px + env(safe-area-inset-bottom,0px));padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;justify-content:center;align-items:center;gap:14px;transform:translateY(110%);transition:transform .25s ease}
+.sticky.show{transform:none}
+.sticky p{font-family:var(--display);font-weight:600;font-size:14.5px}
+.sticky .btn{font-size:16px;padding:10px 20px;box-shadow:none}
+
+/* modal application */
+.modal{position:fixed;inset:0;z-index:40;background:rgba(10,16,14,.62);display:grid;place-items:center;padding:max(12px,env(safe-area-inset-top,0px)) max(12px,env(safe-area-inset-right,0px)) max(12px,env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px))}
+.modal[hidden]{display:none!important}
+.sheet{background:var(--card);color:var(--ink);width:min(560px,100%);max-height:92vh;overflow:auto;border-radius:22px;padding:24px 22px;box-shadow:0 30px 80px rgba(0,0,0,.35)}
+.sheet-h{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:6px}
+.x{appearance:none;border:0;background:var(--cream);color:var(--ink);width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:18px}
+.prog{height:6px;background:var(--cream);border-radius:99px;overflow:hidden;margin:12px 0 20px}
+.prog i{display:block;height:100%;width:10%;background:var(--green);transition:width .3s}
+.q h3{font-size:20px;margin-bottom:6px}
+.q .hint{font-size:14px;color:var(--muted);margin-bottom:14px}
+.opts{display:grid;gap:8px}
+.opt{display:flex;align-items:center;gap:10px;border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;cursor:pointer;font-size:15.5px;background:var(--paper)}
+.opt:hover{border-color:var(--green)}
+.opt input{accent-color:var(--green);width:18px;height:18px;flex:none}
+.opt:has(input:checked){border-color:var(--green);background:var(--green-soft)}
+.inp{width:100%;font:inherit;font-size:16px;color:var(--ink);background:var(--paper);border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;margin-bottom:10px}
+.inp[dir=ltr]{text-align:left}
+.nav{display:flex;justify-content:space-between;gap:10px;margin-top:20px}
+.nav .btn{font-size:16px;padding:11px 22px;box-shadow:none}
+.err{color:var(--red);font-size:14px;margin-top:8px;min-height:1.4em}
+.price-note{background:var(--amber-soft);color:var(--ink);border-radius:12px;padding:12px 14px;font-size:14.5px;margin-bottom:14px;line-height:1.7}
+.price-note b{font-family:var(--display)}
+.done{text-align:center;display:grid;gap:12px;justify-items:center}
+.done .ic{width:64px;height:64px;border-radius:50%;background:var(--green-soft);color:var(--green);display:grid;place-items:center;font-size:30px;font-weight:700}
+.cal{width:100%;border:1px dashed var(--line);border-radius:14px;padding:16px;background:var(--paper);display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.slot{border:1.5px solid var(--line);background:var(--card);border-radius:10px;padding:8px;font-family:var(--mono);font-size:13.5px;cursor:pointer;color:var(--ink)}
+.slot:hover,.slot[aria-pressed="true"]{border-color:var(--green);background:var(--green-soft)}
+
+@media (max-width:960px){
+  .hero-grid,.proof-grid,.calc{grid-template-columns:1fr}
+  .timeline,.mech{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:repeat(3,1fr)}
+  .days{grid-template-columns:1fr;gap:18px}
+  .days::before{top:0;bottom:0;right:27px;left:auto;width:3px;height:auto;background:linear-gradient(to bottom,var(--green),var(--green-soft))}
+  .d{grid-template-columns:56px 1fr;justify-items:start;text-align:right;align-items:center;column-gap:16px}
+  .d .dot{grid-row:span 2}
+  .guar{grid-template-columns:1fr;justify-items:center;text-align:center}
+  .guar ul{grid-template-columns:1fr;text-align:right}
+}
+@media (max-width:600px){
+  section{padding-block:56px}
+  .timeline,.mech,.fit,.counter{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr 1fr}
+  .result .split{grid-template-columns:1fr}
+  .sticky p{display:none}
+  .top .btn{display:none}
+  .sticker{right:0;bottom:18px}
+  .cal{grid-template-columns:1fr 1fr}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.bub{opacity:1;transform:none}}
+</style>
+
+<div class="bar"><b>15 مكالمة بالأسبوع بس</b> · أحمد ومحمد بيفحصوا كل مطعم قبل المكالمة</div>
+<header class="top"><div class="wrap">
+  <div class="logo"><span class="dots" aria-hidden="true"><i></i><i></i><i></i><i></i></span>منظومة الأربع لحظات</div>
+  <button class="btn" type="button" data-apply>شوف إذا مطعمك مناسب</button>
+</div></header>
+
+<main>
+<!-- HERO -->
+<section class="hero"><div class="wrap hero-grid">
+  <div>
+    <p class="who">لأصحاب المطاعم والكافيهات الشغّالة بالأردن، فرع أو أكثر</p>
+    <h1>زبونك بيسأل… بيطلب… <span class="s">وبيرجع.</span> ونظامك بيعرف كل خطوة.</h1>
+    <p class="sub">منظومة كاملة لمطعمك بتسكّر الأربع لحظات اللي بيضيع فيها الزبون: السؤال اللي ما إله رد، والطلب على خط مشغول، والزبون اللي ما رجع، والإعلان اللي ما بتعرف شو جاب. <b class="g">إحنا بنبنيها وبنشغّلها، وإنت بتشتغل بمطعمك.</b></p>
+    <div class="ctas">
+      <button class="btn" type="button" data-apply>شوف إذا مطعمك مناسب<small>دقيقتين · بعدها بتختار موعد المكالمة</small></button>
+      <a class="btn ghost" href="#night">شوف ليلة خميس بمطعمك</a>
+    </div>
+    <div class="trust"><span>14 يوم تشغيل قبل أي اتفاق</span><span>بدون تجديد تلقائي</span><span>كل شي باسمك</span><span>واتساب رسمي</span></div>
+  </div>
+  <div class="stage" aria-label="مثال توضيحي لتقرير الصبح على واتساب">
+    <span class="ex">مثال توضيحي</span>
+    <div class="phone"><div class="screen">
+      <div class="wa-top"><span class="av">☀</span><div>تقريرك الصبح<small>الجمعة · 8:05</small></div></div>
+      <div class="wa-body">
+        <div class="bub"><b>صباح الخير أبو خالد 👋</b><br>هاد اللي صار مبارح بمطعمك:<span class="t">8:05</span></div>
+        <div class="bub">
+          <div class="row"><span>زباين جداد انضموا</span><span>6</span></div>
+          <div class="row"><span>زباين رجعوا طلبوا</span><span>3</span></div>
+          <div class="row"><span>أسئلة أخدت رد بثواني</span><span>14</span></div>
+          <div class="row"><span>طلبات من رابطك</span><span>22</span></div>
+          <span class="t">8:05</span></div>
+        <div class="bub"><b>ناطر منك:</b> سؤالين عن حجز طاولة لـ 8 أشخاص، رحت تشوفهم؟<span class="t">8:06</span></div>
+      </div>
+    </div></div>
+    <div class="sticker">قبل ما تفتح المحل<b class="mono">8:05</b>بتعرف شو صار مبارح</div>
+  </div>
+</div></section>
+
+<!-- personalised strip: shown only when the page opens from an audit link (?q=&shop=) or #demo -->
+<div class="you" id="you" hidden><div class="wrap">
+  <p>فحص حساب <span id="youShop">مطعمك</span>: <span class="n mono" id="youQ">5</span> أسئلة على آخر بوستاتك ما عليها رد ظاهر. <span class="muted" id="youDemo" hidden>(مثال توضيحي)</span></p>
+  <button class="btn" type="button" data-apply style="font-size:15px;padding:9px 18px;box-shadow:none">خلّينا نسكّرهم سوا</button>
+</div></div>
+
+<!-- NIGHT -->
+<section class="night" id="night"><div class="wrap">
+  <div class="head c">
+    <span class="eyebrow">ليلة خميس بمطعمك</span>
+    <h2>الزبون ما بيضيع بالإعلان. بيضيع بعده.</h2>
+    <p class="lead">أربع لحظات بتصير بكل مطعم كل ليلة. بدّل وشوف شو بيتغيّر.</p>
+    <div><div class="switch" role="group" aria-label="بدّل الليلة">
+      <button type="button" id="sw-off" aria-pressed="true">بدون المنظومة</button>
+      <button type="button" id="sw-on" class="on" aria-pressed="false">مع المنظومة</button>
+    </div></div>
+  </div>
+  <div class="timeline" id="timeline">
+    <article class="mo"><span class="moment">اسمع</span><div class="clk mono">11:04 PM</div><span class="tag">تعليق على إعلانك الممول</span>
+      <h3 class="fx" data-off="«كم السعر؟»… وما في رد ظاهر" data-on="«كم السعر؟»… رد خلال ثواني">«كم السعر؟»… وما في رد ظاهر</h3>
+      <p class="fx" data-off="الموظف نايم. الزبون فتح حساب المطعم اللي جنبك وطلب منه." data-on="الرد وصل من بنك أجوبة محلك، والمحادثة كمّلت على الخاص، ورقمه صار عندك.">الموظف نايم. الزبون فتح حساب المطعم اللي جنبك وطلب منه.</p>
+      <div class="cost fx" data-off="دفعت حق التعليق بالإعلان… وراح." data-on="التعليق اللي دفعت حقه صار زبون.">دفعت حق التعليق بالإعلان… وراح.</div></article>
+    <article class="mo"><span class="moment">اطلب</span><div class="clk mono">8:30 PM</div><span class="tag">ذروة الخميس</span>
+      <h3 class="fx" data-off="الخط مشغول، وأربع طلبات على الواتساب" data-on="الطلب من رابط باسم مطعمك">الخط مشغول، وأربع طلبات على الواتساب</h3>
+      <p class="fx" data-off="«بدون بصل» انحكت شفهي، ووصلت المطبخ «بصل زيادة». والطلب الخامس راح لغيرك." data-on="الزبون اختار الأصناف والتعديلات بنفسه، والطلب طلع على طابعة كل قسم مع «بدون بصل».">«بدون بصل» انحكت شفهي، ووصلت المطبخ «بصل زيادة». والطلب الخامس راح لغيرك.</p>
+      <div class="cost fx" data-off="طبق راجع، وطلب ضايع." data-on="ولا طلب ضاع على الخط.">طبق راجع، وطلب ضايع.</div></article>
+    <article class="mo"><span class="moment">رجّع</span><div class="clk mono">+21 يوم</div><span class="tag">زبونة طلبت مرتين الشهر الماضي</span>
+      <h3 class="fx" data-off="غابت… وما حدا لاحظ" data-on="النظام لاحظ إنها تأخرت عن عادتها" >غابت… وما حدا لاحظ</h3>
+      <p class="fx" data-off="رقمها عند تطبيق التوصيل، مش عندك. ما بتعرف حتى اسمها." data-on="وصلتها رسالة باسم محلك: «اشتقنالك، قهوتك علينا». ومزاياها بمحفظة موبايلها بدون تطبيق.">رقمها عند تطبيق التوصيل، مش عندك. ما بتعرف حتى اسمها.</p>
+      <div class="cost fx" data-off="زبونة كانت إلك… صارت لغيرك." data-on="رجعت، وجابت صاحبتها.">زبونة كانت إلك… صارت لغيرك.</div></article>
+    <article class="mo"><span class="moment">افهم</span><div class="clk mono">آخر الشهر</div><span class="tag">تقرير الإعلانات</span>
+      <h3 class="fx" data-off="تقرير مليان أرقام… كم طلب جاب؟" data-on="بتعرف كل حملة شو جابت">تقرير مليان أرقام… كم طلب جاب؟</h3>
+      <p class="fx" data-off="بتزيد الميزانية أو بتغيّر الشركة، لأنك ما بتعرف وين المشكلة." data-on="كم تعليق، كم سؤال أخد رد، كم رقم، والتكلفة الحقيقية للرقم. والحملات ما بتشتغل إلا بموافقتك.">بتزيد الميزانية أو بتغيّر الشركة، لأنك ما بتعرف وين المشكلة.</p>
+      <div class="cost fx" data-off="قرار على تخمين." data-on="قرار على أرقام.">قرار على تخمين.</div></article>
+  </div>
+  <p class="verdict" id="verdict" data-off="الإعلان جاب الزبون. <em>وبعدها ما حدا مسكه.</em>" data-on="نفس الإعلان، نفس الزباين. <em>بس هالمرة ما ضاع حدا.</em>">الإعلان جاب الزبون. <em>وبعدها ما حدا مسكه.</em></p>
+  <div class="ctas c" style="margin-top:26px"><button class="btn" type="button" data-apply style="background:#3FB89F;color:#08130F;box-shadow:none">بدي ليلة الخميس هاي لمطعمي</button></div>
+</div></section>
+
+<!-- PROOF -->
+<section class="proof"><div class="wrap proof-grid">
+  <div>
+    <span class="eyebrow">مش كلام. قرأناها تعليق تعليق</span>
+    <h2>قرأنا <span class="mono g" id="c423">423</span> تعليق على حسابات 17 مطعم وكافيه بدابوق وخلدا.</h2>
+    <p class="lead" style="margin-top:14px">ناس بتسأل عن السعر والموقع والتوصيل، على إعلانات مدفوعة… وما في رد ظاهر. ونفس الشي على Google.</p>
+    <div class="counter">
+      <div class="stat"><b class="mono">17</b><span>حساب محلي فحصناه (تشرين الأول 2026)</span></div>
+      <div class="stat"><b class="mono">20/20</b><span>تقييم Google أخير بدون رد صاحب المحل، بحساب واحد</span></div>
+      <div class="stat"><b class="mono">19/19</b><span>دقة كاشف الأسئلة على تعليقات حقيقية</span></div>
+    </div>
+    <p class="note">«رد ظاهر» يعني ما في رد علني على البوست. إذا المحل ردّ بالخاص، ما بيبين عنا، ومنحكيها بصراحة. الأسماء مخفية، وما في اسم محل بدون موافقته.</p>
+  </div>
+  <div class="feed" aria-label="عيّنة من التعليقات بأسماء مخفية">
+    <div class="feed-h">مقهى بدابوق · عرض الفطور <small>إعلان شغّال من 6 تشرين الأول</small></div>
+    <div class="cm"><span class="a">ر</span><div><div class="u">rana****</div><div class="q">كم سعر عرض الفطور لشخصين؟</div></div><span class="st">بدون رد ظاهر</span></div>
+    <div class="cm"><span class="a">م</span><div><div class="u">moha****</div><div class="q">في توصيل لعبدون؟</div></div><span class="st">بدون رد ظاهر</span></div>
+    <div class="cm"><span class="a">ل</span><div><div class="u">lean****</div><div class="q">العرض بس الجمعة ولا كل يوم؟</div></div><span class="st">بدون رد ظاهر</span></div>
+    <div class="cm"><span class="a">ع</span><div><div class="u">abed****</div><div class="q">وين موقعكم بالزبط؟</div></div><span class="st">بدون رد ظاهر</span></div>
+    <div class="cm"><span class="a">س</span><div><div class="u">sara****</div><div class="q">بتاخدوا حجوزات للجمعة الصبح؟</div></div><span class="st">بدون رد ظاهر</span></div>
+    <p class="note" style="padding:0 16px 14px">5 أسئلة على بوست واحد، ولا وحدة عليها رد علني. الصياغة مختصرة والأسماء مخفية.</p>
+  </div>
+</div></section>
+
+<!-- MECHANISM -->
+<section><div class="wrap">
+  <div class="head">
+    <span class="eyebrow">منهجية الأربع لحظات</span>
+    <h2>نظام واحد بيمسك الزبون من أول سؤال لحد ما يرجع.</h2>
+    <p class="lead">بدل خمس شركات وخمس تطبيقات ما بيحكوا مع بعض. كل لحظة فيها أنظمة بتشتغل من أول أسبوع، والتفاصيل الكاملة بتشوفها بالمكالمة.</p>
+  </div>
+  <div class="mech">
+    <article class="m"><span class="n mono">01</span><h3>اسمع</h3><p class="line">ولا سؤال بدون رد</p>
+      <ul><li>كل تعليق فيه سعر أو منيو أو توصيل بياخد رد بثواني، <i>يعني التعليق اللي دفعت حقه ما بيروح</i></li><li>رد على الرسائل حتى الساعة 3 الفجر</li><li>بطاقة بكيس التوصيل بتحوّل زبون التطبيق لزبونك</li></ul>
+      <p class="more">+ بنك أجوبة لكل حملة، وانضمام من الطاولة</p></article>
+    <article class="m"><span class="n mono">02</span><h3>اطلب</h3><p class="line">ولا طلب بيضيع</p>
+      <ul><li>رابط طلب باسم مطعمك، <i>يعني الطلب بيوصل حتى لو الخط مشغول</i></li><li>كل قسم بالمطبخ بيطبع حصته مع «بدون بصل»</li><li>الطاولة من تلفون الوايتر للمطبخ مباشرة</li></ul>
+      <p class="more">+ المخزون، والتوصيل بسائقيك</p></article>
+    <article class="m"><span class="n mono">03</span><h3>رجّع</h3><p class="line">ولا زبون بيغيب</p>
+      <ul><li>مزايا باسم محلك بمحفظة الموبايل، <i>يعني بدون ما الزبون ينزّل تطبيق</i></li><li>اللي تأخر عن عادته بتوصله رسالة بترجّعه</li><li>عيد ميلاده عندك، وطلب تقييم Google بعد الزيارة</li></ul>
+      <p class="more">+ كبار زباينك، والحجوزات، وحملات المواسم، وتذكير القرب</p></article>
+    <article class="m"><span class="n mono">04</span><h3>افهم</h3><p class="line">افهم إعلاناتك</p>
+      <ul><li>حساباتك الإعلانية بمكان واحد، <i>يعني بتعرف كل حملة شو جابت</i></li><li>الحملات بتتجهّز متوقفة، وإنت بتفعّل</li><li>كل صبح على واتساب: زباين جداد، رجعوا، أسئلة ناطرة</li></ul>
+      <p class="more">+ فحص القياس، وروتين الفريق، وتقرير لكل فرع</p></article>
+  </div>
+  <div class="arrowline" aria-hidden="true"><span>أول سؤال</span><span>←</span><span>أول طلب</span><span>←</span><span>الرجعة</span><span>←</span><span>القرار الجاي</span></div>
+</div></section>
+
+<!-- RANA -->
+<section class="story"><div class="wrap">
+  <div class="head">
+    <span class="eyebrow">قصة رنا · مثال توضيحي</span>
+    <h2>هيك بتشتغل اللحظات الأربعة على زبونة وحدة.</h2>
+  </div>
+  <div class="steps">
+    <div class="sp"><span class="w mono">11:04 PM</span><p>علّقت «كم السعر؟». بعد 4 ثواني أخدت رد.</p></div>
+    <div class="sp"><span class="w mono">+2 د</span><p>صار رقمها عندك، وانضمت لمزايا المحل.</p></div>
+    <div class="sp"><span class="w">الخميس</span><p>إجت، وجابت صاحبتها.</p></div>
+    <div class="sp"><span class="w">السبت</span><p>وصلها طلب تقييم على Google.</p></div>
+    <div class="sp"><span class="w">+21 يوم</span><p>غابت، فوصلها «قهوتك علينا»، فرجعت.</p></div>
+    <div class="sp last"><span class="w">وإنت؟</span><p><b>ما عملت إشي.</b> كنت بالمطبخ.</p></div>
+  </div>
+</div></section>
+
+<!-- CALC -->
+<section><div class="wrap">
+  <div class="head">
+    <span class="eyebrow">احسبها بأرقامك</span>
+    <h2>قديش بيضيع عليك بالشهر؟</h2>
+    <p class="lead">حرّك الأرقام لتطابق مطعمك. نفس الحسبة اللي بنعملها معك بالمكالمة، على أرقامك الحقيقية من الفحص.</p>
+  </div>
+  <div class="calc">
+    <div class="panel">
+      <div class="field"><label for="cq">أسئلة بدون رد ظاهر بالشهر <output id="oq">20</output></label><input id="cq" type="range" min="0" max="150" step="1" value="20"><small>بالفحص بنعدّها إلك من حسابك. لو بتعرف رقمك، حطّه.</small></div>
+      <div class="field"><label for="ct">معدل الفاتورة (دينار) <output id="ot">12</output></label><input id="ct" type="range" min="3" max="60" step="1" value="12"></div>
+      <div class="field"><label for="cc">زباين طلبوا مرة الشهر الماضي <output id="oc">150</output></label><input id="cc" type="range" min="0" max="1500" step="10" value="150"><small>من الرابط أو الصالة أو التطبيقات</small></div>
+      <div class="field" style="margin-bottom:0"><label for="cr">كم منهم ممكن يرجع لو وصله تذكير؟ <output id="or">10%</output></label><input id="cr" type="range" min="0" max="40" step="1" value="10"><small>فرض محافظ. إنت بتحدّده.</small></div>
+    </div>
+    <div class="result" aria-live="polite">
+      <span class="muted" style="color:var(--night-muted);font-family:var(--display);font-weight:600">تقدير اللي بيضيع بالشهر</span>
+      <div class="big mono"><span id="rt">0</span> <small>دينار</small></div>
+      <div class="split">
+        <div><b class="mono" id="r1">0</b><span>من أسئلة ما أخدت رد (× 30% تحويل محافظ)</span></div>
+        <div><b class="mono" id="r2">0</b><span>من زباين ما حدا رجّعهم</span></div>
+      </div>
+      <p class="disc">تقدير مش وعد. الأرقام من إدخالك إنت، ونسبة التحويل 30% محافظة ومكتوبة. ما بنضخّم إشي.</p>
+      <button class="btn" type="button" data-apply style="background:#3FB89F;color:#08130F;box-shadow:none;justify-self:start">بدي أحسبها على أرقامي الحقيقية</button>
+    </div>
+  </div>
+</div></section>
+
+<!-- 14 DAYS -->
+<section style="background:var(--card)"><div class="wrap">
+  <div class="head c">
+    <span class="eyebrow">أول 14 يوم</span>
+    <h2>بتشوف النتيجة قبل ما تقرّر.</h2>
+    <p class="lead">بنبلّش من اللحظة اللي بتوجعك أكثر، ومنتابع معك كل يومين.</p>
+  </div>
+  <div class="days">
+    <div class="d"><span class="dot">20د</span><b>قعدة التجهيز</b><p>من موبايلك، معنا. ولا برنامج بتتعلّمه.</p></div>
+    <div class="d"><span class="dot">24س</span><b>أول نتيجة</b><p>أول سؤال بياخد رد، وأول رقم بيتسجّل. بتوصلك رسالة فيها الأرقام.</p></div>
+    <div class="d"><span class="dot">3</span><b>مزايا محلك</b><p>بمحفظة موبايل زباينك، باسم محلك وألوانه.</p></div>
+    <div class="d"><span class="dot">7</span><b>أول تقرير صبح</b><p>زباين جداد، رجعوا، حجوزات، أسئلة ناطرة.</p></div>
+    <div class="d end"><span class="dot">14</span><b>قعدة على الأرقام</b><p>بتشوف كل شي بعينك، وإنت بتقرّر.</p></div>
+  </div>
+</div></section>
+
+<!-- COMPARE -->
+<section><div class="wrap">
+  <div class="head">
+    <span class="eyebrow">ليش مش البدائل اللي جرّبتها؟</span>
+    <h2>كل بديل بيسكّر لحظة وحدة، وأحياناً ولا وحدة.</h2>
+  </div>
+  <div class="tbl-wrap" tabindex="0" aria-label="جدول مقارنة، بيتمرّر أفقياً على الموبايل">
+    <table>
+      <thead><tr><th></th><th>شركة سوشال ميديا</th><th>أداة رد آلي رخيصة</th><th>تطبيقات التوصيل</th><th class="us">منظومة الأربع لحظات</th></tr></thead>
+      <tbody>
+        <tr><th>مين بيرد الساعة 3 الفجر؟</th><td class="n">عادةً ما حدا</td><td>الأداة، إذا ربطتها صح</td><td class="n">مش شغلها</td><td class="us y">رد بثواني من بنك أجوبة محلك</td></tr>
+        <tr><th>تعليقات الإعلانات الممولة</th><td class="n">بتنحسب «تفاعل»</td><td class="n">غالباً لا</td><td class="n">لا</td><td class="us y">كل سؤال بياخد رد وبيصير رقم</td></tr>
+        <tr><th>الزبون ورقمه عند مين؟</th><td class="n">عند الصفحة</td><td class="n">بالأداة</td><td class="n">عند التطبيق</td><td class="us y">عندك إنت، وباسمك</td></tr>
+        <tr><th>الطلب للمطبخ مكتوب؟</th><td class="n">لا</td><td class="n">لا</td><td>على جهاز التطبيق</td><td class="us y">طباعة لكل قسم مع التعديلات</td></tr>
+        <tr><th>الزبون بيرجع؟</th><td class="n">بإعلان جديد</td><td class="n">لا</td><td class="n">لتطبيقهم</td><td class="us y">تذكير ومزايا باسم محلك</td></tr>
+        <tr><th>واتساب رسمي؟</th><td class="n">—</td><td class="n">أحياناً ربط غير رسمي، والرقم معرّض للحظر</td><td class="n">—</td><td class="us y">API رسمي بس</td></tr>
+        <tr><th>مين بيشغّل؟</th><td>هم</td><td class="n">إنت</td><td>هم، لإلهم</td><td class="us y">إحنا، لإلك</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div></section>
+
+<!-- GUARANTEE -->
+<section style="padding-top:0"><div class="wrap">
+  <div class="guar">
+    <div class="seal"><div><b class="mono">14</b>يوم<br>على حسابنا</div></div>
+    <div>
+      <h2>إذا ما شفت الأسئلة اللي ضاعت بعينك خلال 14 يوم، ما بتدفع ولا قرش.</h2>
+      <p class="lead" style="margin-top:10px">منضمن اللي إحنا بنشغّله، مش وعود مبيعات. بتقرير يوم 14 بتشوف: الأسئلة اللي أخدت رد، والأرقام اللي تسجّلت باسمك، والطلبات اللي وصلت مكتوبة للمطبخ.</p>
+      <ul><li>بدون عقد طويل</li><li>بدون تجديد تلقائي</li><li>كل الحسابات والبيانات باسمك</li><li>الحملات ما بتشتغل إلا بموافقتك</li><li>كاشيرك الحالي بيضل شغّال بالتجربة</li><li>واتساب رسمي، رقمك بأمان</li></ul>
+    </div>
+  </div>
+</div></section>
+
+<!-- FIT -->
+<section style="background:var(--cream)"><div class="wrap">
+  <div class="head c"><h2>هاي المنظومة إلك… أو لا.</h2><p class="lead">بنحكيها من الأول، عشان وقتك ووقتنا.</p></div>
+  <div class="fit">
+    <div class="col yes"><h3 class="g">إلك إذا…</h3><ul>
+      <li>عندك مطعم أو كافيه شغّال بالأردن، فرع أو أكثر</li>
+      <li>بتعمل إعلانات، أو عندك جمهور على إنستغرام</li>
+      <li>الطلبات بتتزاحم وقت الذروة على التلفون والواتساب</li>
+      <li>بدك نظام يشتغل وإنت بالمطبخ، مش برنامج جديد تتعلّمه</li></ul></div>
+    <div class="col no"><h3>مش إلك إذا…</h3><ul>
+      <li>لسا ما فتحت، وبتدوّر فكرة مشروع</li>
+      <li>بدك أداة رخيصة تشغّلها لحالك</li>
+      <li>بدك «حيلة» تجيب زباين بدون ما يتغيّر إشي بالمحل</li>
+      <li>مش مستعد تحط رابط مطعمك قدام زباينك</li></ul></div>
+  </div>
+</div></section>
+
+<!-- FAQ -->
+<section><div class="wrap narrow">
+  <div class="head"><span class="eyebrow">قبل ما تحجز</span><h2>الأسئلة اللي ببالك</h2></div>
+  <div class="faq">
+    <details><summary>ما بفهم بالتكنولوجيا وما عندي لابتوب.</summary><p>ولا بدك. التجهيز كله من موبايلك بقعدة 20 دقيقة معنا، والباقي علينا. إنت ما بتفتح ولا برنامج.</p></details>
+    <details><summary>عندي موظف بيرد على الرسائل.</summary><p>بيرد الساعة 3 الفجر؟ وعلى 62 تعليق بالأسبوع؟ وبيعطيك رقم كل واحد سأل؟ الموظف بيضل، والنظام بيمسك اللي بيفلت منه.</p></details>
+    <details><summary>في أداة رد آلي بـ 19 دولار. ليش هاي؟</summary><p>الأداة بتشغّلها إنت، وكثير منها على ربط غير رسمي بيعرّض رقمك للحظر، وما بتقرأ تعليقات الإعلانات. هون نظام وخدمة على الواتساب الرسمي، بأربع لحظات مش وحدة.</p></details>
+    <details><summary>التطبيقات بتجيبلي طلبات، ليش أغيّر؟</summary><p>ما بتغيّر. خليها تجيب. بس بطاقة بكل كيس بتحوّل زبونها لزبونك، والمرة الجاية بيطلب من رابطك.</p></details>
+    <details><summary>زباينّا ما بينزّلوا تطبيقات.</summary><p>ولا تطبيق. المزايا بمحفظة موبايله بعشر ثواني، آيفون وأندرويد.</p></details>
+    <details><summary>جرّبت شركات تسويق قبل وما زبطت.</summary><p>هاد مش إعلان أكبر. هاد اللي بيصير بعد الإعلان: الرد، والطلب، والرجعة. والحملات ما بتشتغل إلا بموافقتك.</p></details>
+    <details><summary>قديش السعر؟</summary><p>بيعتمد على عدد فروعك وأي لحظات بتحتاجها. بالاستمارة بتشوف من وين بيبلّش الاستثمار، وبالمكالمة منحسبه على أرقامك. وأول 14 يوم على حسابنا.</p></details>
+    <details><summary>شو بيصير بالمكالمة؟</summary><p>20 دقيقة. منفتح فحص حسابك سوا، منحدّد أي لحظة بتخسّرك أكثر، وبتشوف صفحة لمحلك من صوره و3 أفكار إعلانات من أسئلة زباينك. إذا مش مناسب، بنقلّك بصراحة.</p></details>
+  </div>
+</div></section>
+
+<!-- FINAL -->
+<section class="final"><div class="wrap narrow">
+  <h2>كل ليلة خميس بتعدّي، في زباين سألوا وما حدا رد.</h2>
+  <p class="lead" style="margin:14px auto 26px;max-width:600px">دقيقتين استمارة، وبعدها بتختار موعد. منفحص حسابك قبل المكالمة، ومنفتحه سوا.</p>
+  <div class="ctas c"><button class="btn" type="button" data-apply>شوف إذا مطعمك مناسب<small>بعدها بتختار موعد المكالمة</small></button></div>
+  <div class="cap">بنفحص كل مطعم بإيدنا، فبناخد <b>15</b> مكالمة بالأسبوع بس</div>
+  <p class="ps"><b>ملاحظة:</b> كل تعليق «كم السعر؟» بدون رد ظاهر هو زبون دفعت حقه وراح. خلّينا نعدّهم سوا.</p>
+</div></section>
+</main>
+<footer><div class="wrap">منظومة الأربع لحظات · الشروط · سياسة الخصوصية</div></footer>
+
+<div class="sticky" id="sticky"><p>بنفحص حسابك قبل المكالمة</p><button class="btn" type="button" data-apply>شوف إذا مطعمك مناسب</button></div>
+
+<!-- APPLICATION -->
+<div class="modal" id="modal" hidden role="dialog" aria-modal="true" aria-labelledby="mt">
+  <form class="sheet" id="app" novalidate>
+    <div class="sheet-h"><h3 id="mt" style="font-size:18px">شوف إذا مطعمك مناسب</h3><button type="button" class="x" id="close" aria-label="سكّر">✕</button></div>
+    <div class="prog"><i id="bar"></i></div>
+    <div id="steps"></div>
+    <div class="err" id="err" role="alert"></div>
+    <div class="nav" id="nav"><button type="button" class="btn ghost" id="back">رجوع</button><button type="submit" class="btn" id="next">التالي</button></div>
+  </form>
+</div>
+
+<script>
+(function(){
+  // ---------- night switch ----------
+  var night=document.querySelector('.night'),on=document.getElementById('sw-on'),off=document.getElementById('sw-off');
+  function setNight(w){
+    night.classList.toggle('with',w);on.setAttribute('aria-pressed',w);off.setAttribute('aria-pressed',!w);
+    night.querySelectorAll('.fx,#verdict').forEach(function(el){
+      el.style.opacity=0;
+      setTimeout(function(){el.innerHTML=el.getAttribute(w?'data-on':'data-off');el.style.opacity=1},180);
+    });
+  }
+  on.onclick=function(){setNight(true)};off.onclick=function(){setNight(false)};
+
+  // ---------- calculator ----------
+  var ids=['cq','ct','cc','cr'];
+  function fmt(n){return Math.round(n).toLocaleString('en-US')}
+  function calc(){
+    var q=+cq.value,t=+ct.value,c=+cc.value,r=+cr.value;
+    oq.textContent=q;ot.textContent=t;oc.textContent=c;or.textContent=r+'%';
+    var a=q*0.30*t,b=c*(r/100)*t;
+    r1.textContent=fmt(a);r2.textContent=fmt(b);rt.textContent=fmt(a+b);
+  }
+  ids.forEach(function(i){document.getElementById(i).addEventListener('input',calc)});calc();
+
+  // ---------- personalisation from audit link (GHL: ?shop=&q=) or #demo ----------
+  try{
+    var sp=new URLSearchParams(location.search),q=sp.get('q'),shop=sp.get('shop'),demo=location.hash==='#demo';
+    if(q||demo){
+      document.getElementById('you').hidden=false;
+      if(q){youQ.textContent=q;cq.value=Math.min(150,(+q)*6);calc()}
+      if(shop)youShop.textContent=shop;
+      if(demo&&!q)youDemo.hidden=false;
+    }
+  }catch(e){}
+
+  // ---------- sticky ----------
+  var sticky=document.getElementById('sticky'),hero=document.querySelector('.hero');
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(e){sticky.classList.toggle('show',!e[0].isIntersecting)}).observe(hero);
+  }else sticky.classList.add('show');
+
+  // ---------- application (eligibility, 18 §7) ----------
+  var Q=[
+    {k:'role',t:'شو دورك بالمحل؟',o:['مالك','شريك','مدير بصلاحية قرار','موظف']},
+    {k:'open',t:'المحل شغّال؟',o:['شغّال','رح يفتح خلال شهر','لسا فكرة']},
+    {k:'type',t:'شو بيوصف محلك؟',h:'كل نوع إله طريقة مختلفة، وبدنا نحضّرلك خطة تناسبك.',o:['مطعم','كافيه','حلويات أو مخبز','مطبخ دليفري فقط']},
+    {k:'branches',t:'كم فرع عندك؟',o:['فرع واحد','2 لـ 3','4 أو أكثر']},
+    {k:'orders',t:'من وين بتيجيك الطلبات؟',h:'اختار كل اللي بينطبق.',m:1,o:['تلفون','واتساب','إنستغرام','تطبيقات التوصيل','صالة']},
+    {k:'leak',t:'شو أكثر شي بيضيع عندك؟',o:['أسئلة الزباين بدون رد','الطلبات وقت الذروة','الزبون ما بيرجع','الإعلانات: ما بعرف شو بتجيب','تشغيل الصالة والفريق']},
+    {k:'sales',t:'معدل المبيعات الشهرية تقريباً',h:'هاد بيحدّد المسار الأنسب لمطعمك.',o:['أقل من 5,000 دينار','5,000 لـ 15,000 دينار','15,000 لـ 40,000 دينار','أكثر من 40,000 دينار']},
+    {k:'ready',t:'إذا لقينا بالمكالمة إنك مناسب، مستعد تستثمر بنظام لمطعمك هلّق؟',note:1,o:['آه، إذا كان مناسب','بدي أعرف أكثر','لا، مش هلّق']},
+    {k:'contact',t:'وين نبعتلك الفحص والموعد؟',f:1}
+  ];
+  var step=0,ans={},modal=document.getElementById('modal'),box=document.getElementById('steps'),err=document.getElementById('err'),back=document.getElementById('back'),next=document.getElementById('next'),nav=document.getElementById('nav');
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  function render(){
+    err.textContent='';nav.hidden=false;
+    var x=Q[step];document.getElementById('bar').style.width=((step+1)/Q.length*100)+'%';
+    back.style.visibility=step?'visible':'hidden';next.textContent=step===Q.length-1?'أرسل وشوف المواعيد':'التالي';
+    var h='<div class="q"><h3>'+esc(x.t)+'</h3>'+(x.h?'<p class="hint">'+esc(x.h)+'</p>':'');
+    if(x.note)h+='<p class="price-note"><b>للصراحة من الأول:</b> تأسيس المنظومة الكاملة بيبدأ من <b class="mono">1500</b> دينار + اشتراك شهري، وأول 14 يوم على حسابنا. وإذا مش جاهز هلّق، عنا خطوات أصغر بتناسبك.</p>';
+    if(x.f){
+      h+='<input class="inp" id="f_name" placeholder="اسمك" autocomplete="name" value="'+esc(ans.name||'')+'">'+
+         '<input class="inp" id="f_shop" placeholder="اسم المحل" value="'+esc(ans.shop||'')+'">'+
+         '<input class="inp" id="f_ig" dir="ltr" placeholder="instagram.com/your_restaurant" value="'+esc(ans.ig||'')+'">'+
+         '<input class="inp" id="f_phone" dir="ltr" inputmode="tel" placeholder="+962 7X XXX XXXX" autocomplete="tel" value="'+esc(ans.phone||'')+'">'+
+         '<p class="hint" style="margin:0">رابط الحساب منفحصه قبل المكالمة. الفحص والموعد بيوصلوك على الواتساب.</p>';
+    }else{
+      h+='<div class="opts">'+x.o.map(function(o,i){var id='o_'+x.k+'_'+i,ch=x.m?((ans[x.k]||[]).indexOf(o)>-1):ans[x.k]===o;
+        return '<label class="opt" for="'+id+'"><input id="'+id+'" type="'+(x.m?'checkbox':'radio')+'" name="'+x.k+'" value="'+esc(o)+'"'+(ch?' checked':'')+'>'+esc(o)+'</label>'}).join('')+'</div>';
+    }
+    box.innerHTML=h+'</div>';
+    if(!x.m&&!x.f)box.querySelectorAll('input').forEach(function(i){i.addEventListener('change',function(){setTimeout(go,180)})});
+    var first=box.querySelector('input');if(first)first.focus({preventScroll:true});
+  }
+  function collect(){
+    var x=Q[step];
+    if(x.f){
+      ans.name=f_name.value.trim();ans.shop=f_shop.value.trim();ans.ig=f_ig.value.trim();ans.phone=f_phone.value.trim();
+      if(!ans.name||!ans.shop)return 'اكتب اسمك واسم المحل.';
+      if(!ans.ig)return 'حط رابط أو اسم حساب إنستغرام المحل، عشان نفحصه قبل المكالمة.';
+      if(ans.phone.replace(/\D/g,'').length<9)return 'اكتب رقم الواتساب مع كود الدولة، مثلاً +962 79 123 4567.';
+      return '';
+    }
+    if(x.m){var v=[].map.call(box.querySelectorAll('input:checked'),function(i){return i.value});if(!v.length)return 'اختار خيار واحد على الأقل.';ans[x.k]=v;return ''}
+    var c=box.querySelector('input:checked');if(!c)return 'اختار خيار واحد.';ans[x.k]=c.value;return '';
+  }
+  function go(){var e=collect();if(e){err.textContent=e;return}if(step<Q.length-1){step++;render()}else finish()}
+  back.onclick=function(){if(step){collect();step--;render()}};
+  document.getElementById('app').addEventListener('submit',function(e){e.preventDefault();go()});
+  var routes={
+    'أسئلة الزباين بدون رد':['فحص ذاكرة محلك المجاني','بنعدّ أسئلة زباينك اللي ما إلها رد ظاهر، والتقرير بيوصلك على الواتساب.'],
+    'الزبون ما بيرجع':['فحص ذاكرة محلك المجاني','بنشوف وين بيضيع الزبون بعد أول طلب، والتقرير على الواتساب.'],
+    'الطلبات وقت الذروة':['تجربة «ولا طلب بيضيع» 14 يوم','رابط طلب باسم مطعمك، والطلب بيطلع على طابعة كل قسم.'],
+    'الإعلانات: ما بعرف شو بتجيب':['«افهم إعلاناتك»','فحص لإعلاناتك من برّا، وقعدة 20 دقيقة تفهم فيها كل دينار.'],
+    'تشغيل الصالة والفريق':['الطاولة من تلفون الوايتر','الطلب بينكتب مرة وحدة عند الطاولة، وبيوصل المطبخ مباشرة.']
+  };
+  function finish(){
+    nav.hidden=true;document.getElementById('bar').style.width='100%';
+    var unq=ans.role==='موظف'||ans.open==='لسا فكرة'||ans.ready==='لا، مش هلّق'||ans.sales==='أقل من 5,000 دينار';
+    if(unq){
+      var r=routes[ans.leak]||routes['أسئلة الزباين بدون رد'];
+      box.innerHTML='<div class="done"><span class="ic">✓</span><h3>شكراً '+esc(ans.name)+'، وصلنا ردّك.</h3>'+
+        '<p class="muted">على حسب إجاباتك، المكالمة الكاملة مش الخطوة الأنسب إلك هلّق. بس ما بدنا تطلع بدون إشي. ابدأ من هون:</p>'+
+        '<div class="panel" style="width:100%;text-align:right"><b class="g" style="font-family:var(--display)">'+esc(r[0])+'</b><p class="muted" style="font-size:15px">'+esc(r[1])+'</p></div>'+
+        '<p class="hint" style="font-size:13px;color:var(--muted)">بنظام GHL: هون بيظهر رابط الفانل المناسب، وبيوصله إيميل الاعتذار مع نفس الرابط.</p></div>';
+      return;
+    }
+    var slots=['الأحد 11:00','الأحد 15:30','الإثنين 10:30','الإثنين 16:00','الثلاثاء 11:30','الثلاثاء 15:00'];
+    box.innerHTML='<div class="done"><span class="ic">✓</span><h3>مطعمك مناسب. اختار موعد المكالمة</h3>'+
+      '<p class="muted">20 دقيقة. منفحص <b>'+esc(ans.ig)+'</b> قبلها، ومنفتحه سوا. '+(ans.ready==='بدي أعرف أكثر'?'وحدا من الفريق ممكن يتصل فيك قبل.':'')+'</p>'+
+      '<div class="cal" role="group" aria-label="مواعيد (مثال)">'+slots.map(function(s,i){return '<button type="button" class="slot" id="slot'+i+'" aria-pressed="false">'+s+'</button>'}).join('')+'</div>'+
+      '<p class="hint" style="font-size:13px;color:var(--muted)">مواعيد للمعاينة. بنظام GHL بيظهر كالندر «مكالمة خطة مطعمك» والاسم والرقم معبّايين.</p>'+
+      '<div id="booked"></div></div>';
+    box.querySelectorAll('.slot').forEach(function(b){b.onclick=function(){
+      box.querySelectorAll('.slot').forEach(function(o){o.setAttribute('aria-pressed','false')});b.setAttribute('aria-pressed','true');
+      document.getElementById('booked').innerHTML='<p class="g" style="font-family:var(--display);font-weight:600;margin-top:8px">تم اختيار '+esc(b.textContent)+' (معاينة). التأكيد بيوصلك على الواتساب.</p>';
+    }});
+  }
+  function open(){step=0;modal.hidden=false;document.body.style.overflow='hidden';render()}
+  function close(){modal.hidden=true;document.body.style.overflow=''}
+  document.querySelectorAll('[data-apply]').forEach(function(b){b.addEventListener('click',open)});
+  document.getElementById('close').onclick=close;
+  modal.addEventListener('click',function(e){if(e.target===modal)close()});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!modal.hidden)close()});
+})();
+</script>
