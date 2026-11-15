@@ -128,7 +128,7 @@ def ty_gf():
 
 BDC_BOOK = 'Connect and Harmonize Business Data to Amplify the Power of AI'
 def ty_bdc(impactful=False):
-    cfg = ty_cfg('bdc-thank-you', ',\n    // Optional: cover image for "Driving Impactful Business Decisions" (shown when the link has ?ebook=impactful).\n    impactfulCoverUrl: "",\n    // Optional separate calendar for the data and AI readiness review (CIO / data leaders). Empty = same calendar.\n    bookingUrlAi: ""')
+    cfg = ty_cfg('bdc-thank-you', ',\n    // Optional: cover image for "Driving Impactful Business Decisions" (shown when the link has ?ebook=impactful).\n    impactfulCoverUrl: "https://files.leadconnectorhq.com/file/6af9a8f2fdf6b54fd7405057/whatsapp-image-2026-11-15-at-1-55-06-pm.jpeg",\n    // Optional separate calendar for the data and AI readiness review (CIO / data leaders). Empty = same calendar.\n    bookingUrlAi: ""')
     cover_html = (f'<img class="isl-ty-cover" src="{PRISM}" alt="{BDC_BOOK} E-Book cover" width="260" height="316">'
                   + mock_cover('SAP Business Data Cloud', 'Driving impactful business decisions with <em>intelligent content</em>').replace('class="isl-mockcover"', 'class="isl-mockcover isl-ty-mock" style="display:none;margin:0 auto"'))
     book = f'<div class="isl-booktitle"><small>You requested</small><b class="isl-bt">{BDC_BOOK}</b></div>'

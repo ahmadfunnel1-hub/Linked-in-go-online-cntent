@@ -177,12 +177,13 @@ def bdc_v3():
 
 # ------------------------------------------------------------ V4: impactful decisions (dark hero, CFO, second E-Book)
 V4_BOOK = 'Driving Impactful Business Decisions'
+V4_COVER = 'https://files.leadconnectorhq.com/file/6af9a8f2fdf6b54fd7405057/whatsapp-image-2026-11-15-at-1-55-06-pm.jpeg'
 V4_SEND = 'Send me the E-Book: ' + V4_BOOK
 V4_HEAD = 'Get the Impactful Decisions E-Book'
 V4_MAIN = 'Read the E-Book: ' + V4_BOOK
 V4_OK = 'Your copy of ' + V4_BOOK + ' is ready'
 def bdc_v4():
-    cfg = cfg_block('bdc-v4-impactful-decisions', V4_PDF, '', '/bdc-impactful-thank-you')
+    cfg = cfg_block('bdc-v4-impactful-decisions', V4_PDF, V4_COVER, '/bdc-impactful-thank-you')
     spark = lambda d: f'<svg viewBox="0 0 130 44" aria-hidden="true"><path d="{d}"/></svg>'
     tiles = ('<div class="isl-tiles" aria-hidden="true">'
              f'<div class="isl-tile"><div><small>Liquidity</small><b>Cash flow and liquidity</b><span>Visible in time to act</span></div>{spark("M2 34 L24 28 L46 32 L68 18 L90 22 L112 8 L128 12")}</div>'
@@ -209,7 +210,7 @@ def bdc_v4():
     s_fnd = section(head('The foundation', f'A strong data foundation {g("comes before AI")}', None) + fnd)
     toc = [('How intelligent content gives finance real-time visibility', 'into liquidity, accounts receivable and accounts payable, so overdue payments surface early'),
            ('Why a strong data foundation with full business context', 'has to come before AI'), ('Real-world applications', 'in finance, supply chain and HR, and how to get started')]
-    conv = convert('split', book=V4_BOOK, cover_html=mock_cover('SAP Business Data Cloud', 'Driving impactful business decisions with <em>intelligent content</em>'), toc=toc, eyebrow_t='Free E-Book', h2='From data to decisions, faster.', send=V4_SEND, sub=SUB, ok_title=V4_OK)
+    conv = convert('split', book=V4_BOOK, cover_html=cover('isl-bigcover', V4_BOOK + ' E-Book cover'), toc=toc, eyebrow_t='Free E-Book', h2='From data to decisions, faster.', send=V4_SEND, sub=SUB, ok_title=V4_OK)
     faq = [('What is intelligent content?', 'Predefined metrics, reports and dashboards linked to real-time business data in SAP Business Data Cloud. They offer practical insights and recommendations, without complex, time-consuming manual work.'),
            ('Which areas does the E-Book cover?', 'Real-world applications in finance, supply chain and HR, the data foundation behind them, and how to get started.'),
            ('Why does the data foundation matter?', 'Intelligent content is only as powerful as the data it runs on. SAP Business Data Cloud unifies data and analytics with semantically rich data from your key business processes.'), AFTER_DL, DATA_USE]
