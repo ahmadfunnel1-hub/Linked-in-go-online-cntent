@@ -1,0 +1,105 @@
+/* =========================================================
+   Intrasoft E-Book forms (GROW Fast + BDC) — Custom CSS
+   Paste into: Sites > Forms > [form] > Builder > Styles > Custom CSS > Save.
+   Same CSS for both forms. Palette: navy #132146, Intrasoft blue #00A7E3,
+   light blue #78DCFF, red #CD0000 (accent only). Font: Inter.
+   Hidden tracking fields (Lead Campaign, Lead Source Page, Consent Timestamp,
+   Marketing Consent Text) are hidden with the rule at the bottom.
+========================================================= */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* 1) Whole form: transparent, no extra box, Inter everywhere */
+html, body, #_builder-form, #_builder-form *, .form-builder, .form-builder *, .ghl-form-wrap, .ghl-form-wrap * {
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif !important;
+}
+#_builder-form, .form-builder, .form-builder--wrap, .ghl-form-wrap, .ghl-form, form {
+  background: transparent !important; box-shadow: none !important; border: 0 !important;
+  padding: 0 !important; margin: 0 !important; width: 100% !important; max-width: 100% !important;
+  text-align: left !important;
+}
+
+/* 2) Heading block (the page already has its own title; hide the form's own heading) */
+#_builder-form .form-title, #_builder-form .form-description, .form-builder--header { display: none !important; }
+
+/* 3) Field spacing */
+#_builder-form .form-builder--item, .form-builder--item, .form-field-wrapper, .ghl-form-field {
+  padding: 0 0 14px !important; margin: 0 !important; width: 100% !important;
+}
+
+/* 4) Labels */
+#_builder-form label, .form-builder--item label, .field-label, .label-alignment, .ghl-field-label {
+  display: block !important; width: 100% !important; font-size: 15px !important; font-weight: 600 !important;
+  color: #132146 !important; margin: 0 0 7px !important; line-height: 1.5 !important; text-align: left !important;
+}
+#_builder-form .required-star, #_builder-form label .required { color: #CD0000 !important; }
+
+/* 5) Inputs, dropdowns, textarea */
+#_builder-form input:not([type="checkbox"]):not([type="radio"]):not([type="submit"]),
+#_builder-form select, #_builder-form textarea,
+#_builder-form .form-control, #_builder-form .el-input__inner, #_builder-form .multiselect__tags {
+  width: 100% !important; height: 52px !important; min-height: 52px !important; padding: 0 16px !important;
+  font-size: 16px !important; color: #132146 !important; background: #FFFFFF !important;
+  border: 1.5px solid #CBD7E6 !important; border-radius: 10px !important; box-shadow: none !important;
+  outline: none !important; -webkit-appearance: none; appearance: none;
+  transition: border-color .2s ease, box-shadow .2s ease !important;
+}
+#_builder-form textarea { height: 96px !important; padding: 12px 16px !important; }
+#_builder-form select {
+  padding-right: 40px !important;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23132146' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important; background-position: right 14px center !important; cursor: pointer !important;
+}
+#_builder-form input:focus, #_builder-form select:focus, #_builder-form textarea:focus {
+  border-color: #00A7E3 !important; box-shadow: 0 0 0 4px rgba(0,167,227,.18) !important;
+}
+#_builder-form input::placeholder, #_builder-form textarea::placeholder { color: #8A96AD !important; opacity: 1 !important; }
+#_builder-form input[type="email"] { direction: ltr; }
+
+/* 6) Dropdown menu (company size) */
+#_builder-form .multiselect__content-wrapper {
+  border: 1.5px solid #CBD7E6 !important; border-radius: 10px !important; box-shadow: 0 14px 30px rgba(19,33,70,.12) !important;
+}
+#_builder-form .multiselect__option { font-size: 15px !important; padding: 11px 16px !important; }
+#_builder-form .multiselect__option--highlight { background: #E8F6FD !important; color: #132146 !important; }
+#_builder-form .multiselect__option--selected { background: #00A7E3 !important; color: #132146 !important; }
+
+/* 7) Marketing consent checkbox row (style the GHL checkbox like a card) */
+#_builder-form .checkbox-wrapper, #_builder-form .form-builder--checkbox, #_builder-form .multi-checkbox-wrapper {
+  background: #F1F7FC !important; border: 1px solid #CBD7E6 !important; border-radius: 10px !important;
+  padding: 12px 14px !important; margin-top: 6px !important;
+}
+#_builder-form .checkbox-wrapper label, #_builder-form .form-builder--checkbox label {
+  font-size: 14px !important; font-weight: 400 !important; color: #132146 !important; line-height: 1.6 !important;
+}
+#_builder-form input[type="checkbox"] { width: 18px !important; height: 18px !important; accent-color: #00A7E3 !important; }
+
+/* 8) Submit button: Intrasoft blue, navy text, full width */
+#_builder-form button[type="submit"], #_builder-form .btn, #_builder-form .ghl-btn, #_builder-form .ghl-submit-btn,
+.form-builder--btn-submit button {
+  display: flex !important; align-items: center !important; justify-content: center !important;
+  width: 100% !important; min-height: 56px !important; margin: 8px 0 0 !important; padding: 16px 24px !important;
+  background: #00A7E3 !important; color: #132146 !important; font-size: 17px !important; font-weight: 800 !important;
+  line-height: 1.35 !important; text-align: center !important; border: 0 !important; border-radius: 10px !important;
+  box-shadow: 0 14px 30px -12px rgba(0,167,227,.75) !important; cursor: pointer !important;
+  transition: transform .2s ease, box-shadow .2s ease !important;
+}
+#_builder-form button[type="submit"]:hover, #_builder-form .btn:hover { transform: translateY(-2px) !important; background: #00A7E3 !important; }
+
+/* 9) Errors */
+#_builder-form .error, #_builder-form .text-danger, #_builder-form .field-error, #_builder-form .invalid-feedback,
+#_builder-form .el-form-item__error { color: #CD0000 !important; font-size: 13.5px !important; margin-top: 6px !important; }
+#_builder-form input.is-invalid, #_builder-form .has-error input { border-color: #CD0000 !important; }
+
+/* 10) Hide GHL branding and the tracking fields (they are filled from the page link) */
+#_builder-form .branding, .powered-by, .ghl-branding { display: none !important; }
+#_builder-form [data-field-key="contact.lead_campaign"],
+#_builder-form [data-field-key="contact.lead_source_page"],
+#_builder-form [data-field-key="contact.consent_timestamp"],
+#_builder-form [data-field-key="contact.marketing_consent_text"],
+#_builder-form [data-hidden-field="true"] { display: none !important; }
+
+/* 11) Mobile */
+@media (max-width: 640px) {
+  #_builder-form button[type="submit"] { font-size: 16px !important; min-height: 52px !important; }
+  #_builder-form input:not([type="checkbox"]), #_builder-form select { height: 50px !important; font-size: 16px !important; }
+}

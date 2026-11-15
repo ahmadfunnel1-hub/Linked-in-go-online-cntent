@@ -35,7 +35,7 @@ Here's your copy of *Connect and Harmonize Business Data to Amplify the Power of
 One question to keep in mind while you read: *if leadership asked for a new scenario today, how much of the work would be finding and matching the data?*
 
 When you're ready to look at your own planning and data, you can book a free 30-minute data review here:
-[Book a data review]([REVIEW LINK])
+[Book your free data review]([REVIEW LINK])
 
 Best regards,
 [SENDER NAME]
@@ -58,7 +58,7 @@ Here's your copy of *Driving Impactful Business Decisions with Intelligent Conte
 One question to keep in mind while you read: *how much of your finance team's week goes into building reports, rather than acting on them?*
 
 When you're ready to look at your own planning and data, you can book a free 30-minute data review here:
-[Book a data review]([REVIEW LINK])
+[Book your free data review]([REVIEW LINK])
 
 Best regards,
 [SENDER NAME]
@@ -88,7 +88,7 @@ That's the problem SAP Business Data Cloud is designed to solve: bringing SAP an
 
 Try this: pick one KPI and ask two teams how they calculate it.
 If the answers differ, it's worth a conversation:
-**[Book a data review]([REVIEW LINK])**
+**[Book your free data review]([REVIEW LINK])**
 
 [SENDER NAME]
 
@@ -117,7 +117,7 @@ SAP Analytics Cloud, part of SAP Business Data Cloud, gives finance a shared env
 The point isn't replacing your tools for the sake of it. It's finding where your current process slows you down.
 
 That's exactly what we look at in a 30-minute data review:
-**[Book a data review]([REVIEW LINK])**
+**[Book your free data review]([REVIEW LINK])**
 
 [SENDER NAME]
 
@@ -146,7 +146,7 @@ With SAP Analytics Cloud, finance teams can model scenarios, compare alternative
 **Plan for What's Next.**
 
 If you'd like to see how this would work with your current planning process:
-**[Book a data review]([REVIEW LINK])**
+**[Book your free data review]([REVIEW LINK])**
 
 [SENDER NAME]
 
@@ -171,7 +171,7 @@ An AI pilot needs more than a promising idea. Before you scale anything, three c
 AI is only as reliable as the data behind it. That's why the data foundation comes first in the E-Book you downloaded, before AI itself.
 
 If you're planning AI or analytics initiatives, a data review is a good place to start:
-**[Book a data review]([REVIEW LINK])**
+**[Book your free data review]([REVIEW LINK])**
 
 [SENDER NAME]
 
@@ -193,7 +193,7 @@ Business conditions will keep changing, and leadership will keep asking finance 
 
 If connected data and faster scenario planning could matter in the next 12 months, a 30-minute data review is the simplest way to find out. It's free, with no obligation, and if this isn't the right fit, we'll tell you.
 
-**[Book your data review]([REVIEW LINK])**
+**[Book your free data review]([REVIEW LINK])**
 
 Not the right time? Reply "later" and I'll check back in a few months instead.
 

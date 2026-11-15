@@ -32,8 +32,8 @@ Here's your copy of the SAP GROW Fast Myth Busting E-Book:
 
 A quick tip: start with the myth that matches your biggest hesitation about SAP, whether that's cost, company size, time or complexity.
 
-When you're ready to see what it means for your company, you can book a free 30-minute GROW Fast fit check here:
-[Book a fit check]([FIT CHECK LINK])
+When you're ready to see what it means for your company, you can book your free 30-minute GROW Fast fit check here:
+[Book your free fit check]([FIT CHECK LINK])
 
 Best regards,
 [SENDER NAME]
@@ -67,7 +67,7 @@ The cost people forget is the one they already pay. Before comparing anything, i
 - decisions waiting for reports
 
 A 30-minute fit check puts the two side by side for your business:
-**[Book a fit check]([FIT CHECK LINK])**
+**[Book your free fit check]([FIT CHECK LINK])**
 
 [SENDER NAME]
 
@@ -95,7 +95,7 @@ SAP GROW Fast is built the other way round. You start from a predefined scope an
 
 That's how GROW Fast targets go-live in about four months. The actual timeline depends on scope, data readiness and the agreed project conditions, and the fit check is where we look at yours.
 
-**[Book a fit check]([FIT CHECK LINK])**
+**[Book your free fit check]([FIT CHECK LINK])**
 
 [SENDER NAME]
 
@@ -126,7 +126,7 @@ So, a question: **how many working days does your month-end close take today?**
 Hit reply and tell me. I read every answer.
 
 Or, if you'd like to walk through it together:
-**[Book a fit check]([FIT CHECK LINK])**
+**[Book your free fit check]([FIT CHECK LINK])**
 
 [SENDER NAME]
 
@@ -153,7 +153,7 @@ With SAP Cloud ERP, no:
 Go-live is a milestone, not the finish line. What matters is a system your team actually uses, with a partner who stays with you.
 
 If you'd like to see what that would look like for your company:
-**[Book a fit check]([FIT CHECK LINK])**
+**[Book your free fit check]([FIT CHECK LINK])**
 
 [SENDER NAME]
 
@@ -179,7 +179,7 @@ There's no deadline here. But there is a cost to waiting:
 
 If SAP GROW Fast might fit your plans for the next 12 months, a 30-minute fit check is the simplest way to find out. It's free, with no obligation, and if it isn't the right fit, we'll tell you.
 
-**[Book your fit check]([FIT CHECK LINK])**
+**[Book your free fit check]([FIT CHECK LINK])**
 
 Not the right time? Just reply "later" and I'll check back in a few months instead.
 

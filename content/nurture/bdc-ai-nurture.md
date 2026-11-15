@@ -33,7 +33,7 @@ Here's your copy of *Connect and Harmonize Business Data to Amplify the Power of
 One question to keep in mind while you read: *if you started an AI pilot tomorrow, how much of the work would be finding, cleaning and explaining the data?*
 
 When you're ready to look at your own data and AI plans, you can book a free 30-minute data and AI readiness review here:
-[Book a data and AI readiness review]([AI REVIEW LINK])
+[Book your free data and AI readiness review]([AI REVIEW LINK])
 
 Best regards,
 [SENDER NAME]
@@ -60,7 +60,7 @@ That's the gap SAP Business Data Cloud is designed to close. It unifies and gove
 
 Try this: pick one AI use case on your roadmap. Ask which systems feed it, and whether anyone can explain what each field means.
 If the answers aren't clear, it's worth a conversation:
-**[Book a data and AI readiness review]([AI REVIEW LINK])**
+**[Book your free data and AI readiness review]([AI REVIEW LINK])**
 
 [SENDER NAME]
 
@@ -85,7 +85,7 @@ An AI pilot needs more than a promising idea. Before you scale anything, three c
 If any answer is "not sure", that's where to start. AI is only as reliable as the data behind it.
 
 A 30-minute readiness review walks through all three for your own landscape:
-**[Book a data and AI readiness review]([AI REVIEW LINK])**
+**[Book your free data and AI readiness review]([AI REVIEW LINK])**
 
 [SENDER NAME]
 
@@ -111,7 +111,7 @@ SAP Business Data Cloud takes a different approach:
 The result is data that stays meaningful by the time AI and analytics use it.
 
 If you'd like to see where context gets lost in your own landscape:
-**[Book a data and AI readiness review]([AI REVIEW LINK])**
+**[Book your free data and AI readiness review]([AI REVIEW LINK])**
 
 [SENDER NAME]
 
@@ -137,7 +137,7 @@ In SAP Business Data Cloud, a knowledge graph connects your data, metadata and b
 The order matters: foundation first, then AI.
 
 If you'd like to talk through where your data stands today:
-**[Book a data and AI readiness review]([AI REVIEW LINK])**
+**[Book your free data and AI readiness review]([AI REVIEW LINK])**
 
 [SENDER NAME]
 
@@ -159,7 +159,7 @@ AI plans keep moving. The question is whether your data can keep up, with qualit
 
 If reliable AI is on your roadmap in the next 12 months, a 30-minute data and AI readiness review is the simplest way to see where your data stands. It's free, with no obligation, and if this isn't the right fit, we'll tell you.
 
-**[Book your data and AI readiness review]([AI REVIEW LINK])**
+**[Book your free data and AI readiness review]([AI REVIEW LINK])**
 
 Not the right time? Reply "later" and I'll check back in a few months instead.
 
