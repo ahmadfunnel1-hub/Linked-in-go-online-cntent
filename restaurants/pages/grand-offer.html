@@ -98,6 +98,22 @@ p{margin:0}
 .sticker{position:absolute;bottom:34px;right:-6px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px 14px;box-shadow:var(--shadow);font-family:var(--display);font-size:13px;line-height:1.5;max-width:200px;transform:rotate(-3deg)}
 .sticker b{color:var(--green);font-size:22px;display:block;font-family:var(--mono)}
 
+/* hero visual: one customer through the whole system */
+.flow{position:relative;display:grid;gap:10px;background:var(--card);border:1px solid var(--line);border-radius:24px;padding:26px 18px 18px;box-shadow:var(--shadow)}
+.fl{display:grid;grid-template-columns:40px 1fr auto;gap:12px;align-items:center;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:10px 12px;opacity:0;transform:translateX(-10px);animation:slide .45s ease forwards}
+.fl:nth-of-type(1){animation-delay:.15s}.fl:nth-of-type(2){animation-delay:.55s}.fl:nth-of-type(3){animation-delay:.95s}.fl:nth-of-type(4){animation-delay:1.35s}.fl:nth-of-type(5){animation-delay:1.75s}
+@keyframes slide{to{opacity:1;transform:none}}
+.fi{width:40px;height:40px;border-radius:12px;background:var(--green-soft);display:grid;place-items:center;font-size:19px}
+.fl b{font-family:var(--display);font-size:14px;color:var(--green)}
+.fl p{font-size:14px;line-height:1.6}
+.fl s{color:var(--red)}
+.fm{font-size:12.5px;color:var(--muted)}
+.fl.tk{background:var(--amber-soft)}
+.tix{display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.tix span{font-family:var(--mono);font-size:12px;background:var(--card);border:1px dashed var(--line);border-radius:6px;padding:3px 8px}
+.tix em{font-style:normal;color:var(--red);font-weight:600}
+.flow .ex{top:-12px;left:16px}
+
 /* personalised strip (from audit link) */
 .you{background:var(--amber-soft);border-block:1px solid var(--line)}
 .you .wrap{display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding-block:16px}
@@ -112,7 +128,7 @@ p{margin:0}
 .switch button{appearance:none;border:0;cursor:pointer;font-family:var(--display);font-weight:600;font-size:15px;color:var(--night-muted);background:transparent;padding:9px 20px;border-radius:999px;transition:background .2s,color .2s}
 .switch button[aria-pressed="true"]{background:var(--night-ink);color:var(--night)}
 .switch button.on[aria-pressed="true"]{background:#3FB89F;color:#08130F}
-.timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:34px}
+.timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-top:34px}
 .mo{background:var(--night2);border:1px solid #ffffff14;border-radius:18px;padding:20px 18px 22px;display:grid;gap:10px;align-content:start;position:relative;transition:border-color .3s,background .3s}
 .mo .clk{font-family:var(--mono);font-size:26px;font-weight:600;color:#F2B8A8;direction:ltr;text-align:right}
 .mo .tag{font-family:var(--display);font-size:13px;font-weight:600;color:var(--night-muted)}
@@ -147,7 +163,7 @@ p{margin:0}
 .note{font-size:13px;color:var(--muted);margin-top:12px;line-height:1.7}
 
 /* MECHANISM */
-.mech{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;counter-reset:m}
+.mech{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;counter-reset:m}
 .m{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px 20px;display:grid;gap:12px;align-content:start}
 .m .n{font-family:var(--mono);font-size:13px;color:var(--muted)}
 .m h3{font-size:23px;color:var(--green)}
@@ -280,6 +296,7 @@ footer{background:var(--night);color:var(--night-muted);font-size:13px;text-alig
 @media (max-width:960px){
   .hero-grid,.proof-grid,.calc{grid-template-columns:1fr}
   .timeline,.mech{grid-template-columns:1fr 1fr}
+  .timeline .mo:last-child,.mech .m:last-child{grid-column:1/-1}
   .steps{grid-template-columns:repeat(3,1fr)}
   .days{grid-template-columns:1fr;gap:18px}
   .days::before{top:0;bottom:0;right:27px;left:auto;width:3px;height:auto;background:linear-gradient(to bottom,var(--green),var(--green-soft))}
@@ -313,29 +330,20 @@ footer{background:var(--night);color:var(--night-muted);font-size:13px;text-alig
   <div>
     <p class="who">لأصحاب المطاعم والكافيهات الشغّالة بالأردن، فرع أو أكثر</p>
     <h1>زبونك بيسأل… بيطلب… <span class="s">وبيرجع.</span> ونظامك بيعرف كل خطوة.</h1>
-    <p class="sub">منظومة كاملة لمطعمك بتسكّر الأربع لحظات اللي بيضيع فيها الزبون: السؤال اللي ما إله رد، والطلب على خط مشغول، والزبون اللي ما رجع، والإعلان اللي ما بتعرف شو جاب. <b class="g">إحنا بنبنيها وبنشغّلها، وإنت بتشتغل بمطعمك.</b></p>
+    <p class="sub">نظام واحد لمطعمك كله: الرد على الزباين، ورابط طلب باسمك، والكاشير وطابعة كل قسم بالمطبخ، والمخزون، وروتين الفريق، والزبون اللي بيرجع، والإعلان اللي بتعرف شو جاب. <b class="g">إحنا بنبنيه وبنشغّله، وإنت بتشتغل بمطعمك.</b></p>
     <div class="ctas">
       <button class="btn" type="button" data-apply>شوف إذا مطعمك مناسب<small>دقيقتين · بعدها بتختار موعد المكالمة</small></button>
       <a class="btn ghost" href="#night">شوف ليلة خميس بمطعمك</a>
     </div>
-    <div class="trust"><span>14 يوم تشغيل قبل أي اتفاق</span><span>بدون تجديد تلقائي</span><span>كل شي باسمك</span><span>واتساب رسمي</span></div>
+    <div class="trust"><span>14 يوم تشغيل قبل أي اتفاق</span><span>كاشيرك الحالي بيضل بالتجربة</span><span>بدون تجديد تلقائي</span><span>كل شي باسمك</span></div>
   </div>
-  <div class="stage" aria-label="مثال توضيحي لتقرير الصبح على واتساب">
-    <span class="ex">مثال توضيحي</span>
-    <div class="phone"><div class="screen">
-      <div class="wa-top"><span class="av">☀</span><div>تقريرك الصبح<small>الجمعة · 8:05</small></div></div>
-      <div class="wa-body">
-        <div class="bub"><b>صباح الخير أبو خالد 👋</b><br>هاد اللي صار مبارح بمطعمك:<span class="t">8:05</span></div>
-        <div class="bub">
-          <div class="row"><span>زباين جداد انضموا</span><span>6</span></div>
-          <div class="row"><span>زباين رجعوا طلبوا</span><span>3</span></div>
-          <div class="row"><span>أسئلة أخدت رد بثواني</span><span>14</span></div>
-          <div class="row"><span>طلبات من رابطك</span><span>22</span></div>
-          <span class="t">8:05</span></div>
-        <div class="bub"><b>ناطر منك:</b> سؤالين عن حجز طاولة لـ 8 أشخاص، رحت تشوفهم؟<span class="t">8:06</span></div>
-      </div>
-    </div></div>
-    <div class="sticker">قبل ما تفتح المحل<b class="mono">8:05</b>بتعرف شو صار مبارح</div>
+  <div class="flow" aria-label="مثال توضيحي لزبون واحد بيمشي بالمنظومة كاملة">
+    <span class="ex">مثال توضيحي · زبون واحد، ليلة وحدة</span>
+    <div class="fl"><span class="fi">💬</span><div><b>اسمع</b><p>«كم سعر المشاوي المشكلة؟» على إعلانك ← رد بـ 4 ثواني ورابط الطلب</p></div><span class="fm mono">11:04</span></div>
+    <div class="fl"><span class="fi">🧾</span><div><b>اطلب</b><p>طلب من رابط مطعمك: مشكل لشخصين، <s>بصل</s>، توصيل لعبدون</p></div><span class="fm mono">11:07</span></div>
+    <div class="fl tk"><span class="fi">🖨</span><div><b>المطبخ والكاشير</b><div class="tix"><span>المشاوي: مشكل ×2 <em>بدون بصل</em></span><span>السلطات: فتوش ×1</span></div></div><span class="fm mono">11:08</span></div>
+    <div class="fl"><span class="fi">↩︎</span><div><b>رجّع</b><p>انضم لمزايا محلك. بعد 21 يوم غياب: «اشتقنالك» ← رجع طلب</p></div><span class="fm mono">+21ي</span></div>
+    <div class="fl"><span class="fi">📊</span><div><b>افهم</b><p>تقرير الصبح: الطلب جاي من حملة «مشاوي الخميس»</p></div><span class="fm mono">8:05</span></div>
   </div>
 </div></section>
 
@@ -350,7 +358,7 @@ footer{background:var(--night);color:var(--night-muted);font-size:13px;text-alig
   <div class="head c">
     <span class="eyebrow">ليلة خميس بمطعمك</span>
     <h2>الزبون ما بيضيع بالإعلان. بيضيع بعده.</h2>
-    <p class="lead">أربع لحظات بتصير بكل مطعم كل ليلة. بدّل وشوف شو بيتغيّر.</p>
+    <p class="lead">من أول تعليق لإغلاق الفرع: خمس محطات بكل ليلة، وبكل وحدة في زبون أو دينار بيضيع. بدّل وشوف شو بيتغيّر.</p>
     <div><div class="switch" role="group" aria-label="بدّل الليلة">
       <button type="button" id="sw-off" aria-pressed="true">بدون المنظومة</button>
       <button type="button" id="sw-on" class="on" aria-pressed="false">مع المنظومة</button>
@@ -373,6 +381,10 @@ footer{background:var(--night);color:var(--night-muted);font-size:13px;text-alig
       <h3 class="fx" data-off="تقرير مليان أرقام… كم طلب جاب؟" data-on="بتعرف كل حملة شو جابت">تقرير مليان أرقام… كم طلب جاب؟</h3>
       <p class="fx" data-off="بتزيد الميزانية أو بتغيّر الشركة، لأنك ما بتعرف وين المشكلة." data-on="كم تعليق، كم سؤال أخد رد، كم رقم، والتكلفة الحقيقية للرقم. والحملات ما بتشتغل إلا بموافقتك.">بتزيد الميزانية أو بتغيّر الشركة، لأنك ما بتعرف وين المشكلة.</p>
       <div class="cost fx" data-off="قرار على تخمين." data-on="قرار على أرقام.">قرار على تخمين.</div></article>
+    <article class="mo"><span class="moment">شغّل</span><div class="clk mono">12:40 AM</div><span class="tag">إغلاق الفرع</span>
+      <h3 class="fx" data-off="سكّروا الغاز؟ في نقص بالمخزون؟" data-on="قائمة الإغلاق خلصت، بالأسماء">سكّروا الغاز؟ في نقص بالمخزون؟</h3>
+      <p class="fx" data-off="بتتصل بالمدير. الجبنة خلصت، وما حدا انتبه لحد طلب الصبح." data-on="كل بند مسجّل مين خلّصه وإمتى، وكل بيعة خصمت مكوّناتها، والجبنة وصلك تنبيه إنها تحت الحد.">بتتصل بالمدير. الجبنة خلصت، وما حدا انتبه لحد طلب الصبح.</p>
+      <div class="cost fx" data-off="إنت المدير والذاكرة والمراقب." data-on="بتنام وإنت عارف.">إنت المدير والذاكرة والمراقب.</div></article>
   </div>
   <p class="verdict" id="verdict" data-off="الإعلان جاب الزبون. <em>وبعدها ما حدا مسكه.</em>" data-on="نفس الإعلان، نفس الزباين. <em>بس هالمرة ما ضاع حدا.</em>">الإعلان جاب الزبون. <em>وبعدها ما حدا مسكه.</em></p>
   <div class="ctas c" style="margin-top:26px"><button class="btn" type="button" data-apply style="background:#3FB89F;color:#08130F;box-shadow:none">بدي ليلة الخميس هاي لمطعمي</button></div>
@@ -381,7 +393,7 @@ footer{background:var(--night);color:var(--night-muted);font-size:13px;text-alig
 <!-- PROOF -->
 <section class="proof"><div class="wrap proof-grid">
   <div>
-    <span class="eyebrow">مش كلام. قرأناها تعليق تعليق</span>
+    <span class="eyebrow">هاي بس أول لحظة. وقرأناها تعليق تعليق</span>
     <h2>قرأنا <span class="mono g" id="c423">423</span> تعليق على حسابات 17 مطعم وكافيه بدابوق وخلدا.</h2>
     <p class="lead" style="margin-top:14px">ناس بتسأل عن السعر والموقع والتوصيل، على إعلانات مدفوعة… وما في رد ظاهر. ونفس الشي على Google.</p>
     <div class="counter">
@@ -406,38 +418,41 @@ footer{background:var(--night);color:var(--night-muted);font-size:13px;text-alig
 <section><div class="wrap">
   <div class="head">
     <span class="eyebrow">منهجية الأربع لحظات</span>
-    <h2>نظام واحد بيمسك الزبون من أول سؤال لحد ما يرجع.</h2>
-    <p class="lead">بدل خمس شركات وخمس تطبيقات ما بيحكوا مع بعض. كل لحظة فيها أنظمة بتشتغل من أول أسبوع، والتفاصيل الكاملة بتشوفها بالمكالمة.</p>
+    <h2>نظام واحد بيمسك الزبون من أول سؤال لحد ما يرجع، وبيمسك فرعك من الفتح للإغلاق.</h2>
+    <p class="lead">بدل شركة سوشال، وتطبيق طلبات، وكاشير، ودفتر مخزون، وتلفونات للمدير، ما بيحكوا مع بعض. أربع لحظات للزبون وواحدة لتشغيل الفرع، وكلهم على نفس البيانات. التفاصيل الكاملة بتشوفها بالمكالمة.</p>
   </div>
   <div class="mech">
     <article class="m"><span class="n mono">01</span><h3>اسمع</h3><p class="line">ولا سؤال بدون رد</p>
       <ul><li>كل تعليق فيه سعر أو منيو أو توصيل بياخد رد بثواني، <i>يعني التعليق اللي دفعت حقه ما بيروح</i></li><li>رد على الرسائل حتى الساعة 3 الفجر</li><li>بطاقة بكيس التوصيل بتحوّل زبون التطبيق لزبونك</li></ul>
       <p class="more">+ بنك أجوبة لكل حملة، وانضمام من الطاولة</p></article>
     <article class="m"><span class="n mono">02</span><h3>اطلب</h3><p class="line">ولا طلب بيضيع</p>
-      <ul><li>رابط طلب باسم مطعمك، <i>يعني الطلب بيوصل حتى لو الخط مشغول</i></li><li>كل قسم بالمطبخ بيطبع حصته مع «بدون بصل»</li><li>الطاولة من تلفون الوايتر للمطبخ مباشرة</li></ul>
-      <p class="more">+ المخزون، والتوصيل بسائقيك</p></article>
+      <ul><li>رابط طلب باسم مطعمك، صالة أو استلام أو توصيل، <i>يعني الطلب بيوصل حتى لو الخط مشغول</i></li><li>كاشير الفرع، وكل قسم بالمطبخ بيطبع حصته مع «بدون بصل»</li><li>الطاولة من تلفون الوايتر للمطبخ مباشرة</li></ul>
+      <p class="more">+ التوصيل بسائقيك، وتعديلات وإضافات مسعّرة</p></article>
     <article class="m"><span class="n mono">03</span><h3>رجّع</h3><p class="line">ولا زبون بيغيب</p>
       <ul><li>مزايا باسم محلك بمحفظة الموبايل، <i>يعني بدون ما الزبون ينزّل تطبيق</i></li><li>اللي تأخر عن عادته بتوصله رسالة بترجّعه</li><li>عيد ميلاده عندك، وطلب تقييم Google بعد الزيارة</li></ul>
       <p class="more">+ كبار زباينك، والحجوزات، وحملات المواسم، وتذكير القرب</p></article>
     <article class="m"><span class="n mono">04</span><h3>افهم</h3><p class="line">افهم إعلاناتك</p>
-      <ul><li>حساباتك الإعلانية بمكان واحد، <i>يعني بتعرف كل حملة شو جابت</i></li><li>الحملات بتتجهّز متوقفة، وإنت بتفعّل</li><li>كل صبح على واتساب: زباين جداد، رجعوا، أسئلة ناطرة</li></ul>
-      <p class="more">+ فحص القياس، وروتين الفريق، وتقرير لكل فرع</p></article>
+      <ul><li>حساباتك الإعلانية بمكان واحد، <i>يعني بتعرف كل حملة شو جابت</i></li><li>الطلب بيعرف من أي حملة إجا</li><li>الحملات بتتجهّز متوقفة، وإنت بتفعّل</li></ul>
+      <p class="more">+ فحص القياس، وتخطيط الحملات، وتقرير الإعلانات</p></article>
+    <article class="m"><span class="n mono">05</span><h3>شغّل</h3><p class="line">اعرف بدون ما تتصل</p>
+      <ul><li>كل بيعة بتخصم مكوّناتها، <i>يعني بتعرف شو تشتري لبكرا</i></li><li>قوائم فتح وإغلاق بتسجّل مين خلّص وإمتى</li><li>كل صبح على واتساب: مبيعات، زباين، طلبات، أسئلة ناطرة</li></ul>
+      <p class="more">+ تنبيه الحد الأدنى، وحضور الفريق، وتقرير لكل فرع</p></article>
   </div>
-  <div class="arrowline" aria-hidden="true"><span>أول سؤال</span><span>←</span><span>أول طلب</span><span>←</span><span>الرجعة</span><span>←</span><span>القرار الجاي</span></div>
+  <div class="arrowline" aria-hidden="true"><span>أول سؤال</span><span>←</span><span>الطلب والمطبخ</span><span>←</span><span>الرجعة</span><span>←</span><span>الحملة الجاية</span><span>←</span><span>الفرع كل يوم</span></div>
 </div></section>
 
 <!-- RANA -->
 <section class="story"><div class="wrap">
   <div class="head">
     <span class="eyebrow">قصة رنا · مثال توضيحي</span>
-    <h2>هيك بتشتغل اللحظات الأربعة على زبونة وحدة.</h2>
+    <h2>هيك بتشتغل المنظومة كلها على زبونة وحدة.</h2>
   </div>
   <div class="steps">
-    <div class="sp"><span class="w mono">11:04 PM</span><p>علّقت «كم السعر؟». بعد 4 ثواني أخدت رد.</p></div>
-    <div class="sp"><span class="w mono">+2 د</span><p>صار رقمها عندك، وانضمت لمزايا المحل.</p></div>
-    <div class="sp"><span class="w">الخميس</span><p>إجت، وجابت صاحبتها.</p></div>
-    <div class="sp"><span class="w">السبت</span><p>وصلها طلب تقييم على Google.</p></div>
-    <div class="sp"><span class="w">+21 يوم</span><p>غابت، فوصلها «قهوتك علينا»، فرجعت.</p></div>
+    <div class="sp"><span class="w mono">11:04 PM</span><p>علّقت «كم السعر؟» على إعلانك. بعد 4 ثواني أخدت رد ورابط الطلب.</p></div>
+    <div class="sp"><span class="w mono">11:07 PM</span><p>طلبت من رابطك «بدون بصل». الطلب طلع على طابعة المشاوي والسلطات، والمخزون خصم مكوّناته.</p></div>
+    <div class="sp"><span class="w">الخميس</span><p>انضمت لمزايا محلك بمحفظة موبايلها، وإجت مع صاحبتها. الوايتر فتح طاولتهم من تلفونه.</p></div>
+    <div class="sp"><span class="w">+21 يوم</span><p>غابت، فوصلها «اشتقنالك»، فرجعت طلبت.</p></div>
+    <div class="sp"><span class="w">كل صبح</span><p>تقريرك بيقلّك إنها جاية من حملة «مشاوي الخميس»، وكم رجعت.</p></div>
     <div class="sp last"><span class="w">وإنت؟</span><p><b>ما عملت إشي.</b> كنت بالمطبخ.</p></div>
   </div>
 </div></section>
@@ -453,6 +468,7 @@ footer{background:var(--night);color:var(--night-muted);font-size:13px;text-alig
     <div class="panel">
       <div class="field"><label for="cq">أسئلة بدون رد ظاهر بالشهر <output id="oq">20</output></label><input id="cq" type="range" min="0" max="150" step="1" value="20"><small>بالفحص بنعدّها إلك من حسابك. لو بتعرف رقمك، حطّه.</small></div>
       <div class="field"><label for="ct">معدل الفاتورة (دينار) <output id="ot">12</output></label><input id="ct" type="range" min="3" max="60" step="1" value="12"></div>
+      <div class="field"><label for="cl">طلبات بتضيع بالأسبوع وقت الذروة <output id="ol">4</output></label><input id="cl" type="range" min="0" max="60" step="1" value="4"><small>خط مشغول، واتساب ما انقرى، ملاحظة غلط رجّعت الطبق</small></div>
       <div class="field"><label for="cc">زباين طلبوا مرة الشهر الماضي <output id="oc">150</output></label><input id="cc" type="range" min="0" max="1500" step="10" value="150"><small>من الرابط أو الصالة أو التطبيقات</small></div>
       <div class="field" style="margin-bottom:0"><label for="cr">كم منهم ممكن يرجع لو وصله تذكير؟ <output id="or">10%</output></label><input id="cr" type="range" min="0" max="40" step="1" value="10"><small>فرض محافظ. إنت بتحدّده.</small></div>
     </div>
@@ -460,8 +476,9 @@ footer{background:var(--night);color:var(--night-muted);font-size:13px;text-alig
       <span class="muted" style="color:var(--night-muted);font-family:var(--display);font-weight:600">تقدير اللي بيضيع بالشهر</span>
       <div class="big mono"><span id="rt">0</span> <small>دينار</small></div>
       <div class="split">
-        <div><b class="mono" id="r1">0</b><span>من أسئلة ما أخدت رد (× 30% تحويل محافظ)</span></div>
-        <div><b class="mono" id="r2">0</b><span>من زباين ما حدا رجّعهم</span></div>
+        <div><b class="mono" id="r1">0</b><span>اسمع: أسئلة ما أخدت رد (× 30% تحويل محافظ)</span></div>
+        <div><b class="mono" id="r3">0</b><span>اطلب: طلبات ضاعت وقت الذروة (× 4 أسابيع)</span></div>
+        <div style="grid-column:1/-1"><b class="mono" id="r2">0</b><span>رجّع: زباين ما حدا رجّعهم</span></div>
       </div>
       <p class="disc">تقدير مش وعد. الأرقام من إدخالك إنت، ونسبة التحويل 30% محافظة ومكتوبة. ما بنضخّم إشي.</p>
       <button class="btn" type="button" data-apply style="background:#3FB89F;color:#08130F;box-shadow:none;justify-self:start">بدي أحسبها على أرقامي الحقيقية</button>
@@ -479,8 +496,8 @@ footer{background:var(--night);color:var(--night-muted);font-size:13px;text-alig
   <div class="days">
     <div class="d"><span class="dot">20د</span><b>قعدة التجهيز</b><p>من موبايلك، معنا. ولا برنامج بتتعلّمه.</p></div>
     <div class="d"><span class="dot">24س</span><b>أول نتيجة</b><p>أول سؤال بياخد رد، وأول رقم بيتسجّل. بتوصلك رسالة فيها الأرقام.</p></div>
-    <div class="d"><span class="dot">3</span><b>مزايا محلك</b><p>بمحفظة موبايل زباينك، باسم محلك وألوانه.</p></div>
-    <div class="d"><span class="dot">7</span><b>أول تقرير صبح</b><p>زباين جداد، رجعوا، حجوزات، أسئلة ناطرة.</p></div>
+    <div class="d"><span class="dot">2–3</span><b>رابطك ومطبخك</b><p>المنيو والكاشير جاهزين، وطلب تجريبي بيطلع على طابعة كل قسم. ومزايا محلك بمحفظة زباينك.</p></div>
+    <div class="d"><span class="dot">7</span><b>أول تقرير صبح</b><p>مبيعات، زباين جداد ورجعوا، طلبات، أسئلة ناطرة، ونقص المخزون.</p></div>
     <div class="d end"><span class="dot">14</span><b>قعدة على الأرقام</b><p>بتشوف كل شي بعينك، وإنت بتقرّر.</p></div>
   </div>
 </div></section>
@@ -500,6 +517,7 @@ footer{background:var(--night);color:var(--night-muted);font-size:13px;text-alig
         <tr><th>الزبون ورقمه عند مين؟</th><td class="n">عند الصفحة</td><td class="n">بالأداة</td><td class="n">عند التطبيق</td><td class="us y">عندك إنت، وباسمك</td></tr>
         <tr><th>الطلب للمطبخ مكتوب؟</th><td class="n">لا</td><td class="n">لا</td><td>على جهاز التطبيق</td><td class="us y">طباعة لكل قسم مع التعديلات</td></tr>
         <tr><th>الزبون بيرجع؟</th><td class="n">بإعلان جديد</td><td class="n">لا</td><td class="n">لتطبيقهم</td><td class="us y">تذكير ومزايا باسم محلك</td></tr>
+        <tr><th>الكاشير والمخزون والفريق</th><td class="n">لا</td><td class="n">لا</td><td class="n">لا</td><td class="us y">بنفس النظام، وتقرير لكل فرع</td></tr>
         <tr><th>واتساب رسمي؟</th><td class="n">—</td><td class="n">أحياناً ربط غير رسمي، والرقم معرّض للحظر</td><td class="n">—</td><td class="us y">API رسمي بس</td></tr>
         <tr><th>مين بيشغّل؟</th><td>هم</td><td class="n">إنت</td><td>هم، لإلهم</td><td class="us y">إحنا، لإلك</td></tr>
       </tbody>
@@ -512,8 +530,8 @@ footer{background:var(--night);color:var(--night-muted);font-size:13px;text-alig
   <div class="guar">
     <div class="seal"><div><b class="mono">14</b>يوم<br>على حسابنا</div></div>
     <div>
-      <h2>إذا ما شفت الأسئلة اللي ضاعت بعينك خلال 14 يوم، ما بتدفع ولا قرش.</h2>
-      <p class="lead" style="margin-top:10px">منضمن اللي إحنا بنشغّله، مش وعود مبيعات. بتقرير يوم 14 بتشوف: الأسئلة اللي أخدت رد، والأرقام اللي تسجّلت باسمك، والطلبات اللي وصلت مكتوبة للمطبخ.</p>
+      <h2>إذا ما شفت بعينك خلال 14 يوم وين كان زبونك بيضيع، وكيف انسكّر، ما بتدفع ولا قرش.</h2>
+      <p class="lead" style="margin-top:10px">منضمن اللي إحنا بنشغّله، مش وعود مبيعات. بتقرير يوم 14 بتشوف: الأسئلة اللي أخدت رد، والطلبات اللي وصلت مكتوبة لكل قسم بالمطبخ، والأرقام اللي تسجّلت باسمك، والزباين اللي وصلهم تذكير.</p>
       <ul><li>بدون عقد طويل</li><li>بدون تجديد تلقائي</li><li>كل الحسابات والبيانات باسمك</li><li>الحملات ما بتشتغل إلا بموافقتك</li><li>كاشيرك الحالي بيضل شغّال بالتجربة</li><li>واتساب رسمي، رقمك بأمان</li></ul>
     </div>
   </div>
@@ -543,6 +561,8 @@ footer{background:var(--night);color:var(--night-muted);font-size:13px;text-alig
     <details><summary>ما بفهم بالتكنولوجيا وما عندي لابتوب.</summary><p>ولا بدك. التجهيز كله من موبايلك بقعدة 20 دقيقة معنا، والباقي علينا. إنت ما بتفتح ولا برنامج.</p></details>
     <details><summary>عندي موظف بيرد على الرسائل.</summary><p>بيرد الساعة 3 الفجر؟ وعلى 62 تعليق بالأسبوع؟ وبيعطيك رقم كل واحد سأل؟ الموظف بيضل، والنظام بيمسك اللي بيفلت منه.</p></details>
     <details><summary>في أداة رد آلي بـ 19 دولار. ليش هاي؟</summary><p>الأداة بتشغّلها إنت، وكثير منها على ربط غير رسمي بيعرّض رقمك للحظر، وما بتقرأ تعليقات الإعلانات. هون نظام وخدمة على الواتساب الرسمي، بأربع لحظات مش وحدة.</p></details>
+    <details><summary>عندي كاشير شغّال. لازم أغيّره؟</summary><p>لا. خلال الـ 14 يوم كاشيرك بيضل شغّال بالتوازي إذا بدك، وإنت بتقرّر بعد ما تشوف الأرقام. وما في عنا دمج طاولات أو تقسيم فاتورة، فإذا هدول أساسيين عندك منحكيلك بصراحة.</p></details>
+    <details><summary>أنا بدي بس رابط الطلب، أو بس الرد على الزباين.</summary><p>تمام. كل لحظة إلها خدمة لحالها، ومنبلّش من اللي بيوجعك أكثر. بالاستمارة بتختار، وبالمكالمة بنقلّك إذا الأنسب الخدمة لحالها أو المنظومة.</p></details>
     <details><summary>التطبيقات بتجيبلي طلبات، ليش أغيّر؟</summary><p>ما بتغيّر. خليها تجيب. بس بطاقة بكل كيس بتحوّل زبونها لزبونك، والمرة الجاية بيطلب من رابطك.</p></details>
     <details><summary>زباينّا ما بينزّلوا تطبيقات.</summary><p>ولا تطبيق. المزايا بمحفظة موبايله بعشر ثواني، آيفون وأندرويد.</p></details>
     <details><summary>جرّبت شركات تسويق قبل وما زبطت.</summary><p>هاد مش إعلان أكبر. هاد اللي بيصير بعد الإعلان: الرد، والطلب، والرجعة. والحملات ما بتشتغل إلا بموافقتك.</p></details>
@@ -553,11 +573,11 @@ footer{background:var(--night);color:var(--night-muted);font-size:13px;text-alig
 
 <!-- FINAL -->
 <section class="final"><div class="wrap narrow">
-  <h2>كل ليلة خميس بتعدّي، في زباين سألوا وما حدا رد.</h2>
+  <h2>كل ليلة خميس بتعدّي، في زبون سأل وما حدا رد، وطلب ضاع على الخط، وزبون ما رجع.</h2>
   <p class="lead" style="margin:14px auto 26px;max-width:600px">دقيقتين استمارة، وبعدها بتختار موعد. منفحص حسابك قبل المكالمة، ومنفتحه سوا.</p>
   <div class="ctas c"><button class="btn" type="button" data-apply>شوف إذا مطعمك مناسب<small>بعدها بتختار موعد المكالمة</small></button></div>
   <div class="cap">بنفحص كل مطعم بإيدنا، فبناخد <b>15</b> مكالمة بالأسبوع بس</div>
-  <p class="ps"><b>ملاحظة:</b> كل تعليق «كم السعر؟» بدون رد ظاهر هو زبون دفعت حقه وراح. خلّينا نعدّهم سوا.</p>
+  <p class="ps"><b>ملاحظة:</b> الإعلان بيجيبلك الزبون مرة. اللي بيخليه يطلب صح، ويرجع، ويخليك تعرف شو صار، هو النظام اللي بعده.</p>
 </div></section>
 </main>
 <footer><div class="wrap">منظومة الأربع لحظات · الشروط · سياسة الخصوصية</div></footer>
@@ -589,13 +609,13 @@ footer{background:var(--night);color:var(--night-muted);font-size:13px;text-alig
   on.onclick=function(){setNight(true)};off.onclick=function(){setNight(false)};
 
   // ---------- calculator ----------
-  var ids=['cq','ct','cc','cr'];
+  var ids=['cq','ct','cl','cc','cr'];
   function fmt(n){return Math.round(n).toLocaleString('en-US')}
   function calc(){
-    var q=+cq.value,t=+ct.value,c=+cc.value,r=+cr.value;
-    oq.textContent=q;ot.textContent=t;oc.textContent=c;or.textContent=r+'%';
-    var a=q*0.30*t,b=c*(r/100)*t;
-    r1.textContent=fmt(a);r2.textContent=fmt(b);rt.textContent=fmt(a+b);
+    var q=+cq.value,t=+ct.value,l=+cl.value,c=+cc.value,r=+cr.value;
+    oq.textContent=q;ot.textContent=t;ol.textContent=l;oc.textContent=c;or.textContent=r+'%';
+    var a=q*0.30*t,o=l*4*t,b=c*(r/100)*t;
+    r1.textContent=fmt(a);r3.textContent=fmt(o);r2.textContent=fmt(b);rt.textContent=fmt(a+o+b);
   }
   ids.forEach(function(i){document.getElementById(i).addEventListener('input',calc)});calc();
 
