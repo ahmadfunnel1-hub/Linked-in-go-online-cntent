@@ -103,3 +103,22 @@ html, body, #_builder-form, #_builder-form *, .form-builder, .form-builder *, .g
   #_builder-form button[type="submit"] { font-size: 16px !important; min-height: 52px !important; }
   #_builder-form input:not([type="checkbox"]), #_builder-form select { height: 50px !important; font-size: 16px !important; }
 }
+
+/* 12) Dropdowns (Company Size, Marketing Consent): one box only, same width as the other fields.
+   GHL draws an outer box and an inner box; the outer one is removed here. */
+#_builder-form .multiselect, #_builder-form .multiselect--active {
+  width: 100% !important; min-height: 52px !important; border: 0 !important; background: transparent !important;
+  box-shadow: none !important; padding: 0 !important; margin: 0 !important; overflow: visible !important;
+}
+#_builder-form .multiselect__tags, #_builder-form .multiselect__select {
+  width: 100% !important; box-sizing: border-box !important;
+}
+#_builder-form .multiselect__select { border: 0 !important; background: transparent !important; }
+#_builder-form .multiselect__tags { height: 52px !important; min-height: 52px !important; line-height: 50px !important; }
+#_builder-form .multiselect__single, #_builder-form .multiselect__placeholder { line-height: 50px !important; font-size: 16px !important; color: #132146 !important; }
+#_builder-form .multiselect__placeholder { color: #8A96AD !important; }
+#_builder-form .form-builder--item:has(.multiselect), #_builder-form .form-builder--item:has(select) { overflow: visible !important; }
+
+/* 13) Submit button: full strength colour (no faded / disabled look) */
+#_builder-form button[type="submit"], #_builder-form .btn { opacity: 1 !important; filter: none !important; }
+#_builder-form button[type="submit"]:disabled { opacity: .6 !important; }
