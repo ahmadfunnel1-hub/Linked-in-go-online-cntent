@@ -5,7 +5,7 @@ from components import read, HERE
 import pages_gf
 OUT = os.path.join(HERE, '..')
 def finish(doc, send):
-    return doc + read('ui.js') + '\n' + read('form.js').replace('__SEND__', send)
+    return doc + read('ui.js')
 def gf_v1():
     import re
     from components import read as rd
@@ -13,6 +13,9 @@ def gf_v1():
     css = rd('kit.css') + rd('kit2.css')
     s = re.sub(r'<style>.*?</style>', lambda m: '<style>\n' + css + '\n</style>', s, count=1, flags=re.S)
     s = s.replace('grow-fast-v1-myths-story', 'grow-fast-v1-myths')
+    from components import form_block
+    a = s.index('<form class="isl-lead-form"'); b = s.index('</form>', a) + len('</form>')
+    s = s[:a] + form_block('', 'Tell us where to send it. It opens straight away, and a copy goes to your inbox.', '') + s[b:]
     return s, None
 TARGETS = {
     'gf-v1': ('variants/grow-fast/v1-myths.html', gf_v1),

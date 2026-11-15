@@ -4,6 +4,12 @@
   function track(e, d) { try { window.dataLayer.push(Object.assign({ event: e, campaign: cfg.campaign }, d || {})); } catch (x) {} }
   function $all(sel, el) { return [].slice.call((el || root).querySelectorAll(sel)); }
 
+  var fr = root.querySelector('iframe[data-ghl-embed]');
+  if (fr && cfg.ghlFormId) {
+    fr.src = 'https://link.msgsndr.com/widget/form/' + cfg.ghlFormId +
+      '?lead_campaign=' + encodeURIComponent(cfg.campaign) +
+      '&lead_source_page=' + encodeURIComponent(location.hostname + location.pathname);
+  }
   $all('.isl-cover-src').forEach(function (i) { if (cfg.ebookCoverUrl) i.src = cfg.ebookCoverUrl; });
   $all('.isl-logo-light').forEach(function (i) { if (cfg.logoOnLightUrl) i.src = cfg.logoOnLightUrl; });
 

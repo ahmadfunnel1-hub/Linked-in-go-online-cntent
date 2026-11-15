@@ -100,34 +100,12 @@ def cover(cls, alt, mock=None):
     return f'<img class="{cls} isl-cover-src" src="" alt="{esc(alt)}" width="260" height="316">'
 
 def form_block(send, sub, ok_title):
-    return f'''<form class="isl-lead-form" novalidate>
-        <div class="isl-form-body">
-          <h3>Get your free copy</h3>
-          <p class="isl-sub">{sub}</p>
-          <div class="isl-field"><label for="isl-fullName">Full name</label><input id="isl-fullName" name="fullName" autocomplete="name" required><div class="isl-error">Please enter your full name.</div></div>
-          <div class="isl-field"><label for="isl-email">Business email</label><input id="isl-email" name="email" type="email" autocomplete="email" required><div class="isl-error">Please use a valid business email address.</div></div>
-          <div class="isl-two">
-            <div class="isl-field"><label for="isl-company">Company name</label><input id="isl-company" name="company" autocomplete="organization" required><div class="isl-error">Please enter your company name.</div></div>
-            <div class="isl-field"><label for="isl-jobTitle">Job title</label><input id="isl-jobTitle" name="jobTitle" autocomplete="organization-title" required><div class="isl-error">Please enter your job title.</div></div>
-          </div>
-          <div class="isl-field"><label for="isl-companySize">Company size</label>
-            <select id="isl-companySize" name="companySize" required>
-              <option value="">Select…</option>
-              <option>1–199 employees</option><option>200–999 employees</option><option>1,000–4,999 employees</option><option>5,000+ employees</option>
-            </select><div class="isl-error">Please select your company size.</div></div>
-          <label class="isl-consent"><input type="checkbox" name="marketingConsent" value="yes"><span><span class="isl-opt">Optional</span>Yes, Intrasoft may email me about SAP solutions, events and insights. I can unsubscribe at any time. You don't need to tick this to get the E-Book.</span></label>
-          <p class="isl-privacy">By downloading, you acknowledge that Intrasoft will process your details to deliver this resource, as described in our <a class="isl-privacy-link" href="#">privacy notice</a>.</p>
-          <button class="isl-btn isl-btn-primary" type="submit">{send}</button>
-          <p class="isl-form-error" role="alert">Something went wrong. Please try again.</p>
-          <div class="isl-safe"><span>{ico('lock')}Your details stay private</span><span>{ico('bolt')}Instant access</span></div>
-        </div>
-        <div class="isl-success" role="status">
-          <div class="isl-big">✓</div>
-          <h3>{ok_title}</h3>
-          <p class="isl-sub">If it didn't open automatically, use the button below. We've also sent a copy to your inbox.</p>
-          <a class="isl-btn isl-btn-primary isl-ebook-link" href="#" target="_blank" rel="noopener">Open the E-Book</a>
-        </div>
-      </form>'''
+    """The form is GHL's own form, embedded. The page fills the campaign and source page
+    into the URL (see ui.js), and GHL saves them and fires the product's Form Submitted trigger.
+    Styling comes from the form's Custom CSS in GHL (landing-pages/ghl-forms/form-custom-css.css)."""
+    return (f'<div class="isl-embed-wrap"><div class="isl-embed-head"><h3>Get your free copy</h3><p class="isl-sub">{sub}</p></div>'
+            '<div class="isl-embed"><iframe class="isl-ghl-frame" data-ghl-embed="1" title="Get your free copy" src="about:blank" loading="lazy"></iframe></div>'
+            '<p class="isl-privacy">By downloading, you acknowledge that Intrasoft will process your details to deliver this resource, as described in our <a class="isl-privacy-link" href="#">privacy notice</a>.</p></div>')
 
 PIN = '<svg class="isl-pin" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="20" r="16" fill="#00A7E3"/><circle cx="19" cy="15" r="5" fill="#78DCFF" opacity=".8"/><path d="M24 36v10" stroke="#132146" stroke-width="3" stroke-linecap="round"/></svg>'
 

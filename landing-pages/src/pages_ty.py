@@ -2,6 +2,9 @@ from components import *
 
 BOOKING = 'https://api.leadconnectorhq.com/widget/booking/KviFQud0pugnniFvoVHt'
 PRISM = 'https://assets.cdn.filesafe.space/vhJRhZJvL4LvDBJd7NM0/media/dc63e9ca-1cbd-4e2e-98c1-e00b9ecd7c3a.webp'
+GF_PDF = 'https://files.leadconnectorhq.com/file/6af2d089923b4bc1094f2a1b/sap-grow-fast-myth-busting-e-book.pdf'
+BDC_PDF = 'https://files.leadconnectorhq.com/file/6af2d08afbdd54a8278a436e/connect-and-harmonize-business-data-e-book.pdf'
+V4_PDF = 'https://files.leadconnectorhq.com/file/6af2d463ddcd97ce5a9edc8a/driving-impactful-business-decisions-e-book.pdf'
 MAZE = 'https://assets.cdn.filesafe.space/vhJRhZJvL4LvDBJd7NM0/media/e1457bb8-e1de-4e03-a320-27210bbd34bb.webp'
 
 def ty_cfg(campaign, extra=''):
@@ -58,7 +61,7 @@ TY_JS = '''<script>
 </script>
 '''
 
-def ty_body(*, h1, book_block, lead, cta, cover_html, steps3, next_eyebrow, next_h, next_lead, bullets, note, expect, tip, cal_title, req, step2_pill):
+def ty_body(*, ebook, h1, book_block, lead, cta, cover_html, steps3, next_eyebrow, next_h, next_lead, bullets, note, expect, tip, cal_title, req, step2_pill):
     bl = ''.join(f'<li><span class="isl-tk">✓</span><span><b>{b}</b> {r}</span></li>' for b, r in bullets)
     st = ''.join(f'<div class="isl-ns{" isl-done" if i == 0 else ""}"><i>{"✓" if i == 0 else i+1}</i><b>{b}</b><span>{s}</span></div>' for i, (b, s) in enumerate(steps3))
     ex = ''.join(f'<div class="isl-rv"><small>{a}</small><b>{b}</b><p>{c}</p></div>' for a, b, c in expect)
@@ -74,7 +77,8 @@ def ty_body(*, h1, book_block, lead, cta, cover_html, steps3, next_eyebrow, next
       {book_block}
       <p class="isl-lead">{lead}</p>
       <div class="isl-hero-ctas"><a class="isl-btn isl-btn-primary isl-cta-main" href="#isl-next" data-cta="to-next">{cta}</a></div>
-      <p class="isl-cta-note">Your E-Book opened in a new tab, and a copy is on its way to your inbox. If you can't find the email, check your spam or promotions folder.</p>
+      <div class="isl-hero-ctas"><a class="isl-btn isl-btn-ghost isl-open-ebook" href="{ebook}" target="_blank" rel="noopener" data-cta="open-ebook">Open your E-Book</a></div>
+      <p class="isl-cta-note">A copy is also on its way to your inbox. If you can't find the email, check your spam or promotions folder.</p>
       {lockup()}
     </div>
     <div class="isl-visual" aria-hidden="true">{cover_html}</div>
@@ -108,7 +112,7 @@ EXPECT_GF = [('Before', 'Pick a time', 'Choose a 30-minute slot that suits you. 
 def ty_gf():
     cfg = ty_cfg('grow-fast-thank-you')
     cover_html = f'<img class="isl-ty-cover" src="{MAZE}" alt="SAP GROW Fast Myth Busting E-Book cover" width="260" height="316">'
-    body = ty_body(h1='Your SAP GROW Fast Myth Busting E-Book is on its way.', book_block='',
+    body = ty_body(ebook=GF_PDF, h1='Your SAP GROW Fast Myth Busting E-Book is on its way.', book_block='',
                    lead='The E-Book answers the general questions. A free 30-minute fit check answers yours: whether GROW Fast suits your business, and what the commitment would look like.',
                    cta='Book your free fit check', cover_html=cover_html,
                    steps3=[('E-Book opened', 'In a new tab'), ('Check your inbox', 'A copy is on its way'), ('Book your fit check', 'Optional, free, 30 minutes')],
@@ -128,7 +132,7 @@ def ty_bdc():
     cover_html = (f'<img class="isl-ty-cover" src="{PRISM}" alt="{BDC_BOOK} E-Book cover" width="260" height="316">'
                   + mock_cover('SAP Business Data Cloud', 'Driving impactful business decisions with <em>intelligent content</em>').replace('class="isl-mockcover"', 'class="isl-mockcover isl-ty-mock" style="display:none;margin:0 auto"'))
     book = f'<div class="isl-booktitle"><small>You requested</small><b class="isl-bt">{BDC_BOOK}</b></div>'
-    body = ty_body(h1='Your SAP E-Book is on its way.', book_block=book,
+    body = ty_body(ebook=BDC_PDF, h1='Your SAP E-Book is on its way.', book_block=book,
                    lead='The E-Book shows why trusted, connected data comes first. A free 30-minute data review applies it to your own planning.', cta='Book your free data review', cover_html=cover_html,
                    steps3=[('E-Book opened', 'In a new tab'), ('Check your inbox', 'A copy is on its way'), ('Book a data review', 'Optional, free, 30 minutes')],
                    next_eyebrow='Step 2 · Optional, free, 30 minutes', next_h='Book your free finance planning data review',
@@ -142,6 +146,7 @@ def ty_bdc():
     variants = '''
   var V = { cal: calTitle, req: reqText };
   if (isImp) {
+    var ob = root.querySelector('.isl-open-ebook'); if (ob) ob.href = 'https://files.leadconnectorhq.com/file/6af2d463ddcd97ce5a9edc8a/driving-impactful-business-decisions-e-book.pdf';
     root.querySelector('.isl-bt').textContent = 'Driving Impactful Business Decisions';
     set('.isl-lead', 'The E-Book shows how finance leaders turn business data into timely decisions. A free 30-minute data review applies it to your own finance planning.');
     var cv = root.querySelector('.isl-ty-cover'), mk = root.querySelector('.isl-ty-mock');
