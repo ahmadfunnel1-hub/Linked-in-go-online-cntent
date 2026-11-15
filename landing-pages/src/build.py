@@ -39,6 +39,6 @@ if __name__ == '__main__':
     for n in names:
         path, fn = TARGETS[n]
         doc, send = fn()
-        out = doc if (n.startswith('ty-') or n == 'gf-v1') else finish(doc, send)
+        out = doc if n.startswith('ty-') else (doc + read('ui.js') if n == 'gf-v1' else finish(doc, send))
         open(os.path.join(OUT, path), 'w').write(out)
         print('built', n, '->', path, len(out))
