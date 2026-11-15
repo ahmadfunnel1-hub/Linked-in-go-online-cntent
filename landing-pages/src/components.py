@@ -104,7 +104,7 @@ def form_block(send, sub, ok_title):
     into the URL (see ui.js), and GHL saves them and fires the product's Form Submitted trigger.
     Styling comes from the form's Custom CSS in GHL (landing-pages/ghl-forms/form-custom-css.css)."""
     return (f'<div class="isl-embed-wrap"><div class="isl-embed-head"><h3>Get your free copy</h3><p class="isl-sub">{sub}</p></div>'
-            '<div class="isl-embed"><iframe class="isl-ghl-frame" data-ghl-embed="1" data-layout-iframe-id="" id="" title="Get your free copy" src="about:blank" style="width:100%;min-height:720px;border:0;display:block"></iframe></div>'
+            '<div class="isl-embed"><iframe class="isl-ghl-frame" data-ghl-embed="1" data-layout-iframe-id="" id="" title="Get your free copy" src="about:blank" style="width:100%;border:0;display:block"></iframe></div>'
             '<p class="isl-privacy">By downloading, you acknowledge that Intrasoft will process your details to deliver this resource, as described in our <a class="isl-privacy-link" href="#">privacy notice</a>.</p></div>')
 
 PIN = '<svg class="isl-pin" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="20" r="16" fill="#00A7E3"/><circle cx="19" cy="15" r="5" fill="#78DCFF" opacity=".8"/><path d="M24 36v10" stroke="#132146" stroke-width="3" stroke-linecap="round"/></svg>'

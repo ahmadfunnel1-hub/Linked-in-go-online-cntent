@@ -823,6 +823,10 @@
 .isl-tk{flex:none;width:22px;height:22px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-size:12px;font-weight:900;margin-top:2px}
 .isl-ty-hero .isl-eyebrow{margin-top:22px}
 
+/* GHL form embed: tall enough that the whole form shows without an inner scrollbar */
+.isl-ghl-frame { width: 100%; min-height: 880px; border: 0; display: block; }
+@media (max-width: 640px) { .isl-ghl-frame { min-height: 980px; } }
+
 </style>
 
 <script>
@@ -1080,7 +1084,7 @@
       </ul>
     </div>
     <div class="isl-form-card isl-rv">
-      <div class="isl-embed-wrap"><div class="isl-embed-head"><h3>Get your free copy</h3><p class="isl-sub">Tell us where to send it. It opens straight away, and a copy goes to your inbox.</p></div><div class="isl-embed"><iframe class="isl-ghl-frame" data-ghl-embed="1" data-layout-iframe-id="" id="" title="Get your free copy" src="about:blank" style="width:100%;min-height:720px;border:0;display:block"></iframe></div><p class="isl-privacy">By downloading, you acknowledge that Intrasoft will process your details to deliver this resource, as described in our <a class="isl-privacy-link" href="#">privacy notice</a>.</p></div>
+      <div class="isl-embed-wrap"><div class="isl-embed-head"><h3>Get your free copy</h3><p class="isl-sub">Tell us where to send it. It opens straight away, and a copy goes to your inbox.</p></div><div class="isl-embed"><iframe class="isl-ghl-frame" data-ghl-embed="1" data-layout-iframe-id="" id="" title="Get your free copy" src="about:blank" style="width:100%;border:0;display:block"></iframe></div><p class="isl-privacy">By downloading, you acknowledge that Intrasoft will process your details to deliver this resource, as described in our <a class="isl-privacy-link" href="#">privacy notice</a>.</p></div>
     </div>
   </div>
 </section>
@@ -1231,7 +1235,7 @@
   var fr = root.querySelector('iframe[data-ghl-embed]');
   if (fr && cfg.ghlFormId) {
     fr.id = 'inline-' + cfg.ghlFormId; fr.setAttribute('data-layout-iframe-id', fr.id);
-    fr.style.minHeight = '720px'; fr.style.width = '100%'; fr.style.border = '0';
+    fr.style.width = '100%'; fr.style.border = '0';
     var emb = document.createElement('script'); emb.src = 'https://link.msgsndr.com/js/form_embed.js'; document.body.appendChild(emb);
     fr.src = 'https://link.msgsndr.com/widget/form/' + cfg.ghlFormId +
       '?lead_campaign=' + encodeURIComponent(cfg.campaign) +
