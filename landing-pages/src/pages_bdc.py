@@ -182,13 +182,13 @@ V4_HEAD = 'Get the Impactful Decisions E-Book'
 V4_MAIN = 'Read the E-Book: ' + V4_BOOK
 V4_OK = 'Your copy of ' + V4_BOOK + ' is ready'
 def bdc_v4():
-    cfg = cfg_block('bdc-v4-impactful-decisions', V4_PDF, '', '/bdc-thank-you?ebook=impactful')
+    cfg = cfg_block('bdc-v4-impactful-decisions', V4_PDF, '', '/bdc-impactful-thank-you')
     spark = lambda d: f'<svg viewBox="0 0 130 44" aria-hidden="true"><path d="{d}"/></svg>'
     tiles = ('<div class="isl-tiles" aria-hidden="true">'
              f'<div class="isl-tile"><div><small>Liquidity</small><b>Cash flow and liquidity</b><span>Visible in time to act</span></div>{spark("M2 34 L24 28 L46 32 L68 18 L90 22 L112 8 L128 12")}</div>'
              f'<div class="isl-tile isl-alert"><div><small>Receivables</small><b>Overdue payments</b><span>Surface early, with recommendations</span></div>{spark("M2 12 L24 16 L46 14 L68 26 L90 22 L112 34 L128 30")}</div>'
              f'<div class="isl-tile"><div><small>Payables</small><b>What you owe, and when</b><span>Alongside receivables and cash flow</span></div>{spark("M2 30 L24 26 L46 30 L68 24 L90 26 L112 16 L128 18")}</div></div>')
-    hero = ('<section class="isl-hero"><div class="isl-wrap isl-hero-grid"><div>' + eyebrow('Free E-Book · For CFOs and finance leaders in Saudi Arabia') +
+    hero = ('<section class="isl-hero"><div class="isl-wrap isl-hero-grid"><div>' + eyebrow('Free E-Book · For CFOs, financial controllers and treasury teams in Saudi Arabia') +
             f'<h1>Turn business data into {g("decisions, not more reports.")}</h1><p class="isl-tagline">See liquidity, receivables and payables in time to act.</p>'
             '<p class="isl-lead">Prebuilt metrics, reports and dashboards linked to live business data, so finance teams spend less time building reports and more time deciding. This free E-Book shows how intelligent content in SAP Business Data Cloud makes that possible.</p>'
             f'<div class="isl-hero-ctas">{btn(V4_MAIN + " " + ico("down"), cta="hero")}{btn("See what finance can see", "#isl-see", "hero-2", ghost=True)}</div><div class="isl-hero-meta"><span>{ico("bolt")}Instant access</span><span>{ico("check")}Free, no obligation</span></div>'

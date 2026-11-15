@@ -33,7 +33,7 @@ TY_JS = '''<script>
   [].forEach.call(root.querySelectorAll('.isl-logo-light'), function (i) { if (cfg.logoOnLightUrl) i.src = cfg.logoOnLightUrl; });
   root.querySelector('.isl-yr').textContent = new Date().getFullYear();
   [].forEach.call(root.querySelectorAll('.isl-privacy-link'), function (a) { a.href = cfg.privacyUrl; });
-  var qs = location.search, isAI = /[?&]for=ai\\b/.test(qs), isImp = /[?&]ebook=impactful\\b/.test(qs), calTitle = root.getAttribute('data-cal') || 'Book your free review', reqText = root.getAttribute('data-req') || 'Request your free review';
+  var qs = location.search, isAI = /[?&]for=ai\\b/.test(qs), isImp = /[?&]ebook=impactful\\b/.test(qs) || root.getAttribute('data-ebook') === 'impactful', calTitle = root.getAttribute('data-cal') || 'Book your free review', reqText = root.getAttribute('data-req') || 'Request your free review';
   /*VARIANTS*/
   try {
     var first = sessionStorage.getItem('isl_first_name');
@@ -72,7 +72,7 @@ def ty_body(*, ebook, h1, book_block, lead, cta, cover_html, steps3, next_eyebro
   <div class="isl-wrap isl-ty-grid">
     <div>
       <div class="isl-tick-big">{check}</div>
-      {eyebrow('Step 1 of 2 complete', 'isl-blue-e')}
+      {eyebrow('Step 1 of 3 complete', 'isl-blue-e')}
       <h1><span class="isl-name"></span><span class="isl-h1t">{h1}</span></h1>
       {book_block}
       <p class="isl-lead">{lead}</p>
@@ -116,7 +116,7 @@ def ty_gf():
                    lead='The E-Book answers the general questions. A free 30-minute fit check answers yours: whether GROW Fast suits your business, and what the commitment would look like.',
                    cta='Book your free fit check', cover_html=cover_html,
                    steps3=[('E-Book opened', 'In a new tab'), ('Check your inbox', 'A copy is on its way'), ('Book your fit check', 'Optional, free, 30 minutes')],
-                   next_eyebrow='Step 2 · Optional, free, 30 minutes', next_h='Book your free GROW Fast fit check',
+                   next_eyebrow='Step 3 · Optional, free, 30 minutes', next_h='Book your free GROW Fast fit check',
                    next_lead="The E-Book answers the general questions. A 30-minute fit check answers yours: whether GROW Fast suits your business, and what the commitment would look like.",
                    bullets=[('Your starting point:', 'current systems, spreadsheets and the priorities behind the move.'), ('What the predefined scope includes:', 'core finance, supply chain and HR best practices, and how they map to the way you work.'),
                             ('The commitment:', "how the SAP subscription and Intrasoft's implementation service are priced, and what affects them."), ('A realistic timeline:', 'what the target go-live depends on for a company like yours, and the next steps.')],
@@ -127,7 +127,7 @@ def ty_gf():
     return page('Your SAP GROW Fast E-Book | Intrasoft', 'Your SAP GROW Fast Myth Busting E-Book is on its way. Book a free 30-minute fit check with Intrasoft.', cfg, body) + js, None
 
 BDC_BOOK = 'Connect and Harmonize Business Data to Amplify the Power of AI'
-def ty_bdc():
+def ty_bdc(impactful=False):
     cfg = ty_cfg('bdc-thank-you', ',\n    // Optional: cover image for "Driving Impactful Business Decisions" (shown when the link has ?ebook=impactful).\n    impactfulCoverUrl: "",\n    // Optional separate calendar for the data and AI readiness review (CIO / data leaders). Empty = same calendar.\n    bookingUrlAi: ""')
     cover_html = (f'<img class="isl-ty-cover" src="{PRISM}" alt="{BDC_BOOK} E-Book cover" width="260" height="316">'
                   + mock_cover('SAP Business Data Cloud', 'Driving impactful business decisions with <em>intelligent content</em>').replace('class="isl-mockcover"', 'class="isl-mockcover isl-ty-mock" style="display:none;margin:0 auto"'))
@@ -135,7 +135,7 @@ def ty_bdc():
     body = ty_body(ebook=BDC_PDF, h1='Your SAP E-Book is on its way.', book_block=book,
                    lead='The E-Book shows why trusted, connected data comes first. A free 30-minute data review applies it to your own planning.', cta='Book your free data review', cover_html=cover_html,
                    steps3=[('E-Book opened', 'In a new tab'), ('Check your inbox', 'A copy is on its way'), ('Book a data review', 'Optional, free, 30 minutes')],
-                   next_eyebrow='Step 2 · Optional, free, 30 minutes', next_h='Book your free finance planning data review',
+                   next_eyebrow='Step 3 · Optional, free, 30 minutes', next_h='Book your free finance planning data review',
                    next_lead='In 30 minutes, we look at where your planning and reporting slow down, and whether SAP Business Data Cloud and SAP Analytics Cloud could help.',
                    bullets=[('Where planning slows down:', 'the manual steps between your data and the forecast leadership sees.'), ('Your data sources:', 'which SAP and non-SAP systems feed your reports, and where definitions differ.'),
                             ('What could connect them:', 'how SAP Business Data Cloud and SAP Analytics Cloud could support your planning and scenarios.'), ('Sensible next steps:', 'what an assessment, scope and plan could involve.')],
@@ -167,4 +167,8 @@ def ty_bdc():
     track('thank_you_variant', { audience: 'ai' });
   }'''
     js = TY_JS.replace('/*VARIANTS*/', variants)
+    if impactful:
+        body = body.replace('<div class="isl-lp" data-cal=', '<div class="isl-lp" data-ebook="impactful" data-cal=', 1)
     return page('Your SAP Business Data Cloud E-Book | Intrasoft', 'Your SAP E-Book is on its way. Book a free 30-minute review with Intrasoft.', cfg, body) + js, None
+def ty_bdc_impactful():
+    return ty_bdc(impactful=True)

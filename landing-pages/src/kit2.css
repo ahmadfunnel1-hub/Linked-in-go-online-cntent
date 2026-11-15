@@ -462,3 +462,7 @@
 /* GHL form embed: tall enough that the whole form shows without an inner scrollbar */
 .isl-ghl-frame { width: 100%; min-height: 880px; border: 0; display: block; }
 @media (max-width: 640px) { .isl-ghl-frame { min-height: 980px; } }
+
+/* Why Intrasoft: three cards fill the row, centred under the heading */
+.isl-why.isl-why-3{grid-template-columns:repeat(3,1fr)}
+@media (max-width:900px){.isl-why.isl-why-3{grid-template-columns:1fr}}

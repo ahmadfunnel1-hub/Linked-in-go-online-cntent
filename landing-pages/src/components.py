@@ -140,7 +140,7 @@ def faq_acc(items, one=False):
     return f'<div class="isl-acc{" isl-one" if one else ""}">{out}</div>'
 
 def why_grid(items):
-    return '<div class="isl-why">' + ''.join(f'<div class="isl-rv"><b>{t}</b><p>{p}</p></div>' for t, p in items) + '</div>'
+    return f'<div class="isl-why{" isl-why-3" if len(items) == 3 else ""}">' + ''.join(f'<div class="isl-rv"><b>{t}</b><p>{p}</p></div>' for t, p in items) + '</div>'
 def why_band(eyebrow_t, h2, lead, items, light=True):
     lis = ''.join(f'<li><i>{ico(ic)}</i><b>{t}</b><span>{p}</span></li>' for ic, t, p in items)
     return (f'<div class="isl-whyband"><div class="isl-rv">{eyebrow(eyebrow_t)}<h2 class="isl-h2">{h2}</h2><p class="isl-lead">{lead}</p>{lockup(light=True)}</div>'
