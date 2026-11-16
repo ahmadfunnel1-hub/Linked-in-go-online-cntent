@@ -258,3 +258,41 @@ def ty_booked():
 </script>
 '''
     return page('Your call is booked | Intrasoft', 'Your call with Intrasoft is booked. A confirmation with the meeting link is on its way.', cfg, body) + js, None
+
+
+# ------------------------------------------------------------ Direct booking page (not tied to a product)
+def book_call():
+    cfg = ty_cfg('direct-booking')
+    expect = [('Before', 'Pick a time', 'Choose a 30-minute slot that suits you. The calendar shows Sunday to Thursday, Riyadh time.'),
+              ('During', 'A conversation, not a pitch', 'You speak with an Intrasoft SAP consultant about your business and your questions.'),
+              ('After', 'No obligation', "You leave with clear next steps. If we're not the right fit, we'll say so.")]
+    ex = ''.join(f'<div class="isl-rv"><small>{a}</small><b>{b}</b><p>{c}</p></div>' for a, b, c in expect)
+    bl = ''.join(f'<li><span class="isl-tk">✓</span><span><b>{b}</b> {r}</span></li>' for b, r in [
+        ('Where you are today:', 'your systems, data and the processes that slow your teams down.'),
+        ('What you want to change:', 'the decisions and reports that matter most to you.'),
+        ('What could help:', 'which SAP options fit a business like yours.'),
+        ('Sensible next steps:', 'what a scope, plan and timeline could look like.')])
+    body = f'''<div class="isl-lp" data-cal="Book your free 30-minute call" data-req="Request a call">
+<header class="isl-top"><div class="isl-wrap"><img class="isl-logo-dark" src="{LOGO_DARK}" alt="Intrasoft Middle East" width="82" height="40"></div></header>
+<section class="isl-pad isl-soft" id="isl-next">
+  <div class="isl-wrap">
+    <div class="isl-ty-book">
+      <div class="isl-rv">
+        {eyebrow('Free · 30 minutes · Online')}
+        <h1 class="isl-h2" style="font-size:2.6rem">Book a call with <span class="isl-grad">Intrasoft</span></h1>
+        <p class="isl-lead">Pick a time that suits you. You'll speak with an Intrasoft SAP consultant about your business, your questions and what could help.</p>
+        <div class="isl-callout" style="margin-top:24px;border-left-color:var(--blue)"><div><p><b>In 30 minutes, we'll cover</b></p><ul class="isl-points">{bl}</ul></div></div>
+        <p class="isl-fine" style="text-align:left;margin-top:16px">Intrasoft Middle East is an SAP Gold Partner with 26 years of regional presence and Arabic and English-speaking teams.</p>
+      </div>
+      <div class="isl-calcard isl-rv"><h3>Choose a time that suits you</h3><div class="isl-cal"></div><p class="isl-alt"></p></div>
+    </div>
+    <div class="isl-expect">{ex}</div>
+    <div class="isl-why-lock isl-rv">{lockup(light=True)}</div>
+  </div>
+</section>
+<footer class="isl-foot"><div class="isl-wrap"><span><b style="color:#fff">Intrasoft Middle East</b> · SAP Gold Partner · © <span class="isl-yr"></span> Intrasoft. SAP, the SAP logo, and the SAP partner logos are trademarks or registered trademarks of SAP SE or an SAP affiliated company in Germany and other countries.</span><span><a class="isl-privacy-link" href="#">Privacy notice</a></span></div></footer>
+<span class="isl-name" hidden></span><span class="isl-h1t" hidden></span>
+</div>
+'''
+    js = TY_JS.replace('/*VARIANTS*/', '')
+    return page('Book a call | Intrasoft', 'Book a free 30-minute call with an Intrasoft SAP consultant.', cfg, body) + js, None
