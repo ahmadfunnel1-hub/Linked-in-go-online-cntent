@@ -78,14 +78,16 @@ def render_body(lines, links):
         greet = [x for x in sig if x.rstrip().endswith(',')]
         name_title = [x for x in sig if not x.rstrip().endswith(',')]
         g = f'<div style="font-family:{FONT};font-size:16px;color:#4A5878;margin-bottom:6px">{inline(greet[0], links)}</div>' if greet else ''
-        n = f'<div style="font-family:{FONT};font-size:16px;font-weight:700;color:{NAVY}">{NAME}</div><div style="font-family:{FONT};font-size:14px;color:#4A5878">{TITLE}</div>'
+        n = ''
         out.append(f'<div style="margin:14px 0 8px">{g}{n}</div>')
         sig = []
     for ln in lines:
         s = ln.rstrip()
         if not s.strip():
             flush_p(); flush_l(); flush_sig(); continue
-        if s.startswith(('Best regards,', 'Thank you for reading,')) or s.strip() in ('[SENDER NAME]', '[TITLE], Intrasoft Middle East'):
+        if s.strip() in ('[SENDER NAME]', '[TITLE], Intrasoft Middle East'):
+            continue  # no personal signature: the closing line is enough
+        if s.startswith(('Best regards,', 'Thank you for reading,')):
             flush_p(); flush_l(); sig.append(s); continue
         flush_sig()
         m = re.match(r'^\*\*\[(.+?)\]\((.+?)\)\*\*$', s)
