@@ -7,7 +7,7 @@ Merge fields: `{{contact.first_name}}`, `{{appointment.start_time}}`, `{{appoint
 
 ## R1 · 24 hours before · Your readiness review is tomorrow
 
-**Subject:** Your data and AI readiness review is tomorrow
+**Subject:** {{contact.first_name}}, tomorrow we look at your AI plans together
 **Alt subject:** Tomorrow: 30 minutes on your AI plans
 **Preview:** Here's what to have ready.
 
@@ -31,7 +31,7 @@ Thank you,
 
 ## R2 · 6 hours before · Your readiness review is today
 
-**Subject:** Your data and AI readiness review is today
+**Subject:** Today we see how ready your data is for AI
 **Alt subject:** See you at {{appointment.start_time}}
 **Preview:** A quick reminder for today.
 
@@ -49,7 +49,7 @@ Thank you,
 
 ## R3 · 3 hours before · Starting in about 3 hours
 
-**Subject:** Your data and AI readiness review starts in 3 hours
+**Subject:** A few hours to go. One question to bring
 **Alt subject:** One question to bring with you
 **Preview:** Think about this before the call.
 
@@ -70,7 +70,7 @@ Thank you,
 
 ## R4 · 15 minutes before · Your call starts in 15 minutes
 
-**Subject:** Your data and AI readiness review starts in 15 minutes
+**Subject:** We're ready when you are (15 minutes)
 **Alt subject:** Join us in 15 minutes
 **Preview:** Use the link in your calendar invitation.
 

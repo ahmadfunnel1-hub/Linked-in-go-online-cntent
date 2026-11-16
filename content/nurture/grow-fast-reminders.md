@@ -7,7 +7,7 @@ Merge fields: `{{contact.first_name}}`, `{{appointment.start_time}}`, `{{appoint
 
 ## R1 · 24 hours before · Your fit check is tomorrow
 
-**Subject:** Your GROW Fast fit check is tomorrow
+**Subject:** {{contact.first_name}}, tomorrow we talk about your SAP plans
 **Alt subject:** Tomorrow: 30 minutes on your SAP plan
 **Preview:** Here's what to have ready.
 
@@ -31,7 +31,7 @@ Thank you,
 
 ## R2 · 6 hours before · Your fit check is today
 
-**Subject:** Your GROW Fast fit check is today
+**Subject:** Today's the day: your SAP fit check
 **Alt subject:** See you at {{appointment.start_time}}
 **Preview:** A quick reminder for today.
 
@@ -49,7 +49,7 @@ Thank you,
 
 ## R3 · 3 hours before · Starting in about 3 hours
 
-**Subject:** Your GROW Fast fit check starts in 3 hours
+**Subject:** A few hours to go. Bring your toughest question
 **Alt subject:** A few questions to have ready
 **Preview:** Three things to think about before the call.
 
@@ -71,7 +71,7 @@ Thank you,
 
 ## R4 · 15 minutes before · Your call starts in 15 minutes
 
-**Subject:** Your GROW Fast fit check starts in 15 minutes
+**Subject:** We're ready when you are (15 minutes)
 **Alt subject:** Join us in 15 minutes
 **Preview:** Use the link in your calendar invitation.
 

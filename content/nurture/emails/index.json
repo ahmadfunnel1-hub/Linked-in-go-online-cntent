@@ -57,7 +57,7 @@
   "product": "grow-fast",
   "id": "R1",
   "title": "SAP GROW Fast · R1 · 24 hours before · Your fit check is tomorrow",
-  "subject": "Your GROW Fast fit check is tomorrow",
+  "subject": "{{contact.first_name}}, tomorrow we talk about your SAP plans",
   "alt_subject": "Tomorrow: 30 minutes on your SAP plan",
   "preview": "Here's what to have ready.",
   "file": "grow-fast-R1.html"
@@ -66,7 +66,7 @@
   "product": "grow-fast",
   "id": "R2",
   "title": "SAP GROW Fast · R2 · 6 hours before · Your fit check is today",
-  "subject": "Your GROW Fast fit check is today",
+  "subject": "Today's the day: your SAP fit check",
   "alt_subject": "See you at {{appointment.start_time}}",
   "preview": "A quick reminder for today.",
   "file": "grow-fast-R2.html"
@@ -75,7 +75,7 @@
   "product": "grow-fast",
   "id": "R3",
   "title": "SAP GROW Fast · R3 · 3 hours before · Starting in about 3 hours",
-  "subject": "Your GROW Fast fit check starts in 3 hours",
+  "subject": "A few hours to go. Bring your toughest question",
   "alt_subject": "A few questions to have ready",
   "preview": "Three things to think about before the call.",
   "file": "grow-fast-R3.html"
@@ -84,7 +84,7 @@
   "product": "grow-fast",
   "id": "R4",
   "title": "SAP GROW Fast · R4 · 15 minutes before · Your call starts in 15 minutes",
-  "subject": "Your GROW Fast fit check starts in 15 minutes",
+  "subject": "We're ready when you are (15 minutes)",
   "alt_subject": "Join us in 15 minutes",
   "preview": "Use the link in your calendar invitation.",
   "file": "grow-fast-R4.html"
@@ -156,7 +156,7 @@
   "product": "bdc",
   "id": "R1",
   "title": "SAP BDC · R1 · 24 hours before · Your data review is tomorrow",
-  "subject": "Your finance planning data review is tomorrow",
+  "subject": "{{contact.first_name}}, tomorrow we look at your numbers together",
   "alt_subject": "Tomorrow: 30 minutes on your planning and reporting",
   "preview": "Here's what to have ready.",
   "file": "bdc-R1.html"
@@ -165,7 +165,7 @@
   "product": "bdc",
   "id": "R2",
   "title": "SAP BDC · R2 · 6 hours before · Your data review is today",
-  "subject": "Your finance planning data review is today",
+  "subject": "Today we find where your planning slows down",
   "alt_subject": "See you at {{appointment.start_time}}",
   "preview": "A quick reminder for today.",
   "file": "bdc-R2.html"
@@ -174,7 +174,7 @@
   "product": "bdc",
   "id": "R3",
   "title": "SAP BDC · R3 · 3 hours before · Starting in about 3 hours",
-  "subject": "Your finance planning data review starts in 3 hours",
+  "subject": "A few hours to go. One question to bring",
   "alt_subject": "One question to bring with you",
   "preview": "Think about this before the call.",
   "file": "bdc-R3.html"
@@ -183,7 +183,7 @@
   "product": "bdc",
   "id": "R4",
   "title": "SAP BDC · R4 · 15 minutes before · Your call starts in 15 minutes",
-  "subject": "Your finance planning data review starts in 15 minutes",
+  "subject": "We're ready when you are (15 minutes)",
   "alt_subject": "Join us in 15 minutes",
   "preview": "Use the link in your calendar invitation.",
   "file": "bdc-R4.html"
@@ -246,7 +246,7 @@
   "product": "bdc-ai",
   "id": "R1",
   "title": "SAP BDC AI · R1 · 24 hours before · Your readiness review is tomorrow",
-  "subject": "Your data and AI readiness review is tomorrow",
+  "subject": "{{contact.first_name}}, tomorrow we look at your AI plans together",
   "alt_subject": "Tomorrow: 30 minutes on your AI plans",
   "preview": "Here's what to have ready.",
   "file": "bdc-ai-R1.html"
@@ -255,7 +255,7 @@
   "product": "bdc-ai",
   "id": "R2",
   "title": "SAP BDC AI · R2 · 6 hours before · Your readiness review is today",
-  "subject": "Your data and AI readiness review is today",
+  "subject": "Today we see how ready your data is for AI",
   "alt_subject": "See you at {{appointment.start_time}}",
   "preview": "A quick reminder for today.",
   "file": "bdc-ai-R2.html"
@@ -264,7 +264,7 @@
   "product": "bdc-ai",
   "id": "R3",
   "title": "SAP BDC AI · R3 · 3 hours before · Starting in about 3 hours",
-  "subject": "Your data and AI readiness review starts in 3 hours",
+  "subject": "A few hours to go. One question to bring",
   "alt_subject": "One question to bring with you",
   "preview": "Think about this before the call.",
   "file": "bdc-ai-R3.html"
@@ -273,7 +273,7 @@
   "product": "bdc-ai",
   "id": "R4",
   "title": "SAP BDC AI · R4 · 15 minutes before · Your call starts in 15 minutes",
-  "subject": "Your data and AI readiness review starts in 15 minutes",
+  "subject": "We're ready when you are (15 minutes)",
   "alt_subject": "Join us in 15 minutes",
   "preview": "Use the link in your calendar invitation.",
   "file": "bdc-ai-R4.html"
