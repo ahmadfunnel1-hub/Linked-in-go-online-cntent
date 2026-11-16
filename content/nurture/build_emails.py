@@ -110,7 +110,7 @@ def render_body(lines, links):
 
 def wrap(content, subject, preview, p, eid, cover, receiving):
     n = int(re.sub(r'\D', '', eid) or 0)
-    tag = 'YOUR E-BOOK' if eid.startswith('E0') else f'{n} OF 5'
+    tag = 'YOUR E-BOOK' if eid.startswith('E0') else ('BOOKING CONFIRMED' if eid == 'R0' else ('CALL REMINDER' if eid.startswith('R') else f'{n} OF 5'))
     eyebrow = f'{p["eyebrow"]} &nbsp;&middot;&nbsp; {tag}'
     h1 = html.escape(subject, quote=False)
     cover_td = (f'<td class="stk" width="150" valign="middle" align="right" style="padding-left:18px"><img src="{cover}" width="150" alt="E-Book cover" style="display:block;width:150px;max-width:100%;height:auto;border-radius:6px;border:0"></td>') if cover else ''
