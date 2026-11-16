@@ -32,7 +32,7 @@ try:
 except ImportError: pass
 try:
     import pages_ty
-    TARGETS.update({'ty-gf': ('thank-you/grow-fast.html', pages_ty.ty_gf), 'ty-bdc': ('thank-you/bdc.html', pages_ty.ty_bdc), 'ty-bdc-impactful': ('thank-you/bdc-impactful.html', pages_ty.ty_bdc_impactful)})
+    TARGETS.update({'ty-gf': ('thank-you/grow-fast.html', pages_ty.ty_gf), 'ty-bdc': ('thank-you/bdc.html', pages_ty.ty_bdc), 'ty-bdc-impactful': ('thank-you/bdc-impactful.html', pages_ty.ty_bdc_impactful), 'ty-booked': ('thank-you/booking-confirmed.html', pages_ty.ty_booked)})
 except ImportError: pass
 if __name__ == '__main__':
     names = sys.argv[1:] or list(TARGETS)
