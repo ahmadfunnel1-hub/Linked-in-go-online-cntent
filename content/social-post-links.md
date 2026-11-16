@@ -14,7 +14,7 @@ Each link adds UTM tags so GHL and analytics show which post a lead came from. C
 | SAP Public Cloud | Post 15 | Make the important decisions early | https://grow.intrasoft.me/gf-myths?utm_source=linkedin&utm_medium=social&utm_campaign=sap-public-cloud&utm_content=pc-post-15 |
 | SAP Public Cloud | Carousel 01 | Before you move to cloud ERP, what needs to be ready? | https://grow.intrasoft.me/gf-clear-answers?utm_source=linkedin&utm_medium=social&utm_campaign=sap-public-cloud&utm_content=pc-carousel-01 |
 | SAP Public Cloud | Carousel 03 | What SAP GROW Fast includes | https://grow.intrasoft.me/gf-growth?utm_source=linkedin&utm_medium=social&utm_campaign=sap-public-cloud&utm_content=pc-carousel-03 |
-| SAP Business Data Cloud | Post 01 | Can finance see what operations sees? | https://bdc.intrasoft.me/bdc-finance-ops?utm_source=linkedin&utm_medium=social&utm_campaign=sap-bdc&utm_content=bdc-post-01 |
+| SAP Business Data Cloud | Post 01 | Can finance see what operations sees? | https://bdc.intrasoft.me/bdc-impactful-decisions?utm_source=linkedin&utm_medium=social&utm_campaign=sap-bdc&utm_content=bdc-post-01 |
 | SAP Business Data Cloud | Post 02 | Connected data needs shared meaning | https://bdc.intrasoft.me/bdc-one-truth?utm_source=linkedin&utm_medium=social&utm_campaign=sap-bdc&utm_content=bdc-post-02 |
 | SAP Business Data Cloud | Post 04 | Unlock more value from your business data | https://bdc.intrasoft.me/bdc-reliable-ai?utm_source=linkedin&utm_medium=social&utm_campaign=sap-bdc&utm_content=bdc-post-04 |
 | SAP Business Data Cloud | Post 06 | How ready is your data for your AI ambitions? | https://bdc.intrasoft.me/bdc-reliable-ai?utm_source=linkedin&utm_medium=social&utm_campaign=sap-bdc&utm_content=bdc-post-06 |
