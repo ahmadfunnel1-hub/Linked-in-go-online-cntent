@@ -1,0 +1,45 @@
+<style>
+/* Intrasoft brand styling for the GHL booking calendar (Calendars > Intrasoft > Insert custom code) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* Brand colours through the widget's own variables */
+:root, body, .appointment_widgets--revamp--booking { --appointment_widgets-primary-color: #00A7E3 !important; --appointment_widgets-light-text-color: #132146 !important; }
+
+/* Font and base text */
+.appointment_widgets--revamp--booking, .appointment_widgets--revamp--booking * { font-family: Inter, Arial, sans-serif !important; }
+.appointment_widgets--revamp--container { border: 1.5px solid #DCE6F2 !important; border-radius: 20px !important; box-shadow: 0 30px 60px -36px rgba(19,33,70,.45) !important; overflow: hidden; }
+
+/* Left panel: title and details */
+.appointment_widgets--revamp--info-container { background: #F1F7FC !important; }
+.appointment_widgets--revamp--service-info h1, .appointment_widgets--revamp--service-info h2, .appointment_widgets--revamp--service-info h3,
+.appointment_widgets--revamp--service-info h4 { color: #132146 !important; font-weight: 800 !important; }
+.appointment_widgets--revamp--service-info, .appointment-widgets-service-booking-info { color: #4A5878 !important; }
+.appointment_widgets--revamp--service-info svg { color: #00A7E3 !important; }
+
+/* Headings */
+.label-select-date, .timezone-label { color: #132146 !important; font-weight: 700 !important; }
+
+/* Month arrows */
+.arrowNext:not(.disabled), .arrowPrevious:not(.disabled) { background: rgba(0,167,227,.12) !important; color: #132146 !important; }
+
+/* Available days */
+td.selectable:not(.selected) .vdpCellContent { background: rgba(0,167,227,.12) !important; color: #0079AD !important; font-weight: 700 !important; }
+td.selectable:not(.selected):hover .vdpCellContent { background: rgba(0,167,227,.25) !important; }
+/* Selected day */
+body .appointment_widgets--revamp--booking .date-picker-calendar td.vdpCell.selectable.selected .vdpCellContent,
+body .appointment_widgets--revamp--booking td.vdpCell.selected .vdpCellContent,
+html body .calendarVdpComponent .vdpCell.selected .vdpCellContent,
+html body .widgets-date-block .vdpCell.selectable.selected .vdpCellContent { background: #00A7E3 !important; background-color: #00A7E3 !important; color: #132146 !important; font-weight: 800 !important; }
+
+/* Time slots */
+.widgets-time-slot span { border: 1.5px solid #00A7E3 !important; color: #132146 !important; border-radius: 10px !important; font-weight: 600 !important; }
+.widgets-time-slot:hover span { background: rgba(0,167,227,.10) !important; }
+html body .widgets-slot-block .widgets-time-slots .widgets-time-slot.actived > span { background: #132146 !important; background-color: #132146 !important; border-color: #132146 !important; color: #ffffff !important; }
+.btn.selected-slot { background: #00A7E3 !important; border-color: #00A7E3 !important; color: #132146 !important; font-weight: 800 !important; border-radius: 10px !important; }
+
+/* Booking form step: inputs and confirm button */
+.appointment_widgets--revamp--booking input:focus, .appointment_widgets--revamp--booking textarea:focus { border-color: #00A7E3 !important; box-shadow: 0 0 0 3px rgba(0,167,227,.18) !important; }
+.appointment_widgets--revamp--booking button[type="submit"], .appointment_widgets--revamp--booking .btn-schedule, .appointment_widgets--revamp--booking .btn-primary {
+  background: #00A7E3 !important; border-color: #00A7E3 !important; color: #132146 !important; font-weight: 800 !important; border-radius: 12px !important; }
+.appointment_widgets--revamp--booking button[type="submit"]:hover, .appointment_widgets--revamp--booking .btn-primary:hover { background: #0090C8 !important; }
+</style>
