@@ -24,6 +24,7 @@ FONT = "Arial,Helvetica,sans-serif"
 TM = ('SAP, the SAP logo, and the SAP partner logos are trademarks or registered trademarks of SAP SE or an SAP affiliated company in Germany and other countries.')
 
 PRODUCTS = {
+    'direct': dict(reminders='direct-reminders.md', label='Intrasoft Direct', eyebrow='INTRASOFT MIDDLE EAST', bar=BLUE, cover='', links={}),
     'grow-fast': dict(md='grow-fast-nurture.md', reminders='grow-fast-reminders.md', label='SAP GROW Fast', eyebrow='SAP GROW FAST', bar=BLUE, cover=COVER_GF,
                       links={'[E-BOOK LINK]': '{{ custom_values.sap_grow_fast_ebook_url }}', '[FIT CHECK LINK]': '{{ custom_values.sap_grow_fast_fit_check_url }}'}),
     'bdc': dict(md='bdc-nurture.md', reminders='bdc-reminders.md', label='SAP BDC', eyebrow='SAP BUSINESS DATA CLOUD', bar=RED, cover=COVER_BDC,
@@ -160,7 +161,7 @@ def build(out_dir):
     os.makedirs(out_dir, exist_ok=True)
     result = []
     for key, p in PRODUCTS.items():
-        for src in (p['md'], p['reminders']):
+        for src in [x for x in (p.get('md'), p['reminders']) if x]:
           md = open(os.path.join(HERE, src)).read()
           for m in re.finditer(r'^## ([ER]\d[a-z]?) · (.+?)\n(.*?)(?=^---\s*$)', md, re.S | re.M):
               eid, head, block = m.group(1), m.group(2).strip(), m.group(3)

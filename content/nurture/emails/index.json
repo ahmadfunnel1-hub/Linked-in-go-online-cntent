@@ -1,5 +1,50 @@
 [
  {
+  "product": "direct",
+  "id": "R0",
+  "title": "Intrasoft Direct · R0 · On booking · Booking confirmation",
+  "subject": "Your call with Intrasoft is booked. See you soon",
+  "alt_subject": "{{contact.first_name}}, your call with Intrasoft is booked",
+  "preview": "Your time, your meeting link, and how to reschedule.",
+  "file": "direct-R0.html"
+ },
+ {
+  "product": "direct",
+  "id": "R1",
+  "title": "Intrasoft Direct · R1 · 24 hours before · Your data review is tomorrow",
+  "subject": "{{contact.first_name}}, we're looking forward to tomorrow",
+  "alt_subject": "Tomorrow: 30 minutes on your business",
+  "preview": "Here's what to have ready.",
+  "file": "direct-R1.html"
+ },
+ {
+  "product": "direct",
+  "id": "R2",
+  "title": "Intrasoft Direct · R2 · 6 hours before · Your data review is today",
+  "subject": "Today's the day: your call with Intrasoft",
+  "alt_subject": "See you at {{appointment.start_time}}",
+  "preview": "A quick reminder for today.",
+  "file": "direct-R2.html"
+ },
+ {
+  "product": "direct",
+  "id": "R3",
+  "title": "Intrasoft Direct · R3 · 3 hours before · Starting in about 3 hours",
+  "subject": "A few hours to go. One question to bring",
+  "alt_subject": "One question to bring with you",
+  "preview": "Think about this before the call.",
+  "file": "direct-R3.html"
+ },
+ {
+  "product": "direct",
+  "id": "R4",
+  "title": "Intrasoft Direct · R4 · 15 minutes before · Your call starts in 15 minutes",
+  "subject": "We're ready when you are (15 minutes)",
+  "alt_subject": "Join us in 15 minutes",
+  "preview": "Your meeting link is inside.",
+  "file": "direct-R4.html"
+ },
+ {
   "product": "grow-fast",
   "id": "E0",
   "title": "SAP GROW Fast · E0 · Immediately · Delivery (transactional)",
