@@ -24,12 +24,12 @@ FONT = "Arial,Helvetica,sans-serif"
 TM = ('SAP, the SAP logo, and the SAP partner logos are trademarks or registered trademarks of SAP SE or an SAP affiliated company in Germany and other countries.')
 
 PRODUCTS = {
-    'grow-fast': dict(md='grow-fast-nurture.md', label='SAP GROW Fast', eyebrow='SAP GROW FAST', bar=BLUE, cover=COVER_GF,
+    'grow-fast': dict(md='grow-fast-nurture.md', reminders='grow-fast-reminders.md', label='SAP GROW Fast', eyebrow='SAP GROW FAST', bar=BLUE, cover=COVER_GF,
                       links={'[E-BOOK LINK]': '{{ custom_values.sap_grow_fast_ebook_url }}', '[FIT CHECK LINK]': '{{ custom_values.sap_grow_fast_fit_check_url }}'}),
-    'bdc': dict(md='bdc-nurture.md', label='SAP BDC', eyebrow='SAP BUSINESS DATA CLOUD', bar=RED, cover=COVER_BDC,
+    'bdc': dict(md='bdc-nurture.md', reminders='bdc-reminders.md', label='SAP BDC', eyebrow='SAP BUSINESS DATA CLOUD', bar=RED, cover=COVER_BDC,
                 links={'[E-BOOK LINK]': '{{ custom_values.sap_bdc_ebook_url }}', '[E-BOOK 2 LINK]': '{{ custom_values.sap_bdc_ebook_2_url }}',
                        '[REVIEW LINK]': '{{ custom_values.sap_bdc_data_review_url }}'}),
-    'bdc-ai': dict(md='bdc-ai-nurture.md', label='SAP BDC AI', eyebrow='SAP BUSINESS DATA CLOUD', bar=RED, cover=COVER_BDC,
+    'bdc-ai': dict(md='bdc-ai-nurture.md', reminders='bdc-ai-reminders.md', label='SAP BDC AI', eyebrow='SAP BUSINESS DATA CLOUD', bar=RED, cover=COVER_BDC,
                    links={'[E-BOOK LINK]': '{{ custom_values.sap_bdc_ebook_url }}', '[AI REVIEW LINK]': '{{ custom_values.sap_bdc_ai_review_url }}'}),
 }
 NAME = '{{ custom_values.sap_email_sender_name }}'
@@ -158,25 +158,26 @@ def build(out_dir):
     os.makedirs(out_dir, exist_ok=True)
     result = []
     for key, p in PRODUCTS.items():
-        md = open(os.path.join(HERE, p['md'])).read()
-        for m in re.finditer(r'^## (E\d[a-z]?) · (.+?)\n(.*?)(?=^---\s*$)', md, re.S | re.M):
-            eid, head, block = m.group(1), m.group(2).strip(), m.group(3)
-            subj = re.search(r'^\*\*Subject:\*\*\s*(.+)$', block, re.M).group(1).strip()
-            alt = re.search(r'^\*\*Alt subject:\*\*\s*(.+)$', block, re.M).group(1).strip()
-            prev = re.search(r'^\*\*Preview:\*\*\s*(.+)$', block, re.M).group(1).strip()
-            body = block[block.index(prev) + len(prev):].strip('\n').splitlines()
-            content = render_body(body, p['links'])
-            first = eid == 'E0' or eid == 'E0b'
-            cover = p['cover'] if (first and eid != 'E0b') else ''
-            receiving = ("You're receiving this because you downloaded an E-Book from Intrasoft." if first else
-                         "You're receiving this because you downloaded the E-Book and chose to hear from Intrasoft. You can unsubscribe at any time.")
-            h = wrap(content, subj, prev, p, eid, cover, receiving)
-            leftover = re.sub(r'\{\{.*?\}\}', '', re.sub(r'<[^>]+>', '', h))
-            assert not re.search(r'\[[A-Z0-9 ]+\]', leftover), (key, eid, re.findall(r'\[[A-Z0-9 ]+\]', leftover))
-            title = f"{p['label']} · {eid} · {head}"
-            fn = f'{key}-{eid}.html'
-            open(os.path.join(out_dir, fn), 'w').write(h)
-            result.append(dict(product=key, id=eid, title=title, subject=subj, alt_subject=alt, preview=prev, file=fn))
+        for src in (p['md'], p['reminders']):
+          md = open(os.path.join(HERE, src)).read()
+          for m in re.finditer(r'^## ([ER]\d[a-z]?) · (.+?)\n(.*?)(?=^---\s*$)', md, re.S | re.M):
+              eid, head, block = m.group(1), m.group(2).strip(), m.group(3)
+              subj = re.search(r'^\*\*Subject:\*\*\s*(.+)$', block, re.M).group(1).strip()
+              alt = re.search(r'^\*\*Alt subject:\*\*\s*(.+)$', block, re.M).group(1).strip()
+              prev = re.search(r'^\*\*Preview:\*\*\s*(.+)$', block, re.M).group(1).strip()
+              body = block[block.index(prev) + len(prev):].strip('\n').splitlines()
+              content = render_body(body, p['links'])
+              first = eid == 'E0' or eid == 'E0b'
+              cover = p['cover'] if (first and eid != 'E0b') else ''  # reminders carry no cover
+              receiving = ("You're receiving this because you booked a call with Intrasoft." if eid.startswith('R') else "You're receiving this because you downloaded an E-Book from Intrasoft." if first else
+                           "You're receiving this because you downloaded the E-Book and chose to hear from Intrasoft. You can unsubscribe at any time.")
+              h = wrap(content, subj, prev, p, eid, cover, receiving)
+              leftover = re.sub(r'\{\{.*?\}\}', '', re.sub(r'<[^>]+>', '', h))
+              assert not re.search(r'\[[A-Z0-9 ]+\]', leftover), (key, eid, re.findall(r'\[[A-Z0-9 ]+\]', leftover))
+              title = f"{p['label']} · {eid} · {head}"
+              fn = f'{key}-{eid}.html'
+              open(os.path.join(out_dir, fn), 'w').write(h)
+              result.append(dict(product=key, id=eid, title=title, subject=subj, alt_subject=alt, preview=prev, file=fn))
     json.dump(result, open(os.path.join(out_dir, 'index.json'), 'w'), indent=1, ensure_ascii=False)
     return result
 
