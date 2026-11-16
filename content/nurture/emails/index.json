@@ -55,6 +55,15 @@
  },
  {
   "product": "grow-fast",
+  "id": "R0",
+  "title": "SAP GROW Fast · R0 · On booking · Booking confirmation",
+  "subject": "Your GROW Fast fit check is booked. See you soon",
+  "alt_subject": "{{contact.first_name}}, your SAP fit check is booked",
+  "preview": "Your time, your meeting link, and how to reschedule.",
+  "file": "grow-fast-R0.html"
+ },
+ {
+  "product": "grow-fast",
   "id": "R1",
   "title": "SAP GROW Fast · R1 · 24 hours before · Your fit check is tomorrow",
   "subject": "{{contact.first_name}}, tomorrow we talk about your SAP plans",
@@ -86,7 +95,7 @@
   "title": "SAP GROW Fast · R4 · 15 minutes before · Your call starts in 15 minutes",
   "subject": "We're ready when you are (15 minutes)",
   "alt_subject": "Join us in 15 minutes",
-  "preview": "Use the link in your calendar invitation.",
+  "preview": "Your meeting link is inside.",
   "file": "grow-fast-R4.html"
  },
  {
@@ -154,6 +163,15 @@
  },
  {
   "product": "bdc",
+  "id": "R0",
+  "title": "SAP BDC · R0 · On booking · Booking confirmation",
+  "subject": "Your finance planning data review is booked. See you soon",
+  "alt_subject": "{{contact.first_name}}, your data review is booked",
+  "preview": "Your time, your meeting link, and how to reschedule.",
+  "file": "bdc-R0.html"
+ },
+ {
+  "product": "bdc",
   "id": "R1",
   "title": "SAP BDC · R1 · 24 hours before · Your data review is tomorrow",
   "subject": "{{contact.first_name}}, tomorrow we look at your numbers together",
@@ -185,7 +203,7 @@
   "title": "SAP BDC · R4 · 15 minutes before · Your call starts in 15 minutes",
   "subject": "We're ready when you are (15 minutes)",
   "alt_subject": "Join us in 15 minutes",
-  "preview": "Use the link in your calendar invitation.",
+  "preview": "Your meeting link is inside.",
   "file": "bdc-R4.html"
  },
  {
@@ -244,6 +262,15 @@
  },
  {
   "product": "bdc-ai",
+  "id": "R0",
+  "title": "SAP BDC AI · R0 · On booking · Booking confirmation",
+  "subject": "Your data and AI readiness review is booked. See you soon",
+  "alt_subject": "{{contact.first_name}}, your readiness review is booked",
+  "preview": "Your time, your meeting link, and how to reschedule.",
+  "file": "bdc-ai-R0.html"
+ },
+ {
+  "product": "bdc-ai",
   "id": "R1",
   "title": "SAP BDC AI · R1 · 24 hours before · Your readiness review is tomorrow",
   "subject": "{{contact.first_name}}, tomorrow we look at your AI plans together",
@@ -275,7 +302,7 @@
   "title": "SAP BDC AI · R4 · 15 minutes before · Your call starts in 15 minutes",
   "subject": "We're ready when you are (15 minutes)",
   "alt_subject": "Join us in 15 minutes",
-  "preview": "Use the link in your calendar invitation.",
+  "preview": "Your meeting link is inside.",
   "file": "bdc-ai-R4.html"
  }
 ]

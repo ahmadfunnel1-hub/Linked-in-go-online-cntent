@@ -10,7 +10,7 @@
   }
 </style></head>
 <body style="margin:0;padding:0;background:#EAF3FB">
-<span style="display:none;max-height:0;overflow:hidden;opacity:0;mso-hide:all">Use the link in your calendar invitation.</span>
+<span style="display:none;max-height:0;overflow:hidden;opacity:0;mso-hide:all">Your meeting link is inside.</span>
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#EAF3FB"><tr><td align="center" style="padding:24px 12px">
 <table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#ffffff;border-radius:14px;overflow:hidden">
 <tr><td style="height:5px;background:#CD0000;font-size:0;line-height:0">&nbsp;</td></tr>
@@ -25,7 +25,8 @@
 </td></tr>
 <tr><td class="px" style="padding:34px 32px 20px;font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.65;color:#1B2540">
 <p style="margin:0 0 18px;font-family:Arial,Helvetica,sans-serif">Hi {{contact.first_name}},</p>
-<p style="margin:0 0 18px;font-family:Arial,Helvetica,sans-serif">Your review starts at {{appointment.start_time}}. Please join using the link in your calendar invitation.</p>
+<p style="margin:0 0 18px;font-family:Arial,Helvetica,sans-serif">Your review starts at {{appointment.start_time}}. Join with the button below when you are ready.</p>
+<table role="presentation" cellpadding="0" cellspacing="0" style="margin:6px 0 22px"><tr><td style="border-radius:10px;border:2px solid #132146"><a href="{{appointment.meeting_location}}" style="display:block;padding:12px 22px;font-family:Arial,Helvetica,sans-serif;font-size:15px;font-weight:700;line-height:1.35;color:#132146;text-decoration:none;border-radius:8px">Join the meeting</a></td></tr></table>
 <p style="margin:0 0 18px;font-family:Arial,Helvetica,sans-serif">See you soon.</p>
 <div style="margin:14px 0 8px"><div style="font-family:Arial,Helvetica,sans-serif;font-size:16px;font-weight:700;color:#132146">{{ custom_values.sap_email_sender_name }}</div><div style="font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#4A5878">{{ custom_values.sap_email_sender_title }}</div></div>
 </td></tr>

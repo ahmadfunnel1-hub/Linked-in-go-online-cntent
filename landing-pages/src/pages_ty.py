@@ -198,14 +198,14 @@ def ty_booked():
     steps = [('Call booked', 'Your time is reserved'), ('Check your inbox', 'Confirmation and meeting link'), ('We meet', '30 minutes, online')]
     st = ''.join(f'<div class="isl-ns{" isl-done" if i == 0 else ""}"><i>{"✓" if i == 0 else i+1}</i><b>{b}</b><span>{s}</span></div>' for i, (b, s) in enumerate(steps))
     board = ('<div class="isl-board"><span class="isl-board-h">Your call</span><h3 class="isl-call-t">30 minutes with Intrasoft</h3><ul>'
-             '<li><i>1</i><b>Online</b><span>Join with the link in your calendar invitation</span><em>✓</em></li>'
+             '<li><i>1</i><b>Online</b><span>Join with the link in your confirmation email</span><em>✓</em></li>'
              '<li><i>2</i><b>An Intrasoft consultant</b><span>Someone who knows SAP and businesses in Saudi Arabia</span><em>✓</em></li>'
              '<li><i>3</i><b>Free, no obligation</b><span>A conversation about your business, not a sales pitch</span><em>✓</em></li>'
              '</ul><div class="isl-board-foot">Sunday to Thursday, Riyadh time. Reminders arrive before the call.</div></div>')
     prep = ''.join(f'<div class="isl-rv"><b>{t}</b><p>{p}</p></div>' for t, p in PREP['gen'])
     expect = [('Reminders', 'We will remind you', 'You will get a short email the day before, on the day, and just before the call starts.'),
               ('Need a new time?', 'Reschedule in one click', 'Use the reschedule link in your confirmation email. No need to write to us.'),
-              ('Bring a colleague', 'Invite who you need', 'Forward the invitation to anyone in your team who should join.')]
+              ('Bring a colleague', 'Invite who you need', 'Forward the confirmation email to anyone in your team who should join.')]
     ex = ''.join(f'<div class="isl-rv"><small>{a}</small><b>{b}</b><p>{c}</p></div>' for a, b, c in expect)
     body = f'''<div class="isl-lp">
 <header class="isl-top"><div class="isl-wrap"><img class="isl-logo-dark" src="{LOGO_DARK}" alt="Intrasoft Middle East" width="82" height="40"></div></header>
@@ -228,7 +228,7 @@ def ty_booked():
     {head('Before the call', f'Three things {g("worth having in mind")}', 'No preparation is required. If you have a minute, these help us make the 30 minutes useful for you.')}
     <div class="isl-mini isl-three isl-prep">{prep}</div>
     <div class="isl-expect">{ex}</div>
-    <div class="isl-tip isl-rv">{ico('book')}<p><b>Tip:</b> accept the calendar invitation now, so the call and its meeting link are in your diary.</p></div>
+    <div class="isl-tip isl-rv">{ico('book')}<p><b>Tip:</b> keep the confirmation email. It has your meeting link and a reschedule link.</p></div>
   </div>
 </section>
 <footer class="isl-foot"><div class="isl-wrap"><span><b style="color:#fff">Intrasoft Middle East</b> · SAP Gold Partner · © <span class="isl-yr"></span> Intrasoft. SAP, the SAP logo, and the SAP partner logos are trademarks or registered trademarks of SAP SE or an SAP affiliated company in Germany and other countries.</span><span><a class="isl-privacy-link" href="#">Privacy notice</a></span></div></footer>
