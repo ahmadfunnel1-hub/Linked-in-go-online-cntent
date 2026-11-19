@@ -60,7 +60,7 @@ Regional understanding. SAP expertise.
 
 26 years of regional presence. Arabic and English-speaking teams. Support beyond go-live.
 
-Book a free 30-minute call with an Intrasoft SAP consultant: bdc.intrasoft.me/po12
+Book a free 30-minute call with an Intrasoft SAP consultant: grow.intrasoft.me/po12
 
 #SAPGROWFast #CloudERP #SAPGoldPartner #Intrasoft
 
