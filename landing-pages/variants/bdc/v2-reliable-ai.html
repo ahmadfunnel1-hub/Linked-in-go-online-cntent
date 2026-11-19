@@ -828,6 +828,10 @@
 .isl-ghl-frame { width: 100%; min-height: 880px; border: 0; display: block; }
 @media (max-width: 640px) { .isl-ghl-frame { min-height: 980px; } }
 
+/* Why Intrasoft: three cards fill the row, centred under the heading */
+.isl-why.isl-why-3{grid-template-columns:repeat(3,1fr)}
+@media (max-width:900px){.isl-why.isl-why-3{grid-template-columns:1fr}}
+
 </style>
 
 <script>
@@ -879,9 +883,12 @@
     fr.id = 'inline-' + cfg.ghlFormId; fr.setAttribute('data-layout-iframe-id', fr.id);
     fr.style.width = '100%'; fr.style.border = '0';
     var emb = document.createElement('script'); emb.src = 'https://link.msgsndr.com/js/form_embed.js'; document.body.appendChild(emb);
+    // Ad tracking: keep the page's utm_* values, so each lead shows which ad channel and creative it came from.
+    var q = location.search.replace(/^\?/, ''), extra = '';
+    q.split('&').forEach(function (kv) { if (/^utm_(source|medium|campaign|content|term)=/.test(kv)) extra += '&' + kv; });
     fr.src = 'https://link.msgsndr.com/widget/form/' + cfg.ghlFormId +
       '?lead_campaign=' + encodeURIComponent(cfg.campaign) +
-      '&lead_source_page=' + encodeURIComponent(location.hostname + location.pathname);
+      '&lead_source_page=' + encodeURIComponent(location.hostname + location.pathname + (extra ? '?' + extra.slice(1) : '')) + extra;
   }
   $all('.isl-cover-src').forEach(function (i) { if (cfg.ebookCoverUrl) i.src = cfg.ebookCoverUrl; });
   $all('.isl-logo-light').forEach(function (i) { if (cfg.logoOnLightUrl) i.src = cfg.logoOnLightUrl; });
