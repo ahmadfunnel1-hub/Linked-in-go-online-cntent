@@ -31,10 +31,10 @@
 <script src="https://link.msgsndr.com/js/form_embed.js" async></script>
 
 <style>
-  .ayp{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;padding:16px;direction:rtl;font-family:"IBM Plex Sans Arabic",Tahoma,sans-serif;visibility:hidden;opacity:0;pointer-events:none;transition:opacity .18s ease,visibility 0s linear .18s}
+  .ayp{box-sizing:border-box;position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;padding:16px;direction:rtl;font-family:"IBM Plex Sans Arabic",Tahoma,sans-serif;visibility:hidden;opacity:0;pointer-events:none;transition:opacity .18s ease,visibility 0s linear .18s}
   .ayp.is-open{visibility:visible;opacity:1;pointer-events:auto;transition:opacity .18s ease,visibility 0s}
   .ayp-backdrop{position:absolute;inset:0;background:rgba(24,27,16,.72);backdrop-filter:blur(3px)}
-  .ayp-box{position:relative;width:100%;max-width:480px;max-height:92vh;overflow:auto;background:linear-gradient(180deg,#fff,#FBF6EA);border:1px solid rgba(196,154,60,.6);border-radius:26px;padding:28px 22px 18px;box-shadow:0 30px 70px -40px rgba(0,0,0,.7),0 0 0 6px rgba(227,196,126,.16);text-align:center}
+  .ayp-box{box-sizing:border-box;position:relative;width:100%;max-width:480px;max-height:100%;overflow:auto;-webkit-overflow-scrolling:touch;background:linear-gradient(180deg,#fff,#FBF6EA);border:1px solid rgba(196,154,60,.6);border-radius:26px;padding:28px 22px 18px;box-shadow:0 30px 70px -40px rgba(0,0,0,.7),0 0 0 6px rgba(227,196,126,.16);text-align:center}
   .ayp-x{position:absolute;top:10px;left:14px;border:0;background:none;font-size:28px;line-height:1;color:#4F5A33;cursor:pointer}
   .ayp-kicker{margin:0 0 4px;color:#C49A3C;font-size:13px;font-weight:600}
   .ayp-title{margin:0 0 6px;color:#24271A;font-size:22px;font-weight:700}
@@ -71,13 +71,26 @@
     modal.classList.add('is-open');
     modal.setAttribute('aria-hidden','false');
     document.documentElement.classList.add('ayp-lock');
+    fit();
   }
   function closePopup(){
     modal.classList.remove('is-open');
     modal.setAttribute('aria-hidden','true');
     document.documentElement.classList.remove('ayp-lock');
+    unfit();
     if(lastFocus && lastFocus.focus) lastFocus.focus();
   }
+  // آيفون: لما تنفتح لوحة المفاتيح، ثبّت البوب أب على الجزء المرئي من الشاشة (فوق اللوحة)
+  var vv = window.visualViewport;
+  function fit(){
+    if(!vv || !modal.classList.contains('is-open')) return;
+    var st = modal.style;
+    st.setProperty('top', vv.offsetTop + 'px'); st.setProperty('left', vv.offsetLeft + 'px');
+    st.setProperty('width', vv.width + 'px');  st.setProperty('height', vv.height + 'px');
+    st.setProperty('right', 'auto'); st.setProperty('bottom', 'auto');
+  }
+  function unfit(){ ['top','left','width','height','right','bottom'].forEach(function(p){ modal.style.removeProperty(p); }); }
+  if(vv){ vv.addEventListener('resize', fit); vv.addEventListener('scroll', fit); }
   window.openRegisterPopup = openPopup;
   document.addEventListener('click', function(e){
     var t = e.target.closest('a[href="#register"], a[href$="#register"], [data-popup]');
