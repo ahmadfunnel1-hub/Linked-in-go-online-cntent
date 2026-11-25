@@ -214,7 +214,7 @@
   var EVENT_TIME_TX = '[الوقت]';
   var EVENT_LINK    = '';                            // ← رابط Zoom (اختياري، بينحط بالتقويم)
   var TY_VIDEO_ID   = '';                            // ← ID فيديو صفحة الشكر على يوتيوب
-  var REG_URL       = 'https://[رابط-صفحة-التسجيل]'; // ← رابط صفحة التسجيل (للدعوة)
+  var REG_URL       = 'https://alaa-jaber.com/mecca-madinah-webinar'; // ← رابط صفحة التسجيل (للدعوة)
   var WA_GROUP      = '';                            // ← رابط مجموعة واتساب (اختياري، فاضي = مخفي)
   /* ===================================================== */
 
@@ -269,8 +269,15 @@
   var sh=document.getElementById("aytShare"); if(sh) sh.href="https://wa.me/?text="+encodeURIComponent(msg);
   var cp=document.getElementById("aytCopy");
   if(cp) cp.addEventListener("click",function(){ var s=cp.querySelector("span");
-    function ok(){ s.textContent="✓ انسخ الرابط"; setTimeout(function(){ s.textContent="انسخ رابط التسجيل"; },2000); }
-    if(navigator.clipboard) navigator.clipboard.writeText(REG_URL).then(ok,function(){}); });
+    function ok(){ s.textContent="✓ تم نسخ الرابط"; setTimeout(function(){ s.textContent="انسخ رابط التسجيل"; },2000); }
+    function fallback(){ /* متصفح إنستغرام/واتساب الداخلي أحيانًا بيمنع clipboard */
+      var t=document.createElement("textarea"); t.value=REG_URL; t.setAttribute("readonly","");
+      t.style.cssText="position:fixed;top:0;left:0;opacity:0;font-size:16px"; document.body.appendChild(t);
+      t.focus(); t.select(); t.setSelectionRange(0,REG_URL.length);
+      var done=false; try{ done=document.execCommand("copy"); }catch(e){}
+      document.body.removeChild(t);
+      if(done) ok(); else window.prompt("انسخ رابط التسجيل:", REG_URL); }
+    if(navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(REG_URL).then(ok,fallback); else fallback(); });
 
   /* حروف طايرة */
   var glyphs="أثريبقىقلبنورصدق".split("");
