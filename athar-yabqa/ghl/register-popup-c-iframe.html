@@ -46,7 +46,18 @@
 (function(){
   var modal = document.getElementById('aypModal');
   if(!modal) return;
+  // السكشن اللي GHL حاطط فيه هالكود: بعد ما ننقل البوب أب برّا، إذا ضل فاضي منشيله (بيمنع الفراغ الأبيض تحت الفوتر)
+  var host = modal.closest('[id^="section-"], section');
   document.body.appendChild(modal);
+  setTimeout(function(){
+    if(host && host !== document.body && !host.innerText.trim() && !host.querySelector('img,video,iframe,canvas')){
+      host.style.setProperty('padding','0','important');
+      host.style.setProperty('margin','0','important');
+      host.style.setProperty('min-height','0','important');
+      host.style.setProperty('height','0','important');
+      host.style.setProperty('overflow','hidden','important');
+    }
+  }, 400);
   var lastFocus = null;
   function openPopup(){
     var ev = window.AY_EVENT || {}, w = modal.querySelector('[data-ayp-when]');
