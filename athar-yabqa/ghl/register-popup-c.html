@@ -1,9 +1,10 @@
 <!-- ============================================================
-     «أثرٌ يبقى» — بوب أب التسجيل — PART C (v4)
-     نفس منطق بوب أب صفحة "تحدي هندسة الذكاء الاصطناعي" حرفيًا (الشغّال عندك)،
-     المتغيّر بس: الألوان والنصوص.
-     حطه مرة واحدة بس (آخر الصفحة أو Custom Code → Footer).
-     أي زر رابطه #register أو عليه data-popup بيفتح البوب أب.
+     «أثرٌ يبقى» — بوب أب التسجيل — PART C (v5، على طريقة بوب أب لارا الشغّال)
+     البوب أب مبني بالكود فبيفتح فورًا. لما الزائر يضغط «احجز»، الكود بيعبّي فورم GHL الحقيقي
+     (عنصر Form «اثر يبقى» بالصفحة: form-j5RM4ljMcJ) وبيضغط زره، فـ GHL هو اللي بيرسل
+     وبيعمل الـ Contact ويشغّل الـ Workflow ويحوّل لصفحة الشكر.
+     مهم: عنصر فورم GHL لازم يضل ظاهر على الصفحة (متل لارا). إذا انخفى ما بيرسل.
+     إذا ما صار تحويل لصفحة الشكر، البوب أب بيتسكّر وبينزّل الزائر لفورم GHL وبياناته معبّاة فيه.
      ============================================================ -->
 <style>
 .ayp{
@@ -63,6 +64,7 @@
 .ayp-submit:hover{transform:translateY(-2px);filter:brightness(1.04)}
 .ayp-submit[disabled]{opacity:.75;cursor:wait;transform:none}
 .ayp-trust{margin-top:14px;text-align:center;font-size:13px;color:#8B8170}
+.ayp-note{margin-top:10px;min-height:18px;text-align:center;font-size:13.5px;color:var(--olive)}
 
 .ayp-success{display:none;text-align:center;padding:10px 0 2px}
 .ayp-check{width:72px;height:72px;margin:0 auto 14px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(160deg,var(--olive),#2B301C);color:var(--gold3);font-size:34px;font-weight:700;box-shadow:0 0 0 5px #EEE6D2,0 0 0 6px rgba(196,154,60,.5)}
@@ -88,7 +90,7 @@ html.ayp-lock,html.ayp-lock body{overflow:hidden}
 
     <div class="ayp-head">
       <button type="button" class="ayp-close" data-ayp-close aria-label="إغلاق">×</button>
-      <span class="ayp-badge">لقاء مجاني · أونلاين</span>
+      <span class="ayp-badge">لقاء مجاني · بث مباشر من المدينة المنورة</span>
       <span class="ayp-brand">أثرٌ يبقى</span>
       <h3 class="ayp-title" id="aypTitle">احجز مقعدك مع الشيخ علاء جابر</h3>
       <div class="ayp-date" data-ayp-when></div>
@@ -113,6 +115,7 @@ html.ayp-lock,html.ayp-lock body{overflow:hidden}
         </div>
         <button type="submit" class="ayp-submit">احجز مقعدك مجانًا</button>
         <div class="ayp-trust">بياناتك بأمان، وما بتنشارك مع حدا</div>
+        <p class="ayp-note" role="status" aria-live="polite"></p>
       </form>
 
       <div class="ayp-success" role="status">
@@ -144,6 +147,7 @@ html.ayp-lock,html.ayp-lock body{overflow:hidden}
     modal.classList.add('is-open');
     modal.setAttribute('aria-hidden','false');
     document.documentElement.classList.add('ayp-lock');
+    fit();
     var first = modal.querySelector('input, iframe');
     if(first) setTimeout(function(){ try{ first.focus(); }catch(e){} }, 260);
   }
@@ -151,8 +155,20 @@ html.ayp-lock,html.ayp-lock body{overflow:hidden}
     modal.classList.remove('is-open');
     modal.setAttribute('aria-hidden','true');
     document.documentElement.classList.remove('ayp-lock');
+    unfit();
     if(lastFocus && lastFocus.focus) lastFocus.focus();
   }
+  // آيفون: لما تنفتح لوحة المفاتيح، ثبّت البوب أب على الجزء المرئي من الشاشة (فوق اللوحة)
+  var vv = window.visualViewport;
+  function fit(){
+    if(!vv || !modal.classList.contains('is-open')) return;
+    var st = modal.style;
+    st.setProperty('top', vv.offsetTop + 'px'); st.setProperty('left', vv.offsetLeft + 'px');
+    st.setProperty('width', vv.width + 'px');  st.setProperty('height', vv.height + 'px');
+    st.setProperty('right', 'auto'); st.setProperty('bottom', 'auto');
+  }
+  function unfit(){ ['top','left','width','height','right','bottom'].forEach(function(p){ modal.style.removeProperty(p); }); }
+  if(vv){ vv.addEventListener('resize', fit); vv.addEventListener('scroll', fit); }
   window.openRegisterPopup = openPopup;
 
   // أي زر في أي سكشن: href="#register" أو data-popup
@@ -168,8 +184,10 @@ html.ayp-lock,html.ayp-lock body{overflow:hidden}
 
   if(!form) return;
 
+  // أرقام عربية/فارسية ← إنجليزية
+  function latinDigits(v){ return String(v).replace(/[٠-٩]/g,function(d){return d.charCodeAt(0)-1632;}).replace(/[۰-۹]/g,function(d){return d.charCodeAt(0)-1776;}); }
   function check(input){
-    var v = input.value.trim(), ok;
+    var v = latinDigits(input.value).trim(), ok;
     if(input.name === 'email') ok = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
     else if(input.name === 'phone') ok = /^\+?[0-9\s\-()]{7,20}$/.test(v);
     else ok = v.length >= 2;
@@ -184,8 +202,8 @@ html.ayp-lock,html.ayp-lock body{overflow:hidden}
   /* =========================================================
      الربط مع فورم GHL المخفي (نفس كود صفحة لارا حرفيًا)
      ========================================================= */
-  var GHL_SECTION_ID = 'section-WN5i3fo8Fm';   // ← ID سكشن فورم GHL بصفحة أثرٌ يبقى
-  var HIDE_GHL_FORM  = true;                 // ← فورم GHL مخفي عن الزوار
+  var GHL_SECTION_ID = 'form-j5RM4ljMcJ';   // ← ID سكشن فورم GHL بصفحة أثرٌ يبقى
+  var HIDE_GHL_FORM  = false;                 // ← فورم GHL مخفي عن الزوار
 
   function ghlRoot(){
     var sec = document.getElementById(GHL_SECTION_ID);
@@ -214,7 +232,7 @@ html.ayp-lock,html.ayp-lock body{overflow:hidden}
     ['input','change','keyup','blur'].forEach(function(t){ el.dispatchEvent(new Event(t, { bubbles:true })); });
   }
   function normPhone(v){
-    v = v.replace(/[^0-9+]/g,'');
+    v = latinDigits(v).replace(/[^0-9+]/g,'');
     if(v.indexOf('00') === 0) v = '+' + v.slice(2);
     return v;
   }
@@ -265,25 +283,47 @@ html.ayp-lock,html.ayp-lock body{overflow:hidden}
     return true;
   }
 
+  var leaving = false;
+  window.addEventListener('pagehide', function(){ leaving = true; });
+  window.addEventListener('beforeunload', function(){ leaving = true; });
+
+  function ghlFormGone(){
+    var root = ghlRoot();
+    return !root || !root.querySelector('input[name="email"], #email, input[type="email"]');
+  }
+  function handOver(btn){
+    // ما صار إرسال: نسكّر البوب أب وننزل لفورم GHL، والبيانات معبّاة فيه، فالزائر بيكمل بضغطة
+    btn.disabled = false;
+    modal.querySelector('.ayp-note').textContent = '';
+    closePopup();
+    var root = ghlRoot();
+    if(root){ root.scrollIntoView({ behavior:'smooth', block:'center' }); }
+  }
+
   form.addEventListener('submit', function(e){
     e.preventDefault();
     var bad = null;
     form.querySelectorAll('input').forEach(function(i){ if(!check(i) && !bad) bad = i; });
     if(bad){ bad.focus(); return; }
-
     var data = {
       name:  document.getElementById('ayp-name').value.trim(),
-      email: document.getElementById('ayp-email').value.trim(),
+      email: latinDigits(document.getElementById('ayp-email').value).trim().toLowerCase(),
       phone: normPhone(document.getElementById('ayp-phone').value)
     };
     var btn = form.querySelector('.ayp-submit');
     btn.disabled = true;
-    sendToGHL(data);
-    // نستنى GHL يبعت (ولو فيه تحويل لصفحة شكر في إعدادات الفورم هيحصل لوحده)
-    setTimeout(function(){
-      btn.disabled = false;
-      modal.classList.add('is-done');
-    }, 1500);
+    modal.querySelector('.ayp-note').textContent = 'لحظة… عم نسجّلك';
+    if(!sendToGHL(data)){ handOver(btn); return; }
+    // GHL بيحوّل لصفحة الشكر بعد الإرسال. منستنى لحد 9 ثواني.
+    var waited = 0;
+    var poll = setInterval(function(){
+      waited += 500;
+      if(leaving){ clearInterval(poll); return; }
+      if(ghlFormGone()){                       // GHL بعت وعرض رسالته بدل الفورم
+        clearInterval(poll); btn.disabled = false; modal.classList.add('is-done'); return;
+      }
+      if(waited >= 9000){ clearInterval(poll); handOver(btn); }
+    }, 500);
   });
 })();
 </script>
