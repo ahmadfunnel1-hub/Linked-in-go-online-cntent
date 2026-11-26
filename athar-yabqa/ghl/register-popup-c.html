@@ -52,6 +52,11 @@
 .ayp-input[type=email]::placeholder,.ayp-input[type=tel]::placeholder{text-align:right}
 /* وهي فاضية: اتجاه عربي حتى يبين النص العربي صح، ولما تبدأ الكتابة بترجع LTR للإيميل والرقم */
 .ayp-input[type=email]:placeholder-shown,.ayp-input[type=tel]:placeholder-shown{direction:rtl}
+.ayp-phone{display:flex;gap:8px;direction:ltr}
+.ayp-phone .ayp-input{flex:1;min-width:0}
+.ayp-cc{flex:0 0 112px!important;padding:0 26px 0 10px;direction:ltr;text-align:left;cursor:pointer;-webkit-appearance:none;appearance:none;
+  background-image:linear-gradient(45deg,transparent 50%,#8B8170 50%),linear-gradient(135deg,#8B8170 50%,transparent 50%);
+  background-position:calc(100% - 15px) 25px,calc(100% - 10px) 25px;background-size:5px 5px;background-repeat:no-repeat}
 .ayp-field.has-error .ayp-input{border-color:var(--err);box-shadow:0 0 0 4px rgba(180,71,47,.12)}
 .ayp-error{display:none;margin-top:6px;font-size:13px;font-weight:500;color:var(--err)}
 .ayp-field.has-error .ayp-error{display:block}
@@ -112,7 +117,44 @@ html.ayp-lock,html.ayp-lock body{overflow:hidden}
         </div>
         <div class="ayp-field">
           <label for="ayp-phone">رقم الواتساب</label>
-          <input class="ayp-input" id="ayp-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="رقم الواتساب مع مفتاح الدولة" required>
+          <div class="ayp-phone">
+            <select class="ayp-input ayp-cc" id="ayp-cc" aria-label="مفتاح الدولة">
+            <option value="962" selected>🇯🇴 ‎+962</option>
+            <option value="966">🇸🇦 ‎+966</option>
+            <option value="970">🇵🇸 ‎+970</option>
+            <option value="972">🇵🇸 ‎+972</option>
+            <option value="20">🇪🇬 ‎+20</option>
+            <option value="971">🇦🇪 ‎+971</option>
+            <option value="965">🇰🇼 ‎+965</option>
+            <option value="974">🇶🇦 ‎+974</option>
+            <option value="973">🇧🇭 ‎+973</option>
+            <option value="968">🇴🇲 ‎+968</option>
+            <option value="964">🇮🇶 ‎+964</option>
+            <option value="963">🇸🇾 ‎+963</option>
+            <option value="961">🇱🇧 ‎+961</option>
+            <option value="967">🇾🇪 ‎+967</option>
+            <option value="212">🇲🇦 ‎+212</option>
+            <option value="213">🇩🇿 ‎+213</option>
+            <option value="216">🇹🇳 ‎+216</option>
+            <option value="218">🇱🇾 ‎+218</option>
+            <option value="249">🇸🇩 ‎+249</option>
+            <option value="222">🇲🇷 ‎+222</option>
+            <option value="252">🇸🇴 ‎+252</option>
+            <option value="90">🇹🇷 ‎+90</option>
+            <option value="44">🇬🇧 ‎+44</option>
+            <option value="49">🇩🇪 ‎+49</option>
+            <option value="33">🇫🇷 ‎+33</option>
+            <option value="31">🇳🇱 ‎+31</option>
+            <option value="32">🇧🇪 ‎+32</option>
+            <option value="46">🇸🇪 ‎+46</option>
+            <option value="1">🇺🇸 ‎+1</option>
+            <option value="61">🇦🇺 ‎+61</option>
+            <option value="60">🇲🇾 ‎+60</option>
+            <option value="62">🇮🇩 ‎+62</option>
+            <option value="92">🇵🇰 ‎+92</option>
+            </select>
+            <input class="ayp-input" id="ayp-phone" name="phone" type="tel" autocomplete="tel-national" inputmode="tel" placeholder="رقم الواتساب" required>
+          </div>
           <div class="ayp-error">من فضلك اكتب رقم هاتف صحيح</div>
         </div>
         <button type="submit" class="ayp-submit">احجز مقعدك مجانًا</button>
@@ -191,7 +233,7 @@ html.ayp-lock,html.ayp-lock body{overflow:hidden}
   function check(input){
     var v = latinDigits(input.value).trim(), ok;
     if(input.name === 'email') ok = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
-    else if(input.name === 'phone') ok = /^\+?[0-9\s\-()]{7,20}$/.test(v);
+    else if(input.name === 'phone'){ var d = fullPhone(input.value).replace(/\D/g,''); ok = v.length > 0 && d.length >= 8 && d.length <= 15; }
     else ok = v.length >= 2;
     input.closest('.ayp-field').classList.toggle('has-error', !ok);
     return ok;
@@ -232,6 +274,25 @@ html.ayp-lock,html.ayp-lock body{overflow:hidden}
     el.focus();
     desc.set.call(el, v);
     ['input','change','keyup','blur'].forEach(function(t){ el.dispatchEvent(new Event(t, { bubbles:true })); });
+  }
+  // مفتاح الدولة حسب توقيت جهاز الزائر (إذا ما عرفنا: الأردن)
+  var TZ_CC = {'Asia/Amman':'962','Asia/Riyadh':'966','Asia/Gaza':'970','Asia/Hebron':'970','Asia/Jerusalem':'972','Africa/Cairo':'20',
+    'Asia/Dubai':'971','Asia/Kuwait':'965','Asia/Qatar':'974','Asia/Bahrain':'973','Asia/Muscat':'968','Asia/Baghdad':'964',
+    'Asia/Damascus':'963','Asia/Beirut':'961','Asia/Aden':'967','Africa/Casablanca':'212','Africa/El_Aaiun':'212','Africa/Algiers':'213',
+    'Africa/Tunis':'216','Africa/Tripoli':'218','Africa/Khartoum':'249','Africa/Nouakchott':'222','Africa/Mogadishu':'252',
+    'Europe/Istanbul':'90','Europe/London':'44','Europe/Berlin':'49','Europe/Paris':'33','Europe/Amsterdam':'31','Europe/Brussels':'32',
+    'Europe/Stockholm':'46','Australia/Sydney':'61','Australia/Melbourne':'61','Asia/Kuala_Lumpur':'60','Asia/Jakarta':'62','Asia/Karachi':'92'};
+  var ccSel = document.getElementById('ayp-cc');
+  try{
+    var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+    var guess = TZ_CC[tz] || (/^America\//.test(tz) ? '1' : '');
+    if(guess && ccSel.querySelector('option[value="' + guess + '"]')) ccSel.value = guess;
+  }catch(e){}
+  function fullPhone(v){
+    v = latinDigits(v).replace(/[^0-9+]/g,'');
+    if(v.indexOf('00') === 0) v = '+' + v.slice(2);
+    if(v.charAt(0) === '+') return '+' + v.slice(1).replace(/\D/g,'');   // كتب الرقم الدولي كامل
+    return '+' + ccSel.value + v.replace(/\D/g,'').replace(/^0+/,'');   // رقم محلي + مفتاح الدولة
   }
   function normPhone(v){
     v = latinDigits(v).replace(/[^0-9+]/g,'');
@@ -310,7 +371,7 @@ html.ayp-lock,html.ayp-lock body{overflow:hidden}
     var data = {
       name:  document.getElementById('ayp-name').value.trim(),
       email: latinDigits(document.getElementById('ayp-email').value).trim().toLowerCase(),
-      phone: normPhone(document.getElementById('ayp-phone').value)
+      phone: fullPhone(document.getElementById('ayp-phone').value)
     };
     var btn = form.querySelector('.ayp-submit');
     btn.disabled = true;
