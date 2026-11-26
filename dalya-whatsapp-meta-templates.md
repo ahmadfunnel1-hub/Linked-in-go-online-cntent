@@ -299,7 +299,7 @@ Template `dalya_20` · Utility · ar
 1. {{1}} = Contact → First name
 2. {{2}} = Appointment → Start date
 3. {{3}} = Appointment → Start time + Timezone
-4. {{4}} = Custom value → call_link
+4. {{4}} = Appointment → Meeting location
 
 ```
 ألف مبروك {{1}}!
@@ -318,7 +318,7 @@ Template `dalya_20` · Utility · ar
 Template `dalya_21` · Utility · ar
 1. {{1}} = Contact → First name
 2. {{2}} = Appointment → Start time + Timezone
-3. {{3}} = Custom value → call_link
+3. {{3}} = Appointment → Meeting location
 
 ```
 أهلًا {{1}}
@@ -333,7 +333,7 @@ Template `dalya_21` · Utility · ar
 Template `dalya_22` · Utility · ar
 1. {{1}} = Contact → First name
 2. {{2}} = Appointment → Start time + Timezone
-3. {{3}} = Custom value → call_link
+3. {{3}} = Appointment → Meeting location
 
 ```
 أهلًا {{1}}، باقي 12 ساعة على مكالمتنا المجانية
@@ -352,7 +352,7 @@ Template `dalya_22` · Utility · ar
 Template `dalya_23` · Utility · ar
 1. {{1}} = Contact → First name
 2. {{2}} = Appointment → Start time + Timezone
-3. {{3}} = Custom value → call_link
+3. {{3}} = Appointment → Meeting location
 
 ```
 أهلًا {{1}}، باقي 6 ساعات على مكالمتنا! ❤️
