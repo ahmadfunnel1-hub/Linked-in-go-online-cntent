@@ -1,0 +1,285 @@
+<!-- ===== «أثرٌ يبقى» — صفحة الشكر (بعد التسجيل) =====
+     الصق الكود كامل بـ Custom Code element واحد بصفحة الشكر. الإعدادات بأول السكريبت تحت. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Aref+Ruqaa:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  .ayt{
+    --o950:#0F100A; --o900:#181A10; --o800:#24271A; --olive:#4F5A33; --sage:#8A9465;
+    --gold:#C49A3C; --gold2:#E3C47E; --gold3:#F6E6BE; --glow:rgba(227,196,126,.5);
+    --paper:#F5EEDF; --paper2:#EDE3CC; --ink:#2A2418; --ink2:#5A5040; --ink3:#8B8170; --line:#E2D6BD;
+    --wa:#22C55E; --wa2:#16A34A;
+    --ruqaa:"Aref Ruqaa",serif; --serif:"Amiri",serif; --sans:"IBM Plex Sans Arabic",system-ui,sans-serif;
+    --ease:cubic-bezier(.16,1,.3,1);
+  }
+  .ayt *{box-sizing:border-box;margin:0;padding:0}
+  .ayt{font-family:var(--sans);color:var(--ink);background:var(--paper);line-height:1.9;direction:rtl;text-align:right;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+  .ayt img{max-width:100%;display:block}
+  .ayt a{color:inherit}
+  .ayt section{position:relative}
+  .ayt .wrap{width:min(980px,100% - 40px);margin-inline:auto;position:relative;z-index:1}
+  .ayt .tbd{color:#8E6F28;font-weight:700;border-bottom:1.5px dashed rgba(196,154,60,.85)}
+  .ayt .dark .tbd{color:var(--gold2)}
+  .ayt .ruqaa{font-family:var(--ruqaa);font-weight:400}
+  .ayt .dark{color:#fff;background:radial-gradient(70% 55% at 50% 0%,rgba(196,154,60,.25),transparent 72%),radial-gradient(60% 45% at 85% 100%,rgba(79,90,51,.55),transparent 70%),linear-gradient(180deg,var(--o800),var(--o900) 65%,var(--o950))}
+  .ayt .pattern:after{content:"";position:absolute;inset:0;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='72' height='72' viewBox='0 0 72 72'%3E%3Cpath d='M36 14l6.4 6.4h9.2v9.2L58 36l-6.4 6.4v9.2h-9.2L36 58l-6.4-6.4h-9.2v-9.2L14 36l6.4-6.4v-9.2h9.2z' fill='none' stroke='%23E3C47E' stroke-opacity='.10'/%3E%3C/svg%3E");background-size:72px 72px}
+  .ayt .letters{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+  .ayt-js .ayt .rv{opacity:0;transform:translateY(24px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+  .ayt .rv.on{opacity:1;transform:none}
+
+  .ayt .btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 26px;border-radius:999px;font-family:var(--sans);font-weight:700;font-size:16px;text-decoration:none;overflow:hidden;cursor:pointer;border:0;transition:transform .4s var(--ease),filter .3s}
+  .ayt .btn:hover{transform:translateY(-3px)}
+  .ayt .btn svg{width:19px;height:19px;flex:none;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+  .ayt .btn-gold{color:var(--o900);background:linear-gradient(180deg,var(--gold3),var(--gold2) 55%,var(--gold));box-shadow:0 0 0 1px rgba(196,154,60,.6),0 14px 30px -14px var(--glow)}
+  .ayt .btn-olive{color:#fff;background:linear-gradient(180deg,#6B7745,var(--olive) 55%,#343A24);border:1px solid rgba(227,196,126,.55)}
+  .ayt .btn-wa{color:#fff;background:linear-gradient(180deg,var(--wa),var(--wa2))}
+  .ayt .btn-wa svg{fill:currentColor;stroke:none}
+
+  /* hero */
+  .ayt .top{padding:70px 0 80px;text-align:center;overflow:hidden}
+  .ayt .seal{position:relative;width:118px;height:118px;margin:0 auto 22px;display:grid;place-items:center}
+  .ayt .seal svg.ring{position:absolute;inset:0;width:100%;height:100%;animation:aytSpin 30s linear infinite}
+  .ayt .seal svg.ring path{fill:var(--olive);stroke:var(--gold2);stroke-width:1.4}
+  .ayt .seal .chk{position:relative;width:46px;height:46px}
+  .ayt .seal .chk path{fill:none;stroke:var(--gold3);stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:40;stroke-dashoffset:40;animation:aytDraw .9s .4s var(--ease) forwards}
+  .ayt .seal:before{content:"";position:absolute;inset:-14px;border-radius:50%;background:radial-gradient(circle,rgba(227,196,126,.5),transparent 70%);animation:aytGlow 2.6s ease-in-out infinite}
+  @keyframes aytSpin{to{transform:rotate(360deg)}}
+  @keyframes aytDraw{to{stroke-dashoffset:0}}
+  @keyframes aytGlow{0%,100%{opacity:.45;transform:scale(.9)}50%{opacity:1;transform:scale(1.12)}}
+  .ayt .top small.k{display:inline-block;font-size:14px;font-weight:600;color:var(--gold2);letter-spacing:.02em}
+  .ayt .top h1{font-size:clamp(28px,4.4vw,48px);line-height:1.45;color:#fff;margin:8px 0 6px}
+  .ayt .top h1 .ruqaa{color:var(--gold2)}
+  .ayt .top p.lead{font-size:clamp(16px,1.8vw,19px);font-weight:300;color:rgba(255,255,255,.82);max-width:640px;margin:0 auto}
+  .ayt .chips{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:24px 0 26px}
+  .ayt .chip{display:inline-flex;align-items:center;gap:9px;padding:9px 15px;border-radius:999px;background:linear-gradient(135deg,#3B4128,#20231A);border:1px solid rgba(227,196,126,.45);font-size:14px;color:#fff}
+  .ayt .chip svg{width:17px;height:17px;stroke:var(--gold2);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+  .ayt .cdbar{display:inline-flex;align-items:center;flex-wrap:wrap;justify-content:center;gap:10px 18px;padding:12px 22px;border:1px solid rgba(227,196,126,.55);border-radius:999px;background:linear-gradient(135deg,#3B4128,#262A1A 55%,#16180F);box-shadow:0 18px 40px -22px rgba(0,0,0,.85)}
+  .ayt .cdbar p{font-weight:600;font-size:15px;color:#fff}
+  .ayt .cd{display:flex;gap:6px;direction:ltr}
+  .ayt .cd div{min-width:50px;text-align:center}
+  .ayt .cd b{display:block;padding:4px 6px;border-radius:10px;background:linear-gradient(180deg,var(--gold3),var(--gold2) 55%,var(--gold));color:var(--o900);font-size:19px;font-variant-numeric:tabular-nums;line-height:1.3}
+  .ayt .cd small{display:block;margin-top:3px;font-size:11px;color:rgba(255,255,255,.8)}
+
+  /* video */
+  .ayt .vid{max-width:820px;margin:44px auto 0}
+  .ayt .vid-lbl{font-size:15px;color:rgba(255,255,255,.78);margin-bottom:14px}
+  .ayt .vid-lbl b{color:var(--gold2);font-weight:600}
+  .ayt .vid-box{position:relative;aspect-ratio:16/9;border-radius:22px;overflow:hidden;box-shadow:0 0 0 1px rgba(227,196,126,.45),0 0 0 8px rgba(79,90,51,.35),0 40px 80px -30px rgba(0,0,0,.8);background:radial-gradient(60% 60% at 50% 40%,#3B4128,#14150D)}
+  .ayt .vid-box[data-ready]{cursor:pointer}
+  .ayt .vid-box .poster{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 20%;opacity:.5}
+  .ayt .vid-box:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,16,10,.1) 30%,rgba(15,16,10,.85));pointer-events:none}
+  .ayt .play{position:absolute;z-index:2;top:50%;left:50%;width:82px;height:82px;margin:-41px 0 0 -41px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(180deg,var(--gold3),var(--gold2));animation:aytPulse 2.2s infinite}
+  .ayt .play svg{width:28px;height:28px;fill:var(--o900);margin-left:5px}
+  .ayt .vid-cap{position:absolute;z-index:2;bottom:16px;inset-inline:0;text-align:center;color:#fff;font-weight:600;font-size:14.5px}
+  .ayt .vid-cap small{display:block;font-weight:400;font-size:12.5px;color:rgba(255,255,255,.7)}
+  .ayt .vid-box iframe{position:absolute;inset:0;width:100%;height:100%;border:0;z-index:4}
+  @keyframes aytPulse{0%{box-shadow:0 0 0 0 rgba(227,196,126,.6)}70%{box-shadow:0 0 0 20px rgba(227,196,126,0)}100%{box-shadow:0 0 0 0 rgba(227,196,126,0)}}
+
+  /* steps */
+  .ayt .steps-sec{padding:90px 0}
+  .ayt .h2{text-align:center;margin-bottom:12px;font-size:clamp(26px,3.4vw,40px);line-height:1.45;color:var(--o800)}
+  .ayt .h2 em{font-style:normal;color:var(--gold)}
+  .ayt .sub{text-align:center;color:var(--ink2);max-width:600px;margin:0 auto 46px;font-size:17px}
+  .ayt .steps{display:grid;gap:18px}
+  .ayt .step{display:grid;grid-template-columns:64px 1fr;gap:20px;align-items:start;background:linear-gradient(160deg,#fff,#FBF6EA);border:1px solid var(--line);border-radius:24px;padding:26px 28px;box-shadow:0 26px 50px -38px rgba(42,36,24,.6)}
+  .ayt .step .n{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;font-family:var(--ruqaa);font-size:30px;color:var(--gold3);background:linear-gradient(160deg,var(--olive),#2B301C);box-shadow:0 0 0 5px #EEE6D2,0 0 0 6px rgba(196,154,60,.5)}
+  .ayt .step h3{font-size:21px;color:var(--o800);margin-bottom:6px}
+  .ayt .step p{font-size:16px;color:var(--ink2)}
+  .ayt .row{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+  .ayt [hidden]{display:none!important}
+  .ayt .done{display:none;font-size:13.5px;color:var(--olive);font-weight:600;margin-top:10px}
+  .ayt .done.on{display:block}
+
+  /* notebook */
+  .ayt .note{margin-top:16px;border-radius:18px;background:#FFFCF3;border:1px solid var(--line);box-shadow:inset 0 0 0 6px #FBF4E2;padding:22px 22px 18px;position:relative}
+  .ayt .note:before{content:"";position:absolute;top:0;bottom:0;right:44px;width:1px;background:rgba(196,154,60,.45)}
+  .ayt .note .big{font-family:var(--serif);font-weight:700;font-size:26px;color:var(--o800);padding-right:40px;line-height:1.6}
+  .ayt .note ol{background-image:repeating-linear-gradient(180deg,transparent 0 33px,rgba(196,154,60,.2) 33px 34px);padding-right:62px;margin-top:4px;font-family:var(--serif);font-size:18px;color:var(--ink2);line-height:34px}
+  .ayt .note textarea{background-image:repeating-linear-gradient(180deg,transparent 0 33px,rgba(196,154,60,.2) 33px 34px);background-attachment:local;display:block;width:100%;min-height:136px;margin-top:6px;border:0;background-color:transparent;resize:vertical;font-family:var(--serif);font-size:18px;line-height:34px;color:var(--ink);padding:0 40px 0 0;outline:none}
+  .ayt .note textarea::placeholder{color:#B4A888}
+  .ayt .note .meta{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:12.5px;color:var(--ink3);padding-right:40px;margin-top:6px}
+
+  /* closing */
+  .ayt .bye{padding:90px 0 80px;overflow:hidden}
+  .ayt .bye-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:54px;align-items:center}
+  .ayt .bye img{width:100%;max-width:360px;aspect-ratio:4/5;object-fit:cover;border-radius:24px;justify-self:center;box-shadow:0 0 0 6px rgba(79,90,51,.45),0 0 0 7px rgba(227,196,126,.45),0 40px 80px -30px rgba(0,0,0,.85)}
+  .ayt .bye .ruqaa.t{font-size:clamp(34px,4.6vw,54px);color:var(--gold2);line-height:1.3}
+  .ayt .bye p{color:rgba(255,255,255,.82);font-size:17.5px;margin-top:14px}
+  .ayt .bye p b{color:#fff}
+  .ayt footer{background:var(--o950);color:rgba(255,255,255,.5);text-align:center;font-size:13px;line-height:1.9;padding:24px 16px;border-top:2px solid var(--gold)}
+
+  @media (max-width:760px){
+    .ayt .top{padding:50px 0 64px}
+    .ayt .cdbar{border-radius:20px}
+    .ayt .step{grid-template-columns:1fr;gap:12px;padding:24px 20px}
+    .ayt .step .n{width:54px;height:54px;font-size:26px}
+    .ayt .row .btn{flex:1 1 100%}
+    .ayt .bye-grid{grid-template-columns:1fr;text-align:center;gap:34px}
+    .ayt .bye img{max-width:260px}
+  }
+  @media (max-width:420px){.ayt .cd div{min-width:44px}.ayt .cd b{font-size:17px}}
+  @media (prefers-reduced-motion:reduce){.ayt *,.ayt *:before,.ayt *:after{animation:none!important;transition:none!important}.ayt .rv{opacity:1!important;transform:none!important}.ayt .seal .chk path{stroke-dashoffset:0}}
+</style>
+
+<div class="ayt">
+  <section class="top dark pattern">
+    <canvas class="letters" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <div class="seal rv">
+        <svg class="ring" viewBox="0 0 76 76" aria-hidden="true"><path d="M38 2l10.6 11.4 15.5-.1-.1 15.5L76 38l-11.9 9.2.1 15.5-15.5-.1L38 74l-9.4-11.4-15.5.1.1-15.5L2 38l11.4-9.4-.1-15.5 15.5.1z"/></svg>
+        <svg class="chk" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>
+      </div>
+      <small class="k rv">جزاك الله خير</small>
+      <h1 class="rv">تسجيلك تمّ… ومقعدك محجوز في <span class="ruqaa">«أثرٌ يبقى»</span></h1>
+      <p class="lead rv">بس عندي منك طلب بسيط: لا تخلّي التسجيل خطوة عملتها وخلصت.</p>
+      <div class="chips rv">
+        <span class="chip"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18"/></svg><bdi data-t-date>[اليوم والتاريخ]</bdi></span>
+        <span class="chip"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><bdi data-t-time>[الوقت]</bdi> بتوقيت مكة</span>
+        <span class="chip"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg>بث مباشر من المدينة المنورة</span>
+      </div>
+      <div class="cdbar rv">
+        <p>نلتقي بإذن الله بعد</p>
+        <div class="cd" data-cd><div><b data-d>00</b><small>يوم</small></div><div><b data-h>00</b><small>ساعة</small></div><div><b data-m>00</b><small>دقيقة</small></div><div><b data-s>00</b><small>ثانية</small></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="steps-sec">
+    <div class="wrap">
+      <h2 class="h2 rv">قبل اللقاء… <em>3 خطوات صغيرة</em></h2>
+      <p class="sub rv">عشان تحضر وإنت مرتاح، وقلبك جاهز.</p>
+      <div class="steps">
+        <div class="step rv"><span class="n">١</span><div>
+          <h3>احفظ الموعد بتقويمك الآن</h3>
+          <p>ورتّب وقتك من اليوم عشان تحضر وإنت مرتاح، بعيد عن الانشغالات قد ما بتقدر.</p>
+          <div class="row">
+            <a class="btn btn-gold" id="aytGcal" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M8 3v4M16 3v4M3 10h18M12 14v4M10 16h4"/></svg>Google Calendar</a>
+            <a class="btn btn-olive" id="aytIcs" href="#"><svg viewBox="0 0 24 24"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg>آيفون / Outlook</a>
+          </div>
+        </div></div>
+        <div class="step rv"><span class="n">٢</span><div>
+          <h3>احمل هالسؤال معك لحد ما نلتقي</h3>
+          <p>اكتبه، وفكّر فيه قبل ما تنام، وجيبه معك يوم اللقاء.</p>
+          <div class="note">
+            <div class="big">كيف حال قلبي؟</div>
+            <ol><li>الأشياء اللي محتاج أراجعها؟</li><li>الخطوة اللي ممكن أبدأ فيها عشان أكون أقرب لله؟</li></ol>
+            <textarea id="aytNote" placeholder="اكتب هون بصدق… ما حدا بيشوفه غيرك"></textarea>
+            <div class="meta"><span>🔒 محفوظ على جهازك بس</span><span id="aytSaved"></span></div>
+          </div>
+        </div></div>
+        <div class="step rv"><span class="n">٣</span><div>
+          <h3>شيّك إيميلك</h3>
+          <p>رح توصلك رسالة التأكيد ورابط الدخول على إيميلك، ورح نذكّرك قبل الموعد. وإذا ما لقيت الرسالة، شوف بالبريد غير الهام (Spam).</p>
+          <div class="row" id="aytGroupRow" hidden>
+            <a class="btn btn-wa" id="aytGroup" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg>انضم لمجموعة التذكير على واتساب</a>
+          </div>
+        </div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bye dark pattern">
+    <div class="wrap bye-grid">
+      <img class="rv" src="https://files.leadconnectorhq.com/file/6b065bf9d50d9db796e26594/athar-two-coffees.jpg" alt="مع من تحب أن تشرب قهوتك في هذا المكان؟" loading="lazy" style="max-width:min(100%,340px)">
+      <div>
+        <div class="ruqaa t rv">والدال على الخير كفاعله</div>
+        <p class="rv">إذا حابب، ادعي معك حدا بتحبله الخير… يمكن تكون هالدعوة <b>أثر طيب يضل إلك.</b></p>
+        <div class="row rv">
+          <a class="btn btn-wa" id="aytShare" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/></svg>ابعت الدعوة على واتساب</a>
+          <button class="btn btn-olive" id="aytCopy" type="button"><svg viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg><span>انسخ رابط التسجيل</span></button>
+        </div>
+        <p class="rv" style="font-family:var(--serif);font-size:20px;color:var(--gold3);margin-top:30px">موعدنا بإذن الله يوم <bdi data-t-date>[اليوم والتاريخ]</bdi>، الساعة <bdi data-t-time>[الوقت]</bdi> بتوقيت مكة المكرمة.<br>الله يرزقنا وإياكم قلوب سليمة.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>© <span data-year>2026</span> الشيخ علاء جابر · أثرٌ يبقى<br><small>This site is not a part of the Facebook website or Facebook Inc.</small></footer>
+</div>
+
+<script>
+(function(){
+  /* ===================== الإعدادات ===================== */
+  var EVENT_START   = '2026-11-29T21:00:00+03:00';   // ← نفس موعد صفحة التسجيل (بتوقيت مكة +03:00)
+  var EVENT_MINUTES = 90;                            // ← مدة اللقاء بالدقائق (للتقويم)
+  var EVENT_DATE_TX = 'الأحد 29 نوفمبر';
+  var EVENT_TIME_TX = '9:00 مساءً';
+  var EVENT_LINK    = '';                            // ← رابط Zoom (اختياري، بينحط بالتقويم)
+  var TY_VIDEO_ID   = '';                            // ← ID فيديو صفحة الشكر على يوتيوب
+  var REG_URL       = 'https://alaa-jaber.com/mecca-madinah-webinar'; // ← رابط صفحة التسجيل (للدعوة)
+  var WA_GROUP      = '';                            // ← رابط مجموعة واتساب (اختياري، فاضي = مخفي)
+  /* ===================================================== */
+
+  document.documentElement.classList.add("ayt-js");
+  var reduce = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var hasIO = "IntersectionObserver" in window;
+  var io = hasIO ? new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("on"); io.unobserve(e.target);} }); },{threshold:.12}) : null;
+  document.querySelectorAll(".ayt .rv").forEach(function(el){ hasIO ? io.observe(el) : el.classList.add("on"); });
+  setTimeout(function(){ document.querySelectorAll(".ayt .rv").forEach(function(e){e.classList.add("on");}); }, 8000);
+  document.querySelectorAll(".ayt [data-t-date]").forEach(function(e){ e.textContent=EVENT_DATE_TX; });
+  document.querySelectorAll(".ayt [data-t-time]").forEach(function(e){ e.textContent=EVENT_TIME_TX; });
+  document.querySelectorAll(".ayt [data-year]").forEach(function(e){ e.textContent=new Date().getFullYear(); });
+
+  /* عدّاد */
+  function pad(n){return (n<10?"0":"")+n;}
+  function tick(){ var diff=Math.max(0,new Date(EVENT_START)-new Date());
+    var v={d:Math.floor(diff/864e5),h:Math.floor(diff%864e5/36e5),m:Math.floor(diff%36e5/6e4),s:Math.floor(diff%6e4/1e3)};
+    document.querySelectorAll(".ayt [data-cd]").forEach(function(cd){ ["d","h","m","s"].forEach(function(k){ var b=cd.querySelector("[data-"+k+"]"); if(b) b.textContent=pad(v[k]); }); }); }
+  tick(); setInterval(tick,1000);
+
+  /* فيديو */
+  document.querySelectorAll(".ayt [data-yt]").forEach(function(el){
+    var id = el.getAttribute("data-yt") || TY_VIDEO_ID; if(!id) return;
+    el.setAttribute("data-ready","1"); var cap=el.querySelector("[data-vid-cap] small"); if(cap) cap.textContent="اضغط للتشغيل";
+    function go(){ if(el.querySelector("iframe")) return; var f=document.createElement("iframe");
+      f.src="https://www.youtube-nocookie.com/embed/"+id+"?autoplay=1&rel=0&playsinline=1"; f.allow="autoplay; encrypted-media; picture-in-picture; fullscreen"; f.allowFullscreen=true; f.title="رسالة الشيخ علاء جابر"; el.appendChild(f); }
+    el.addEventListener("click",go); el.addEventListener("keydown",function(e){ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); go(); } });
+  });
+
+  /* التقويم */
+  var start=new Date(EVENT_START), end=new Date(start.getTime()+EVENT_MINUTES*6e4);
+  function utc(d){ return d.toISOString().replace(/[-:]/g,"").split(".")[0]+"Z"; }
+  var title="أثرٌ يبقى — لقاء إيماني مع الشيخ علاء جابر";
+  var details="لقاء إيماني مجاني عن أمراض القلوب والغفلة والفتور وتزكية النفس."+(EVENT_LINK?"\nرابط الدخول: "+EVENT_LINK:"\nرابط الدخول بيوصلك على الإيميل.")+"\n\nاحمل معك السؤال: كيف حال قلبي؟";
+  var g=document.getElementById("aytGcal");
+  if(g) g.href="https://calendar.google.com/calendar/render?action=TEMPLATE&text="+encodeURIComponent(title)+"&dates="+utc(start)+"/"+utc(end)+"&details="+encodeURIComponent(details)+"&location="+encodeURIComponent(EVENT_LINK||"بث مباشر من المدينة المنورة");
+  var ics=document.getElementById("aytIcs");
+  if(ics) ics.addEventListener("click",function(e){ e.preventDefault();
+    var body=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//AtharYabqa//AR","BEGIN:VEVENT","UID:athar-yabqa-"+utc(start)+"@alaa","DTSTAMP:"+utc(new Date()),"DTSTART:"+utc(start),"DTEND:"+utc(end),"SUMMARY:"+title,"DESCRIPTION:"+details.replace(/\n/g,"\\n"),"LOCATION:"+(EVENT_LINK||"بث مباشر من المدينة المنورة"),"BEGIN:VALARM","TRIGGER:-PT30M","ACTION:DISPLAY","DESCRIPTION:"+title,"END:VALARM","END:VEVENT","END:VCALENDAR"].join("\r\n");
+    var a=document.createElement("a"); a.href=URL.createObjectURL(new Blob([body],{type:"text/calendar;charset=utf-8"})); a.download="athar-yabqa.ics"; document.body.appendChild(a); a.click(); a.remove(); });
+
+  /* الدفتر: يحفظ على جهاز الزائر فقط */
+  var ta=document.getElementById("aytNote"), sv=document.getElementById("aytSaved"), KEY="ayt-note";
+  try{ var old=localStorage.getItem(KEY); if(old) ta.value=old; }catch(e){}
+  var t; if(ta) ta.addEventListener("input",function(){ clearTimeout(t); t=setTimeout(function(){ try{ localStorage.setItem(KEY,ta.value); sv.textContent="✓ انحفظ"; }catch(e){ sv.textContent=""; } },500); });
+
+  /* مجموعة الواتساب (اختيارية) */
+  if(WA_GROUP){ var gr=document.getElementById("aytGroupRow"); gr.hidden=false; document.getElementById("aytGroup").href=WA_GROUP; }
+
+  /* الدعوة */
+  var msg="السلام عليكم 🤍\nسجّلت بلقاء إيماني مجاني اسمه «أثرٌ يبقى» مع الشيخ علاء جابر، بث مباشر من المدينة المنورة، عن أمراض القلوب والغفلة والفتور.\nيوم "+EVENT_DATE_TX+" الساعة "+EVENT_TIME_TX+" بتوقيت مكة.\nحبيت تكون معي، التسجيل من هون:\n"+REG_URL;
+  var sh=document.getElementById("aytShare"); if(sh) sh.href="https://wa.me/?text="+encodeURIComponent(msg);
+  var cp=document.getElementById("aytCopy");
+  if(cp) cp.addEventListener("click",function(){ var s=cp.querySelector("span");
+    function ok(){ s.textContent="✓ تم نسخ الرابط"; setTimeout(function(){ s.textContent="انسخ رابط التسجيل"; },2000); }
+    function fallback(){ /* متصفح إنستغرام/واتساب الداخلي أحيانًا بيمنع clipboard */
+      var t=document.createElement("textarea"); t.value=REG_URL; t.setAttribute("readonly","");
+      t.style.cssText="position:fixed;top:0;left:0;opacity:0;font-size:16px"; document.body.appendChild(t);
+      t.focus(); t.select(); t.setSelectionRange(0,REG_URL.length);
+      var done=false; try{ done=document.execCommand("copy"); }catch(e){}
+      document.body.removeChild(t);
+      if(done) ok(); else window.prompt("انسخ رابط التسجيل:", REG_URL); }
+    if(navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(REG_URL).then(ok,fallback); else fallback(); });
+
+  /* حروف طايرة */
+  var glyphs="أثريبقىقلبنورصدق".split("");
+  document.querySelectorAll(".ayt canvas.letters").forEach(function(cv){
+    var ctx=cv.getContext("2d"), parts=[], W=0, H=0, dpr=Math.min(window.devicePixelRatio||1,2);
+    function size(){ var r=cv.parentElement.getBoundingClientRect(); W=r.width; H=r.height; cv.width=W*dpr; cv.height=H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0); }
+    function spawn(i){ return {x:Math.random()*W,y:i?Math.random()*H:H+30,s:14+Math.random()*22,v:.12+Math.random()*.28,a:0,amax:.14+Math.random()*.22,g:glyphs[Math.floor(Math.random()*glyphs.length)],sw:Math.random()*6.28}; }
+    size(); for(var i=0;i<Math.min(34,W/32);i++) parts.push(spawn(true)); window.addEventListener("resize",size);
+    (function draw(){ ctx.clearRect(0,0,W,H); parts.forEach(function(p,i){ if(!reduce){p.y-=p.v;p.sw+=.01;p.x+=Math.sin(p.sw)*.25;} p.a=Math.min(p.amax,p.a+.004); var f=Math.min(1,p.y/(H*.25));
+      ctx.font="400 "+p.s+"px 'Aref Ruqaa', serif"; ctx.shadowColor="rgba(227,196,126,.9)"; ctx.shadowBlur=12; ctx.fillStyle="rgba(227,196,126,"+(p.a*f)+")"; ctx.fillText(p.g,p.x,p.y); if(p.y<-40) parts[i]=spawn(false); });
+      if(!reduce) requestAnimationFrame(draw); })();
+  });
+})();
+</script>

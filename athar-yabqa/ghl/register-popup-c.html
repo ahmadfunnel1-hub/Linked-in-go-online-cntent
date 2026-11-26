@@ -1,0 +1,393 @@
+<!-- ============================================================
+     «أثرٌ يبقى» — بوب أب التسجيل — PART C (v5، على طريقة بوب أب لارا الشغّال)
+     البوب أب مبني بالكود فبيفتح فورًا. لما الزائر يضغط «احجز»، الكود بيعبّي فورم GHL الحقيقي
+     (عنصر Form «اثر يبقى» بالصفحة: form-j5RM4ljMcJ) وبيضغط زره، فـ GHL هو اللي بيرسل
+     وبيعمل الـ Contact ويشغّل الـ Workflow ويحوّل لصفحة الشكر.
+     مهم: عنصر فورم GHL لازم يضل ظاهر على الصفحة (متل لارا). إذا انخفى ما بيرسل.
+     إذا ما صار تحويل لصفحة الشكر، البوب أب بيتسكّر وبينزّل الزائر لفورم GHL وبياناته معبّاة فيه.
+     ============================================================ -->
+<style>
+.ayp{
+  --o900:#181A10; --o800:#24271A; --olive:#4F5A33; --gold:#C49A3C; --gold2:#E3C47E; --gold3:#F6E6BE;
+  --ink:#2A2418; --ink2:#5A5040; --line:#E2D6BD; --err:#B4472F;
+  position:fixed;inset:0;z-index:999999;display:grid;place-items:center;padding:20px;
+  direction:rtl;font-family:"IBM Plex Sans Arabic",system-ui,sans-serif;
+  visibility:hidden;opacity:0;transition:opacity .25s ease,visibility .25s ease;
+}
+.ayp *,.ayp *::before,.ayp *::after{box-sizing:border-box;margin:0;padding:0}
+.ayp.is-open{visibility:visible;opacity:1}
+.ayp-backdrop{position:absolute;inset:0;background:rgba(15,16,10,.78);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.ayp-card{
+  position:relative;width:100%;max-width:480px;max-height:calc(100dvh - 40px);overflow:auto;
+  background:linear-gradient(180deg,#fff,#FBF6EA);border-radius:28px;border:1px solid rgba(196,154,60,.55);
+  box-shadow:0 40px 90px -30px rgba(0,0,0,.85);
+  transform:translateY(24px) scale(.97);transition:transform .3s cubic-bezier(.2,.8,.2,1);
+}
+.ayp.is-open .ayp-card{transform:none}
+
+.ayp-head{
+  position:relative;padding:30px 28px 24px;text-align:center;color:#fff;border-bottom:3px solid var(--gold);
+  background:radial-gradient(80% 90% at 50% 0%,rgba(196,154,60,.28),transparent 70%),linear-gradient(160deg,#343A24,var(--o900));
+}
+.ayp-badge{display:inline-flex;align-items:center;gap:8px;padding:5px 14px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid rgba(227,196,126,.35);font-size:13px;font-weight:500;color:var(--gold3)}
+.ayp-brand{display:block;margin-top:10px;font-family:"Aref Ruqaa",serif;font-size:42px;line-height:1.3;color:var(--gold2)}
+.ayp-title{margin-top:2px;font-size:17px;font-weight:600;line-height:1.6;color:#fff}
+.ayp-date{margin-top:6px;font-size:14px;font-weight:600;color:var(--gold2)}
+.ayp-close{
+  position:absolute;top:14px;left:14px;width:38px;height:38px;border-radius:50%;border:0;cursor:pointer;
+  background:rgba(255,255,255,.12);color:#fff;font-size:22px;line-height:1;display:grid;place-items:center;transition:background .2s;
+}
+.ayp-close:hover{background:rgba(255,255,255,.25)}
+
+.ayp-body{padding:26px 26px 24px}
+.ayp-field{margin-bottom:16px}
+.ayp-field label{display:block;margin-bottom:7px;font-size:14.5px;font-weight:600;color:var(--olive)}
+.ayp-input{
+  width:100%;height:56px;padding:0 16px;border-radius:14px;border:1.5px solid var(--line);background:#fff;
+  font-family:inherit;font-size:16px;color:var(--ink);transition:border-color .2s,box-shadow .2s;
+}
+.ayp-input::placeholder{color:#A39880}
+.ayp-input:focus{outline:0;border-color:var(--gold);box-shadow:0 0 0 4px rgba(196,154,60,.18)}
+.ayp-input[type=email],.ayp-input[type=tel]{direction:ltr;text-align:right}
+.ayp-input[type=email]::placeholder,.ayp-input[type=tel]::placeholder{text-align:right}
+/* وهي فاضية: اتجاه عربي حتى يبين النص العربي صح، ولما تبدأ الكتابة بترجع LTR للإيميل والرقم */
+.ayp-input[type=email]:placeholder-shown,.ayp-input[type=tel]:placeholder-shown{direction:rtl}
+.ayp-phone{display:flex;gap:8px;direction:ltr}
+.ayp-phone .ayp-input{flex:1;min-width:0}
+.ayp-cc{flex:0 0 112px!important;padding:0 26px 0 10px;direction:ltr;text-align:left;cursor:pointer;-webkit-appearance:none;appearance:none;
+  background-image:linear-gradient(45deg,transparent 50%,#8B8170 50%),linear-gradient(135deg,#8B8170 50%,transparent 50%);
+  background-position:calc(100% - 15px) 25px,calc(100% - 10px) 25px;background-size:5px 5px;background-repeat:no-repeat}
+.ayp-field.has-error .ayp-input{border-color:var(--err);box-shadow:0 0 0 4px rgba(180,71,47,.12)}
+.ayp-error{display:none;margin-top:6px;font-size:13px;font-weight:500;color:var(--err)}
+.ayp-field.has-error .ayp-error{display:block}
+
+.ayp-submit{
+  position:relative;width:100%;min-height:60px;margin-top:6px;border:0;border-radius:999px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  background:linear-gradient(180deg,var(--gold3),var(--gold2) 55%,var(--gold));color:var(--o900);
+  font-family:inherit;font-size:18px;font-weight:700;
+  box-shadow:0 14px 30px -12px rgba(196,154,60,.8),inset 0 1px 0 rgba(255,255,255,.6);transition:transform .2s,filter .2s;
+}
+.ayp-submit:hover{transform:translateY(-2px);filter:brightness(1.04)}
+.ayp-submit[disabled]{opacity:.75;cursor:wait;transform:none}
+.ayp-trust{margin-top:14px;text-align:center;font-size:13px;color:#8B8170}
+.ayp-note{margin-top:10px;min-height:18px;text-align:center;font-size:13.5px;color:var(--olive)}
+
+.ayp-success{display:none;text-align:center;padding:10px 0 2px}
+.ayp-check{width:72px;height:72px;margin:0 auto 14px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(160deg,var(--olive),#2B301C);color:var(--gold3);font-size:34px;font-weight:700;box-shadow:0 0 0 5px #EEE6D2,0 0 0 6px rgba(196,154,60,.5)}
+.ayp-success h4{font-size:21px;line-height:1.5;color:var(--o800)}
+.ayp-success p{margin-top:8px;color:var(--ink2)}
+.ayp.is-done .ayp-form{display:none}
+.ayp.is-done .ayp-success{display:block}
+
+html.ayp-lock,html.ayp-lock body{overflow:hidden}
+
+@media (max-width:640px){
+  .ayp{padding:0;place-items:end center}
+  .ayp-card{max-width:none;max-height:94dvh;border-radius:24px 24px 0 0;transform:translateY(100%)}
+  .ayp-head{padding:26px 20px 20px}
+  .ayp-body{padding:22px 20px calc(24px + env(safe-area-inset-bottom))}
+}
+@media (prefers-reduced-motion:reduce){ .ayp,.ayp-card{transition:none} }
+</style>
+
+<div class="ayp" id="aypModal" role="dialog" aria-modal="true" aria-labelledby="aypTitle" aria-hidden="true">
+  <div class="ayp-backdrop" data-ayp-close></div>
+  <div class="ayp-card">
+
+    <div class="ayp-head">
+      <button type="button" class="ayp-close" data-ayp-close aria-label="إغلاق">×</button>
+      <span class="ayp-badge">لقاء مجاني · بث مباشر من المدينة المنورة</span>
+      <span class="ayp-brand">أثرٌ يبقى</span>
+      <h3 class="ayp-title" id="aypTitle">احجز مقعدك مع الشيخ علاء جابر</h3>
+      <div class="ayp-date" data-ayp-when></div>
+    </div>
+
+    <div class="ayp-body">
+      <form class="ayp-form" id="aypForm" novalidate>
+        <div class="ayp-field">
+          <label for="ayp-name">الاسم</label>
+          <input class="ayp-input" id="ayp-name" name="name" type="text" autocomplete="name" placeholder="اكتب اسمك" required>
+          <div class="ayp-error">من فضلك اكتب اسمك</div>
+        </div>
+        <div class="ayp-field">
+          <label for="ayp-email">البريد الإلكتروني</label>
+          <input class="ayp-input" id="ayp-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="اكتب بريدك الإلكتروني" required>
+          <div class="ayp-error">من فضلك اكتب بريد إلكتروني صحيح</div>
+        </div>
+        <div class="ayp-field">
+          <label for="ayp-phone">رقم الواتساب</label>
+          <div class="ayp-phone">
+            <select class="ayp-input ayp-cc" id="ayp-cc" aria-label="مفتاح الدولة">
+            <option value="962" selected>🇯🇴 ‎+962</option>
+            <option value="966">🇸🇦 ‎+966</option>
+            <option value="970">🇵🇸 ‎+970</option>
+            <option value="972">🇵🇸 ‎+972</option>
+            <option value="20">🇪🇬 ‎+20</option>
+            <option value="971">🇦🇪 ‎+971</option>
+            <option value="965">🇰🇼 ‎+965</option>
+            <option value="974">🇶🇦 ‎+974</option>
+            <option value="973">🇧🇭 ‎+973</option>
+            <option value="968">🇴🇲 ‎+968</option>
+            <option value="964">🇮🇶 ‎+964</option>
+            <option value="963">🇸🇾 ‎+963</option>
+            <option value="961">🇱🇧 ‎+961</option>
+            <option value="967">🇾🇪 ‎+967</option>
+            <option value="212">🇲🇦 ‎+212</option>
+            <option value="213">🇩🇿 ‎+213</option>
+            <option value="216">🇹🇳 ‎+216</option>
+            <option value="218">🇱🇾 ‎+218</option>
+            <option value="249">🇸🇩 ‎+249</option>
+            <option value="222">🇲🇷 ‎+222</option>
+            <option value="252">🇸🇴 ‎+252</option>
+            <option value="90">🇹🇷 ‎+90</option>
+            <option value="44">🇬🇧 ‎+44</option>
+            <option value="49">🇩🇪 ‎+49</option>
+            <option value="33">🇫🇷 ‎+33</option>
+            <option value="31">🇳🇱 ‎+31</option>
+            <option value="32">🇧🇪 ‎+32</option>
+            <option value="46">🇸🇪 ‎+46</option>
+            <option value="1">🇺🇸 ‎+1</option>
+            <option value="61">🇦🇺 ‎+61</option>
+            <option value="60">🇲🇾 ‎+60</option>
+            <option value="62">🇮🇩 ‎+62</option>
+            <option value="92">🇵🇰 ‎+92</option>
+            </select>
+            <input class="ayp-input" id="ayp-phone" name="phone" type="tel" autocomplete="tel-national" inputmode="tel" placeholder="رقم الواتساب" required>
+          </div>
+          <div class="ayp-error">من فضلك اكتب رقم هاتف صحيح</div>
+        </div>
+        <button type="submit" class="ayp-submit">احجز مقعدك مجانًا</button>
+        <div class="ayp-trust">بياناتك بأمان، وما بتنشارك مع حدا</div>
+        <p class="ayp-note" role="status" aria-live="polite"></p>
+      </form>
+
+      <div class="ayp-success" role="status">
+        <div class="ayp-check">✓</div>
+        <h4>تم حجز مقعدك</h4>
+        <p>رح يوصلك التأكيد ورابط الدخول على إيميلك</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var modal = document.getElementById('aypModal');
+  if(!modal) return;
+  // انقل البوب أب لآخر الـbody عشان ما يتأثرش بأي سكشن أب (مهم في GHL)
+  document.body.appendChild(modal);
+
+  var form = document.getElementById('aypForm');
+  var lastFocus = null;
+
+  function fillMeta(){
+    var ev = window.AY_EVENT || {}, w = modal.querySelector('[data-ayp-when]');
+    if(w) w.textContent = [ev.date, ev.time].filter(Boolean).join(' · ');
+  }
+  function openPopup(){
+    fillMeta();
+    lastFocus = document.activeElement;
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden','false');
+    document.documentElement.classList.add('ayp-lock');
+    fit();
+    var first = modal.querySelector('input, iframe');
+    if(first) setTimeout(function(){ try{ first.focus(); }catch(e){} }, 260);
+  }
+  function closePopup(){
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden','true');
+    document.documentElement.classList.remove('ayp-lock');
+    unfit();
+    if(lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  // آيفون: لما تنفتح لوحة المفاتيح، ثبّت البوب أب على الجزء المرئي من الشاشة (فوق اللوحة)
+  var vv = window.visualViewport;
+  function fit(){
+    if(!vv || !modal.classList.contains('is-open')) return;
+    var st = modal.style;
+    st.setProperty('top', vv.offsetTop + 'px'); st.setProperty('left', vv.offsetLeft + 'px');
+    st.setProperty('width', vv.width + 'px');  st.setProperty('height', vv.height + 'px');
+    st.setProperty('right', 'auto'); st.setProperty('bottom', 'auto');
+  }
+  function unfit(){ ['top','left','width','height','right','bottom'].forEach(function(p){ modal.style.removeProperty(p); }); }
+  if(vv){ vv.addEventListener('resize', fit); vv.addEventListener('scroll', fit); }
+  window.openRegisterPopup = openPopup;
+
+  // أي زر في أي سكشن: href="#register" أو data-popup
+  document.addEventListener('click', function(e){
+    var t = e.target.closest('a[href="#register"], a[href$="#register"], [data-popup]');
+    if(!t || modal.contains(t)) return;
+    e.preventDefault();
+    openPopup();
+  }, true);
+
+  modal.querySelectorAll('[data-ayp-close]').forEach(function(el){ el.addEventListener('click', closePopup); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && modal.classList.contains('is-open')) closePopup(); });
+
+  if(!form) return;
+
+  // أرقام عربية/فارسية ← إنجليزية
+  function latinDigits(v){ return String(v).replace(/[٠-٩]/g,function(d){return d.charCodeAt(0)-1632;}).replace(/[۰-۹]/g,function(d){return d.charCodeAt(0)-1776;}); }
+  function check(input){
+    var v = latinDigits(input.value).trim(), ok;
+    if(input.name === 'email') ok = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v);
+    else if(input.name === 'phone'){ var d = fullPhone(input.value).replace(/\D/g,''); ok = v.length > 0 && d.length >= 8 && d.length <= 15; }
+    else ok = v.length >= 2;
+    input.closest('.ayp-field').classList.toggle('has-error', !ok);
+    return ok;
+  }
+  form.querySelectorAll('input').forEach(function(i){
+    i.addEventListener('blur', function(){ if(i.value) check(i); });
+    i.addEventListener('input', function(){ if(i.closest('.ayp-field').classList.contains('has-error')) check(i); });
+  });
+
+  /* =========================================================
+     الربط مع فورم GHL المخفي (نفس كود صفحة لارا حرفيًا)
+     ========================================================= */
+  var GHL_SECTION_ID = 'form-j5RM4ljMcJ';   // ← ID سكشن فورم GHL بصفحة أثرٌ يبقى
+  var HIDE_GHL_FORM  = false;                 // ← فورم GHL مخفي عن الزوار
+
+  function ghlRoot(){
+    var sec = document.getElementById(GHL_SECTION_ID);
+    if(sec) return sec;
+    var f = document.querySelector('input[name="first_name"], input[name="full_name"]');
+    return (f && !modal.contains(f)) ? (f.closest('form') || f.closest('[id^="section-"]') || null) : null;
+  }
+  function pick(root, sels){
+    for(var i=0;i<sels.length;i++){ var el = root.querySelector(sels[i]); if(el) return el; }
+    return null;
+  }
+  function findSubmit(root){
+    var el = root.querySelector('[id*="_button"] button, button[type="submit"], input[type="submit"]');
+    if(el) return el;
+    var all = [].slice.call(root.querySelectorAll('button')).filter(function(b){
+      return !b.closest('.vti__dropdown, .iti, [class*="country"], [class*="phone"]');
+    });
+    return all.length ? all[all.length - 1] : null;
+  }
+  function setVal(el, v){
+    if(!el) return;
+    var proto = Object.getPrototypeOf(el);
+    var desc = Object.getOwnPropertyDescriptor(proto, 'value') || Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value');
+    el.focus();
+    desc.set.call(el, v);
+    ['input','change','keyup','blur'].forEach(function(t){ el.dispatchEvent(new Event(t, { bubbles:true })); });
+  }
+  // مفتاح الدولة حسب توقيت جهاز الزائر (إذا ما عرفنا: الأردن)
+  var TZ_CC = {'Asia/Amman':'962','Asia/Riyadh':'966','Asia/Gaza':'970','Asia/Hebron':'970','Asia/Jerusalem':'972','Africa/Cairo':'20',
+    'Asia/Dubai':'971','Asia/Kuwait':'965','Asia/Qatar':'974','Asia/Bahrain':'973','Asia/Muscat':'968','Asia/Baghdad':'964',
+    'Asia/Damascus':'963','Asia/Beirut':'961','Asia/Aden':'967','Africa/Casablanca':'212','Africa/El_Aaiun':'212','Africa/Algiers':'213',
+    'Africa/Tunis':'216','Africa/Tripoli':'218','Africa/Khartoum':'249','Africa/Nouakchott':'222','Africa/Mogadishu':'252',
+    'Europe/Istanbul':'90','Europe/London':'44','Europe/Berlin':'49','Europe/Paris':'33','Europe/Amsterdam':'31','Europe/Brussels':'32',
+    'Europe/Stockholm':'46','Australia/Sydney':'61','Australia/Melbourne':'61','Asia/Kuala_Lumpur':'60','Asia/Jakarta':'62','Asia/Karachi':'92'};
+  var ccSel = document.getElementById('ayp-cc');
+  try{
+    var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+    var guess = TZ_CC[tz] || (/^America\//.test(tz) ? '1' : '');
+    if(guess && ccSel.querySelector('option[value="' + guess + '"]')) ccSel.value = guess;
+  }catch(e){}
+  function fullPhone(v){
+    v = latinDigits(v).replace(/[^0-9+]/g,'');
+    if(v.indexOf('00') === 0) v = '+' + v.slice(2);
+    if(v.charAt(0) === '+') return '+' + v.slice(1).replace(/\D/g,'');   // كتب الرقم الدولي كامل
+    return '+' + ccSel.value + v.replace(/\D/g,'').replace(/^0+/,'');   // رقم محلي + مفتاح الدولة
+  }
+  function normPhone(v){
+    v = latinDigits(v).replace(/[^0-9+]/g,'');
+    if(v.indexOf('00') === 0) v = '+' + v.slice(2);
+    return v;
+  }
+
+  if(HIDE_GHL_FORM){
+    var st = document.createElement('style');
+    st.textContent = '#' + GHL_SECTION_ID + '{position:fixed!important;left:-10000px!important;top:0!important;width:400px!important;opacity:0!important;pointer-events:none!important;z-index:-1!important}';
+    document.head.appendChild(st);
+  }
+
+  function sendToGHL(data){
+    var root = ghlRoot();
+    if(!root){ console.warn('[GHL bridge] مش لاقي سكشن فورم GHL'); return false; }
+    var fName  = pick(root, ['input[name="first_name"]','#first_name','input[name="full_name"]','input[name="name"]']);
+    var fPhone = pick(root, ['input[name="phone"]','#phone','input[type="tel"]']);
+    var fEmail = pick(root, ['input[name="email"]','#email','input[type="email"]']);
+    var btn    = findSubmit(root);
+    if(!fName || !fPhone || !fEmail || !btn){
+      console.warn('[GHL bridge] مش لاقي فورم GHL — اتأكد من GHL_SECTION_ID', { name:!!fName, phone:!!fPhone, email:!!fEmail, button:!!btn });
+      return false;
+    }
+    setVal(fName,  data.name);
+    setVal(fEmail, data.email);
+    setVal(fPhone, data.phone);
+    console.log('[GHL bridge] الخانات اتملت — الزرار:', btn.textContent.trim());
+
+    function sent(){ return !document.contains(fName) || fName.offsetParent === null && !HIDE_GHL_FORM; }
+    function realClick(el){
+      el.focus();
+      ['pointerdown','mousedown','pointerup','mouseup'].forEach(function(t){
+        var Ev = (t.indexOf('pointer') === 0 && window.PointerEvent) ? PointerEvent : MouseEvent;
+        el.dispatchEvent(new Ev(t, { bubbles:true, cancelable:true, view:window, button:0, buttons: t.indexOf('down') > -1 ? 1 : 0 }));
+      });
+      el.click();
+    }
+
+    setTimeout(function(){
+      realClick(btn);
+      console.log('[GHL bridge] محاولة 1: ضغطة على الزرار');
+      setTimeout(function(){
+        if(sent()){ console.log('[GHL bridge] ✓ اتبعت'); return; }
+        var f = btn.closest('form');
+        if(f && f.requestSubmit){ console.log('[GHL bridge] محاولة 2: requestSubmit'); f.requestSubmit(btn.type === 'submit' ? btn : undefined); }
+        else { console.log('[GHL bridge] محاولة 2: ضغطة تانية'); realClick(btn); }
+        setTimeout(function(){ console.log(sent() ? '[GHL bridge] ✓ اتبعت' : '[GHL bridge] ✗ لسه ما اتبعتش'); }, 2500);
+      }, 2500);
+    }, 600);
+    return true;
+  }
+
+  var leaving = false;
+  window.addEventListener('pagehide', function(){ leaving = true; });
+  window.addEventListener('beforeunload', function(){ leaving = true; });
+
+  function ghlFormGone(){
+    var root = ghlRoot();
+    return !root || !root.querySelector('input[name="email"], #email, input[type="email"]');
+  }
+  function handOver(btn){
+    // ما صار إرسال: نسكّر البوب أب وننزل لفورم GHL، والبيانات معبّاة فيه، فالزائر بيكمل بضغطة
+    btn.disabled = false;
+    modal.querySelector('.ayp-note').textContent = '';
+    closePopup();
+    var root = ghlRoot();
+    if(root){ root.scrollIntoView({ behavior:'smooth', block:'center' }); }
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var bad = null;
+    form.querySelectorAll('input').forEach(function(i){ if(!check(i) && !bad) bad = i; });
+    if(bad){ bad.focus(); return; }
+    var data = {
+      name:  document.getElementById('ayp-name').value.trim(),
+      email: latinDigits(document.getElementById('ayp-email').value).trim().toLowerCase(),
+      phone: fullPhone(document.getElementById('ayp-phone').value)
+    };
+    var btn = form.querySelector('.ayp-submit');
+    btn.disabled = true;
+    modal.querySelector('.ayp-note').textContent = 'لحظة… عم نسجّلك';
+    if(!sendToGHL(data)){ handOver(btn); return; }
+    // GHL بيحوّل لصفحة الشكر بعد الإرسال. منستنى لحد 9 ثواني.
+    var waited = 0;
+    var poll = setInterval(function(){
+      waited += 500;
+      if(leaving){ clearInterval(poll); return; }
+      if(ghlFormGone()){                       // GHL بعت وعرض رسالته بدل الفورم
+        clearInterval(poll); btn.disabled = false; modal.classList.add('is-done'); return;
+      }
+      if(waited >= 9000){ clearInterval(poll); handOver(btn); }
+    }, 500);
+  });
+})();
+</script>
+<!-- ===== PART C END ===== -->

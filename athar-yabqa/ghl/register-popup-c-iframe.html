@@ -1,0 +1,108 @@
+<!-- «أثرٌ يبقى» — Part C (نسخة iframe) — جاهز للصق، Form ID مضاف.
+     بيحل محل register-popup-c.html بالكامل. فورم GHL بيفتح جوّا البوب أب.
+     التحويل لصفحة الشكر من إعدادات الفورم: On Submit ← Redirect ← https://alaa-jaber.com/mecca-madinah-webinar-thankyou -->
+<div id="aypModal" class="ayp" aria-hidden="true" role="dialog" aria-modal="true" aria-label="سجّل حضورك في أثرٌ يبقى">
+  <div class="ayp-backdrop" data-ayp-close></div>
+  <div class="ayp-box">
+    <button type="button" class="ayp-x" data-ayp-close aria-label="إغلاق">×</button>
+    <p class="ayp-kicker">لقاء إيماني مجاني</p>
+    <h3 class="ayp-title">احجز مكانك في «أثرٌ يبقى»</h3>
+    <p class="ayp-when" data-ayp-when></p>
+    <div class="ayp-frame">
+      <iframe
+        src="https://api.leadconnectorhq.com/widget/form/tPvQEBTBRJ15boAMLDnt"
+        id="inline-tPvQEBTBRJ15boAMLDnt"
+        data-layout="{'id':'INLINE'}"
+        data-trigger-type="alwaysShow"
+        data-activation-type="alwaysActivated"
+        data-deactivation-type="neverDeactivate"
+        data-form-name="أثر يبقى"
+        data-height="460"
+        data-layout-iframe-id="inline-tPvQEBTBRJ15boAMLDnt"
+        data-form-id="tPvQEBTBRJ15boAMLDnt"
+        title="نموذج التسجيل"
+        style="width:100%;height:460px;border:none;border-radius:16px"></iframe>
+    </div>
+    <p class="ayp-note">مجاني بالكامل · يصلك رابط الدخول على بريدك</p>
+  </div>
+</div>
+<link rel="preconnect" href="https://api.leadconnectorhq.com" crossorigin>
+<link rel="preconnect" href="https://link.msgsndr.com" crossorigin>
+<script src="https://link.msgsndr.com/js/form_embed.js" async></script>
+
+<style>
+  .ayp{box-sizing:border-box;position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;padding:16px;direction:rtl;font-family:"IBM Plex Sans Arabic",Tahoma,sans-serif;visibility:hidden;opacity:0;pointer-events:none;transition:opacity .18s ease,visibility 0s linear .18s}
+  .ayp.is-open{visibility:visible;opacity:1;pointer-events:auto;transition:opacity .18s ease,visibility 0s}
+  /* مسكّر: شفاف وما بيستقبل ولا ضغطة (حتى لو سكريبت GHL حط على الـ iframe pointer-events:auto).
+     الـ iframe بيضل جوّا الشاشة و"ظاهر" للمتصفح حتى سفاري يحمّل الفورم ويرسمه مسبقًا، فيفتح فورًا. */
+  .ayp:not(.is-open),.ayp:not(.is-open) *{pointer-events:none!important}
+  .ayp:not(.is-open) .ayp-frame iframe{visibility:visible!important}
+  .ayp-backdrop{position:absolute;inset:0;background:rgba(24,27,16,.72);backdrop-filter:blur(3px)}
+  .ayp-box{box-sizing:border-box;position:relative;width:100%;max-width:480px;max-height:100%;overflow:auto;-webkit-overflow-scrolling:touch;background:linear-gradient(180deg,#fff,#FBF6EA);border:1px solid rgba(196,154,60,.6);border-radius:26px;padding:28px 22px 18px;box-shadow:0 30px 70px -40px rgba(0,0,0,.7),0 0 0 6px rgba(227,196,126,.16);text-align:center}
+  .ayp-x{position:absolute;top:10px;left:14px;border:0;background:none;font-size:28px;line-height:1;color:#4F5A33;cursor:pointer}
+  .ayp-kicker{margin:0 0 4px;color:#C49A3C;font-size:13px;font-weight:600}
+  .ayp-title{margin:0 0 6px;color:#24271A;font-size:22px;font-weight:700}
+  .ayp-when{margin:0 0 14px;color:#4F5A33;font-size:14px}
+  .ayp-frame{position:relative;min-height:460px}
+  .ayp-frame:before{content:"";position:absolute;top:calc(50% - 16px);left:calc(50% - 16px);width:32px;height:32px;border:3px solid rgba(196,154,60,.25);border-top-color:#C49A3C;border-radius:50%;animation:aypSpin .8s linear infinite}
+  .ayp-frame iframe{position:relative;z-index:1;background:transparent}
+  @keyframes aypSpin{to{transform:rotate(360deg)}}
+  .ayp-note{margin:10px 0 0;color:#8A7E63;font-size:12px}
+  html.ayp-lock,html.ayp-lock body{overflow:hidden}
+</style>
+
+<script>
+(function(){
+  var modal = document.getElementById('aypModal');
+  if(!modal) return;
+  // السكشن اللي GHL حاطط فيه هالكود: بعد ما ننقل البوب أب برّا، إذا ضل فاضي منشيله (بيمنع الفراغ الأبيض تحت الفوتر)
+  var host = modal.closest('[id^="section-"], section');
+  document.body.appendChild(modal);
+  setTimeout(function(){
+    if(host && host !== document.body && !host.innerText.trim() && !host.querySelector('img,video,iframe,canvas')){
+      host.style.setProperty('padding','0','important');
+      host.style.setProperty('margin','0','important');
+      host.style.setProperty('min-height','0','important');
+      host.style.setProperty('height','0','important');
+      host.style.setProperty('overflow','hidden','important');
+    }
+  }, 400);
+  var lastFocus = null;
+  function openPopup(){
+    var ev = window.AY_EVENT || {}, w = modal.querySelector('[data-ayp-when]');
+    if(w) w.textContent = [ev.date, ev.time].filter(Boolean).join(' · ');
+    lastFocus = document.activeElement;
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden','false');
+    document.documentElement.classList.add('ayp-lock');
+    fit();
+  }
+  function closePopup(){
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden','true');
+    document.documentElement.classList.remove('ayp-lock');
+    unfit();
+    if(lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  // آيفون: لما تنفتح لوحة المفاتيح، ثبّت البوب أب على الجزء المرئي من الشاشة (فوق اللوحة)
+  var vv = window.visualViewport;
+  function fit(){
+    if(!vv || !modal.classList.contains('is-open')) return;
+    var st = modal.style;
+    st.setProperty('top', vv.offsetTop + 'px'); st.setProperty('left', vv.offsetLeft + 'px');
+    st.setProperty('width', vv.width + 'px');  st.setProperty('height', vv.height + 'px');
+    st.setProperty('right', 'auto'); st.setProperty('bottom', 'auto');
+  }
+  function unfit(){ ['top','left','width','height','right','bottom'].forEach(function(p){ modal.style.removeProperty(p); }); }
+  if(vv){ vv.addEventListener('resize', fit); vv.addEventListener('scroll', fit); }
+  window.openRegisterPopup = openPopup;
+  document.addEventListener('click', function(e){
+    var t = e.target.closest('a[href="#register"], a[href$="#register"], [data-popup]');
+    if(!t || modal.contains(t)) return;
+    e.preventDefault();
+    openPopup();
+  }, true);
+  modal.querySelectorAll('[data-ayp-close]').forEach(function(el){ el.addEventListener('click', closePopup); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && modal.classList.contains('is-open')) closePopup(); });
+})();
+</script>
