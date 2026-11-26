@@ -33,9 +33,10 @@
 <style>
   .ayp{box-sizing:border-box;position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;padding:16px;direction:rtl;font-family:"IBM Plex Sans Arabic",Tahoma,sans-serif;visibility:hidden;opacity:0;pointer-events:none;transition:opacity .18s ease,visibility 0s linear .18s}
   .ayp.is-open{visibility:visible;opacity:1;pointer-events:auto;transition:opacity .18s ease,visibility 0s}
-  /* مسكّر: برّا الشاشة وما بيستقبل ولا ضغطة، حتى لو سكريبت GHL حط على الـ iframe visibility:visible */
-  .ayp:not(.is-open){transform:translate3d(-300vw,0,0)}
-  .ayp:not(.is-open),.ayp:not(.is-open) *{visibility:hidden!important;pointer-events:none!important}
+  /* مسكّر: شفاف وما بيستقبل ولا ضغطة (حتى لو سكريبت GHL حط على الـ iframe pointer-events:auto).
+     الـ iframe بيضل جوّا الشاشة و"ظاهر" للمتصفح حتى سفاري يحمّل الفورم ويرسمه مسبقًا، فيفتح فورًا. */
+  .ayp:not(.is-open),.ayp:not(.is-open) *{pointer-events:none!important}
+  .ayp:not(.is-open) .ayp-frame iframe{visibility:visible!important}
   .ayp-backdrop{position:absolute;inset:0;background:rgba(24,27,16,.72);backdrop-filter:blur(3px)}
   .ayp-box{box-sizing:border-box;position:relative;width:100%;max-width:480px;max-height:100%;overflow:auto;-webkit-overflow-scrolling:touch;background:linear-gradient(180deg,#fff,#FBF6EA);border:1px solid rgba(196,154,60,.6);border-radius:26px;padding:28px 22px 18px;box-shadow:0 30px 70px -40px rgba(0,0,0,.7),0 0 0 6px rgba(227,196,126,.16);text-align:center}
   .ayp-x{position:absolute;top:10px;left:14px;border:0;background:none;font-size:28px;line-height:1;color:#4F5A33;cursor:pointer}
