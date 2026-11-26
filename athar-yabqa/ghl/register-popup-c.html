@@ -50,6 +50,8 @@
 .ayp-input:focus{outline:0;border-color:var(--gold);box-shadow:0 0 0 4px rgba(196,154,60,.18)}
 .ayp-input[type=email],.ayp-input[type=tel]{direction:ltr;text-align:right}
 .ayp-input[type=email]::placeholder,.ayp-input[type=tel]::placeholder{text-align:right}
+/* وهي فاضية: اتجاه عربي حتى يبين النص العربي صح، ولما تبدأ الكتابة بترجع LTR للإيميل والرقم */
+.ayp-input[type=email]:placeholder-shown,.ayp-input[type=tel]:placeholder-shown{direction:rtl}
 .ayp-field.has-error .ayp-input{border-color:var(--err);box-shadow:0 0 0 4px rgba(180,71,47,.12)}
 .ayp-error{display:none;margin-top:6px;font-size:13px;font-weight:500;color:var(--err)}
 .ayp-field.has-error .ayp-error{display:block}
@@ -105,12 +107,12 @@ html.ayp-lock,html.ayp-lock body{overflow:hidden}
         </div>
         <div class="ayp-field">
           <label for="ayp-email">البريد الإلكتروني</label>
-          <input class="ayp-input" id="ayp-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="name@example.com" required>
+          <input class="ayp-input" id="ayp-email" name="email" type="email" autocomplete="email" inputmode="email" placeholder="اكتب بريدك الإلكتروني" required>
           <div class="ayp-error">من فضلك اكتب بريد إلكتروني صحيح</div>
         </div>
         <div class="ayp-field">
           <label for="ayp-phone">رقم الواتساب</label>
-          <input class="ayp-input" id="ayp-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="07X XXX XXXX" required>
+          <input class="ayp-input" id="ayp-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="رقم الواتساب مع مفتاح الدولة" required>
           <div class="ayp-error">من فضلك اكتب رقم هاتف صحيح</div>
         </div>
         <button type="submit" class="ayp-submit">احجز مقعدك مجانًا</button>
