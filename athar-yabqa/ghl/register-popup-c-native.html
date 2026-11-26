@@ -1,13 +1,8 @@
-<!-- ⛔ لا تستخدم هذا الملف على الصفحة الحالية.
-     انجرّب على alaa-jaber.com يوم 26 نوفمبر: GHL ما سجّل الإرسال (ولا Submission ولا Contact)،
-     بس الكود بيحوّل لصفحة الشكر على كل حال، فالزائر بيفكر إنه سجّل.
-     المعتمد حاليًا: register-popup-c-iframe.html
-     ممكن نرجع لهذا الملف إذا انربط على Inbound Webhook بدل /forms/submit وانجرّب بتسجيل حقيقي. -->
-<!-- «أثرٌ يبقى» — Part C (نسخة الفورم المبني بالكود: بيفتح فورًا بدون iframe)
-     بيحل محل register-popup-c-iframe.html بالكامل.
-     البيانات بتنبعت لفورم GHL «اثر يبقى» نفسه (tPvQEBTBRJ15boAMLDnt)، فبينعمل الـ Contact وبيشتغل نفس الـ Workflow (Form Submitted)،
-     وبعدها التحويل لصفحة الشكر.
-     إذا فشل الإرسال لأي سبب، البوب أب بيعرض فورم GHL الأصلي (iframe) كخطة بديلة. -->
+<!-- ⛔ غير مستخدم: محتاج Inbound Webhook (WEBHOOK_URL) حتى يشتغل، وانلغت فكرة الـ Webhook. المعتمد: register-popup-c-iframe.html -->
+<!-- «أثرٌ يبقى» — Part C (فورم مبني بالكود: بيفتح فورًا بدون iframe)
+     بيبعت البيانات لـ Inbound Webhook بـ GHL (Workflow ← Create/Update Contact ← التاغ والإيميلات).
+     بيتأكد إنه GHL استلم التسجيل قبل ما يحوّل لصفحة الشكر. إذا ما استلم، أو WEBHOOK_URL فاضي،
+     بيعرض فورم GHL الأصلي (iframe) بدل ما يضيّع التسجيل. -->
 <div id="aypModal" class="ayp" aria-hidden="true" role="dialog" aria-modal="true" aria-label="سجّل حضورك في أثرٌ يبقى">
   <div class="ayp-backdrop" data-ayp-close></div>
   <div class="ayp-box">
@@ -117,7 +112,7 @@
   var FORM_ID     = 'tPvQEBTBRJ15boAMLDnt';            // فورم «اثر يبقى» بـ GHL
   var LOCATION_ID = 'zHsm2splTZd6wLL8b9rO';            // حساب الشيخ بـ GHL
   var THANK_YOU   = 'https://alaa-jaber.com/mecca-madinah-webinar-thankyou';
-  var SUBMIT_URL  = 'https://backend.leadconnectorhq.com/forms/submit?formId=' + FORM_ID + '&locationId=' + LOCATION_ID;
+  var WEBHOOK_URL = '';   // ← رابط Inbound Webhook من الـ Workflow (فاضي = فورم GHL الأصلي)
   /* ===================================================== */
 
   var modal = document.getElementById('aypModal');
@@ -229,36 +224,37 @@
     sending = true; btn.disabled = true; btn.textContent = 'لحظة… عم نسجّلك';
     status.className = 'ayp-status'; status.textContent = '';
 
+    var params = urlParams();
     var data = {
       full_name: nameI.value.trim(),
-      phone: phoneE164(),
+      first_name: nameI.value.trim().split(/\s+/)[0],
+      last_name: nameI.value.trim().split(/\s+/).slice(1).join(' '),
       email: latinDigits(emailI.value).trim().toLowerCase(),
-      formId: FORM_ID,
-      location_id: LOCATION_ID,
-      Timezone: timezone(),
-      eventData: {
-        source: 'direct', referrer: document.referrer || '', keyword: '', adSource: '',
-        url_params: urlParams(), page: { url: location.href, title: document.title },
-        timestamp: Date.now(), campaign: '', contactSessionIds: null,
-        fbp: cookie('_fbp'), fbc: cookie('_fbc'),
-        type: 'page-visit', parentId: FORM_ID, pageVisitType: 'form', domain: location.host,
-        version: 'v3', parentName: 'اثر يبقى', medium: 'form', mediumId: FORM_ID
-      }
+      phone: phoneE164(),
+      source: 'اثر يبقى',
+      form: 'athar-yabqa-popup',
+      page_url: location.href,
+      referrer: document.referrer || '',
+      utm_source: params.utm_source || '', utm_medium: params.utm_medium || '',
+      utm_campaign: params.utm_campaign || '', utm_content: params.utm_content || '',
+      timezone: timezone(),
+      fbp: cookie('_fbp'), fbc: cookie('_fbc'),
+      submitted_at: new Date().toISOString()
     };
-    var body = new FormData();
-    body.set('formData', JSON.stringify(data));
-    body.append('locationId', LOCATION_ID);
-    body.append('formId', FORM_ID);
 
+    var done = false;
     var timer = setTimeout(fail, 15000);
     function fail(){
+      if(done) return; done = true;
       clearTimeout(timer); sending = false; btn.disabled = false; btn.textContent = 'سجّل حضورك الآن مجانًا';
       showFallback();
     }
-    // no-cors: الطلب بيوصل GHL حتى لو ما سمح لصفحتنا تقرأ الرد. فشل الشبكة بس هو اللي بيوصل لـ catch.
-    fetch(SUBMIT_URL, { method: 'POST', body: body, mode: 'no-cors', keepalive: true })
-      .then(function(){
-        clearTimeout(timer);
+    if(!WEBHOOK_URL){ fail(); return; }
+    // الـ Webhook بيسمح لصفحتنا تقرأ الرد، فبنحوّل لصفحة الشكر بس لما GHL يأكد إنه استلم.
+    fetch(WEBHOOK_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data), keepalive: true })
+      .then(function(r){
+        if(!r.ok) throw new Error('HTTP ' + r.status);
+        if(done) return; done = true; clearTimeout(timer);
         status.textContent = 'تم تسجيلك… لحظة ✓';
         setTimeout(function(){ location.href = THANK_YOU; }, 350);
       })
